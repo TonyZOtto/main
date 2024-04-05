@@ -10,6 +10,7 @@
 #include <QTimeZone>
 #include <QVersionNumber>
 
+#include <BaseApplication>
 #include <ConsoleStdIO>
 #include <FileInfo>
 
@@ -47,10 +48,10 @@ void StatusConsoleApplication::exeInfo()
 {
     qInfo() << Q_FUNC_INFO << objectName() << QCoreApplication::arguments();
     io()->writeline("===Executable Information===");
-    const QStringList cExeInfoStrings = exeFileInfo().infoStrings();
+    const QStringList cExeInfoStrings = base()->exeFileInfo().infoStrings();
     io()->writelines(cExeInfoStrings, "   ");
 
-    const QStringList cArgs = rawArgumentList();
+    const QStringList cArgs = base()->rawArgumentList();
     const int nArgs = cArgs.count();
     io()->writeline(QString("---Raw Command Line Argument List: %1---").arg(nArgs - 1));
     for (Index ix = 1; ix < nArgs; ++ix)
