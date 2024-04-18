@@ -1,18 +1,18 @@
 #include "StatusConsoleApplication.h"
 
 #include <QtDebug>
+#include <QTimer>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QLibrary>
 #include <QLibraryInfo>
-#include <QProcess>
-#include <QTimer>
 #include <QTimeZone>
 #include <QVersionNumber>
 
+#include <BaseApplication>
 #include <ConsoleStdIO>
 #include <FileInfo>
-#include <QQStringList>
 
 StatusConsoleApplication::StatusConsoleApplication(int argc, char *argv[])
     : ConsoleApplication(argc, argv)
@@ -48,10 +48,10 @@ void StatusConsoleApplication::exeInfo()
 {
     qInfo() << Q_FUNC_INFO << objectName() << QCoreApplication::arguments();
     io()->writeline("===Executable Information===");
-    const QStringList cExeInfoStrings = exeFileInfo().infoStrings();
+    const QStringList cExeInfoStrings = base()->exeFileInfo().infoStrings();
     io()->writelines(cExeInfoStrings, "   ");
 
-    const QStringList cArgs = QCoreApplication::arguments();
+    const QStringList cArgs = base()->rawArgumentList();
     const int nArgs = cArgs.count();
     io()->writeline(QString("---Raw Command Line Argument List: %1---").arg(nArgs - 1));
     for (Index ix = 1; ix < nArgs; ++ix)
@@ -88,21 +88,8 @@ void StatusConsoleApplication::libInfo()
                             .arg(tLibrary.isLoaded() ? "" : "NOT ")
                             .arg(tLibrary.errorString()));
     }
-    QTimer::singleShot(50, this, &StatusConsoleApplication::pathInfo);
-}
-
-void StatusConsoleApplication::pathInfo()
-{
-    qInfo() << Q_FUNC_INFO << objectName();
-    io()->writeline("===System Path Information===");
-    const QQStringList cSysEnvStrings(QProcess::systemEnvironment());
-    const QQStringList::StringMap cSysEnvMap = cSysEnvStrings.map();
-    const QString cEnvPathExt = QQStringList::value(cSysEnvMap, "PATHEXT");
-    const QQStringList cEnvPaths = QQStringList::value(cSysEnvMap, "PATH").split(';');
-    io()->writeline("---Extensions: " + cEnvPathExt);
-    io()->writeline("---Paths:");
-    io()->writelines(cEnvPaths, "   ");
     QTimer::singleShot(50, this, &StatusConsoleApplication::finish);
+
 }
 
 void StatusConsoleApplication::finish()
