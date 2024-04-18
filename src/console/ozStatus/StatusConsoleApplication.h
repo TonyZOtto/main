@@ -20,6 +20,7 @@ private slots:
     void exeInfo();
     void qtInfo();
     void libInfo();
+    void pathInfo();
 
 private:
     QStringList mLibraryNames;

@@ -1,4 +1,4 @@
-#include "FileInfo.h"
+#include "QQFileInfo.h"
 
 #include <QDir>
 

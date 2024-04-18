@@ -31,13 +31,15 @@ SOURCES += \
     log/LogItem.cpp \
     log/Logger.cpp \
     object/QQObject.cpp \
-    ozCore.cpp
+    ozCore.cpp \
+    qcore/QQStringList.cpp
 
 HEADERS += \
     ../../include/ConsoleApplication \
     ../../include/ConsoleStdIO \
     ../../include/FileInfo \
     ../../include/GadgetHelper \
+    ../../include/QQStringList \
     ../../include/Types \
     AText.h \
     Types.h \
@@ -64,7 +66,8 @@ HEADERS += \
     log/Logger.h \
     object/QQObject.h \
     ozCore_global.h \
-    ozCore.h
+    ozCore.h \
+    qcore/QQStringList.h
 
 # Default rules for deployment.
 unix {

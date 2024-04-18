@@ -16,5 +16,5 @@ int main(int argc, char *argv[])
   //          << QDateTime::currentDateTime().toString();
     //qInfo() << argc << QString(argv[0]) << QString(argv[1]);
     QTimer::singleShot(500, &a, &StatusConsoleApplication::start);
-    return a.coreApplication()->exec();
+    return QCoreApplication::exec();
 }

@@ -6,8 +6,8 @@
 #include "BaseApplication.h"
 #include "ConsoleStdIO.h"
 
-ConsoleApplication::ConsoleApplication(BaseApplication *parent)
-    : QObject(parent)
+ConsoleApplication::ConsoleApplication(int argc, char *argv[], BaseApplication *parent)
+    : BaseApplication(argc, argv, BaseApplication::Console)
     , mpBaseApplication(parent)
     , mpStdIO(new ConsoleStdIO(this))
 {

@@ -32,7 +32,6 @@ public: // pointers
     const QCoreApplication *coreApplication() const;
     const QGuiApplication *guiApplication() const;
     const QApplication * widgetApplication() const;
-    ConsoleApplication *console() const;
     CommandLine *commandLine() const;
     const ApplicationSettings * applicationSettings() const;
 
@@ -50,9 +49,6 @@ protected:
 signals:
 
 private:
-    ConsoleApplication * mpConsoleApplication=nullptr;
-    DesktopApplication * mpDesktopApplication=nullptr;
-    WidgetApplication * mpWidgetApplication=nullptr;
     QCoreApplication * mpQCoreApplication=nullptr;
     QGuiApplication * mpQGuiApplication=nullptr;
     QApplication * mpQApplication=nullptr;
@@ -69,11 +65,6 @@ inline const QQFileInfo BaseApplication::exeFileInfo() const
 inline const QCoreApplication *BaseApplication::coreApplication() const
 {
     Q_CHECK_PTR(mpQCoreApplication); return mpQCoreApplication;
-}
-
-inline ConsoleApplication *BaseApplication::console() const
-{
-    Q_CHECK_PTR(mpConsoleApplication); return mpConsoleApplication;
 }
 
 inline CommandLine *BaseApplication::commandLine() const

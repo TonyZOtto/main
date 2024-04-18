@@ -3,14 +3,14 @@
 
 #include <QObject>
 
-class BaseApplication;
+#include "BaseApplication.h"
 class ConsoleStdIO;
 
-class OZCORE_EXPORT ConsoleApplication : public QObject
+class OZCORE_EXPORT ConsoleApplication : public BaseApplication
 {
     Q_OBJECT
 public: // ctors
-    ConsoleApplication(BaseApplication * parent=nullptr);
+    ConsoleApplication(int argc, char *argv[], BaseApplication * parent=nullptr);
 
 public: // pointers
     BaseApplication *base() const;
