@@ -2,4 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Akira \
-    Easton
+    Easton \
+    ozSandbox \
+
+
