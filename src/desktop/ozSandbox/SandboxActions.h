@@ -9,11 +9,13 @@ class QToolBar;
 #include <Types.h>
 #include <types/Angle.h>
 
+class SandboxMain;
+
 class SandboxActions : public QObject
 {
     Q_OBJECT
 public:
-    explicit SandboxActions(QObject *parent = nullptr);
+    explicit SandboxActions(SandboxMain *parent = nullptr);
 
 
 public: // const
@@ -21,15 +23,17 @@ public: // const
 public: // non-const
 
 public: // pointers
+    SandboxMain * main();
 
 public slots:
-    void initialize(void) {;}
+    void initialize(void);
     void configure(void) {;}
-    void setup(void) {;}
+    void setup(void);
     void start(void) {;}
     void quit(void) {;}
 
 private slots:
+    void createIcons();
 
 signals:
     void initialized(void);
@@ -47,6 +51,7 @@ signals:
     void rotate(const Angle ang);
 
 private:
+    SandboxMain * mpMainWindow=nullptr;
     bool mIsRunning=false;
     bool mIsPaused=true;
     QAction * mpQuitAction=nullptr;
@@ -62,3 +67,5 @@ private:
     QIcon mPauseIcon;
     QIcon mFlipIcon;
 };
+
+inline SandboxMain *SandboxActions::main() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }

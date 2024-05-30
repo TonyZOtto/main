@@ -15,3 +15,16 @@ SandboxMain::SandboxMain(QWidget *parent)
 SandboxMain::~SandboxMain()
 {
 }
+
+void SandboxMain::initialize()
+{
+    mpSandboxActions = new SandboxActions(this);
+    Q_CHECK_PTR(mpSandboxActions);
+    mpSandboxActions->initialize();
+}
+
+void SandboxMain::setup()
+{
+    Q_CHECK_PTR(mpSandboxActions);
+    mpSandboxActions->setup();
+}

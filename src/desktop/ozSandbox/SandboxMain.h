@@ -27,9 +27,9 @@ public: // pointers
     SandboxActions * actions();
 
 public slots:
-    void initialize(void) {;}
+    void initialize(void);
     void configure(void) {;}
-    void setup(void) {;}
+    void setup(void);
     void start(void) {;}
 
 private slots:
