@@ -1,7 +1,7 @@
-#include "SandboxToolbar.h"
+#include "SandboxActions.h"
 
-SandboxToolbar::SandboxToolbar(QWidget *parent)
-    : QToolBar(parent)
+SandboxActions::SandboxActions(QObject *parent)
+    : QObject(parent)
 {
-    setObjectName("SandboxToolbar");
+    setObjectName("SandboxActions");
 }

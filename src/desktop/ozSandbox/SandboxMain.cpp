@@ -1,24 +1,17 @@
-#include "MainWindow.h"
+#include "SandboxMain.h"
 
 #include <QApplication>
 #include <QIcon>
 
-#include "SandboxToolbar.h"
-#include "SandboxWidget.h"
+#include "SandboxActions.h"
 
-MainWindow::MainWindow(QWidget *parent)
+SandboxMain::SandboxMain(QWidget *parent)
     : QMainWindow(parent)
-    , mpQuitAction(new QAction(QIcon(":/icon/noun-quit-1331221.svg"), "Quit", this))
-    , mpSandboxWidget(new SandboxWidget(this))
-    , mpSandboxToolbar(new SandboxToolbar(this))
+    , mpSandboxActions(new SandboxActions(this))
 {
     setObjectName("ozSandbox:MainWindow");
-    connect(mpQuitAction, &QAction::triggered, qApp, &QApplication::quit);
-    mpSandboxToolbar->addAction(mpQuitAction);
-    addToolBar(mpSandboxToolbar);
-    setCentralWidget(mpSandboxWidget);
 }
 
-MainWindow::~MainWindow()
+SandboxMain::~SandboxMain()
 {
 }

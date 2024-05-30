@@ -1,12 +1,12 @@
 #pragma once
-#include "eIRcore.h"
+#include "ozCore.h"
 
-class EIRCORE_EXPORT Rational
+class OZCORE_EXPORT Rational
 {
 public:
     Rational();
-    Rational(const signed n, const signed d);
-    Rational(const qreal f, const signed d=1000000000);
+    Rational(const signed num, const signed den);
+    Rational(const qreal f, const signed den=1000000);
 
 public: // const
     signed n() const;
@@ -19,10 +19,12 @@ public: // const
     operator qreal () const { return toReal(); }
 
 public: // non-const
-    void n(const signed v);
-    void d(const signed v);
-    void set(const signed n, const signed d);
+    void n(const signed num);
+    void d(const signed den);
+    void set(const signed num, const signed den);
+    void adjustDenominator(const signed den);
     void normalize();
+    void nullify();
 
 private:
     signed  mNumerator;
@@ -39,12 +41,12 @@ inline signed int Rational::d() const
     return mDenominator;
 }
 
-inline void Rational::n(const signed int v)
+inline void Rational::n(const signed int num)
 {
-    mNumerator = v;
+    mNumerator = num;
 }
 
-inline void Rational::d(const signed int v)
+inline void Rational::d(const signed int den)
 {
-    mDenominator = v;
+    mDenominator = den;
 }

@@ -5,18 +5,22 @@ QT += widgets
 CONFIG += c++17
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
 include(../desktop.pri)
+include(../../useCore.pri)
 
 SOURCES += \
-    SandboxToolbar.cpp \
-    SandboxWidget.cpp \
-    main.cpp \
-    MainWindow.cpp
+    SandboxActions.cpp \
+    SandboxMain.cpp \
+    SandboxScene.cpp \
+    SandboxView.cpp \
+    main.cpp
 
 HEADERS += \
-    MainWindow.h \
-    SandboxToolbar.h \
-    SandboxWidget.h
+    SandboxActions.h \
+    SandboxMain.h \
+    SandboxScene.h \
+    SandboxView.h
 
 FORMS += \
 

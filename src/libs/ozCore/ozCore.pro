@@ -32,7 +32,9 @@ SOURCES += \
     log/Logger.cpp \
     object/QQObject.cpp \
     ozCore.cpp \
-    qcore/QQStringList.cpp
+    qcore/QQStringList.cpp \
+    types/Angle.cpp \
+    types/Rational.cpp
 
 HEADERS += \
     ../../include/ConsoleApplication \
@@ -67,7 +69,9 @@ HEADERS += \
     object/QQObject.h \
     ozCore_global.h \
     ozCore.h \
-    qcore/QQStringList.h
+    qcore/QQStringList.h \
+    types/Angle.h \
+    types/Rational.h
 
 # Default rules for deployment.
 unix {

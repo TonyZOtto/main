@@ -1,5 +1,5 @@
 # {ozCode}/src/LIBDIR.pri
-LIBDIR = "/home/code/repo/ozCode/libs"
+LIBDIR = "/home/code/repo/ottoZcode/libs"
 message(............/src/LIBDIR.pri = $$LIBDIR)
 
 

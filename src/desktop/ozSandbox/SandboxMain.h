@@ -2,21 +2,56 @@
 
 #include <QMainWindow>
 
-class QAction;
+class QGraphicsPixmapItem;
 
-class SandboxToolbar;
-class SandboxWidget;
+#include <Types.h>
 
-class MainWindow : public QMainWindow
+class SandboxActions;
+class SandboxScene;
+class SandboxView;
+
+class SandboxMain : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    SandboxMain(QWidget *parent = nullptr);
+    ~SandboxMain();
+
+public: // const
+    const QSize baseSize() const;
+
+public: // non-const
+
+public: // pointers
+    SandboxActions * actions();
+
+public slots:
+    void initialize(void) {;}
+    void configure(void) {;}
+    void setup(void) {;}
+    void start(void) {;}
+
+private slots:
 
 private:
-    QAction * mpQuitAction=nullptr;
-    SandboxWidget * mpSandboxWidget=nullptr;
-    SandboxToolbar * mpSandboxToolbar=nullptr;
+    const QSize cmBaseSize;
+    Count mSides=0; // 0=circle 3=triangle 4=square 5=pentagon, etc.
+    Count mFrameCount=0;
+    SandboxActions * mpSandboxActions=nullptr;
+    SandboxScene * mpScene=nullptr;
+    SandboxView * mpView=nullptr;
+    QGraphicsPixmapItem * mpPixmapItem=nullptr;
+
 };
+
+
+inline const QSize SandboxMain::baseSize() const
+{
+    return cmBaseSize;
+}
+
+inline SandboxActions *SandboxMain::actions()
+{
+    Q_CHECK_PTR(mpSandboxActions); return mpSandboxActions;
+}
