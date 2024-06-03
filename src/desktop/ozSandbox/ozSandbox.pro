@@ -13,6 +13,7 @@ SOURCES += \
     SandboxActions.cpp \
     SandboxMain.cpp \
     SandboxScene.cpp \
+    SandboxToolbar.cpp \
     SandboxView.cpp \
     main.cpp
 
@@ -20,7 +21,9 @@ HEADERS += \
     SandboxActions.h \
     SandboxMain.h \
     SandboxScene.h \
-    SandboxView.h
+    SandboxToolbar.h \
+    SandboxView.h \
+    ../../version.h \
 
 FORMS += \
 

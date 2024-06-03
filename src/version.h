@@ -7,12 +7,9 @@
 #define VER_RELEASE         1
 #define VER_STRING          "v2.03A"
 #define VER_TRUNK           "develop"
-#define VER_ORGNAME         "ozCode"
-#define VER_PRODUCT         "ozCodes"
-#define VER_COPYRIGHT       "Copyright \\c\\ 1993-2024, Anthony Otto." \
-                            "\\\\All rights reserved worldwide. See LEGAL.txt for more information."
-#define VER_TRADEMARKS      "ozCode\\tm\\" \
-                            "is a trademark of Anrhony Orro.\\\\ " \
-                            "See LEGAL.txt for more information."
+#define VER_ORGNAME         "ottoZcode"
+#define VER_PRODUCT         "ozCode"
+#define VER_COPYRIGHT       "Copyright (c) 1993-2024, Anthony Otto. All rights reserved worldwide. See LEGAL.txt for more information."
+#define VER_TRADEMARKS      "ottoZcode(tm) and ozCode(tm) are trademarks of Anthony Otto. All other marks are property their owners. See LEGAL.txt for more information."
 #define VER_COMMENT         "Contact mailto:ottoztony@gmail.com for more information."
 
