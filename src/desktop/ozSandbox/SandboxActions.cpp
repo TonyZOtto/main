@@ -1,6 +1,7 @@
 #include "SandboxActions.h"
 
 #include <QAction>
+#include <QApplication>
 #include <QToolBar>
 
 #include "SandboxMain.h"
@@ -20,14 +21,28 @@ void SandboxActions::initialize()
 
 void SandboxActions::setup()
 {
+    createIcons();
     Q_CHECK_PTR(mpQuitAction);
     mpQuitAction->setIcon(mQuitIcon);
     mpQuitAction->setShortcuts(QKeySequence::Quit);
-
     Q_CHECK_PTR(mpToolbar);
     mpToolbar->addAction(mpQuitAction);
     main()->addToolBar(mpToolbar);
     mpToolbar->show();
+    emit seted();
+}
+
+void SandboxActions::objconnect()
+{
+    Q_CHECK_PTR(mpQuitAction);
+    connect(mpQuitAction, &QAction::triggered, this, &SandboxActions::quit);
+
+}
+
+void SandboxActions::quit()
+{
+    emit quiting();
+    qApp->exit();
 }
 
 void SandboxActions::createIcons()

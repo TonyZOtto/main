@@ -8,6 +8,8 @@ VersionInfo::VersionInfo(const BYTE maj, const WORD min, const BYTE rls, const W
                          const WORD bld, const char *bnm, const char *app, const char *org)
 {
     set(maj, min, rls, bch, bld, bnm, app, org);
+    // TODO company, legal
+    // TODO setApp()
 }
 
 bool VersionInfo::isNull() const

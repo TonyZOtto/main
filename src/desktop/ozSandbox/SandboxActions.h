@@ -29,8 +29,9 @@ public slots:
     void initialize(void);
     void configure(void) {;}
     void setup(void);
+    void objconnect(void);
     void start(void) {;}
-    void quit(void) {;}
+    void quit(void);
 
 private slots:
     void createIcons();

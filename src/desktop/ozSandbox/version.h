@@ -1,3 +1,3 @@
 #pragma once
 
-#define VER_APPNAME"ozSandbox"
+#define VER_APPNAME "ozSandbox"

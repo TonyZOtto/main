@@ -12,17 +12,11 @@ include(../../useCore.pri)
 SOURCES += \
     SandboxActions.cpp \
     SandboxMain.cpp \
-    SandboxScene.cpp \
-    SandboxToolbar.cpp \
-    SandboxView.cpp \
     main.cpp
 
 HEADERS += \
     SandboxActions.h \
     SandboxMain.h \
-    SandboxScene.h \
-    SandboxToolbar.h \
-    SandboxView.h \
     ../../version.h \
 
 FORMS += \
@@ -32,9 +26,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    noun-quit-1331221.png \
-    noun-quit-1331221.svg
+DISTFILES +=
 
-RESOURCES += \
-    ozSandbox.qrc
+RESOURCES +=

@@ -1,4 +1,5 @@
 #pragma once
+#include "ozCore.h"
 
 #include <QObject>
 #include <QString>
@@ -7,7 +8,7 @@
 #include "../AText.h"
 #include "../Types.h"
 
-class VersionInfo : public QObject
+class OZCORE_EXPORT VersionInfo : public QObject
 {
     Q_GADGET
 public: // types

@@ -2,13 +2,14 @@
 
 #include <QMainWindow>
 
-class QGraphicsPixmapItem;
+#include <QSize>
+class QGridLayout;
+class QLabel;
+class QWidget;
 
 #include <Types.h>
 
 class SandboxActions;
-class SandboxScene;
-class SandboxView;
 
 class SandboxMain : public QMainWindow
 {
@@ -20,35 +21,68 @@ public:
 
 public: // const
     const QSize baseSize() const;
+    Count numSides() const;
+    Count frameCount() const;
+    QPixmap showPixmap() const;
+    QPixmap makePixmap() const;
 
 public: // non-const
+    Count & frameCount();
 
 public: // pointers
     SandboxActions * actions();
 
 public slots:
     void initialize(void);
-    void configure(void) {;}
+    void configure(void);
     void setup(void);
+    void objconnect(void);
     void start(void) {;}
 
 private slots:
 
 private:
-    const QSize cmBaseSize;
-    Count mSides=0; // 0=circle 3=triangle 4=square 5=pentagon, etc.
+    QSize mBaseSize;
+    Count mNumSides=0; // 0=circle 3=triangle 4=square 5=pentagon, etc.
     Count mFrameCount=0;
+    QPixmap mShowPixmap;
+    QPixmap mMakePixmap;
+    QLabel * mpMainLabel=nullptr;
+    QWidget * mpCentralWidget=nullptr;
+    QGridLayout * mpMainLayout=nullptr;
     SandboxActions * mpSandboxActions=nullptr;
-    SandboxScene * mpScene=nullptr;
-    SandboxView * mpView=nullptr;
-    QGraphicsPixmapItem * mpPixmapItem=nullptr;
 
 };
 
 
 inline const QSize SandboxMain::baseSize() const
 {
-    return cmBaseSize;
+    return mBaseSize;
+}
+
+inline Count SandboxMain::numSides() const
+{
+    return mNumSides;
+}
+
+inline Count SandboxMain::frameCount() const
+{
+    return mFrameCount;
+}
+
+inline QPixmap SandboxMain::showPixmap() const
+{
+    return mShowPixmap;
+}
+
+inline QPixmap SandboxMain::makePixmap() const
+{
+    return mMakePixmap;
+}
+
+inline Count &SandboxMain::frameCount()
+{
+    return mFrameCount;
 }
 
 inline SandboxActions *SandboxMain::actions()

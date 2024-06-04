@@ -1,8 +1,9 @@
 #include "FunctionInfo.h"
 
 
-void FunctionInfo::parse(const QString &qFileInfo)
+void FunctionInfo::parse(const QString &qFuncInfo)
 {
+    m_qFuncInfo = qFuncInfo;
     splitStrings();
     parseAnte();
     parseNames();
