@@ -46,3 +46,17 @@ void Rational::nullify()
 {
     n(0), d(0);
 }
+
+void Rational::add(const Rational rat)
+{
+    if (d() == rat.d())
+    {
+        n(n() + rat.n());
+    }
+    else
+    {
+        signed tDen = d() * rat.d();
+        signed tNum = d() * rat.n() + n() * rat.d();
+        set(tNum, tDen);
+    }
+}

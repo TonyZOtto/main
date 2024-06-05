@@ -25,6 +25,8 @@ public: // non-const
     void adjustDenominator(const signed den);
     void normalize();
     void nullify();
+    void add(const Rational rat);
+    void operator + (const Rational rat) { add(rat); }
 
 private:
     signed  mNumerator;
