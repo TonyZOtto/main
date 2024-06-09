@@ -72,10 +72,26 @@ void SandboxActions::quit()
 
 void SandboxActions::createIcons()
 {
+    createSystemIcons();
+    createPlaybackIcons();
+}
+
+void SandboxActions::createSystemIcons()
+{
     mQuitIcon = QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit);
+
+    Q_ASSERT( ! mQuitIcon.isNull());
+}
+
+void SandboxActions::createPlaybackIcons()
+{
     mStopIcon = QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStop);
     mPauseIcon = QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause);
     mResumeIcon = QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart);
+
+    Q_ASSERT( ! mStopIcon.isNull());
+    Q_ASSERT( ! mPauseIcon.isNull());
+    Q_ASSERT( ! mResumeIcon.isNull());
 }
 
 void SandboxActions::updateSetupPause()

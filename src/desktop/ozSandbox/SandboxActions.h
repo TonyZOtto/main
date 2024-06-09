@@ -49,6 +49,8 @@ public slots:
 
 private slots:
     void createIcons();
+    void createSystemIcons();
+    void createPlaybackIcons();
     void updateSetupPause(void);
     void updateSetupRotate(void);
     void updateSetupSides(void);
