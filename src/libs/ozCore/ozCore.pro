@@ -11,6 +11,25 @@ include(../libs.pri)
 
 SOURCES += \
     AText.cpp \
+    Angle.cpp \
+    ApplicationSettings.cpp \
+    BaseApplication.cpp \
+    CommandLine.cpp \
+    ConsoleApplication.cpp \
+    ConsoleStdIO.cpp \
+    DesktopApplication.cpp \
+    Key.cpp \
+    KeyMap.cpp \
+    KeySeg.cpp \
+    KeySegList.cpp \
+    ObjectHelper.cpp \
+    QQFileInfo.cpp \
+    QQObject.cpp \
+    QQStringList.cpp \
+    Rational.cpp \
+    SettingsName.cpp \
+    VersionInfo.cpp \
+    WidgetApplication.cpp \
     coreapp/ApplicationSettings.cpp \
     coreapp/BaseApplication.cpp \
     coreapp/CommandLine.cpp \
@@ -36,42 +55,29 @@ SOURCES += \
     types/Angle.cpp \
     types/Rational.cpp
 
+
 HEADERS += \
-    ../../include/ConsoleApplication \
-    ../../include/ConsoleStdIO \
-    ../../include/FileInfo \
-    ../../include/GadgetHelper \
-    ../../include/QQStringList \
-    ../../include/Types \
     AText.h \
+    Angle.h \
+    ApplicationSettings.h \
+    BaseApplication.h \
+    CommandLine.h \
+    ConsoleApplication.h \
+    ConsoleStdIO.h \
+    DesktopApplication.h \
+    Key.h \
+    KeyMap.h \
+    KeySeg.h \
+    KeySegList.h \
+    ObjectHelper.h \
+    QQFileInfo.h \
+    QQObject.h \
+    QQStringList.h \
+    Rational.h \
+    SettingsName.h \
     Types.h \
-    coreapp/ApplicationSettings.h \
-    coreapp/BaseApplication.h \
-    coreapp/CommandLine.h \
-    coreapp/ConsoleApplication.h \
-    coreapp/ConsoleStdIO.h \
-    coreapp/DesktopApplication.h \
-    coreapp/ObjectHelper.h \
-    coreapp/SettingsName.h \
-    coreapp/WidgetApplication.h \
-    filesys/QQFileInfo.h \
-    ident/Key.h \
-    ident/KeyMap.h \
-    ident/KeySeg.h \
-    ident/KeySegList.h \
-    ident/VersionInfo.h \
-    log/Context.h \
-    log/FunctionInfo.h \
-    log/Log.h \
-    log/LogItem.h \
-    log/LogMacros.h \
-    log/Logger.h \
-    object/QQObject.h \
-    ozCore_global.h \
-    ozCore.h \
-    qcore/QQStringList.h \
-    types/Angle.h \
-    types/Rational.h
+    VersionInfo.h \
+    WidgetApplication.h \
 
 # Default rules for deployment.
 unix {

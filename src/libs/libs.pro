@@ -4,8 +4,9 @@ SUBDIRS += \
     QtCV \
     ozCore \
     ozGui \
+    ozLog \
     ozMovie \
     ozPhoto \
-    ozWidgets
+    ozWidgets   \
 
 
