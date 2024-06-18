@@ -1,10 +1,10 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozLog.h"
 
 #include <QObject>
 
-#include "../ident/KeySeg.h"
-#include "../ident/KeySegList.h"
+#include "../ozCore/KeySeg.h"
+#include "../ozCore/KeySegList.h"
 
 class OZCORE_EXPORT FunctionInfo : public QObject
 {
@@ -31,8 +31,8 @@ public: // types
     struct Argument
     {
         QString         string;
-        KeySeg          type;
-        KeySeg          name;
+        AText          type;
+        AText          name;
         AText           defalt;
         Flags           flags;
     };
@@ -54,9 +54,9 @@ private:
 
     // ------------------------ properties ------------------------
 private:
-    KeySeg          m_functionName;
-    KeySeg          m_className;
-    KeySegList      m_namespaces;
+    AText          m_functionName;
+    AText          m_className;
+    AText::List      m_namespaces;
     ArgumentList    m_arguments;
     QString         m_ante;
     QString         m_post;
@@ -69,9 +69,9 @@ private:
     QStringList     m_argumentStrings;
     QString         m_postString;
 
-    Q_PROPERTY(KeySeg functionName READ functionName CONSTANT FINAL)
-    Q_PROPERTY(KeySeg className READ className CONSTANT FINAL)
-    Q_PROPERTY(KeySegList namespaces READ namespaces CONSTANT FINAL)
+    Q_PROPERTY(AText functionName READ functionName CONSTANT FINAL)
+    Q_PROPERTY(AText className READ className CONSTANT FINAL)
+    Q_PROPERTY(AText::List namespaces READ namespaces CONSTANT FINAL)
     Q_PROPERTY(ArgumentList arguments READ arguments CONSTANT FINAL)
     Q_PROPERTY(QString ante READ ante CONSTANT FINAL)
     Q_PROPERTY(QString post READ post CONSTANT FINAL)
@@ -80,7 +80,7 @@ private:
 public:
     KeySeg functionName() const;
     KeySeg className() const;
-    KeySegList namespaces() const;
+    AText::List namespaces() const;
     ArgumentList arguments() const;
     QString ante() const;
     QString post() const;
@@ -102,7 +102,7 @@ inline KeySeg FunctionInfo::className() const
     return m_className;
 }
 
-inline KeySegList FunctionInfo::namespaces() const
+inline AText::List FunctionInfo::namespaces() const
 {
     return m_namespaces;
 }

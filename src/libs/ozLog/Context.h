@@ -3,8 +3,8 @@
 #include <QString>
 #include <QString>
 
-#include "../AText.h"
-#include "../filesys/QQFileInfo.h"
+#include "../ozCore/AText.h"
+#include "../ozCore/QQFileInfo.h"
 #include "FunctionInfo.h"
 
 class Context

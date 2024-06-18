@@ -1,5 +1,5 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozCore.h"
 
 #include <QObject>
 
@@ -8,7 +8,7 @@
 #include <QList>
 
 
-#include "../ident/KeyMap.h"
+#include "KeyMap.h"
 #include "SettingsName.h"
 class BaseApplication;
 class QQFileInfo;

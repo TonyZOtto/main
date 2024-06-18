@@ -30,30 +30,7 @@ SOURCES += \
     SettingsName.cpp \
     VersionInfo.cpp \
     WidgetApplication.cpp \
-    coreapp/ApplicationSettings.cpp \
-    coreapp/BaseApplication.cpp \
-    coreapp/CommandLine.cpp \
-    coreapp/ConsoleApplication.cpp \
-    coreapp/ConsoleStdIO.cpp \
-    coreapp/DesktopApplication.cpp \
-    coreapp/ObjectHelper.cpp \
-    coreapp/SettingsName.cpp \
-    coreapp/WidgetApplication.cpp \
-    filesys/QQFileInfo.cpp \
-    ident/Key.cpp \
-    ident/KeyMap.cpp \
-    ident/KeySeg.cpp \
-    ident/KeySegList.cpp \
-    ident/VersionInfo.cpp \
-    log/Context.cpp \
-    log/FunctionInfo.cpp \
-    log/LogItem.cpp \
-    log/Logger.cpp \
-    object/QQObject.cpp \
     ozCore.cpp \
-    qcore/QQStringList.cpp \
-    types/Angle.cpp \
-    types/Rational.cpp
 
 
 HEADERS += \

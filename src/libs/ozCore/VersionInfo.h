@@ -5,8 +5,8 @@
 #include <QString>
 #include <QVersionNumber>
 
-#include "../AText.h"
-#include "../Types.h"
+#include "AText.h"
+#include "Types.h"
 
 class OZCORE_EXPORT VersionInfo : public QObject
 {

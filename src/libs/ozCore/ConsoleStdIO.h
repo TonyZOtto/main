@@ -1,5 +1,5 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozCore.h"
 
 #include <QObject>
 #include <QString>

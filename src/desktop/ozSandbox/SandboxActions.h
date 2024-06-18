@@ -9,7 +9,7 @@ class QLabel;
 class QToolBar;
 
 #include <Types.h>
-#include <types/Angle.h>
+#include <Angle.h>
 
 class SandboxMain;
 

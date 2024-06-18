@@ -10,9 +10,9 @@
 #include <QTimeZone>
 #include <QVersionNumber>
 
-#include <BaseApplication>
-#include <ConsoleStdIO>
-#include <FileInfo>
+#include <BaseApplication.h>
+#include <ConsoleStdIO.h>
+#include <QQFileInfo.h>
 
 StatusConsoleApplication::StatusConsoleApplication(int argc, char *argv[])
     : ConsoleApplication(argc, argv)
@@ -51,7 +51,7 @@ void StatusConsoleApplication::exeInfo()
     const QStringList cExeInfoStrings = base()->exeFileInfo().infoStrings();
     io()->writelines(cExeInfoStrings, "   ");
 
-    const QStringList cArgs = base()->rawArgumentList();
+    const QStringList cArgs = qApp->arguments();
     const int nArgs = cArgs.count();
     io()->writeline(QString("---Raw Command Line Argument List: %1---").arg(nArgs - 1));
     for (Index ix = 1; ix < nArgs; ++ix)

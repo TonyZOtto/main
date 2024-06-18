@@ -1,5 +1,5 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozCore.h"
 
 #include <QFileInfo>
 
@@ -9,7 +9,7 @@
 #include <QStringList>
 #include <QTimeZone>
 
-#include "../Types.h"
+#include "Types.h"
 
 class OZCORE_EXPORT QQFileInfo : public QFileInfo
 {

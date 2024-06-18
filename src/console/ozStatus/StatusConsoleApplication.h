@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ConsoleApplication>
+#include <ConsoleApplication.h>
 
 #include <QStringList>
 
@@ -20,7 +20,7 @@ private slots:
     void exeInfo();
     void qtInfo();
     void libInfo();
-    void pathInfo();
+    void pathInfo() {;}
 
 private:
     QStringList mLibraryNames;

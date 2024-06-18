@@ -1,5 +1,5 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozCore.h"
 
 #include <QObject>
 
@@ -8,7 +8,7 @@ class QCoreApplication;
 class QGuiApplication;
 class QApplication;
 
-#include "../filesys/QQFileInfo.h"
+#include "QQFileInfo.h"
 class ConsoleApplication;
 class DesktopApplication;
 class WidgetApplication;

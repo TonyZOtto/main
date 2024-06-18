@@ -1,5 +1,5 @@
 #pragma once
-#include "ozCore.h"
+#include "ozLog.h"
 
 #include <QObject>
 
@@ -8,12 +8,12 @@
 #include <QVariant>
 #include <QVariantList>
 
-#include "../filesys/QQFileInfo.h"
-#include "../ident/KeySeg.h"
+#include "../ozCore/QQFileInfo.h"
+#include "../ozCore/KeySeg.h"
 #include "Context.h"
 #include "FunctionInfo.h"
 
-class OZCORE_EXPORT LogItem : public QObject
+class OZLOG_EXPORT LogItem : public QObject
 {
     Q_GADGET
 public: // types

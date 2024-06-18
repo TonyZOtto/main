@@ -1,9 +1,9 @@
 #pragma once
-#include "../ozCore.h"
+#include "ozLog.h"
 
 #include <QObject>
 
-class OZCORE_EXPORT Logger : public QObject
+class OZLOG_EXPORT Logger : public QObject
 {
     Q_OBJECT
 public:

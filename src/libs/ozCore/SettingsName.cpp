@@ -3,7 +3,7 @@
 #include <QCoreApplication>
 #include <QRegularExpression>
 
-#include "../Types.h"
+#include "Types.h"
 
 SettingsName::SettingsName() {;}
 SettingsName::SettingsName(const QString &name, const bool okNotExist) { set(name, okNotExist); }

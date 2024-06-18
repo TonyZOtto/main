@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QtCreatorCMakeTools>
+<!-- Written by QtCreator 12.0.2, 2024-03-17T00:42:14. -->
+<qtcreator>
+ <data>
+  <variable>CMakeTools.0</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="AutoCreateBuildDirectory">false</value>
+   <value type="bool" key="AutoDetected">true</value>
+   <value type="bool" key="AutoRun">true</value>
+   <value type="QString" key="Binary">C:/Qt/Tools/CMake_64/bin/cmake.exe</value>
+   <value type="QString" key="DetectionSource"></value>
+   <value type="QString" key="DisplayName">CMake 3.27.7 (Qt)</value>
+   <value type="QString" key="Id">qt.tools.cmake</value>
+   <value type="QString" key="QchFile">C:/Qt/Tools/CMake_64/doc/cmake/CMake.qch</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>CMakeTools.1</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="AutoCreateBuildDirectory">false</value>
+   <value type="bool" key="AutoDetected">true</value>
+   <value type="bool" key="AutoRun">true</value>
+   <value type="QString" key="Binary">C:/home/code/lang/cmake/bin/cmake.exe</value>
+   <value type="QString" key="DetectionSource"></value>
+   <value type="QString" key="DisplayName">System CMake at C:\home\code\lang\cmake\bin\cmake.exe</value>
+   <value type="QString" key="Id">{8d02c892-3d30-44bd-8306-6351b62496e1}</value>
+   <value type="QString" key="QchFile">C:/home/code/lang/cmake/doc/cmake/CMake.qch</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>CMakeTools.Count</variable>
+  <value type="int">2</value>
+ </data>
+ <data>
+  <variable>CMakeTools.Default</variable>
+  <value type="QString">qt.tools.cmake</value>
+ </data>
+ <data>
+  <variable>Version</variable>
+  <value type="int">1</value>
+ </data>
+</qtcreator>

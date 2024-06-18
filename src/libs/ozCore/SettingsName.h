@@ -4,7 +4,7 @@
 #include <QSettings>
 #include <QString>
 
-#include "../filesys/QQFileInfo.h"
+#include "QQFileInfo.h"
 
 
 

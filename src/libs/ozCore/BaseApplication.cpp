@@ -4,7 +4,7 @@
 #include <QCoreApplication>
 #include <QGuiApplication>
 
-#include "../filesys/QQFileInfo.h"
+#include "QQFileInfo.h"
 #include "ApplicationSettings.h"
 #include "ConsoleApplication.h"
 #include "DesktopApplication.h"

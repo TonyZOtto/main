@@ -3,8 +3,8 @@
 #include <QMetaEnum>
 #include <QMetaObject>
 
-#include "../AText.h"
-#include "../Types.h"
+#include "AText.h"
+#include "Types.h"
 
 ObjectHelper::ObjectHelper(const QObject *obj) : cmpObject(obj) {;}
 

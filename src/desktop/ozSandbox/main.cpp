@@ -4,7 +4,7 @@
 
 #include <QApplication>
 
-#include <ident/VersionInfo.h>
+#include <VersionInfo.h>
 
 int main(int argc, char *argv[])
 {
