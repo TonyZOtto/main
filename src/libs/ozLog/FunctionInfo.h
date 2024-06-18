@@ -3,10 +3,10 @@
 
 #include <QObject>
 
-#include "../ozCore/KeySeg.h"
-#include "../ozCore/KeySegList.h"
+#include <QByteArray>
+#include <QByteArrayList>
 
-class OZCORE_EXPORT FunctionInfo : public QObject
+class OZLOG_EXPORT FunctionInfo : public QObject
 {
     Q_GADGET
 public: // types
@@ -31,9 +31,9 @@ public: // types
     struct Argument
     {
         QString         string;
-        AText          type;
-        AText          name;
-        AText           defalt;
+        QByteArray          type;
+        QByteArray          name;
+        QByteArray           defalt;
         Flags           flags;
     };
     typedef QList<Argument> ArgumentList;
@@ -54,9 +54,9 @@ private:
 
     // ------------------------ properties ------------------------
 private:
-    AText          m_functionName;
-    AText          m_className;
-    AText::List      m_namespaces;
+    QByteArray          m_functionName;
+    QByteArray          m_className;
+    QByteArrayList      m_namespaces;
     ArgumentList    m_arguments;
     QString         m_ante;
     QString         m_post;
@@ -69,18 +69,18 @@ private:
     QStringList     m_argumentStrings;
     QString         m_postString;
 
-    Q_PROPERTY(AText functionName READ functionName CONSTANT FINAL)
-    Q_PROPERTY(AText className READ className CONSTANT FINAL)
-    Q_PROPERTY(AText::List namespaces READ namespaces CONSTANT FINAL)
+    Q_PROPERTY(QByteArray functionName READ functionName CONSTANT FINAL)
+    Q_PROPERTY(QByteArray className READ className CONSTANT FINAL)
+    Q_PROPERTY(QByteArrayList namespaces READ namespaces CONSTANT FINAL)
     Q_PROPERTY(ArgumentList arguments READ arguments CONSTANT FINAL)
     Q_PROPERTY(QString ante READ ante CONSTANT FINAL)
     Q_PROPERTY(QString post READ post CONSTANT FINAL)
     Q_PROPERTY(Flags flags READ flags CONSTANT FINAL)
     Q_PROPERTY(QString qFuncInfo READ qFuncInfo CONSTANT FINAL)
 public:
-    KeySeg functionName() const;
-    KeySeg className() const;
-    AText::List namespaces() const;
+    QByteArray functionName() const;
+    QByteArray className() const;
+    QByteArrayList namespaces() const;
     ArgumentList arguments() const;
     QString ante() const;
     QString post() const;
@@ -92,17 +92,17 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(FunctionInfo::Flags);
 
 // ------------------------ properties ------------------------
 
-inline KeySeg FunctionInfo::functionName() const
+inline QByteArray FunctionInfo::functionName() const
 {
     return m_functionName;
 }
 
-inline KeySeg FunctionInfo::className() const
+inline QByteArray FunctionInfo::className() const
 {
     return m_className;
 }
 
-inline AText::List FunctionInfo::namespaces() const
+inline QByteArrayList FunctionInfo::namespaces() const
 {
     return m_namespaces;
 }

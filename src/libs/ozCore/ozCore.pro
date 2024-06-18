@@ -8,6 +8,7 @@ CONFIG += c++17
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../libs.pri)
+include(../../useLog.pri)
 
 SOURCES += \
     AText.cpp \
@@ -23,7 +24,6 @@ SOURCES += \
     KeySeg.cpp \
     KeySegList.cpp \
     ObjectHelper.cpp \
-    QQFileInfo.cpp \
     QQObject.cpp \
     QQStringList.cpp \
     Rational.cpp \
@@ -47,7 +47,6 @@ HEADERS += \
     KeySeg.h \
     KeySegList.h \
     ObjectHelper.h \
-    QQFileInfo.h \
     QQObject.h \
     QQStringList.h \
     Rational.h \

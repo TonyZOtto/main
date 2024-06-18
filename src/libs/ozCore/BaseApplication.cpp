@@ -4,7 +4,7 @@
 #include <QCoreApplication>
 #include <QGuiApplication>
 
-#include "QQFileInfo.h"
+#include "../ozLog/FileInfo.h"
 #include "ApplicationSettings.h"
 #include "ConsoleApplication.h"
 #include "DesktopApplication.h"
@@ -16,7 +16,7 @@ BaseApplication::BaseApplication(int argc, char *argv[], const Class appClass)
     : QObject(nullptr)
     , mpCommandLine(new CommandLine(argc, argv, this))
     , cmpApplicationSettings(new ApplicationSettings(this))
-    , cmExeFileInfo(QQFileInfo(*argv))
+    , cmExeFileInfo(FileInfo(*argv))
 {
     switch (appClass)
     {

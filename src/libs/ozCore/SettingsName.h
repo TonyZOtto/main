@@ -4,9 +4,7 @@
 #include <QSettings>
 #include <QString>
 
-#include "QQFileInfo.h"
-
-
+#include "../ozLog/FileInfo.h"
 
 class SettingsName
 {
@@ -31,7 +29,7 @@ public: // const
     Type type() const;
     bool systemScope() const;
     QSettings::Scope scope() const;
-    QQFileInfo fileInfo() const;
+    FileInfo fileInfo() const;
     QString orgName() const;
     QString appName() const;
 
@@ -47,7 +45,7 @@ private:
     QString mString;
     Type mType=$null;
     bool mSystemScope=false;
-    QQFileInfo mFileInfo;
+    FileInfo mFileInfo;
     QString mOrgName;
     QString mAppName;
 };
@@ -61,7 +59,7 @@ inline bool SettingsName::systemScope() const
 {
     return mSystemScope;
 }
-inline QQFileInfo SettingsName::fileInfo() const
+inline FileInfo SettingsName::fileInfo() const
 {
     return mFileInfo;
 }

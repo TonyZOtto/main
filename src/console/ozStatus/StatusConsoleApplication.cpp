@@ -12,7 +12,8 @@
 
 #include <BaseApplication.h>
 #include <ConsoleStdIO.h>
-#include <QQFileInfo.h>
+#include <FileInfo.h>
+#include <Types.h>
 
 StatusConsoleApplication::StatusConsoleApplication(int argc, char *argv[])
     : ConsoleApplication(argc, argv)

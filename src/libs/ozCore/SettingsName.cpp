@@ -31,7 +31,7 @@ SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 SettingsName::Type SettingsName::setFileName(const QString &s, const bool okNotExist)
 {
     Type result = $null;
-    QQFileInfo tFI(s);
+    FileInfo tFI(s);
     if (tFI.exists() || okNotExist)
     {
         if (tFI.suffix().isEmpty())      result = UnknownFile;

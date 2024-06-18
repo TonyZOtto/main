@@ -1,10 +1,9 @@
 #pragma once
 
-#include <QString>
+#include <QByteArray>
 #include <QString>
 
-#include "../ozCore/AText.h"
-#include "../ozCore/QQFileInfo.h"
+#include "FileInfo.h"
 #include "FunctionInfo.h"
 
 class Context
@@ -16,13 +15,13 @@ public: // ctors
 
 public: // const
     FunctionInfo functionInfo() const;
-    QQFileInfo fileInfo() const;
+    FileInfo fileInfo() const;
     QString category() const;
     unsigned fileLine() const;
 
 private:
-    AText mFuncInfo;
-    AText mFileName;
-    AText mCategory;
+    QByteArray mFuncInfo;
+    QByteArray mFileName;
+    QByteArray mCategory;
     unsigned mFileLine;
 };

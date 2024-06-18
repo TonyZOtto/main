@@ -1,15 +1,16 @@
 #pragma once
 #include "ozLog.h"
 
+#include <QtGlobal>
 #include <QObject>
 
+#include <QFlags>
 #include <QString>
 #include <QStringList>
 #include <QVariant>
 #include <QVariantList>
 
-#include "../ozCore/QQFileInfo.h"
-#include "../ozCore/KeySeg.h"
+#include "FileInfo.h"
 #include "Context.h"
 #include "FunctionInfo.h"
 
@@ -26,7 +27,7 @@ public: // types
 
     struct ArgumentInfo
     {
-        KeySeg      name;
+        QByteArray      name;
         QVariant    value;
         QString     info;
     };
@@ -50,7 +51,7 @@ public:
 
 private: // ------------------------ properties ------------------------
     FunctionInfo        m_functionInfo;
-    QQFileInfo          m_fileInfo;
+    FileInfo            m_fileInfo;
     unsigned            m_fileLine;
     QString             m_category;
     QString             m_message;

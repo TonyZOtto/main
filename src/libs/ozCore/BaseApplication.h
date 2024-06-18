@@ -8,7 +8,7 @@ class QCoreApplication;
 class QGuiApplication;
 class QApplication;
 
-#include "QQFileInfo.h"
+#include "../ozLog/FileInfo.h"
 class ConsoleApplication;
 class DesktopApplication;
 class WidgetApplication;
@@ -26,7 +26,7 @@ protected: // ctors
     BaseApplication(int argc, char *argv[], const Class appClass);
 
 public: // const
-    const QQFileInfo exeFileInfo() const;
+    const FileInfo exeFileInfo() const;
 
 public: // pointers
     const QCoreApplication *coreApplication() const;
@@ -54,10 +54,10 @@ private:
     QApplication * mpQApplication=nullptr;
     CommandLine * mpCommandLine=nullptr;
     const ApplicationSettings * cmpApplicationSettings=nullptr;
-    const QQFileInfo cmExeFileInfo;
+    const FileInfo cmExeFileInfo;
 };
 
-inline const QQFileInfo BaseApplication::exeFileInfo() const
+inline const FileInfo BaseApplication::exeFileInfo() const
 {
     return cmExeFileInfo;
 }

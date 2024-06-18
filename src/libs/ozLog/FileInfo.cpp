@@ -1,21 +1,21 @@
-#include "QQFileInfo.h"
+#include "FileInfo.h"
 
 #include <QDir>
 
-QQFileInfo::QQFileInfo() {;}
-QQFileInfo::QQFileInfo(const QString &fpath) : QFileInfo(fpath) {;}
+FileInfo::FileInfo() {;}
+FileInfo::FileInfo(const QString &fpath) : QFileInfo(fpath) {;}
 
-bool QQFileInfo::isNull() const
+bool FileInfo::isNull() const
 {
     return fileName().isEmpty();
 }
 
-bool QQFileInfo::isSuffix(const QString &sfx) const
+bool FileInfo::isSuffix(const QString &sfx) const
 {
     return suffix().compare(sfx, Qt::CaseInsensitive);
 }
 
-QStringList QQFileInfo::infoStrings(int verbosity) const
+QStringList FileInfo::infoStrings(int verbosity) const
 {
     QStringList result;
     const QString cPath = path();
@@ -38,13 +38,13 @@ QStringList QQFileInfo::infoStrings(int verbosity) const
     return result;
 }
 
-QString QQFileInfo::permissionsString() const
+QString FileInfo::permissionsString() const
 {
     QString result;
     return result;
 }
 
-QString QQFileInfo::flagString(const bool isSet) const
+QString FileInfo::flagString(const bool isSet) const
 {
     QString result;
     QStringList tNames;

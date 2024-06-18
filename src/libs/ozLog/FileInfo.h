@@ -1,29 +1,28 @@
 #pragma once
-#include "ozCore.h"
+#include "ozLog.h"
 
 #include <QFileInfo>
 
 #include <QFile>
 #include <QIODevice>
+#include <QMetaType>
 #include <QString>
 #include <QStringList>
 #include <QTimeZone>
 
-#include "Types.h"
-
-class OZCORE_EXPORT QQFileInfo : public QFileInfo
+class OZLOG_EXPORT FileInfo : public QFileInfo
 {
 public:
 
 
 public: // ctors
-    QQFileInfo();
-    QQFileInfo(const QString &fpath);
+    FileInfo();
+    FileInfo(const QString &fpath);
 
 public: // const
     bool isNull() const;
     bool isSuffix(const QString &sfx) const;
-    Count byteCount() const;
+    size_t byteCount() const;
     QStringList infoStrings(int verbosity=-1) const;
     QFile * file(const QIODevice::OpenMode &mode,
                  QObject * parent=nullptr);
@@ -46,4 +45,4 @@ private: // non-const
 private:
 };
 
-Q_DECLARE_METATYPE(QQFileInfo);
+Q_DECLARE_METATYPE(FileInfo);

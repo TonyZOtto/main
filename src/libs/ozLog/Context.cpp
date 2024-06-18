@@ -6,14 +6,14 @@ FunctionInfo Context::functionInfo() const
     return FunctionInfo(mFuncInfo);
 }
 
-QQFileInfo Context::fileInfo() const
+FileInfo Context::fileInfo() const
 {
-    return QQFileInfo(mFileName);
+    return FileInfo(mFileName);
 }
 
 QString Context::category() const
 {
-    return mCategory.toString();
+    return QString(mCategory);
 }
 
 unsigned int Context::fileLine() const
