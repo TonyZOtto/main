@@ -4,11 +4,11 @@
 #include <QObject>
 #include "BaseApplication.h"
 
-class OZCORE_EXPORT DesktopApplication : public BaseApplication
+class OZCORE_EXPORT WidgetApplication : public BaseApplication
 {
     Q_OBJECT
 protected: // ctors
-    DesktopApplication(int argc, char *argv[]);
+    WidgetApplication(int argc, char *argv[]);
 
 
 protected: // non-const
@@ -16,5 +16,4 @@ protected: // non-const
     void configure();
     void start();
     void finish();
-
 };
