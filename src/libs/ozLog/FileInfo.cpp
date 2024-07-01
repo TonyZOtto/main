@@ -2,7 +2,6 @@
 
 #include <QDir>
 
-FileInfo::FileInfo() {;}
 FileInfo::FileInfo(const QString &fpath) : QFileInfo(fpath) {;}
 
 bool FileInfo::isNull() const

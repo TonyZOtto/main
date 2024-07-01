@@ -13,12 +13,6 @@ include(../../useLog.pri)
 SOURCES += \
     AText.cpp \
     Angle.cpp \
-    ApplicationSettings.cpp \
-    BaseApplication.cpp \
-    CommandLine.cpp \
-    ConsoleApplication.cpp \
-    ConsoleStdIO.cpp \
-    DesktopApplication.cpp \
     Key.cpp \
     KeyMap.cpp \
     KeySeg.cpp \
@@ -29,23 +23,17 @@ SOURCES += \
     Rational.cpp \
     SettingsName.cpp \
     VersionInfo.cpp \
-    WidgetApplication.cpp \
     ozCore.cpp \
 
 
 HEADERS += \
     AText.h \
     Angle.h \
-    ApplicationSettings.h \
-    BaseApplication.h \
-    CommandLine.h \
-    ConsoleApplication.h \
-    ConsoleStdIO.h \
-    DesktopApplication.h \
     Key.h \
     KeyMap.h \
     KeySeg.h \
     KeySegList.h \
+    MetaType.h \
     ObjectHelper.h \
     QQObject.h \
     QQStringList.h \
@@ -53,7 +41,8 @@ HEADERS += \
     SettingsName.h \
     Types.h \
     VersionInfo.h \
-    WidgetApplication.h \
+    ozCore.h        \
+    ozCore_global.h \
 
 # Default rules for deployment.
 unix {

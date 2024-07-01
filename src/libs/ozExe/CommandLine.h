@@ -1,26 +1,25 @@
 #pragma once
-#include "ozCore.h"
+#include "ozExe.h"
 
 #include <QObject>
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QList>
-
+#include <QStringList>
 
 #include "KeyMap.h"
 #include "SettingsName.h"
-class BaseApplication;
 class FileInfo;
 
-class OZCORE_EXPORT CommandLine : public QObject
+class OZEXE_EXPORT CommandLine : public QObject
 {
     Q_OBJECT
 public: // types
     typedef QList<QCommandLineOption> OptionList;
 
 public: // ctors
-    explicit CommandLine(int argc, char *argv[], BaseApplication *parent = nullptr);
+    explicit CommandLine(int argc, char *argv[]);
 
 public: // const
     const QCommandLineOption option(const QString &name) const;
@@ -62,13 +61,5 @@ private:
     KeyMap mSettingValuesMap;
 };
 
-
-inline const QStringList CommandLine::rawArgumentList() const
-{
-    return cmRawArgumentList;
-}
-
-inline const SettingsName::List CommandLine::settingsNameList() const
-{
-    return mSettingsNameList;
-}
+inline const QStringList CommandLine::rawArgumentList() const  { return cmRawArgumentList; }
+inline const SettingsName::List CommandLine::settingsNameList() const { return mSettingsNameList; }

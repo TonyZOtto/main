@@ -12,11 +12,10 @@
 
 class OZLOG_EXPORT FileInfo : public QFileInfo
 {
-public:
+public: // types
 
 
 public: // ctors
-    FileInfo();
     FileInfo(const QString &fpath);
 
 public: // const
@@ -43,6 +42,14 @@ private: // const
 private: // non-const
 
 private:
+
+public: // metatype
+    FileInfo() = default;
+    FileInfo(const FileInfo &other) = default;
+    FileInfo &operator = (const FileInfo &other) = default;
+    ~FileInfo() = default;
+
 };
 
-Q_DECLARE_METATYPE(FileInfo);
+Q_DECLARE_METATYPE(FileInfo)
+

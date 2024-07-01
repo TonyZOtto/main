@@ -1,11 +1,11 @@
 #pragma once
-#include "ozCore.h"
+#include "ozExe.h"
 
 #include <QObject>
 #include <QString>
 #include <QStringList>
 
-class OZCORE_EXPORT ConsoleStdIO : public QObject
+class OZEXE_EXPORT ConsoleStdIO : public QObject
 {
     Q_OBJECT
 public:

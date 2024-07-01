@@ -1,19 +1,19 @@
 #include "CommandLine.h"
 
-#include "BaseApplication.h"
+#include <QCoreApplication>
+#include <QFileInfo>
 
-CommandLine::CommandLine(int argc, char *argv[], BaseApplication *parent)
-    : QObject{parent}
+CommandLine::CommandLine(int argc, char *argv[])
+    : QObject{qApp}
     , cmExeFileName(*argv)
     , cmRawArgumentList(parseRawArguments(argc, argv))
 {
-
+    setObjectName("CommandLine:" + QFileInfo(cmExeFileName).baseName());
 }
 
 
 void CommandLine::process()
 {
-    QStringList tInArgs, tOutArgs;
 
 }
 

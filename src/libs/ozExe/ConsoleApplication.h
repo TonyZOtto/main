@@ -1,12 +1,12 @@
 #pragma once
-#include "ozCore.h"
+#include "ozExe.h"
 
 #include <QObject>
 
 #include "BaseApplication.h"
 class ConsoleStdIO;
 
-class OZCORE_EXPORT ConsoleApplication : public BaseApplication
+class OZEXE_EXPORT ConsoleApplication : public BaseApplication
 {
     Q_OBJECT
 public: // ctors

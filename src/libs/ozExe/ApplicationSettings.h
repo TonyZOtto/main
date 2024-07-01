@@ -1,9 +1,9 @@
 #pragma once
-#include "ozCore.h"
+#include "ozExe.h"
 
 #include <QObject>
 
-class OZCORE_EXPORT ApplicationSettings : public QObject
+class OZEXE_EXPORT ApplicationSettings : public QObject
 {
     Q_OBJECT
 public:

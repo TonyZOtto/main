@@ -1,10 +1,10 @@
 #pragma once
-#include "ozCore.h"
+#include "ozExe.h"
 
 #include <QObject>
 #include "BaseApplication.h"
 
-class OZCORE_EXPORT WidgetApplication : public BaseApplication
+class OZEXE_EXPORT WidgetApplication : public BaseApplication
 {
     Q_OBJECT
 protected: // ctors
