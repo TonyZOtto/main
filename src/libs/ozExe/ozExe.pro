@@ -7,10 +7,10 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 include(../libs.pri)
 include(../../useLog.pri)
-include(../../useBase.pri)
 include(../../useCore.pri)
 
 SOURCES += \
+    ActionManager.cpp \
     ApplicationSettings.cpp \
     CommandLine.cpp \
 #    ConsoleApplication.cpp \
@@ -19,6 +19,7 @@ SOURCES += \
     ozExe.cpp
 
 HEADERS += \
+    ActionManager.h \
     ApplicationSettings.h \
     CommandLine.h \
 #    ConsoleApplication.h \

@@ -11,13 +11,13 @@ class QWidget;
 
 class SandboxActions;
 
-class SandboxMain : public QMainWindow
+class SandboxMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SandboxMain(QWidget *parent = nullptr);
-    ~SandboxMain();
+    SandboxMainWindow(QWidget *parent = nullptr);
+    ~SandboxMainWindow();
 
 public: // const
     const QSize baseSize() const;
@@ -55,37 +55,37 @@ private:
 };
 
 
-inline const QSize SandboxMain::baseSize() const
+inline const QSize SandboxMainWindow::baseSize() const
 {
     return mBaseSize;
 }
 
-inline Count SandboxMain::numSides() const
+inline Count SandboxMainWindow::numSides() const
 {
     return mNumSides;
 }
 
-inline Count SandboxMain::frameCount() const
+inline Count SandboxMainWindow::frameCount() const
 {
     return mFrameCount;
 }
 
-inline QPixmap SandboxMain::showPixmap() const
+inline QPixmap SandboxMainWindow::showPixmap() const
 {
     return mShowPixmap;
 }
 
-inline QPixmap SandboxMain::makePixmap() const
+inline QPixmap SandboxMainWindow::makePixmap() const
 {
     return mMakePixmap;
 }
 
-inline Count &SandboxMain::frameCount()
+inline Count &SandboxMainWindow::frameCount()
 {
     return mFrameCount;
 }
 
-inline SandboxActions *SandboxMain::actions()
+inline SandboxActions *SandboxMainWindow::actions()
 {
     Q_CHECK_PTR(mpSandboxActions); return mpSandboxActions;
 }

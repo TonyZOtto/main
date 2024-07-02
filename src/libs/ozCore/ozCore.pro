@@ -13,6 +13,7 @@ include(../../useLog.pri)
 SOURCES += \
     AText.cpp \
     Angle.cpp \
+    Boolean.cpp \
     Key.cpp \
     KeyMap.cpp \
     KeySeg.cpp \
@@ -29,6 +30,8 @@ SOURCES += \
 HEADERS += \
     AText.h \
     Angle.h \
+    Boolean.h \
+    DualMap.h \
     Key.h \
     KeyMap.h \
     KeySeg.h \

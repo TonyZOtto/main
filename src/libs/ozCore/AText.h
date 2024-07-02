@@ -1,4 +1,4 @@
-//!file {Eclipse6}/root/src/libs/eirBase6/AText.h ASCII Text
+//!file {ozCode}/src/libs/ozBase/AText.h ASCII Text
 #pragma once
 #include "ozCore.h"
 

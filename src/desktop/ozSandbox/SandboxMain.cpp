@@ -8,20 +8,20 @@
 
 #include "SandboxActions.h"
 
-SandboxMain::SandboxMain(QWidget *parent)
+SandboxMainWindow::SandboxMainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setObjectName("ozSandbox:MainWindow");
 }
 
-SandboxMain::~SandboxMain()
+SandboxMainWindow::~SandboxMainWindow()
 {
     if (mpSandboxActions)   mpSandboxActions->deleteLater();
     if (mpMainLabel)       mpMainLabel->deleteLater();
     if (mpCentralWidget)    mpCentralWidget->deleteLater();
 }
 
-void SandboxMain::initialize()
+void SandboxMainWindow::initialize()
 {
     mpSandboxActions = new SandboxActions(this);
     Q_CHECK_PTR(mpSandboxActions);
@@ -34,7 +34,7 @@ void SandboxMain::initialize()
     Q_CHECK_PTR(mpMainLayout);
 }
 
-void SandboxMain::configure()
+void SandboxMainWindow::configure()
 {
     // TODO QSettings
     mBaseSize = QSize(512, 512);
@@ -42,7 +42,7 @@ void SandboxMain::configure()
 }
 
 
-void SandboxMain::setup()
+void SandboxMainWindow::setup()
 {
     Q_CHECK_PTR(mpSandboxActions);
     Q_CHECK_PTR(mpCentralWidget);
@@ -64,7 +64,7 @@ void SandboxMain::setup()
     show();
 }
 
-void SandboxMain::objconnect()
+void SandboxMainWindow::objconnect()
 {
     Q_CHECK_PTR(mpSandboxActions);
     mpSandboxActions->objconnect();

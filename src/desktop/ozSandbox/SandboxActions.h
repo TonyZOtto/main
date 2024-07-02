@@ -11,7 +11,7 @@ class QToolBar;
 #include <Types.h>
 #include <Angle.h>
 
-class SandboxMain;
+class SandboxMainWindow;
 
 class SandboxActions : public QObject
 {
@@ -28,7 +28,7 @@ public: // types
     Q_ENUM(RunState);
 
 public: // ctors
-    explicit SandboxActions(SandboxMain *parent = nullptr);
+    explicit SandboxActions(SandboxMainWindow *parent = nullptr);
 
 
 public: // const
@@ -36,7 +36,7 @@ public: // const
 public: // non-const
 
 public: // pointers
-    SandboxMain * main();
+    SandboxMainWindow * mainWindow();
 
 public slots:
     void initialize(void);
@@ -74,7 +74,7 @@ signals:
     void rotate(const Angle ang);
 
 private:
-    SandboxMain * mpMainWindow=nullptr;
+    SandboxMainWindow * mpMainWindow=nullptr;
     Angle mCurrentRotation;
     QList<Angle> mRotateAngles;
     QList<Count> mSideses;
@@ -112,4 +112,4 @@ private:
 
 };
 
-inline SandboxMain *SandboxActions::main() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
+inline SandboxMainWindow *SandboxActions::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }

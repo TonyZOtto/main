@@ -6,7 +6,7 @@
 
 #include "SandboxMain.h"
 
-SandboxActions::SandboxActions(SandboxMain *parent)
+SandboxActions::SandboxActions(SandboxMainWindow *parent)
     : QObject(parent)
     , mpMainWindow(parent)
 {
@@ -19,7 +19,7 @@ void SandboxActions::initialize()
     mpStopAction = new QAction("Stop", this);
     mpPauseAction = new QAction("Pause", this);
     mpResumeAction = new QAction("Resume", this);
-    mpToolbar = new QToolBar("Main", main());
+    mpToolbar = new QToolBar("Main", mainWindow());
     emit initialized();
 }
 
@@ -44,7 +44,7 @@ void SandboxActions::setup()
     mpToolbar->addAction(mpStopAction);
     mpToolbar->addAction(mpPauseAction);
     mpToolbar->addAction(mpResumeAction);
-    main()->addToolBar(mpToolbar);
+    mainWindow()->addToolBar(mpToolbar);
     mpToolbar->show();
     emit seted();
 }
