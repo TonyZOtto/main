@@ -1,4 +1,5 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QObject>
 
@@ -11,7 +12,7 @@ class QAction;
 #include <DualMap.h>
 #include <Key.h>
 
-class ActionManager : public QObject
+class OZEXE_EXPORT ActionManager : public QObject
 {
     Q_OBJECT
 public:
@@ -23,6 +24,7 @@ public:
         StatusTip       = 0x00000004,
         ToolTip         = 0x00000008,
         WhatsThis       = 0x00000010,
+        $endText
     };
     Q_DECLARE_FLAGS(TextRoleFlags, TextRoleFlag)
 
@@ -37,6 +39,8 @@ public:
         ContextVisible  = 0x00000020,
         Visible         = 0x00000040,
         Separator       = 0x00000080,
+        Disabled        = 0x00000100,
+        $endBool
     };
     Q_DECLARE_FLAGS(BoolRoleFlags, BoolRoleFlag)
 
@@ -48,26 +52,30 @@ public slots:
 
 public: // const
     bool contains(const Key &aKey) const;
+    bool notContains(const Key &aKey) const { return ! contains(aKey); }
     bool contains(QAction * pAction) const;
     Key key(QAction * pAction) const;
-    QAction * action(const Key &key) const;
-    QString string(const Key &key, const TextRoleFlag aTextFlag);
-    Boolean boolean(const Key &key, const BoolRoleFlag aBoolFlag);
+    Key::List keys() const;
+    QAction * action(const Key &aKey) const;
+    QString string(const Key &aKey, const TextRoleFlag aTextFlag);
+    Boolean boolean(const Key &aKey, const BoolRoleFlag aBoolFlag);
 
 public: // non-const
-    QAction * add(const Key &key);
-    void add(const Key &key, QAction * pAction);
-    QAction * action(const Key &key);
-    QAction * set(const Key &key, const QString &aText);
-    QAction * set(const Key &key, const TextRoleFlag aTextFlag, const QString &aText);
-    QAction * set(const Key &key, const TextRoleFlags aTextFlags, const QString &aText);
-    QAction * set(const Key &key, const BoolRoleFlag aBoolFlag, const bool is);
-    QAction * set(const Key &key, const BoolRoleFlags aBoolFlags, const bool is);
-    QAction * set(const Key &key, const QIcon &aIcon, const QString &aIconText=QString());
+    QAction * add(const Key &aKey);
+    void add(const Key &aKey, QAction * pAction);
+    bool remove(const Key &aKey);
+    void remove();
+    QAction * action(const Key &aKey);
+    QAction * set(const Key &aKey, const QIcon &aIcon, const QString &aIconText=QString());
+    QAction * set(const Key &aKey, const QString &aText);
+    QAction * set(const Key &aKey, const TextRoleFlag aTextFlag, const QString &aText);
+    void set(const Key &aKey, const TextRoleFlags aTextFlags, const QString &aText);
+    QAction * set(const Key &key, const BoolRoleFlag aBoolFlag, const bool aIs);
+    void set(const Key &aKey, const BoolRoleFlags aBoolFlags, const bool aIs);
 
 signals:
-    void added(const Key &key, QAction * pAction);
-    void removed(const Key &key, QAction * pAction);
+    void added(const Key &aKey, QAction * pAction);
+    void removed(const Key &aKey, QAction * pAction);
 
 private:
     DualMap <Key, QAction *> mKeyActionDMap;

@@ -19,10 +19,13 @@ SOURCES += \
     KeySeg.cpp \
     KeySegList.cpp \
     ObjectHelper.cpp \
+    QQDir.cpp \
     QQObject.cpp \
+    QQSize.cpp \
     QQStringList.cpp \
     Rational.cpp \
     SettingsName.cpp \
+    Success.cpp \
     VersionInfo.cpp \
     ozCore.cpp \
 
@@ -38,10 +41,13 @@ HEADERS += \
     KeySegList.h \
     MetaType.h \
     ObjectHelper.h \
+    QQDir.h \
     QQObject.h \
+    QQSize.h \
     QQStringList.h \
     Rational.h \
     SettingsName.h \
+    Success.h \
     Types.h \
     VersionInfo.h \
     ozCore.h        \

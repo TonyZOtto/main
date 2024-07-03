@@ -24,21 +24,26 @@ Key ActionManager::key(QAction *pAction) const
     return mKeyActionDMap.at(pAction);
 }
 
-QAction *ActionManager::action(const Key &key) const
+Key::List ActionManager::keys() const
+{
+    return mKeyActionDMap.keys();
+}
+
+QAction *ActionManager::action(const Key &aKey) const
 {
     QAction * result = nullptr;
-    if (contains(key))
-        result = mKeyActionDMap.at(key);
+    if (contains(aKey))
+        result = mKeyActionDMap.at(aKey);
     Q_CHECK_PTR(result);
     return result;
 }
 
-QString ActionManager::string(const Key &key, const TextRoleFlag aTextFlag)
+QString ActionManager::string(const Key &aKey, const TextRoleFlag aTextFlag)
 {
     QString result;
-    if (contains(key))
+    if (contains(aKey))
     {
-        QAction * pAction = action(key);
+        QAction * pAction = action(aKey);
         switch (aTextFlag)
         {
         case Action:    result = pAction->text();       break;
@@ -52,12 +57,12 @@ QString ActionManager::string(const Key &key, const TextRoleFlag aTextFlag)
         return result;
 }
 
-Boolean ActionManager::boolean(const Key &key, const BoolRoleFlag aBoolFlag)
+Boolean ActionManager::boolean(const Key &aKey, const BoolRoleFlag aBoolFlag)
 {
     Boolean result(true, false); // invalid
-    if (contains(key))
+    if (contains(aKey))
     {
-        QAction * pAction = action(key);
+        QAction * pAction = action(aKey);
         switch (aBoolFlag)
         {
         case AutoRepeat:        result = pAction->autoRepeat();     break;
@@ -72,5 +77,122 @@ Boolean ActionManager::boolean(const Key &key, const BoolRoleFlag aBoolFlag)
         }
     }
     return result;
+}
+
+QAction *ActionManager::add(const Key &aKey)
+{
+    (void)remove(aKey);
+    QAction * result = new QAction(aKey(), this);
+    emit added(aKey, result);
+    mKeyActionDMap.insertUnique(aKey, result);
+    return result;
+}
+
+bool ActionManager::remove(const Key &aKey)
+{
+    bool result = contains(aKey);
+    if (result)
+    {
+        QAction * pOld = action(aKey);
+        emit removed(aKey, pOld);
+        mKeyActionDMap.remove(pOld);
+        pOld->deleteLater();
+    }
+    return result;
+}
+
+void ActionManager::remove()
+{
+    foreach (const Key cKey, keys())
+        (void)remove(cKey);
+}
+
+QAction *ActionManager::action(const Key &aKey) // non-const
+{
+    static QAction sDummyAction;
+    QAction * result = &sDummyAction;
+    if (contains(aKey))
+        result = mKeyActionDMap.at(aKey);
+    else
+        qWarning() << Q_FUNC_INFO << aKey() << "not found";
+    Q_CHECK_PTR(result);
+    return result;
+}
+
+QAction *ActionManager::set(const Key &aKey, const QIcon &aIcon, const QString &aIconText)
+{
+    QAction * result = action(aKey);
+    if (notContains(aKey))
+        qWarning() << Q_FUNC_INFO << aKey() << "not found";
+    result->setIcon(aIcon);
+    result->setIconText(aIconText);
+    return result;
+}
+
+QAction *ActionManager::set(const Key &aKey, const QString &aText)
+{
+    QAction * result = action(aKey);
+    if (notContains(aKey))
+        qWarning() << Q_FUNC_INFO << aKey() << "not found";
+    result->setText(aText);
+    return result;
+}
+
+QAction *ActionManager::set(const Key &aKey, const TextRoleFlag aTextFlag, const QString &aText)
+{
+    QAction * result = action(aKey);
+    if (notContains(aKey))
+        qWarning() << Q_FUNC_INFO << aKey() << "not found";
+    else
+        switch (aTextFlag)
+        {
+        case Action:    result->setText(aText);         break;
+        case Icon:      result->setIconText(aText);     break;
+        case StatusTip: result->setStatusTip(aText);    break;
+        case ToolTip:   result->setToolTip(aText);      break;
+        case WhatsThis: result->setWhatsThis(aText);    break;
+        case $nullText: case $endText: /*do nothing*/   break;
+        }
+    return result;
+}
+
+void ActionManager::set(const Key &aKey, const TextRoleFlags aTextFlags, const QString &aText)
+{
+    for (TextRoleFlag flag = TextRoleFlag(1 + int($nullText));
+         flag < $endText;
+         flag = TextRoleFlag(1 + int(flag)))
+        if (aTextFlags | flag)
+            (void)set(aKey, flag, aText);
+}
+
+QAction *ActionManager::set(const Key &aKey, const BoolRoleFlag aBoolFlag, const bool aIs)
+{
+    QAction * result = action(aKey);
+    if (notContains(aKey))
+        qWarning() << Q_FUNC_INFO << aKey() << "not found";
+    else
+        switch (aBoolFlag)
+        {
+        case AutoRepeat:        result->setAutoRepeat(aIs); break;
+        case Checkable:         result->setCheckable(aIs);  break;
+        case Checked:           result->setChecked(aIs);    break;
+        case Enabled:           result->setEnabled(aIs);    break;
+        case MenuVisible:       result->setIconVisibleInMenu(aIs);  break;
+        case ContextVisible:    result->setShortcutVisibleInContextMenu(aIs);   break;
+        case Visible:           result->setVisible(aIs);    break;
+        case Separator:         result->setSeparator(aIs);  break;
+        case Disabled:         result->setEnabled( ! aIs);  break;
+        case $nullBool: case $endBool: /*do nothing*/       break;
+        }
+    return result;
+}
+
+void ActionManager::set(const Key &aKey, const BoolRoleFlags aBoolFlags, const bool aIs)
+{
+    for (BoolRoleFlag flag = BoolRoleFlag(1 + int($nullBool));
+         flag < $endBool;
+         flag = BoolRoleFlag(1 + int(flag)))
+        if (aBoolFlags | flag)
+            (void)set(aKey, flag, aIs);
 }
 

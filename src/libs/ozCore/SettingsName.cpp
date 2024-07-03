@@ -5,7 +5,7 @@
 
 #include "Types.h"
 
-SettingsName::SettingsName() {;}
+SettingsName::SettingsName() : mType($null), mSystemScope(false) {;}
 SettingsName::SettingsName(const QString &name, const bool okNotExist) { set(name, okNotExist); }
 
 QSettings::Scope SettingsName::scope() const

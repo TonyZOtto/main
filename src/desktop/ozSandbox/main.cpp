@@ -6,7 +6,7 @@
 
 #include <VersionInfo.h>
 
-int mainWindow(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     VersionInfo vi(VER_MAJOR, VER_MINOR, VER_RELEASE, VER_BRANCH, VER_BUILD,
                    VER_BRANCHNAME, VER_APPNAME, VER_ORGNAME);

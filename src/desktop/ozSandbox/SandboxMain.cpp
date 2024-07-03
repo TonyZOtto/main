@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
+#include <QTimer>
 #include <QWidget>
 
 #include "SandboxActions.h"
@@ -17,7 +18,7 @@ SandboxMainWindow::SandboxMainWindow(QWidget *parent)
 SandboxMainWindow::~SandboxMainWindow()
 {
     if (mpSandboxActions)   mpSandboxActions->deleteLater();
-    if (mpMainLabel)       mpMainLabel->deleteLater();
+    if (mpMainLabel)        mpMainLabel->deleteLater();
     if (mpCentralWidget)    mpCentralWidget->deleteLater();
 }
 
@@ -32,6 +33,15 @@ void SandboxMainWindow::initialize()
     Q_CHECK_PTR(mpCentralWidget);
     mpMainLayout = new QGridLayout();
     Q_CHECK_PTR(mpMainLayout);
+    connect(this, &SandboxMainWindow::initialized,
+            this, &SandboxMainWindow::configure);
+    connect(this, &SandboxMainWindow::configured,
+            this, &SandboxMainWindow::setup);
+    connect(this, &SandboxMainWindow::setuped,
+            this, &SandboxMainWindow::objconnect);
+    connect(this, &SandboxMainWindow::objconnected,
+            this, &SandboxMainWindow::start);
+    emit initialized();
 }
 
 void SandboxMainWindow::configure()
@@ -39,6 +49,7 @@ void SandboxMainWindow::configure()
     // TODO QSettings
     mBaseSize = QSize(512, 512);
     mNumSides = 4;
+    emit configured();
 }
 
 
@@ -62,11 +73,19 @@ void SandboxMainWindow::setup()
     mpCentralWidget->setLayout(mpMainLayout);
     setCentralWidget(mpCentralWidget);
     show();
+    emit setuped();
 }
 
 void SandboxMainWindow::objconnect()
 {
     Q_CHECK_PTR(mpSandboxActions);
     mpSandboxActions->objconnect();
+
+    emit objconnected();
+}
+
+void SandboxMainWindow::start()
+{
+    emit started();
 
 }

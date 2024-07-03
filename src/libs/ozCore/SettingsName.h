@@ -1,4 +1,5 @@
 #pragma once
+#include "ozCore.h"
 
 #include <QList>
 #include <QSettings>
@@ -6,7 +7,7 @@
 
 #include "../ozLog/FileInfo.h"
 
-class SettingsName
+class OZCORE_EXPORT SettingsName
 {
 public: // types
     typedef QList<SettingsName> List;
@@ -50,24 +51,8 @@ private:
     QString mAppName;
 };
 
-inline SettingsName::Type SettingsName::type() const
-{
-    return mType;
-}
-
-inline bool SettingsName::systemScope() const
-{
-    return mSystemScope;
-}
-inline FileInfo SettingsName::fileInfo() const
-{
-    return mFileInfo;
-}
-inline QString SettingsName::orgName() const
-{
-    return mOrgName;
-}
-inline QString SettingsName::appName() const
-{
-    return mAppName;
-}
+inline SettingsName::Type SettingsName::type() const { return mType; }
+inline bool SettingsName::systemScope() const { return mSystemScope; }
+inline FileInfo SettingsName::fileInfo() const { return mFileInfo; }
+inline QString SettingsName::orgName() const { return mOrgName; }
+inline QString SettingsName::appName() const { return mAppName; }

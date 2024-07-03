@@ -1,12 +1,11 @@
-#ifndef KEYMAP_H
-#define KEYMAP_H
+#include "ozCore.h"
 
 #include <QMap>
 #include <QVariant>
 
 #include "Key.h"
 
-class KeyMap : public QMap<Key, QVariant>
+class OZCORE_EXPORT KeyMap : public QMap<Key, QVariant>
 {
 public:
     KeyMap();
@@ -14,4 +13,4 @@ public:
 
 };
 
-#endif // KEYMAP_H
+

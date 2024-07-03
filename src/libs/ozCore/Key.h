@@ -2,6 +2,7 @@
 #include "ozCore.h"
 
 #include <QChar>
+#include <QList>
 #include <QString>
 
 #include "AText.h"
@@ -9,6 +10,9 @@
 
 class OZCORE_EXPORT Key
 {
+public: // types
+    typedef QList<Key> List;
+
 public: // ctors
     Key() {;}
     Key(const char * pch) { set(pch); }

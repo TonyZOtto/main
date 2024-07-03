@@ -19,6 +19,21 @@ public:
     SandboxMainWindow(QWidget *parent = nullptr);
     ~SandboxMainWindow();
 
+public slots:
+    void initialize(void);
+    void configure(void);
+    void setup(void);
+    void objconnect(void);
+    void start(void);
+
+signals:
+    void initialized(void);
+    void configured(void);
+    void setuped(void);
+    void objconnected(void);
+    void started(void);
+
+
 public: // const
     const QSize baseSize() const;
     Count numSides() const;
@@ -31,13 +46,6 @@ public: // non-const
 
 public: // pointers
     SandboxActions * actions();
-
-public slots:
-    void initialize(void);
-    void configure(void);
-    void setup(void);
-    void objconnect(void);
-    void start(void) {;}
 
 private slots:
 

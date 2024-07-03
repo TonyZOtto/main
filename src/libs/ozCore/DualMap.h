@@ -28,6 +28,8 @@ public:
     {	return contains(key) ? mapAtoB.value(key) : B(); }
     A at(const B & key) const
     {	return contains(key) ? mapBtoA.value(key) : A(); }
+    QList<A> keys() const { return mapAtoB.keys(); }
+    QList<B> values() const { return mapBtoA.keys(); }
     QList<A> all(const A & key) const
     {
         (void)key;
