@@ -10,6 +10,7 @@ include(../../useCore.pri)
 
 SOURCES += \
     SandboxActions.cpp \
+    SandboxEngine.cpp \
     SandboxMainWindow.cpp \
     SandboxScene.cpp \
     main.cpp
@@ -17,6 +18,7 @@ SOURCES += \
 HEADERS += \
     SandboxActions.h \
     ../../version.h \
+    SandboxEngine.h \
     SandboxMainWindow.h \
     SandboxScene.h
 

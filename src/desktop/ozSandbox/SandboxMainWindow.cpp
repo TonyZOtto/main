@@ -63,7 +63,7 @@ void SandboxMainWindow::setup()
 //    mBackPixmap = QPixmap(mBaseWidgetSize);
   //  mBackPixmap.fill(Qt::blue); // TODO BackColor, BackImage
     QImage tBackImage(":/image/MM512A.jpg");
-    tBackImage.convertTo(QImage::Format_Grayscale8);
+//    tBackImage.convertTo(QImage::Format_Grayscale8);
     mBackPixmap = QPixmap::fromImage(tBackImage);
     mpMainLabel->setFixedSize(mBaseWidgetSize);
     mpMainLabel->setPixmap(mBackPixmap);
