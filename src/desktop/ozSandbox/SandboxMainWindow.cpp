@@ -1,4 +1,4 @@
-#include "SandboxMain.h"
+#include "SandboxMainWindow.h"
 
 #include <QApplication>
 #include <QGridLayout>
@@ -47,8 +47,7 @@ void SandboxMainWindow::initialize()
 void SandboxMainWindow::configure()
 {
     // TODO QSettings
-    mBaseSize = QSize(512, 512);
-    mNumSides = 4;
+    mBaseWidgetSize = QSize(512, 512);
     emit configured();
 }
 
@@ -58,17 +57,16 @@ void SandboxMainWindow::setup()
     Q_CHECK_PTR(mpSandboxActions);
     Q_CHECK_PTR(mpCentralWidget);
     Q_CHECK_PTR(mpMainLabel);
-    mFrameCount = 0;
-    mShowPixmap = QPixmap(baseSize());
-    mMakePixmap = QPixmap(showPixmap().size());
-    mShowPixmap.fill(Qt::blue);
-    mMakePixmap.fill(Qt::red);
 
     mpSandboxActions->setup();
 
-    mpMainLabel->setFixedSize(showPixmap().size());
-    mpMainLabel->setBaseSize(size());
-    mpMainLabel->setPixmap(showPixmap());
+//    mBackPixmap = QPixmap(mBaseWidgetSize);
+  //  mBackPixmap.fill(Qt::blue); // TODO BackColor, BackImage
+    QImage tBackImage(":/image/MM512A.jpg");
+    tBackImage.convertTo(QImage::Format_Grayscale8);
+    mBackPixmap = QPixmap::fromImage(tBackImage);
+    mpMainLabel->setFixedSize(mBaseWidgetSize);
+    mpMainLabel->setPixmap(mBackPixmap);
     mpMainLayout->addWidget(mpMainLabel);
     mpCentralWidget->setLayout(mpMainLayout);
     setCentralWidget(mpCentralWidget);

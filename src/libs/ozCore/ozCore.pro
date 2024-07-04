@@ -8,7 +8,7 @@ CONFIG += c++17
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../libs.pri)
-include(../../useLog.pri)
+#include(../../useLog.pri)
 
 SOURCES += \
     AText.cpp \

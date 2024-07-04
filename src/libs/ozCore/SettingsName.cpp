@@ -30,14 +30,14 @@ SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 
 SettingsName::Type SettingsName::setFileName(const QString &s, const bool okNotExist)
 {
-    Type result = $null;
-    FileInfo tFI(s);
+    Type result = UnknownFile;
+    QFileInfo tFI(s);
     if (tFI.exists() || okNotExist)
     {
-        if (tFI.suffix().isEmpty())      result = UnknownFile;
-        else if (tFI.isSuffix("INI"))    result = IniFile;
-        else if (tFI.isSuffix("JSON"))   result = JsonFile;
-        else if (tFI.isSuffix("XML"))    result = XmlFile;
+        if (tFI.suffix().isEmpty())                 result = $null;
+        else if (tFI.suffix().toUpper() == "INI")    result = IniFile;
+        else if (tFI.suffix().toUpper() == "JSON")   result = JsonFile;
+        else if (tFI.suffix().toUpper() == "XML")    result = XmlFile;
     }
     if (result != $null)
     {

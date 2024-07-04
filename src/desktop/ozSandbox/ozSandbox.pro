@@ -10,13 +10,15 @@ include(../../useCore.pri)
 
 SOURCES += \
     SandboxActions.cpp \
-    SandboxMain.cpp \
+    SandboxMainWindow.cpp \
+    SandboxScene.cpp \
     main.cpp
 
 HEADERS += \
     SandboxActions.h \
-    SandboxMain.h \
     ../../version.h \
+    SandboxMainWindow.h \
+    SandboxScene.h
 
 FORMS += \
 
@@ -27,4 +29,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES +=
 
-RESOURCES +=
+RESOURCES += \
+    ozSandbox.qrc

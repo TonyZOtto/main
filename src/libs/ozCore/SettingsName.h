@@ -1,11 +1,10 @@
 #pragma once
 #include "ozCore.h"
 
+#include <QFileInfo>
 #include <QList>
 #include <QSettings>
 #include <QString>
-
-#include "../ozLog/FileInfo.h"
 
 class OZCORE_EXPORT SettingsName
 {
@@ -30,7 +29,7 @@ public: // const
     Type type() const;
     bool systemScope() const;
     QSettings::Scope scope() const;
-    FileInfo fileInfo() const;
+    QFileInfo fileInfo() const;
     QString orgName() const;
     QString appName() const;
 
@@ -46,13 +45,13 @@ private:
     QString mString;
     Type mType=$null;
     bool mSystemScope=false;
-    FileInfo mFileInfo;
+    QFileInfo mFileInfo;
     QString mOrgName;
     QString mAppName;
 };
 
 inline SettingsName::Type SettingsName::type() const { return mType; }
 inline bool SettingsName::systemScope() const { return mSystemScope; }
-inline FileInfo SettingsName::fileInfo() const { return mFileInfo; }
+inline QFileInfo SettingsName::fileInfo() const { return mFileInfo; }
 inline QString SettingsName::orgName() const { return mOrgName; }
 inline QString SettingsName::appName() const { return mAppName; }

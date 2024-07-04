@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icon">
-        <file>noun-quit-1331221.svg</file>
+    <qresource prefix="/image">
+        <file>MM512A.jpg</file>
     </qresource>
 </RCC>

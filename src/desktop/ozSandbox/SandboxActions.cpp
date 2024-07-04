@@ -4,7 +4,7 @@
 #include <QApplication>
 #include <QToolBar>
 
-#include "SandboxMain.h"
+#include "SandboxMainWindow.h"
 
 SandboxActions::SandboxActions(SandboxMainWindow *parent)
     : QObject(parent)
@@ -80,7 +80,7 @@ void SandboxActions::createSystemIcons()
 {
 //  mQuitIcon = QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit);
 
-    Q_ASSERT( ! mQuitIcon.isNull());
+//    Q_ASSERT( ! mQuitIcon.isNull());
 }
 
 void SandboxActions::createPlaybackIcons()
@@ -89,9 +89,9 @@ void SandboxActions::createPlaybackIcons()
   //  mPauseIcon = QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackPause);
     //mResumeIcon = QIcon::fromTheme(QIcon::ThemeIcon::MediaPlaybackStart);
 
-    Q_ASSERT( ! mStopIcon.isNull());
-    Q_ASSERT( ! mPauseIcon.isNull());
-    Q_ASSERT( ! mResumeIcon.isNull());
+//    Q_ASSERT( ! mStopIcon.isNull());
+  //  Q_ASSERT( ! mPauseIcon.isNull());
+    //Q_ASSERT( ! mResumeIcon.isNull());
 }
 
 void SandboxActions::updateSetupPause()

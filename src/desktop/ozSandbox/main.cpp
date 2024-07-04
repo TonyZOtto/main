@@ -1,6 +1,6 @@
 #include "../../version.h"
 #include "version.h"
-#include "SandboxMain.h"
+#include "SandboxMainWindow.h"
 
 #include <QApplication>
 
