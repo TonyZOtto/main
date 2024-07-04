@@ -11,6 +11,8 @@ class QWidget;
 #include <Types.h>
 
 class SandboxActions;
+class SandboxEngine;
+class SandboxScene;
 
 class SandboxMainWindow : public QMainWindow
 {
@@ -47,13 +49,15 @@ public: // pointers
 private slots:
 
 private:
-    QSize mBaseWidgetSize;
+    SandboxActions * mpActions=nullptr;
+    SandboxScene * mpScene=nullptr;
+    SandboxEngine * mpEngine=nullptr;
     QLabel * mpMainLabel=nullptr;
     QWidget * mpCentralWidget=nullptr;
     QGridLayout * mpMainLayout=nullptr;
-    SandboxActions * mpSandboxActions=nullptr;
+    QSize mBaseWidgetSize;
     QPixmap mBackPixmap;
 };
 
 inline const QSize SandboxMainWindow::baseWidgetSize() const { return mBaseWidgetSize; }
-inline SandboxActions *SandboxMainWindow::actions() { Q_CHECK_PTR(mpSandboxActions); return mpSandboxActions; }
+inline SandboxActions *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }

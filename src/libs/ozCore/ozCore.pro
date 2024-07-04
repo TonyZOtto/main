@@ -21,9 +21,11 @@ SOURCES += \
     ObjectHelper.cpp \
     QQDir.cpp \
     QQObject.cpp \
+    QQPoint.cpp \
     QQSize.cpp \
     QQStringList.cpp \
     Rational.cpp \
+    SCRect.cpp \
     SettingsName.cpp \
     Success.cpp \
     VersionInfo.cpp \
@@ -43,9 +45,11 @@ HEADERS += \
     ObjectHelper.h \
     QQDir.h \
     QQObject.h \
+    QQPoint.h \
     QQSize.h \
     QQStringList.h \
     Rational.h \
+    SCRect.h \
     SettingsName.h \
     Success.h \
     Types.h \

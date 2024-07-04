@@ -1,10 +1,19 @@
 #include "SandboxScene.h"
 
+#include <QGraphicsPixmapItem>
+#include <QGraphicsView>
 
 SandboxScene::SandboxScene(QObject *parent)
     : QGraphicsScene{parent}
+    , mpView(new QGraphicsView(this))
+    , mViewRect(QQSize(512, 512), QQPoint(0, 0))
 {
     setObjectName("SandboxScene");
+}
+
+void SandboxScene::initialize()
+{
+
 }
 
 void SandboxScene::set(const Layer aLayer, const QImage &aImage)

@@ -12,6 +12,7 @@ IconFactory::IconFactory(QObject *parent)
 
 void IconFactory::createIcon(const Key &aIconKey, const QQSize aSize)
 {
+    Q_UNUSED(aIconKey); Q_UNUSED(aSize);
     Q_ASSERT(!"MUSTDO"); // MUSTDO create(key)
 }
 

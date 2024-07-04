@@ -8,6 +8,8 @@
 #include <QWidget>
 
 #include "SandboxActions.h"
+#include "SandboxEngine.h"
+#include "SandboxScene.h"
 
 SandboxMainWindow::SandboxMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,16 +19,24 @@ SandboxMainWindow::SandboxMainWindow(QWidget *parent)
 
 SandboxMainWindow::~SandboxMainWindow()
 {
-    if (mpSandboxActions)   mpSandboxActions->deleteLater();
+    if (mpActions)   mpActions->deleteLater();
+    if (mpScene)   mpScene->deleteLater();
+    if (mpEngine)   mpEngine->deleteLater();
     if (mpMainLabel)        mpMainLabel->deleteLater();
     if (mpCentralWidget)    mpCentralWidget->deleteLater();
 }
 
 void SandboxMainWindow::initialize()
 {
-    mpSandboxActions = new SandboxActions(this);
-    Q_CHECK_PTR(mpSandboxActions);
-    mpSandboxActions->initialize();
+    mpActions = new SandboxActions(this);
+    Q_CHECK_PTR(mpActions);
+    mpActions->initialize();
+    mpScene = new SandboxScene(this);
+    Q_CHECK_PTR(mpScene);
+    mpScene->initialize();
+    mpEngine = new SandboxEngine(mpScene, this);
+    Q_CHECK_PTR(mpEngine);
+    mpEngine->initialize();
     mpMainLabel = new QLabel(this);
     Q_CHECK_PTR(mpMainLabel);
     mpCentralWidget = new QWidget(this);
@@ -47,18 +57,24 @@ void SandboxMainWindow::initialize()
 void SandboxMainWindow::configure()
 {
     // TODO QSettings
+    Q_CHECK_PTR(mpScene);
     mBaseWidgetSize = QSize(512, 512);
+    mpScene->viewRect(SCRect(mBaseWidgetSize));
     emit configured();
 }
 
 
 void SandboxMainWindow::setup()
 {
-    Q_CHECK_PTR(mpSandboxActions);
+    Q_CHECK_PTR(mpActions);
+    Q_CHECK_PTR(mpScene);
+    Q_CHECK_PTR(mpEngine);
     Q_CHECK_PTR(mpCentralWidget);
     Q_CHECK_PTR(mpMainLabel);
 
-    mpSandboxActions->setup();
+    mpActions->setup();
+    mpScene->setup();
+    mpEngine->setup();
 
 //    mBackPixmap = QPixmap(mBaseWidgetSize);
   //  mBackPixmap.fill(Qt::blue); // TODO BackColor, BackImage
@@ -76,8 +92,8 @@ void SandboxMainWindow::setup()
 
 void SandboxMainWindow::objconnect()
 {
-    Q_CHECK_PTR(mpSandboxActions);
-    mpSandboxActions->objconnect();
+    Q_CHECK_PTR(mpActions);
+    mpActions->objconnect();
 
     emit objconnected();
 }

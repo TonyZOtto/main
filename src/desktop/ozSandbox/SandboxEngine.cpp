@@ -7,3 +7,8 @@ SandboxEngine::SandboxEngine(SandboxScene * pScene, QObject *parent)
     setObjectName("SandboxEngine");
     Q_CHECK_PTR(mpScene);
 }
+
+void SandboxEngine::initialize()
+{
+
+}
