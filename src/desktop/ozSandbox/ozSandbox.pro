@@ -12,6 +12,7 @@ include(../../usePhoto.pri)
 
 SOURCES += \
     SandboxActions.cpp \
+    SandboxApplication.cpp \
     SandboxData.cpp \
     SandboxEngine.cpp \
     SandboxMainWindow.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     SandboxActions.h \
     ../../version.h \
+    SandboxApplication.h \
     SandboxData.h \
     SandboxEngine.h \
     SandboxMainWindow.h \
@@ -34,7 +36,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    ../../usePhoto.pri
+    ../../../doc/desktop/ozSandbox/Notes.md
 
 RESOURCES += \
     ozSandbox.qrc

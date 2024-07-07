@@ -8,7 +8,7 @@ class SandboxEngine : public QObject
 {
     Q_OBJECT
 public: // ctors
-    explicit SandboxEngine(SandboxScene * pScene, QObject *parent = nullptr);
+    explicit SandboxEngine(QObject *parent = nullptr);
 
 
 public slots:
@@ -37,5 +37,4 @@ private slots:
 private:
 
 private:
-    SandboxScene * mpScene=nullptr;
 };

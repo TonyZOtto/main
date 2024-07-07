@@ -9,20 +9,20 @@
 #include <QWidget>
 
 #include "SandboxActions.h"
+#include "SandboxApplication.h"
 #include "SandboxEngine.h"
 #include "SandboxScene.h"
 
-SandboxMainWindow::SandboxMainWindow(QWidget *parent)
-    : QMainWindow(parent)
+SandboxMainWindow::SandboxMainWindow(SandboxApplication *parent)
+    : mpApplication(parent)
 {
-    setObjectName("ozSandbox:MainWindow");
+    setObjectName("SandboxMainWindow:" + app()->applicationName());
 }
 
 SandboxMainWindow::~SandboxMainWindow()
 {
     if (mpActions)   mpActions->deleteLater();
     if (mpScene)   mpScene->deleteLater();
-    if (mpEngine)   mpEngine->deleteLater();
     if (mpMainLabel)        mpMainLabel->deleteLater();
     if (mpCentralWidget)    mpCentralWidget->deleteLater();
 }
@@ -35,23 +35,12 @@ void SandboxMainWindow::initialize()
     mpScene = new SandboxScene(this);
     Q_CHECK_PTR(mpScene);
     mpScene->initialize();
-    mpEngine = new SandboxEngine(mpScene, this);
-    Q_CHECK_PTR(mpEngine);
-    mpEngine->initialize();
     mpMainLabel = new QLabel(this);
     Q_CHECK_PTR(mpMainLabel);
     mpCentralWidget = new QWidget(this);
     Q_CHECK_PTR(mpCentralWidget);
     mpMainLayout = new QGridLayout();
     Q_CHECK_PTR(mpMainLayout);
-    connect(this, &SandboxMainWindow::initialized,
-            this, &SandboxMainWindow::configure);
-    connect(this, &SandboxMainWindow::configured,
-            this, &SandboxMainWindow::setup);
-    connect(this, &SandboxMainWindow::setuped,
-            this, &SandboxMainWindow::objconnect);
-    connect(this, &SandboxMainWindow::objconnected,
-            this, &SandboxMainWindow::start);
     emit initialized();
 }
 
@@ -69,13 +58,11 @@ void SandboxMainWindow::setup()
 {
     Q_CHECK_PTR(mpActions);
     Q_CHECK_PTR(mpScene);
-    Q_CHECK_PTR(mpEngine);
     Q_CHECK_PTR(mpCentralWidget);
     Q_CHECK_PTR(mpMainLabel);
 
     mpActions->setup();
     mpScene->setup();
-    mpEngine->setup();
 
 //    mBackPixmap = QPixmap(mBaseWidgetSize);
   //  mBackPixmap.fill(Qt::blue); // TODO BackColor, BackImage

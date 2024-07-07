@@ -1,4 +1,6 @@
-#QT -= gui
+QT += core
+QT += gui
+QT += widgets
 
 TEMPLATE = lib
 DEFINES += OZEXE_LIBRARY
@@ -11,24 +13,26 @@ include(../../useCore.pri)
 
 SOURCES += \
     ActionManager.cpp \
-    ApplicationSettings.cpp \
+    ApplicationHelper.cpp \
     CommandLine.cpp \
 #    ConsoleApplication.cpp \
 #    ConsoleStdIO.cpp \
 #    WidgetApplication.cpp \
     IconFactory.cpp \
     IconFactoryColorSet.cpp \
+    MainSettings.cpp \
     ozExe.cpp
 
 HEADERS += \
     ActionManager.h \
-    ApplicationSettings.h \
+    ApplicationHelper.h \
     CommandLine.h \
 #    ConsoleApplication.h \
 #    ConsoleStdIO.h \
 #    WidgetApplication.h \
     IconFactory.h \
     IconFactoryColorSet.h \
+    MainSettings.h \
     ozExe.h \
     ozExe_global.h
 
