@@ -3,6 +3,8 @@
 #include <QColor>
 #include <QImage>
 
+#include <ColorPhoto.h>
+#include <GreyPhoto.h>
 #include <SCRect.h>
 
 class SandboxDataData : public QSharedData
@@ -10,7 +12,12 @@ class SandboxDataData : public QSharedData
 public:
     SCRect d_viewRect;
     QColor d_backColor;
-    QImage d_backImage;
+    ColorPhoto d_backPhoto;
+    ColorPhoto d_baseColorPhoto;
+    GreyPhoto d_baseGreyPhoto;
+    IndexPhoto d_baseIndexPhoto;
+
+
 };
 
 SandboxData::SandboxData()

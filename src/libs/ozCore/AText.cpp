@@ -14,6 +14,23 @@ char AText::takeFirstChar()
     return result;
 }
 
+void AText::set(const AText aText)
+{
+    *this = aText;
+}
+
+void AText::setRight(const AText &aText)
+{
+    const Count cLeft = qMax(count() - aText.count(), 0);
+    set(left(cLeft) + aText);
+}
+
+void AText::setUpper()
+{
+    const AText cUpper = toUpper();
+    set(cUpper);
+}
+
 // static
 QStringList AText::toStringList(const List atl)
 {

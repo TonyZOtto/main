@@ -5,7 +5,6 @@
 
 SandboxScene::SandboxScene(QObject *parent)
     : QGraphicsScene{parent}
-    , mpView(new QGraphicsView(this))
     , mViewRect(QQSize(512, 512), QQPoint(0, 0))
 {
     setObjectName("SandboxScene");
@@ -13,7 +12,14 @@ SandboxScene::SandboxScene(QObject *parent)
 
 void SandboxScene::initialize()
 {
+    mpView = new QGraphicsView(this);
 
+
+}
+
+void SandboxScene::setup()
+{
+    view()->setup();
 }
 
 void SandboxScene::set(const Layer aLayer, const QImage &aImage)

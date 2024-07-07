@@ -7,6 +7,8 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 include(../desktop.pri)
 include(../../useCore.pri)
+include(../../useExe.pri)
+include(../../usePhoto.pri)
 
 SOURCES += \
     SandboxActions.cpp \
@@ -31,7 +33,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    ../../usePhoto.pri
 
 RESOURCES += \
     ozSandbox.qrc

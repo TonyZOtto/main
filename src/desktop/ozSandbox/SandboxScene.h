@@ -31,7 +31,7 @@ public: // ctors
 public slots:
     void initialize(void);
     void configure(void) {;}
-    void setup(void) {;}
+    void setup(void);
     void objconnect(void) {;}
     void start(void) {;}
 
@@ -53,6 +53,7 @@ public: // non-const
     void set(const Index aDisplayIndex, const QImage &aImage);
 
 public: // pointers
+    QGraphicsView * view();
 
 private:
     QGraphicsPixmapItem *set(const Index aItemIndex, const QPixmap &aPixmap);
@@ -65,3 +66,4 @@ private:
 
 inline SCRect SandboxScene::viewRect() const { return mViewRect; }
 inline void SandboxScene::viewRect(const SCRect &aViewRect) { mViewRect = aViewRect; }
+inline QGraphicsView *SandboxScene::view() { Q_CHECK_PTR(mpView); return mpView; }

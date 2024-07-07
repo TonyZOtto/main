@@ -1,6 +1,7 @@
 #include "SandboxMainWindow.h"
 
 #include <QApplication>
+#include <QGraphicsView>
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
@@ -80,12 +81,9 @@ void SandboxMainWindow::setup()
   //  mBackPixmap.fill(Qt::blue); // TODO BackColor, BackImage
     QImage tBackImage(":/image/MM512A.jpg");
 //    tBackImage.convertTo(QImage::Format_Grayscale8);
-    mBackPixmap = QPixmap::fromImage(tBackImage);
-    mpMainLabel->setFixedSize(mBaseWidgetSize);
-    mpMainLabel->setPixmap(mBackPixmap);
-    mpMainLayout->addWidget(mpMainLabel);
+    mBackPixmap = QPixmap::fromImage(tBackImage).copy(SCRect(mBaseWidgetSize));
     mpCentralWidget->setLayout(mpMainLayout);
-    setCentralWidget(mpCentralWidget);
+    setCentralWidget(mpScene->view()->viewport());
     show();
     emit setuped();
 }

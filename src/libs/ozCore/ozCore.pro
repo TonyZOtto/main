@@ -28,6 +28,7 @@ SOURCES += \
     SCRect.cpp \
     SettingsName.cpp \
     Success.cpp \
+    UInt32.cpp \
     VersionInfo.cpp \
     ozCore.cpp \
 
@@ -53,6 +54,7 @@ HEADERS += \
     SettingsName.h \
     Success.h \
     Types.h \
+    UInt32.h \
     VersionInfo.h \
     ozCore.h        \
     ozCore_global.h \

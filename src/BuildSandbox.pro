@@ -1,11 +1,25 @@
 TEMPLATE = subdirs
  
-SUBDIRS += \
-        desktop/ozSandbox \
-        libs/ozCore       \
-        libs/ozExe       \
-        libs/ozGui        \
-        libs/ozWidgets    \
+SUBDIRS =           \
+        ozCore      \
+        ozExe       \
+        ozGui       \
+        ozPhoto     \
+        ozWidgets   \
+        ozSandbox   \
+
+ozCore.subdir       = libs/ozCore
+ozExe.subdir        = libs/ozExe
+ozGui.subdir        = libs/ozGui
+ozPhoto.subdir      = libs/ozPhoto
+ozWidgets.subdir    = libs/ozWidgets
+ozSandbox.subdir    = desktop/ozSandbox
+
+ozCore.depends      =
+ozExe.depends       =   ozCore
+ozGui.depends       =
+ozPhoto.depends     =
+ozWidgets.depends   =
+ozSandbox.depends   =   ozCore  ozExe           ozPhoto
 
 
-	

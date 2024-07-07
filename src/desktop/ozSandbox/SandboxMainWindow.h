@@ -9,6 +9,7 @@ class QLabel;
 class QWidget;
 
 #include <Types.h>
+class CommandLine;
 
 class SandboxActions;
 class SandboxEngine;
@@ -49,12 +50,10 @@ public: // pointers
 private slots:
 
 private:
+    CommandLine * mpCommandLine=nullptr;
     SandboxActions * mpActions=nullptr;
     SandboxScene * mpScene=nullptr;
     SandboxEngine * mpEngine=nullptr;
-    QLabel * mpMainLabel=nullptr;
-    QWidget * mpCentralWidget=nullptr;
-    QGridLayout * mpMainLayout=nullptr;
     QSize mBaseWidgetSize;
     QPixmap mBackPixmap;
 };
