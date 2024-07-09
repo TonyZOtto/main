@@ -1,15 +1,16 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QObject>
 class CommandLine;
-class MainSettings;
+class AppSettings;
 class QApplication;
 class QCoreApplication;
 class QGuiApplication;
 
 #include <VersionInfo.h>
 
-class ApplicationHelper : public QObject
+class OZEXE_EXPORT ApplicationHelper : public QObject
 {
     Q_OBJECT
 public:
@@ -35,15 +36,21 @@ public: // pointers
     QCoreApplication * core();
     QGuiApplication * gui();
     QApplication * app();
+    CommandLine * commandLine();
+    AppSettings * appSettings();
 
 private:
     QApplication * mpQApplication=nullptr;
     QCoreApplication * mpQCoreApplication=nullptr;
     QGuiApplication * mpQGuiApplication=nullptr;
     CommandLine * mpCommandLine=nullptr;
-    MainSettings * mpMainSettings=nullptr;
+    AppSettings * mpAppSettings=nullptr;
     VersionInfo mVersionInfo;
     Type mType=$null;
 };
+
+inline ApplicationHelper::Type ApplicationHelper::type() const { return mType; }
+inline CommandLine *ApplicationHelper::commandLine() { Q_CHECK_PTR(mpCommandLine);  return mpCommandLine; }
+inline AppSettings *ApplicationHelper::appSettings() { Q_CHECK_PTR(mpAppSettings);  return mpAppSettings; }
 
 

@@ -13,6 +13,7 @@ include(../../useCore.pri)
 
 SOURCES += \
     ActionManager.cpp \
+    AppSettings.cpp \
     ApplicationHelper.cpp \
     CommandLine.cpp \
 #    ConsoleApplication.cpp \
@@ -20,11 +21,11 @@ SOURCES += \
 #    WidgetApplication.cpp \
     IconFactory.cpp \
     IconFactoryColorSet.cpp \
-    MainSettings.cpp \
     ozExe.cpp
 
 HEADERS += \
     ActionManager.h \
+    AppSettings.h \
     ApplicationHelper.h \
     CommandLine.h \
 #    ConsoleApplication.h \
@@ -32,7 +33,6 @@ HEADERS += \
 #    WidgetApplication.h \
     IconFactory.h \
     IconFactoryColorSet.h \
-    MainSettings.h \
     ozExe.h \
     ozExe_global.h
 

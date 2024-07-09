@@ -3,11 +3,22 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsView>
 
+#include <BasePhoto.h>
+
 SandboxScene::SandboxScene(QObject *parent)
     : QGraphicsScene{parent}
     , mViewRect(QQSize(512, 512), QQPoint(0, 0))
 {
     setObjectName("SandboxScene");
+}
+
+SandboxScene::~SandboxScene()
+{
+    foreach (QGraphicsPixmapItem * pItem, mPixmapItems)
+    {
+        removeItem(pItem);
+        delete pItem;
+    }
 }
 
 void SandboxScene::initialize()
@@ -19,7 +30,18 @@ void SandboxScene::initialize()
 
 void SandboxScene::setup()
 {
-    view()->setup();
+}
+
+void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)
+{
+    QPixmap tPixmap(viewRect().size());
+    tPixmap.fill(aFillColor);
+    set(aLayer, tPixmap);
+}
+
+void SandboxScene::set(const Layer aLayer, const BasePhoto &aPhoto)
+{
+    set(aLayer, aPhoto.baseImage());
 }
 
 void SandboxScene::set(const Layer aLayer, const QImage &aImage)
@@ -28,23 +50,25 @@ void SandboxScene::set(const Layer aLayer, const QImage &aImage)
     set(aLayer, cPixmap);
 }
 
-void SandboxScene::set(const Index aDisplayIndex, const QImage &aImage)
+void SandboxScene::set(const Layer aLayer, const QPixmap &aPixmap)
 {
-    set(DisplayBase + aDisplayIndex, aImage);
+    if (mPixmapItems.isEmpty())
+        mPixmapItems.fill(nullptr, Layer::$max);
+    QGraphicsPixmapItem * pOldItem = mPixmapItems[aLayer];
+    QGraphicsPixmapItem * pNewItem = new QGraphicsPixmapItem(aPixmap);
+    if (pOldItem)
+    {
+        removeItem(pOldItem);
+        delete pOldItem;
+    }
+    pNewItem->setVisible(true);
+    pNewItem->setZValue(aLayer);
+    addItem(pNewItem);
 }
 
-QGraphicsPixmapItem * SandboxScene::set(const Index aItemIndex, const QPixmap &aPixmap)
+QWidget *SandboxScene::widget()
 {
-    QGraphicsPixmapItem * result = nullptr;
-    if (aItemIndex < 0) return result;
-    while (aItemIndex >= mPixmapItems.count())
-        mPixmapItems.append(new QGraphicsPixmapItem());
-    QGraphicsPixmapItem * pOldItem = mPixmapItems[aItemIndex];
-    QGraphicsPixmapItem * pNewItem = new QGraphicsPixmapItem(aPixmap);
-    removeItem(pOldItem);
-    pNewItem->setVisible(true);
-    pNewItem->setZValue(aItemIndex);
-    addItem(pNewItem);
-    result = pNewItem;
-    return result;
+    return view()->viewport();
 }
+
+

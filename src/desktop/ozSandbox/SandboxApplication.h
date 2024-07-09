@@ -2,12 +2,15 @@
 
 #include <QApplication>
 
-class MainSettings;
+class ApplicationHelper;
+class AppSettings;
 class CommandLine;
-class SandboxEngine;
-class SandboxMainWindow;
 
 #include "SandboxData.h"
+class SandboxEngine;
+class SandboxMainWindow;
+class SandboxScene;
+
 
 class SandboxApplication : public QApplication
 {
@@ -30,22 +33,30 @@ signals:
     void started(void);
 
 public: // const
+    SandboxData data() const;
 
 public: // non-const
     void set(SandboxMainWindow * pMainWindow);
 
 public: // pointers
     SandboxMainWindow * mainWindow();
+    SandboxEngine * engine();
+    ApplicationHelper * helper();
+    SandboxScene * scene();
     CommandLine * commandLine();
-    MainSettings * settings();
+    AppSettings * settings();
 
 private:
     SandboxMainWindow * mpMainWindow=nullptr;
     SandboxEngine * mpEngine=nullptr;
+    ApplicationHelper * mpHelper=nullptr;
     SandboxData mData;
 
 };
 
+inline SandboxData SandboxApplication::data() const { return mData; }
 inline void SandboxApplication::set(SandboxMainWindow *pMainWindow) { Q_CHECK_PTR(pMainWindow); mpMainWindow = pMainWindow; }
 inline SandboxMainWindow *SandboxApplication::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
+inline SandboxEngine *SandboxApplication::engine() { Q_CHECK_PTR(mpEngine); return mpEngine; }
+inline ApplicationHelper *SandboxApplication::helper() { Q_CHECK_PTR(mpHelper); return mpHelper; }
 

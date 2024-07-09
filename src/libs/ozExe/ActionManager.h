@@ -7,6 +7,8 @@
 #include <QIcon>
 #include <QString>
 class QAction;
+class QMenu;
+class QToolBar;
 
 #include <Boolean.h>
 #include <DualMap.h>
@@ -61,6 +63,10 @@ public: // const
     Boolean boolean(const Key &aKey, const BoolRoleFlag aBoolFlag);
 
 public: // non-const
+    void addTo(QMenu * pMenu);
+    void addTo(QToolBar * pToolbar);
+    void noAddMenu();
+    void noAddToolBar();
     QAction * add(const Key &aKey);
     void add(const Key &aKey, QAction * pAction);
     bool remove(const Key &aKey);
@@ -79,7 +85,14 @@ signals:
 
 private:
     DualMap <Key, QAction *> mKeyActionDMap;
+    QMenu * mpMenu=nullptr;
+    QToolBar * mpToolbar=nullptr;
 };
+
+inline void ActionManager::addTo(QMenu *pMenu) { Q_CHECK_PTR(pMenu); mpMenu = pMenu; }
+inline void ActionManager::addTo(QToolBar *pToolbar) { Q_CHECK_PTR(pToolbar); mpToolbar = pToolbar; }
+inline void ActionManager::noAddMenu() { mpMenu = nullptr; }
+inline void ActionManager::noAddToolBar()  { mpToolbar = nullptr; }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ActionManager::TextRoleFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(ActionManager::BoolRoleFlags)

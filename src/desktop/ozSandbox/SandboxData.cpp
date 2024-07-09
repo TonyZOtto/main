@@ -5,6 +5,7 @@
 
 #include <ColorPhoto.h>
 #include <GreyPhoto.h>
+#include <IndexPhoto.h>
 #include <SCRect.h>
 
 class SandboxDataData : public QSharedData

@@ -16,6 +16,17 @@ bool Rational::isValid() const
     return 0 != d();
 }
 
+signed int Rational::ratio() const
+{
+    if (notValid()) return INT_MIN;
+    return n() / d();
+}
+
+Rational Rational::flipped() const
+{
+    return Rational(d(), n());
+}
+
 qreal Rational::toReal() const
 {
     if (notValid()) return qQNaN();

@@ -47,6 +47,7 @@ public: // non-const
 public: // pointers
     SandboxApplication * app();
     SandboxActions * actions();
+    SandboxScene * scene();
 
 private slots:
 
@@ -54,14 +55,8 @@ private:
     SandboxApplication * mpApplication=nullptr;
     SandboxActions * mpActions=nullptr;
     SandboxScene * mpScene=nullptr;
-    QLabel * mpMainLabel=nullptr;
-    QWidget * mpCentralWidget=nullptr;
-    QGridLayout * mpMainLayout=nullptr;
-    QSize mBaseWidgetSize;
-    QPixmap mBackPixmap;
 };
 
 inline SandboxApplication *SandboxMainWindow::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }
 inline SandboxActions *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
-inline const QSize SandboxMainWindow::baseWidgetSize() const { return mBaseWidgetSize; }
-inline SandboxActions *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
+inline SandboxScene *SandboxMainWindow::scene() {  Q_CHECK_PTR(mpScene); return mpScene; }

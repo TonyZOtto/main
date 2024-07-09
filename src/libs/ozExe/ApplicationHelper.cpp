@@ -65,7 +65,3 @@ QApplication *ApplicationHelper::app()
     return result;
 }
 
-ApplicationHelper::Type ApplicationHelper::type() const
-{
-    return mType;
-}

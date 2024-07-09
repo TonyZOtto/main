@@ -2,6 +2,8 @@
 
 #include <QAction>
 #include <QCoreApplication>
+#include <QMenu>
+#include <QToolBar>
 
 ActionManager::ActionManager(QObject *parent)
     : QObject{parent}
@@ -83,9 +85,16 @@ QAction *ActionManager::add(const Key &aKey)
 {
     (void)remove(aKey);
     QAction * result = new QAction(aKey(), this);
-    emit added(aKey, result);
-    mKeyActionDMap.insertUnique(aKey, result);
+    add(aKey, result);
     return result;
+}
+
+void ActionManager::add(const Key &aKey, QAction *pAction)
+{
+    mKeyActionDMap.insertUnique(aKey, pAction);
+    emit added(aKey, pAction);
+    if (mpMenu) mpMenu->addAction(pAction);
+    if (mpToolbar) mpToolbar->addAction(pAction);
 }
 
 bool ActionManager::remove(const Key &aKey)

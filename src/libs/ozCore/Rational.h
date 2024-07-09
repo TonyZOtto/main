@@ -15,6 +15,8 @@ public: // const
     bool notNull() const { return ! isNull(); }
     bool isValid() const;
     bool notValid() const { return ! isValid(); }
+    signed ratio() const;
+    Rational flipped() const;
     qreal toReal() const;
     operator qreal () const { return toReal(); }
 

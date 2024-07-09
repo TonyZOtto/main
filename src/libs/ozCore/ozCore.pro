@@ -14,6 +14,7 @@ SOURCES += \
     AText.cpp \
     Angle.cpp \
     Boolean.cpp \
+    ByteHistogram.cpp \
     Key.cpp \
     KeyMap.cpp \
     KeySeg.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     AText.h \
     Angle.h \
     Boolean.h \
+    ByteHistogram.h \
     DualMap.h \
     Key.h \
     KeyMap.h \

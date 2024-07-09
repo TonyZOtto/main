@@ -1,11 +1,12 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QColor>
 #include <QSharedDataPointer>
 
 class IconFactoryColorSetData;
 
-class IconFactoryColorSet
+class OZEXE_EXPORT IconFactoryColorSet
 {
 public:
     IconFactoryColorSet();

@@ -1,11 +1,13 @@
 #include "SandboxApplication.h"
 
-#include <MainSettings.h>
+#include <ApplicationHelper.h>
 
 #include "SandboxEngine.h"
+#include "SandboxMainWindow.h"
 
 SandboxApplication::SandboxApplication(int &argc, char **argv)
     : QApplication{argc, argv}
+    , mpHelper(new ApplicationHelper(this))
 {
     setObjectName("SandboxApplication:" + applicationName());
 }
@@ -18,6 +20,8 @@ void SandboxApplication::initialize()
 
     connect(this, &SandboxApplication::initialized,
             this, &SandboxApplication::configure);
+    connect(this, &SandboxApplication::initialized,
+            mainWindow(), &SandboxMainWindow::initialize);
     connect(this, &SandboxApplication::configured,
             this, &SandboxApplication::setup);
     connect(this, &SandboxApplication::setuped,
@@ -42,4 +46,19 @@ void SandboxApplication::setup()
 void SandboxApplication::start()
 {
 
+}
+
+SandboxScene *SandboxApplication::scene()
+{
+    return mainWindow()->scene();
+}
+
+CommandLine *SandboxApplication::commandLine()
+{
+    return helper()->commandLine();
+}
+
+AppSettings *SandboxApplication::settings()
+{
+    return helper()->appSettings();
 }

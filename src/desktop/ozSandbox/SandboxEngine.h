@@ -2,13 +2,16 @@
 
 #include <QObject>
 
+#include <ColorPhoto.h>
+
+class SandboxApplication;
 class SandboxScene;
 
 class SandboxEngine : public QObject
 {
     Q_OBJECT
 public: // ctors
-    explicit SandboxEngine(QObject *parent = nullptr);
+    explicit SandboxEngine(SandboxApplication *parent = nullptr);
 
 
 public slots:
@@ -18,6 +21,8 @@ public slots:
     void objconnect(void) {;}
     void start(void) {;}
 
+    void setSubjectPhoto(const ColorPhoto &aCP);
+
 signals:
     void initialized(void);
     void configured(void);
@@ -25,6 +30,10 @@ signals:
     void objconnected(void);
     void started(void);
 
+public: // pointers
+    SandboxApplication * app();
+    SandboxScene * scene();
+    QObject * object();
 
 public: // ctors
 
@@ -37,4 +46,8 @@ private slots:
 private:
 
 private:
+    SandboxApplication * mpApplication=nullptr;
+    ColorPhoto mSubjectPhoto;
 };
+
+inline SandboxApplication *SandboxEngine::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }

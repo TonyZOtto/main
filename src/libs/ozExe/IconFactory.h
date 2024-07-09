@@ -1,4 +1,5 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QObject>
 
@@ -11,7 +12,7 @@
 
 #include "IconFactoryColorSet.h"
 
-class IconFactory : public QObject
+class OZEXE_EXPORT IconFactory : public QObject
 {
     Q_OBJECT
 public: // types

@@ -3,11 +3,15 @@
 #include <QGraphicsScene>
 
 #include <QList>
+class QColor;
+class QImage;
 class QGraphicsPixmapItem;
 class QGraphicsView;
+class QWidget;
 
 #include <SCRect.h>
 #include <Types.h>
+class BasePhoto;
 
 class SandboxScene : public QGraphicsScene
 {
@@ -19,14 +23,15 @@ public: // types
         BackColor,
         BackImage,
         Frame,
-        DisplayBase,
+        OldSubject,
+        NewSubject,
         $max
     };
     Q_ENUM(Layer)
 
 public: // ctors
     explicit SandboxScene(QObject *parent = nullptr);
-
+    ~SandboxScene();
 
 public slots:
     void initialize(void);
@@ -42,21 +47,21 @@ signals:
     void objconnected(void);
     void started(void);
 
-
 public: // const
     SCRect viewRect() const;
 
-
 public: // non-const
     void viewRect(const SCRect &aViewRect);
+    void set(const Layer aLayer, const QColor &aFillColor);
+    void set(const Layer aLayer, const BasePhoto &aPhoto);
     void set(const Layer aLayer, const QImage &aImage);
-    void set(const Index aDisplayIndex, const QImage &aImage);
+    void set(const Layer aLayer, const QPixmap &aPixmap);
 
 public: // pointers
     QGraphicsView * view();
+    QWidget * widget();
 
 private:
-    QGraphicsPixmapItem *set(const Index aItemIndex, const QPixmap &aPixmap);
 
 private:
     QGraphicsView * mpView=nullptr;
