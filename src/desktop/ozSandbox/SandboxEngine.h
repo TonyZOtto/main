@@ -3,6 +3,10 @@
 #include <QObject>
 
 #include <ColorPhoto.h>
+#include <GreyPhoto.h>
+#include <IndexPhoto.h>
+#include <QQColor.h>
+#include <Types.h>
 
 class SandboxApplication;
 class SandboxScene;
@@ -17,7 +21,7 @@ public: // ctors
 public slots:
     void initialize(void);
     void configure(void) {;}
-    void setup(void) {;}
+    void setup(void);
     void objconnect(void) {;}
     void start(void) {;}
 
@@ -44,10 +48,25 @@ public: // non-const
 private slots:
 
 private:
+    void setupColorTable();
+    void setupColorTableLinear(const BYTE aFrom,
+                               const BYTE aTo,
+                               const BYTE aOpacity,
+                               const QQColor aLoColor,
+                               const QQColor aHiColor);
+    void setupColorTableBilinear(const BYTE aFrom,
+                                const BYTE aTo,
+                                const BYTE aOpacity,
+                                const QQColor aLoColor,
+                                const QQColor aMidColor,
+                                const QQColor aHiColor);
 
 private:
     SandboxApplication * mpApplication=nullptr;
     ColorPhoto mSubjectPhoto;
+    GreyPhoto mGreyPhoto;
+    IndexPhoto mIndexPhoto;
+    QList<QRgb> mColorTable;
 };
 
 inline SandboxApplication *SandboxEngine::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }

@@ -5,8 +5,9 @@
 
 class OZPHOTO_EXPORT ColorPhoto : public BasePhoto
 {
-public:
+public: // ctors
     ColorPhoto();
+    ColorPhoto(const BasePhoto &other);
 
 public: // virtual const
     virtual bool isPlanar() const;

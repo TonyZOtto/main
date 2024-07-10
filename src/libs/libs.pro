@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     QtCV \
+    ozColor \
     ozCore \
     ozExe \
     ozGui \

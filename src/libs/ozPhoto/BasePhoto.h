@@ -15,7 +15,7 @@ public: // types
         Grey            = QImage::Format_Grayscale8,
         Color           = QImage::Format_ARGB32,
         Index           = QImage::Format_Indexed8,
-        $startNonQImage,
+        $startNonQImage = 100,
         YPlane,
         CrPlane,
         CbPlane,
@@ -24,6 +24,7 @@ public: // types
 
 public: // ctors
     BasePhoto();
+    BasePhoto(const Type aType, const QImage &aQImage);
     BasePhoto(const BasePhoto &other);
 
 public: // const
@@ -35,6 +36,7 @@ public: // const
 
 public: // non-const
     void set(const BasePhoto &rhs);
+    void set(const QImage &aQImage);
     QImage & baseImage();
     void scale(const signed aRatio);
 
@@ -43,6 +45,7 @@ public: // virtual const
     virtual bool isPlanar() const;
 
 public: // static
+    static QImage::Format qformat(const Type aType);
     static bool isPlanar(const Type aType);
 
 private:

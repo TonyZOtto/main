@@ -3,8 +3,12 @@
 #include <SCRect.h>
 
 BasePhoto::BasePhoto() : mType($null) {;}
+BasePhoto::BasePhoto(const Type aType, const QImage &aQImage)
+    : mType(aType)
+    , mBaseImage(aQImage.convertedTo(qformat(type()))) {;}
 BasePhoto::BasePhoto(const BasePhoto &other)
-    : mType(other.type()), mBaseImage(other.baseImage()) {;}
+    : mType(other.type())
+    , mBaseImage(other.baseImage().convertedTo(qformat(type()))) {;}
 
 QQPoint BasePhoto::center() const
 {
@@ -45,11 +49,16 @@ void BasePhoto::set(const BasePhoto &rhs)
     mBaseImage = rhs.baseImage();
 }
 
+void BasePhoto::set(const QImage &aQImage)
+{
+    mBaseImage = aQImage.convertedTo(qformat(type()));
+}
+
 void BasePhoto::scale(const signed int aRatio)
 {
     QQSize tNewSize = size();
     if (aRatio < 0)
-        tNewSize /= (- aRatio);
+        tNewSize /= ( - aRatio);
     else if (aRatio > 0)
         tNewSize *= aRatio;
     baseImage() = baseImage().scaled(tNewSize);
@@ -58,6 +67,24 @@ void BasePhoto::scale(const signed int aRatio)
 bool BasePhoto::isPlanar() const
 {
     return isPlanar(mType);
+}
+
+QImage::Format BasePhoto::qformat(const Type aType)
+{
+    QImage::Format result = QImage::Format_Invalid;
+    switch (aType)
+    {
+    case Grey:      result = QImage::Format_Grayscale8; break;
+    case Color:     result = QImage::Format_ARGB32;     break;
+    case Index:
+    case YPlane:
+    case CrPlane:
+    case CbPlane:   result = QImage::Format_Indexed8;   break;
+    case $null:
+    case $startNonQImage:
+    case $max:      /* leave _Invalid */                break;
+    };
+    return result;
 }
 
 // static

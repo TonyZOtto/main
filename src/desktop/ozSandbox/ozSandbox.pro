@@ -7,6 +7,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 include(../desktop.pri)
 include(../../useCore.pri)
+include(../../useGui.pri)
 include(../../useExe.pri)
 include(../../usePhoto.pri)
 

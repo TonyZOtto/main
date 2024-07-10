@@ -9,11 +9,13 @@ include(../libs.pri)
 SOURCES += \
     ActionManager.cpp \
     IconManager.cpp \
+    QQColor.cpp \
     ozGui.cpp
 
 HEADERS += \
     ActionManager.h \
     IconManager.h \
+    QQColor.h \
     ozGui_global.h \
     ozGui.h
 

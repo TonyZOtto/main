@@ -65,7 +65,7 @@ void SandboxMainWindow::setup()
     QImage tBackImage(":/image/MM512A.jpg");
     tBackImage.convertTo(QImage::Format_Grayscale8);
     scene()->set(SandboxScene::BackImage,
-        tBackImage.copy(scene()->viewRect().toQRect()));
+        tBackImage);
     setFixedSize(scene()->viewRect().size());
     setCentralWidget(scene()->widget());
     show();
