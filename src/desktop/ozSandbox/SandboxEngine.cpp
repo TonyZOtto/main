@@ -2,6 +2,8 @@
 
 #include <QColor>
 
+#include <QQSize.h>
+
 #include "SandboxApplication.h"
 #include "SandboxScene.h"
 
@@ -20,14 +22,17 @@ void SandboxEngine::initialize()
 void SandboxEngine::setup()
 {
     setupColorTable();
+    setSubjectPhoto(mSubjectPhoto);
 }
 
 void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
 {
     mSubjectPhoto.set(aCP.baseImage().copy(scene()->viewRect().toQRect()));
-    mGreyPhoto = mSubjectPhoto;
-    mIndexPhoto = mGreyPhoto;
-    scene()->set(SandboxScene::BackImage, mSubjectPhoto);
+    mGrey16Photo = Grey16Photo(mSubjectPhoto);
+    BrightnessContrast tBC = processHistogram(mGrey16Photo);
+    mIndexPhoto = IndexPhoto(mGrey16Photo, tBC);
+    mIndexPhoto.baseImage().setColorTable(mColorTable);
+    scene()->set(SandboxScene::OldSubject, mIndexPhoto);
 }
 
 SandboxScene *SandboxEngine::scene()
@@ -38,6 +43,39 @@ SandboxScene *SandboxEngine::scene()
 QObject *SandboxEngine::object()
 {
     return parent();
+}
+
+BrightnessContrast SandboxEngine::processHistogram(const Grey16Photo aGrey16Photo)
+{
+    BrightnessContrast result;
+
+    // Gather Histogram
+    WORD * pGrey16Data = (WORD *)aGrey16Photo.baseImage().constBits();
+    const Count nPixel = QQSize(aGrey16Photo.baseImage().size()).area();
+    Count kPixel = 0;
+    do
+    {
+        const WORD cGrey16Pixel = *pGrey16Data++;
+        mGrey8Histogram.add(cGrey16Pixel >> 8);
+    } while (++kPixel < nPixel);
+
+    // Trim tails from histogram
+    const Count cTailBinCount = nPixel / 16;
+    const Index cAllBinCount = mGrey8Histogram.binCount();
+    Count tTailCount = 0;
+    Index tBinIndex = 0;
+    while (tTailCount < cTailBinCount && tBinIndex < cAllBinCount)
+        tTailCount += mGrey8Histogram[tBinIndex++];
+    const BYTE tLoBin = tBinIndex;
+
+    tTailCount = 0;
+    tBinIndex = cAllBinCount - 1;
+    while (tTailCount < cTailBinCount && tBinIndex > 0)
+        tTailCount += mGrey8Histogram[tBinIndex--];
+    const BYTE tHiBin = tBinIndex;
+
+    result.set(tLoBin, tHiBin);
+    return result;
 }
 
 void SandboxEngine::setupColorTable()

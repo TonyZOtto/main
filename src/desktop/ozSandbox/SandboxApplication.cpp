@@ -40,7 +40,9 @@ void SandboxApplication::configure()
 
 void SandboxApplication::setup()
 {
-
+    engine()->setup();
+    QImage tSubjectImage(":/image/MM512A.jpg");
+    engine()->setSubjectPhoto(BasePhoto(Photo::Color, tSubjectImage));
 }
 
 void SandboxApplication::start()

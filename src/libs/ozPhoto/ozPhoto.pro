@@ -6,14 +6,17 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 include(../libs.pri)
 include(../../useCore.pri)
+include(../../useColor.pri)
 
 SOURCES += \
     BasePhoto.cpp \
     BasePixel32.cpp \
     BasePixelBehavior.cpp \
     ColorPhoto.cpp \
+    Grey16Photo.cpp \
     GreyPhoto.cpp \
     IndexPhoto.cpp \
+    Photo.cpp \
     ozPhoto.cpp
 
 HEADERS += \
@@ -21,8 +24,10 @@ HEADERS += \
     BasePixel32.h \
     BasePixelBehavior.h \
     ColorPhoto.h \
+    Grey16Photo.h \
     GreyPhoto.h \
     IndexPhoto.h \
+    Photo.h \
     ozPhoto_global.h \
     ozPhoto.h
 

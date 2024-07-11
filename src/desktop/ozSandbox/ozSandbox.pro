@@ -9,6 +9,7 @@ include(../desktop.pri)
 include(../../useCore.pri)
 include(../../useGui.pri)
 include(../../useExe.pri)
+include(../../useColor.pri)
 include(../../usePhoto.pri)
 
 SOURCES += \

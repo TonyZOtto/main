@@ -7,3 +7,5 @@ bool GreyPhoto::isPlanar() const
 {
     return true;
 }
+
+

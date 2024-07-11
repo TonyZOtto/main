@@ -1,4 +1,6 @@
+//!file {ozCode}/src/libs/ozCore/ByteHistogram.h ASCII Text
 #pragma once
+#include "ozCore.h"
 
 #include <QByteArray>
 #include <QList>
@@ -6,7 +8,7 @@ class QImage;
 
 #include "Types.h"
 
-class ByteHistogram
+class OZCORE_EXPORT ByteHistogram
 {
 public: // types
     typedef QList<Count> CountList;
@@ -16,6 +18,7 @@ public: // ctors
     ByteHistogram();
 
 public: // const
+    Count binCount() const;
     Count sampleCount() const;
     SampleList sampleList() const;
     CountList countList() const;

@@ -7,6 +7,11 @@ ByteHistogram::ByteHistogram()
     mBinCounts = CountList(256);
 }
 
+Count ByteHistogram::binCount() const
+{
+    return mBinCounts.count();
+}
+
 Count ByteHistogram::at(const BYTE aSample) const
 {
     return mBinCounts[aSample];
