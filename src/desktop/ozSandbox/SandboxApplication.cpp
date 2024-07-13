@@ -21,16 +21,29 @@ void SandboxApplication::initialize()
     engine()->initialize();
 
     connect(this, &SandboxApplication::initialized,
-            this, &SandboxApplication::configure);
-    connect(this, &SandboxApplication::initialized,
+            this, &SandboxApplication::objconnect);
+
+    emit initialized();
+}
+
+void SandboxApplication::objconnect()
+{
+    qInfo() << Q_FUNC_INFO;
+    connect(this, &SandboxApplication::objconnected,
             mainWindow(), &SandboxMainWindow::initialize);
+    connect(mainWindow(), &SandboxMainWindow::initialized,
+            this, &SandboxApplication::configure);
     connect(this, &SandboxApplication::configured,
+            mainWindow(), &SandboxMainWindow::configure);
+    connect(mainWindow(), &SandboxMainWindow::configured,
             this, &SandboxApplication::setup);
     connect(this, &SandboxApplication::setuped,
-            this, &SandboxApplication::objconnect);
-    connect(this, &SandboxApplication::objconnected,
+            mainWindow(), &SandboxMainWindow::setup);
+    connect(mainWindow(), &SandboxMainWindow::setuped,
             this, &SandboxApplication::start);
-    emit initialized();
+    connect(this, &SandboxApplication::started,
+            mainWindow(), &SandboxMainWindow::start);
+    emit objconnected();
 }
 
 void SandboxApplication::configure()
@@ -40,6 +53,7 @@ void SandboxApplication::configure()
     // TODO: Open ApplicationSettings from OrgAppIni and CLArgs
     // TODO: Read SandboxData from settings
     engine()->configure();
+    emit configured();
 }
 
 void SandboxApplication::setup()
@@ -48,12 +62,13 @@ void SandboxApplication::setup()
     engine()->setup();
     QImage tSubjectImage(":/image/MM512A.jpg");
     engine()->setSubjectPhoto(BasePhoto(Photo::Color, tSubjectImage));
+    emit setuped();
 }
 
 void SandboxApplication::start()
 {
     qInfo() << Q_FUNC_INFO;
-
+    emit started();
 }
 
 SandboxScene *SandboxApplication::scene()

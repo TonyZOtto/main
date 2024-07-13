@@ -34,16 +34,6 @@ void SandboxMainWindow::initialize()
     actions()->initialize();
     mpScene = new SandboxScene(this);
     scene()->initialize();
-
-    connect(this, &SandboxMainWindow::initialized,
-            this, &SandboxMainWindow::configure);
-    connect(this, &SandboxMainWindow::configured,
-            this, &SandboxMainWindow::setup);
-    connect(this, &SandboxMainWindow::setuped,
-            this, &SandboxMainWindow::objconnect);
-    connect(this, &SandboxMainWindow::objconnected,
-            this, &SandboxMainWindow::start);
-
     emit initialized();
 }
 
@@ -53,7 +43,6 @@ void SandboxMainWindow::configure()
     // TODO QSettings from SandboxData
     actions()->configure();
     scene()->configure();
-
     emit configured();
 }
 
@@ -71,14 +60,6 @@ void SandboxMainWindow::setup()
     emit setuped();
 }
 
-void SandboxMainWindow::objconnect()
-{
-    qInfo() << Q_FUNC_INFO;
-    actions()->objconnect();
-    scene()->objconnect();
-
-    emit objconnected();
-}
 
 void SandboxMainWindow::start()
 {

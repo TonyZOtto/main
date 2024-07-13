@@ -20,16 +20,16 @@ public: // ctors
 
 public slots:
     void initialize(void);
+    void objconnect(void);
     void configure(void);
     void setup(void);
-    void objconnect(void) {;}
     void start(void);
 
 signals:
     void initialized(void);
+    void objconnected(void);
     void configured(void);
     void setuped(void);
-    void objconnected(void);
     void started(void);
 
 public: // const
