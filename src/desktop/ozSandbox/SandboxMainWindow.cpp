@@ -16,20 +16,22 @@
 SandboxMainWindow::SandboxMainWindow(SandboxApplication *parent)
     : mpApplication(parent)
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("SandboxMainWindow:" + app()->applicationName());
 }
 
 SandboxMainWindow::~SandboxMainWindow()
 {
+    qInfo() << Q_FUNC_INFO;
     if (mpActions)   mpActions->deleteLater();
     if (mpScene)   mpScene->deleteLater();
 }
 
 void SandboxMainWindow::initialize()
 {
+    qInfo() << Q_FUNC_INFO;
     mpActions = new SandboxActions(this);
-    Q_CHECK_PTR(mpActions);
-    mpActions->initialize();
+    actions()->initialize();
     mpScene = new SandboxScene(this);
     scene()->initialize();
 
@@ -47,9 +49,9 @@ void SandboxMainWindow::initialize()
 
 void SandboxMainWindow::configure()
 {
+    qInfo() << Q_FUNC_INFO;
     // TODO QSettings from SandboxData
-    Q_CHECK_PTR(mpActions);
-    mpActions->configure();
+    actions()->configure();
     scene()->configure();
 
     emit configured();
@@ -57,21 +59,22 @@ void SandboxMainWindow::configure()
 
 void SandboxMainWindow::setup()
 {
-    Q_CHECK_PTR(mpActions);
-    mpActions->setup();
-    scene()->setup();
+    qInfo() << Q_FUNC_INFO;
+    actions()->setup();
 
-    scene()->set(SandboxScene::BackColor, Qt::blue);
+    scene()->set(SandboxScene::BackColor, Qt::green);
     setFixedSize(scene()->viewRect().size());
     setCentralWidget(scene()->widget());
+
+    scene()->setup();
     show();
     emit setuped();
 }
 
 void SandboxMainWindow::objconnect()
 {
-    Q_CHECK_PTR(mpActions);
-    mpActions->objconnect();
+    qInfo() << Q_FUNC_INFO;
+    actions()->objconnect();
     scene()->objconnect();
 
     emit objconnected();
@@ -79,8 +82,8 @@ void SandboxMainWindow::objconnect()
 
 void SandboxMainWindow::start()
 {
-    Q_CHECK_PTR(mpActions);
-    mpActions->start();
+    qInfo() << Q_FUNC_INFO;
+    actions()->start();
     scene()->start();
 
     emit started();

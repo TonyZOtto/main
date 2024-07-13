@@ -11,28 +11,33 @@ SandboxEngine::SandboxEngine(SandboxApplication *parent)
     : QObject(parent)
     , mpApplication(parent)
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("SandboxEngine");
 }
 
 void SandboxEngine::initialize()
 {
+    qInfo() << Q_FUNC_INFO;
 
 }
 
 void SandboxEngine::setup()
 {
+    qInfo() << Q_FUNC_INFO;
     setupColorTable();
     setSubjectPhoto(mSubjectPhoto);
 }
 
 void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
 {
+    qInfo() << Q_FUNC_INFO;
     mSubjectPhoto.set(aCP.baseImage().copy(scene()->viewRect().toQRect()));
     mGrey16Photo = Grey16Photo(mSubjectPhoto);
     BrightnessContrast tBC = processHistogram(mGrey16Photo);
     mIndexPhoto = IndexPhoto(mGrey16Photo, tBC);
     mIndexPhoto.baseImage().setColorTable(mColorTable);
-    scene()->set(SandboxScene::OldSubject, mIndexPhoto);
+//    scene()->set(SandboxScene::OldSubject, mIndexPhoto);
+    scene()->set(SandboxScene::OldSubject, mSubjectPhoto);
 }
 
 SandboxScene *SandboxEngine::scene()
@@ -47,6 +52,7 @@ QObject *SandboxEngine::object()
 
 BrightnessContrast SandboxEngine::processHistogram(const Grey16Photo aGrey16Photo)
 {
+    qInfo() << Q_FUNC_INFO;
     BrightnessContrast result;
 
     // Gather Histogram

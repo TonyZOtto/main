@@ -9,11 +9,13 @@ SandboxScene::SandboxScene(QObject *parent)
     : QGraphicsScene{parent}
     , mViewRect(QQSize(512, 512), QQPoint(0, 0))
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("SandboxScene");
 }
 
 SandboxScene::~SandboxScene()
 {
+    qInfo() << Q_FUNC_INFO;
     foreach (QGraphicsPixmapItem * pItem, mPixmapItems)
     {
         removeItem(pItem);
@@ -23,6 +25,7 @@ SandboxScene::~SandboxScene()
 
 void SandboxScene::initialize()
 {
+    qInfo() << Q_FUNC_INFO;
     mpView = new QGraphicsView(this);
 
 
@@ -30,10 +33,12 @@ void SandboxScene::initialize()
 
 void SandboxScene::setup()
 {
+    qInfo() << Q_FUNC_INFO;
 }
 
 void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)
 {
+    qInfo() << Q_FUNC_INFO << aLayer;
     QPixmap tPixmap(viewRect().size());
     tPixmap.fill(aFillColor);
     set(aLayer, tPixmap);
@@ -41,17 +46,19 @@ void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)
 
 void SandboxScene::set(const Layer aLayer, const BasePhoto &aPhoto)
 {
+    qInfo() << Q_FUNC_INFO << aLayer;
     set(aLayer, aPhoto.baseImage());
 }
 
 void SandboxScene::set(const Layer aLayer, const QImage &aImage)
 {
-    const QPixmap cPixmap = QPixmap::fromImage(aImage);
-    set(aLayer, cPixmap);
+    qInfo() << Q_FUNC_INFO << aLayer;
+    set(aLayer, QPixmap::fromImage(aImage));
 }
 
 void SandboxScene::set(const Layer aLayer, const QPixmap &aPixmap)
 {
+    qInfo() << Q_FUNC_INFO << aLayer;
     if (mPixmapItems.isEmpty())
         mPixmapItems.fill(nullptr, Layer::$max);
     QGraphicsPixmapItem * pOldItem = mPixmapItems[aLayer];

@@ -41,7 +41,7 @@ public: // non-const
 public: // pointers
     SandboxMainWindow * mainWindow();
     SandboxEngine * engine();
-    ApplicationHelper * helper();
+    ApplicationHelper * appHelper();
     SandboxScene * scene();
     CommandLine * commandLine();
     AppSettings * settings();
@@ -58,5 +58,5 @@ inline SandboxData SandboxApplication::data() const { return mData; }
 inline void SandboxApplication::set(SandboxMainWindow *pMainWindow) { Q_CHECK_PTR(pMainWindow); mpMainWindow = pMainWindow; }
 inline SandboxMainWindow *SandboxApplication::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
 inline SandboxEngine *SandboxApplication::engine() { Q_CHECK_PTR(mpEngine); return mpEngine; }
-inline ApplicationHelper *SandboxApplication::helper() { Q_CHECK_PTR(mpHelper); return mpHelper; }
+inline ApplicationHelper *SandboxApplication::appHelper() { Q_CHECK_PTR(mpHelper); return mpHelper; }
 
