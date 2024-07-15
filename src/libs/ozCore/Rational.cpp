@@ -1,7 +1,7 @@
 #include "Rational.h"
 
 Rational::Rational() : mNumerator(0), mDenominator(0) {;}
-Rational::Rational(const signed int num, const signed int den)
+Rational::Rational(const Term num, const Term den)
     : mNumerator(num), mDenominator(den) {;}
 Rational::Rational(const qreal f, const signed int den)
     : mNumerator(qRound(f * qreal(den))), mDenominator(den) {;}
@@ -33,12 +33,12 @@ qreal Rational::toReal() const
     return qreal(n()) / qreal(d());
 }
 
-void Rational::set(const signed int num, const signed int den)
+void Rational::set(const Term num, const Term den)
 {
     n(num), d(den);
 }
 
-void Rational::adjustDenominator(const signed int den)
+void Rational::adjustDenominator(const Term den)
 {
     if (isValid() && den != d())
     {

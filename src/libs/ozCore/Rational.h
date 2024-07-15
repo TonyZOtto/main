@@ -4,13 +4,15 @@
 class OZCORE_EXPORT Rational
 {
 public:
+    typedef signed Term;
+public:
     Rational();
-    Rational(const signed num, const signed den);
+    Rational(const Term num, const Term den);
     Rational(const qreal f, const signed den=1000000);
 
 public: // const
-    signed n() const;
-    signed d() const;
+    Term n() const;
+    Term d() const;
     bool isNull() const;
     bool notNull() const { return ! isNull(); }
     bool isValid() const;
@@ -21,36 +23,36 @@ public: // const
     operator qreal () const { return toReal(); }
 
 public: // non-const
-    void n(const signed num);
-    void d(const signed den);
-    void set(const signed num, const signed den);
-    void adjustDenominator(const signed den);
+    void n(const Term num);
+    void d(const Term den);
+    void set(const Term num, const Term den);
+    void adjustDenominator(const Term den);
     void normalize();
     void nullify();
     void add(const Rational rat);
     void operator + (const Rational rat) { add(rat); }
 
 private:
-    signed  mNumerator;
-    signed  mDenominator;
+    Term  mNumerator;
+    Term  mDenominator;
 };
 
-inline signed int Rational::n() const
+inline Rational::Term Rational::n() const
 {
     return mNumerator;
 }
 
-inline signed int Rational::d() const
+inline Rational::Term Rational::d() const
 {
     return mDenominator;
 }
 
-inline void Rational::n(const signed int num)
+inline void Rational::n(const Term num)
 {
     mNumerator = num;
 }
 
-inline void Rational::d(const signed int den)
+inline void Rational::d(const Term den)
 {
     mDenominator = den;
 }

@@ -4,6 +4,7 @@
 SCRect::SCRect() : mSize(-1), mCenter(0, 0) {;}
 SCRect::SCRect(const int aDim) : mSize(aDim), mCenter(0, 0) {;}
 SCRect::SCRect(const QSize aSize) : mSize(aSize), mCenter(0, 0) {;}
+SCRect::SCRect(const QRect aRect) : mSize(aRect.size()), mCenter(aRect.center()) {;}
 SCRect::SCRect(const QSize aSize, const QPoint aCenter) : mSize(aSize), mCenter(aCenter) {;}
 
 int SCRect::width() const

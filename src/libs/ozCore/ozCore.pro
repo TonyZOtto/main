@@ -26,6 +26,7 @@ SOURCES += \
     QQSize.cpp \
     QQStringList.cpp \
     Rational.cpp \
+    RationalList.cpp \
     SCRect.cpp \
     SettingsName.cpp \
     Success.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     QQSize.h \
     QQStringList.h \
     Rational.h \
+    RationalList.h \
     SCRect.h \
     SettingsName.h \
     Success.h \

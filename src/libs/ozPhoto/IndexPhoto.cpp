@@ -5,6 +5,8 @@
 #include "Grey16Photo.h"
 
 IndexPhoto::IndexPhoto() {}
+IndexPhoto::IndexPhoto(const QImage aIndexImage)
+    : BasePhoto(Photo::Index, aIndexImage) {;}
 IndexPhoto::IndexPhoto(const BasePhoto &other) : BasePhoto(other) {;}
 IndexPhoto::IndexPhoto(const Grey16Photo &aGrey16,
                        const BrightnessContrast aBC)

@@ -11,6 +11,7 @@ SOURCES += \
     BrightnessContrast.cpp \
     Color.cpp \
     Pixel32.cpp \
+    RationalColors.cpp \
     RgbColor.cpp \
     Rgba32Table.cpp \
     ozColor.cpp
@@ -19,6 +20,7 @@ HEADERS += \
     BrightnessContrast.h \
     Color.h \
     Pixel32.h \
+    RationalColors.h \
     RgbColor.h \
     Rgba32Table.h \
     ozColor_global.h \

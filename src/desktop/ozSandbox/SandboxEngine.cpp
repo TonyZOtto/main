@@ -25,19 +25,36 @@ void SandboxEngine::setup()
 {
     qInfo() << Q_FUNC_INFO;
     setupColorTable();
-    setSubjectPhoto(mSubjectPhoto);
 }
 
 void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
 {
     qInfo() << Q_FUNC_INFO;
-    mSubjectPhoto.set(aCP.baseImage().copy(scene()->viewRect().toQRect()));
-    mGrey16Photo = Grey16Photo(mSubjectPhoto);
-    BrightnessContrast tBC = processHistogram(mGrey16Photo);
-    mIndexPhoto = IndexPhoto(mGrey16Photo, tBC);
-    mIndexPhoto.baseImage().setColorTable(mColorTable);
-//    scene()->set(SandboxScene::OldSubject, mIndexPhoto);
-    scene()->set(SandboxScene::OldSubject, mSubjectPhoto);
+    const QImage cColorImage
+        = aCP.baseImage().copy(scene()->viewRect().toQRect());
+    mSubjectPhoto.set(cColorImage);
+    QMultiMap<WORD, QQPoint> mGreyPointMMap;
+    SCRect cImageRect(cColorImage.rect());
+    QQSize cImageSize = cImageRect.size();
+    Count cPixelCount = cImageSize.area();
+    QImage tIndexImage(cImageSize, QImage::Format_Indexed8);
+    tIndexImage.setColorTable(mColorTable);
+    QRgb * pRgbPixel = (QRgb *)cColorImage.constBits();
+    Q_CHECK_PTR(pRgbPixel);
+    for (Index ix = 0; ix < Index(cPixelCount); ++ix)
+    {
+        const QQPoint cPt(cImageSize, ix);
+        const QRgb cRgb = *pRgbPixel++;
+        const float cGreyF = ((float(qRed(cRgb))   / 255.0) * 0.2989)
+                           + ((float(qGreen(cRgb)) / 255.0) * 0.5870)
+                           + ((float(qBlue(cRgb))  / 255.0) * 0.1140);
+        tIndexImage.setPixel(cPt, qRound(255.0 * cGreyF));
+    }
+    qInfo() << "Saving IndexImage.png:"
+            << tIndexImage.save("IndexImage.png");
+    mIndexPhoto = IndexPhoto(tIndexImage);
+    scene()->set(SandboxScene::OldSubject, mIndexPhoto);
+//    scene()->set(SandboxScene::OldSubject, mSubjectPhoto);
 }
 
 SandboxScene *SandboxEngine::scene()
@@ -50,6 +67,88 @@ QObject *SandboxEngine::object()
     return parent();
 }
 
+
+void SandboxEngine::setupColorTable()
+{
+    mColorTable.fill(QColor(Qt::transparent).rgba(), 256);
+    setupColorTableLinear(  0,  15, 240, /* Bronze */
+        QQColor(0x99, 0x5F, 0x22), QQColor(0xFF, 0x9F, 0x42));
+    setupColorTableLinear(120, 135, 240, /* Silver */
+        QQColor(0x90, 0x90, 0x90), QQColor(0xF0, 0xF0, 0xF0));
+    setupColorTableLinear(240, 255, 240, /* Gold */
+        QQColor(0xC0, 0xA6, 0x00), QQColor(0xFF, 0xFF, 0x3F));
+#if 1
+    setupColorTableLinear( 16, 119, 255, /* Sand */
+                            QQColor( 72,  72,  16),
+                            QQColor( 72,  72, 119));
+#else
+    setupColorTableBilinear( 16, 119, 160, /* Sand */
+                            QQColor(0x00, 0x20, 0x20),
+                            QQColor(0x00, 0x50, 0x50),
+                            QQColor(0x50, 0x70, 0x70));
+#endif
+#if 1
+    setupColorTableLinear(136, 239, 255, /* Water */
+                            QQColor(136, 180, 180),
+                            QQColor(239, 180, 180));
+#else
+    setupColorTableBilinear(136, 239, 80, /* Water */
+                            QQColor(0xD6, 0xB0, 0x69),
+                            QQColor(0xEC, 0xCC, 0xA2),
+                            QQColor(0xFF, 0xF0, 0xDB));
+#endif
+#if 1
+    for (Index ix = 0; ix < 255; ix += 8)
+        qDebug() << Qt::dec << ix << Qt::hex
+                 << mColorTable[ix+0] << mColorTable[ix+1]
+                 << mColorTable[ix+2] << mColorTable[ix+3]
+                 << mColorTable[ix+4] << mColorTable[ix+5]
+                 << mColorTable[ix+6] << mColorTable[ix+7];
+#endif
+}
+
+void SandboxEngine::setupColorTableLinear(const BYTE aFrom,
+                                          const BYTE aTo,
+                                          const BYTE aOpacity,
+                                          const QQColor aLoColor,
+                                          const QQColor aHiColor)
+{
+    QColor tColor;
+    tColor.setAlpha(aOpacity);
+    const float cIxDeltaF = aTo - aFrom,
+                cRedLo = aLoColor.redF(),   cRedHi = aHiColor.redF(),
+                cGrnLo = aLoColor.greenF(), cGrnHi = aHiColor.greenF(),
+                cBluLo = aLoColor.blueF(),  cBluHi = aHiColor.blueF();
+    const float cRedDelta = (cRedHi - cRedLo) / cIxDeltaF,
+                cGrnDelta = (cGrnHi - cGrnLo) / cIxDeltaF,
+                cBluDelta = (cBluHi - cBluLo) / cIxDeltaF;
+    float tDltF = 0.0;
+    for (Index ix = aFrom; ix <= aTo; ++ix)
+    {
+        const float cRedF = cRedLo + tDltF * cRedDelta,
+                    cGrnF = cGrnLo + tDltF * cGrnDelta,
+                    cBluF = cBluLo + tDltF * cBluDelta;
+        tColor.setRedF(cRedF), tColor.setGreenF(cGrnF), tColor.setBlueF(cBluF);
+        const QRgb cRgba = tColor.rgba();
+        mColorTable[ix] = cRgba;
+        tDltF += 1.0;
+    }
+}
+
+void SandboxEngine::setupColorTableBilinear(const BYTE aFrom,
+                                            const BYTE aTo,
+                                            const BYTE aOpacity,
+                                            const QQColor aLoColor,
+                                            const QQColor aMidColor,
+                                            const QQColor aHiColor)
+{
+    const BYTE cMidIx = aFrom + aTo / 2;
+    setupColorTableLinear(aFrom,  cMidIx, aOpacity, aLoColor, aMidColor);
+    setupColorTableLinear(cMidIx, aTo,    aOpacity, aMidColor, aHiColor);
+    mColorTable[cMidIx] = aMidColor.rgb();
+}
+
+#if 0
 BrightnessContrast SandboxEngine::processHistogram(const Grey16Photo aGrey16Photo)
 {
     qInfo() << Q_FUNC_INFO;
@@ -83,65 +182,4 @@ BrightnessContrast SandboxEngine::processHistogram(const Grey16Photo aGrey16Phot
     result.set(tLoBin, tHiBin);
     return result;
 }
-
-void SandboxEngine::setupColorTable()
-{
-    mColorTable.fill(QColor(Qt::transparent).rgba(), 256);
-    setupColorTableLinear(  0,  15, 240, /* Bronze */
-        QQColor(0x99, 0x5F, 0x22), QQColor(0xFF, 0x9F, 0x42));
-    setupColorTableLinear(120, 135, 240, /* Silver */
-        QQColor(0x90, 0x90, 0x90), QQColor(0xF0, 0xF0, 0xF0));
-    setupColorTableLinear(240, 255, 240, /* Gold */
-        QQColor(0xC0, 0xA6, 0x00), QQColor(0xFF, 0xFF, 0x3F));
-    setupColorTableBilinear( 16, 119, 160, /* Sand */
-                            QQColor(0xD6, 0xB0, 0x69),
-                            QQColor(0xEC, 0xCC, 0xA2),
-                            QQColor(0xFF, 0xF0, 0xDB));
-    setupColorTableBilinear(136, 239, 80, /* Water */
-                            QQColor(0x00, 0x80, 0x80),
-                            QQColor(0x00, 0x00, 0xB0),
-                            QQColor(0xB6, 0xD0, 0xE2));
-}
-
-void SandboxEngine::setupColorTableLinear(const BYTE aFrom,
-                                          const BYTE aTo,
-                                          const BYTE aOpacity,
-                                          const QQColor aLoColor,
-                                          const QQColor aHiColor)
-{
-    QColor tColor;
-    tColor.setAlpha(aOpacity);
-//    const QQColor cColorDelta = aHiColor.subtracted(aLoColor);
-    const float cIxDeltaF = aTo - aFrom;
-    const float cRedLo = aLoColor.redF(),   cRedHi = aHiColor.redF();
-    const float cGrnLo = aLoColor.greenF(), cGrnHi = aHiColor.greenF();
-    const float cBluLo = aLoColor.blueF(),  cBluHi = aHiColor.blueF();
-    const float cRedDelta = cRedHi - cRedLo;
-    const float cGrnDelta = cGrnHi - cGrnLo;
-    const float cBluDelta = cBluHi - cBluLo;
-    for (Index ix = aFrom, ixd = 0; ix <= aTo; ++ix, ++ixd)
-    {
-        const float cDltF = float(ixd) * cIxDeltaF;
-        const float cRedF = cRedLo + cDltF * cRedDelta;
-        const float cGrnF = cGrnLo + cDltF * cGrnDelta;
-        const float cBluF = cBluLo + cDltF * cBluDelta;
-        tColor.setRedF(cRedF), tColor.setGreenF(cGrnF), tColor.setBlueF(cBluF);
-        const QRgb cRgba = tColor.rgba();
-        mColorTable[ix] = cRgba;
-    }
-}
-
-void SandboxEngine::setupColorTableBilinear(const BYTE aFrom,
-                                            const BYTE aTo,
-                                            const BYTE aOpacity,
-                                            const QQColor aLoColor,
-                                            const QQColor aMidColor,
-                                            const QQColor aHiColor)
-{
-    const BYTE cMidIx = aFrom + aTo / 2;
-    setupColorTableLinear(aFrom, cMidIx, aOpacity, aLoColor, aMidColor);
-    mColorTable[cMidIx] = qRgba(aMidColor.red(), aMidColor.green(),
-                                aMidColor.blue(), aOpacity);
-    setupColorTableLinear(aTo, cMidIx, aOpacity, aHiColor, aMidColor);
-}
-
+#endif

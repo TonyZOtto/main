@@ -2,6 +2,7 @@
 #include "ozCore.h"
 
 #include <QRect>
+#include <QSize>
 
 #include "QQPoint.h"
 #include "QQSize.h"
@@ -15,6 +16,7 @@ public: // ctors
     SCRect();
     SCRect(const int aDim);
     SCRect(const QSize aSize);
+    SCRect(const QRect aRect);
     SCRect(const QSize aSize, const QPoint aCenter);
 
 public: // const
@@ -22,7 +24,6 @@ public: // const
     int width() const;
     int height() const;
     QRect toQRect(const Anchor aAnchor=TopLeft) const;
-
 
 private:
     QQSize mSize;
