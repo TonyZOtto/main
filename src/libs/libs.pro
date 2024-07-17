@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
+    INDIbase6 \
+    INDIface6 \
     QtCV \
     ozColor \
     ozCore \
@@ -9,6 +11,7 @@ SUBDIRS += \
     ozLog \
     ozMovie \
     ozPhoto \
+    ozQtCV \
     ozWidgets   \
 
 
