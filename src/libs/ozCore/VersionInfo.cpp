@@ -17,6 +17,11 @@ bool VersionInfo::isNull() const
     return 0 == major() && 0 == minor();
 }
 
+void VersionInfo::copyright(const UText &co)
+{
+    m_copyright = co;
+}
+
 QString VersionInfo::toString(const StringOptions opts) const
 {
     QString result;
@@ -82,7 +87,7 @@ void VersionInfo::clear()
 {
     m_major = m_minor = m_release = m_branch = m_build = 0;
     m_branchname.clear(), m_appname.clear(), m_orgname.clear();
-    m_company.clear(), m_legal.clear();
+    m_company.clear(), m_copyright.clear(), m_legal.clear();
     m_qtVersion = QVersionNumber();
     m_windowsVersion = WindowsVersion{0,0,0,0};
     m_linuxVersion = LinuxVersion{0,0,0};
@@ -143,6 +148,12 @@ UText VersionInfo::company() const
 {
     return m_company;
 }
+
+UText VersionInfo::copyright() const
+{
+    return m_copyright;
+}
+
 
 UText VersionInfo::legal() const
 {

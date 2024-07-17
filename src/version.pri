@@ -1,11 +1,11 @@
 # {Eclipse6}/src/version.pri
 message(------------/src/version.pri)
 
-OZVER_MAJOR        = 2
-OZVER_MINOR        = 3
+OZVER_MAJOR        = 6
+OZVER_MINOR        = 90
 OZVER_BRANCH       = 0
 OZVER_RELEASE      = 1
-OZVER_STRING       = "v2.03A"
+OZVER_STRING       = "v6.90A"
 OZVER_COMPANY      = "ottoZcode"
 OZVER_ORGNAME      = "ottoZcode"
 OZVER_COPYRIGHT    = "Copyright (c) 1993-2024, Anthony Otto. All rights reserved worldwide. See LEGAL.txt for more information."

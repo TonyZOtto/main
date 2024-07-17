@@ -5,3 +5,9 @@ EngineMainWindow::EngineMainWindow(QWidget *parent)
 {}
 
 EngineMainWindow::~EngineMainWindow() {}
+
+void EngineMainWindow::initialize()
+{
+
+    emit initialized();
+}

@@ -31,8 +31,9 @@ public: // types
 
 public: // ctors
     explicit VersionInfo();
-    VersionInfo(const BYTE maj, const WORD min, const BYTE rls, const WORD bch,
-                const WORD bld, const char * bnm, const char * app, const char * org);
+    VersionInfo(const BYTE maj, const WORD min, const BYTE rls,
+                const WORD bch, const WORD bld, const char * bnm,
+                const char * app, const char * org);
 
 public: // const
     bool isNull() const;
@@ -45,6 +46,7 @@ public: // non-const
     void set(const BYTE maj, const WORD min, const BYTE rls, const WORD bch,
              const WORD bld, const char * bnm, const char * app, const char * org);
     void company(const UText &co);
+    void copyright(const UText &co);
     void legal(const UText &leg);
 
 private:
@@ -66,6 +68,7 @@ public: // =============== Properties ===================
     AText appname() const;
     AText orgname() const;
     UText company() const;
+    UText copyright() const;
     UText legal() const;
     QVersionNumber qtVersion() const;
     WindowsVersion windowsVersion() const;
@@ -81,6 +84,7 @@ private:
     AText           m_appname;
     AText           m_orgname;
     UText           m_company;
+    UText           m_copyright;
     UText           m_legal;
     QVersionNumber  m_qtVersion;
     WindowsVersion  m_windowsVersion;
@@ -94,6 +98,7 @@ private:
     Q_PROPERTY(AText appname READ appname CONSTANT FINAL)
     Q_PROPERTY(AText orgname READ orgname CONSTANT FINAL)
     Q_PROPERTY(UText company READ company CONSTANT FINAL)
+    Q_PROPERTY(UText copyright READ copyright CONSTANT FINAL)
     Q_PROPERTY(UText legal READ legal CONSTANT FINAL)
     Q_PROPERTY(QVersionNumber qtVersion READ qtVersion CONSTANT FINAL)
     Q_PROPERTY(WindowsVersion windowsVersion READ windowsVersion CONSTANT FINAL)

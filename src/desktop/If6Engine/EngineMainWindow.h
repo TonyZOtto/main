@@ -9,4 +9,19 @@ class EngineMainWindow : public QMainWindow
 public:
     EngineMainWindow(QWidget *parent = nullptr);
     ~EngineMainWindow();
+
+public slots:
+    void initialize();
+
+signals:
+    void initialized();
+
+public: // const
+
+public: // non-const
+
+public: // pointers
+
+private:
+
 };
