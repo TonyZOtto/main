@@ -36,6 +36,8 @@ QAction *ActionManager::action(const Key &aKey) const
     QAction * result = nullptr;
     if (contains(aKey))
         result = mKeyActionDMap.at(aKey);
+    qDebug() << Q_FUNC_INFO << aKey
+             << Qt::hex << qptrdiff(result);
     Q_CHECK_PTR(result);
     return result;
 }
@@ -81,17 +83,22 @@ Boolean ActionManager::boolean(const Key &aKey, const BoolRoleFlag aBoolFlag)
     return result;
 }
 
-QAction *ActionManager::add(const Key &aKey)
+QAction *ActionManager::add(const Key &aKey, QString aText)
 {
     (void)remove(aKey);
-    QAction * result = new QAction(aKey(), this);
+    if (aText.isEmpty())
+        aText = "&" + aKey.last();
+    QAction * result = new QAction(aText, this);
     add(aKey, result);
     return result;
 }
 
 void ActionManager::add(const Key &aKey, QAction *pAction)
 {
+    pAction->setObjectName("QAction:" + aKey);
     mKeyActionDMap.insertUnique(aKey, pAction);
+    qDebug() << Q_FUNC_INFO << aKey
+             << Qt::hex << qptrdiff(pAction);
     emit added(aKey, pAction);
     if (mpMenu) mpMenu->addAction(pAction);
     if (mpToolbar) mpToolbar->addAction(pAction);
@@ -103,6 +110,8 @@ bool ActionManager::remove(const Key &aKey)
     if (result)
     {
         QAction * pOld = action(aKey);
+        qDebug() << Q_FUNC_INFO << aKey
+                 << Qt::hex << qptrdiff(pOld);
         emit removed(aKey, pOld);
         mKeyActionDMap.remove(pOld);
         pOld->deleteLater();
@@ -118,6 +127,7 @@ void ActionManager::remove()
 
 QAction *ActionManager::action(const Key &aKey) // non-const
 {
+    qDebug() << Q_FUNC_INFO << aKey << contains(aKey);
     static QAction sDummyAction;
     QAction * result = &sDummyAction;
     if (contains(aKey))

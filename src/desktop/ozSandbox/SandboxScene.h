@@ -13,6 +13,8 @@ class QWidget;
 #include <Types.h>
 class BasePhoto;
 
+class SandboxMainWindow;
+
 class SandboxScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -30,7 +32,7 @@ public: // types
     Q_ENUM(Layer)
 
 public: // ctors
-    explicit SandboxScene(QObject *parent = nullptr);
+    explicit SandboxScene(SandboxMainWindow *parent = nullptr);
     ~SandboxScene();
 
 public slots:
@@ -56,12 +58,14 @@ public: // non-const
     void set(const Layer aLayer, const QPixmap &aPixmap);
 
 public: // pointers
+    SandboxMainWindow * mainWindow();
     QGraphicsView * view();
     QWidget * widget();
 
 private:
 
 private:
+    SandboxMainWindow * mpMainWindow=nullptr;
     QGraphicsView * mpView=nullptr;
     QList<QGraphicsPixmapItem *> mPixmapItems;
     SCRect mViewRect;
@@ -69,4 +73,5 @@ private:
 
 inline SCRect SandboxScene::viewRect() const { return mViewRect; }
 inline void SandboxScene::viewRect(const SCRect &aViewRect) { mViewRect = aViewRect; }
+inline SandboxMainWindow *SandboxScene::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
 inline QGraphicsView *SandboxScene::view() { Q_CHECK_PTR(mpView); return mpView; }

@@ -13,7 +13,6 @@ include(../../useColor.pri)
 include(../../usePhoto.pri)
 
 SOURCES += \
-    SandboxActions.cpp \
     SandboxApplication.cpp \
     SandboxData.cpp \
     SandboxEngine.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    SandboxActions.h \
     ../../version.h \
     SandboxApplication.h \
     SandboxData.h \

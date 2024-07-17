@@ -1,5 +1,5 @@
 # {ozCode}/src/BINDIR.pri
-BINDIR = "/home/code/bin"
+BINDIR = "/code/bin"
 message(............/src/BINDIR.pri = $$BINDIR)
 
 

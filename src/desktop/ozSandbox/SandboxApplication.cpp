@@ -21,6 +21,8 @@ void SandboxApplication::initialize()
     engine()->initialize();
 
     connect(this, &SandboxApplication::initialized,
+            mainWindow(), &SandboxMainWindow::initialize);
+    connect(mainWindow(), &SandboxMainWindow::initialized,
             this, &SandboxApplication::objconnect);
 
     emit initialized();
@@ -30,8 +32,8 @@ void SandboxApplication::objconnect()
 {
     qInfo() << Q_FUNC_INFO;
     connect(this, &SandboxApplication::objconnected,
-            mainWindow(), &SandboxMainWindow::initialize);
-    connect(mainWindow(), &SandboxMainWindow::initialized,
+            mainWindow(), &SandboxMainWindow::actConnected);
+    connect(mainWindow(), &SandboxMainWindow::actConnected,
             this, &SandboxApplication::configure);
     connect(this, &SandboxApplication::configured,
             mainWindow(), &SandboxMainWindow::configure);
@@ -69,6 +71,12 @@ void SandboxApplication::start()
 {
     qInfo() << Q_FUNC_INFO;
     emit started();
+}
+
+void SandboxApplication::actQuit()
+{
+    qInfo() << Q_FUNC_INFO;
+    exit();
 }
 
 SandboxScene *SandboxApplication::scene()

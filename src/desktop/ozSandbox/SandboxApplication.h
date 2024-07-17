@@ -25,6 +25,9 @@ public slots:
     void setup(void);
     void start(void);
 
+    void actQuit();
+
+
 signals:
     void initialized(void);
     void objconnected(void);

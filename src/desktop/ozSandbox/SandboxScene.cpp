@@ -5,8 +5,11 @@
 
 #include <BasePhoto.h>
 
-SandboxScene::SandboxScene(QObject *parent)
+#include "SandboxMainWindow.h"
+
+SandboxScene::SandboxScene(SandboxMainWindow *parent)
     : QGraphicsScene{parent}
+    , mpMainWindow(parent)
     , mViewRect(QQSize(512, 512), QQPoint(0, 0))
 {
     qInfo() << Q_FUNC_INFO;
@@ -34,6 +37,8 @@ void SandboxScene::initialize()
 void SandboxScene::setup()
 {
     qInfo() << Q_FUNC_INFO;
+    view()->setMinimumSize(viewRect().size());
+    widget()->setMinimumSize(viewRect().size());
 }
 
 void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)

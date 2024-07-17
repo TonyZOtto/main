@@ -63,11 +63,7 @@ public: // const
     Boolean boolean(const Key &aKey, const BoolRoleFlag aBoolFlag);
 
 public: // non-const
-    void addTo(QMenu * pMenu);
-    void addTo(QToolBar * pToolbar);
-    void noAddMenu();
-    void noAddToolBar();
-    QAction * add(const Key &aKey);
+    QAction * add(const Key &aKey, QString aText=QString());
     void add(const Key &aKey, QAction * pAction);
     bool remove(const Key &aKey);
     void remove();
@@ -78,6 +74,10 @@ public: // non-const
     void set(const Key &aKey, const TextRoleFlags aTextFlags, const QString &aText);
     QAction * set(const Key &key, const BoolRoleFlag aBoolFlag, const bool aIs);
     void set(const Key &aKey, const BoolRoleFlags aBoolFlags, const bool aIs);
+    void set(QMenu * pMenu);
+    void set(QToolBar * pToolbar);
+    void noMenu();
+    void noToolBar();
 
 signals:
     void added(const Key &aKey, QAction * pAction);
@@ -89,10 +89,10 @@ private:
     QToolBar * mpToolbar=nullptr;
 };
 
-inline void ActionManager::addTo(QMenu *pMenu) { Q_CHECK_PTR(pMenu); mpMenu = pMenu; }
-inline void ActionManager::addTo(QToolBar *pToolbar) { Q_CHECK_PTR(pToolbar); mpToolbar = pToolbar; }
-inline void ActionManager::noAddMenu() { mpMenu = nullptr; }
-inline void ActionManager::noAddToolBar()  { mpToolbar = nullptr; }
+inline void ActionManager::set(QMenu *pMenu) { Q_CHECK_PTR(pMenu); mpMenu = pMenu; }
+inline void ActionManager::set(QToolBar *pToolbar) { Q_CHECK_PTR(pToolbar); mpToolbar = pToolbar; }
+inline void ActionManager::noMenu() { mpMenu = nullptr; }
+inline void ActionManager::noToolBar()  { mpToolbar = nullptr; }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ActionManager::TextRoleFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(ActionManager::BoolRoleFlags)

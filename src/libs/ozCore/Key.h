@@ -20,6 +20,7 @@ public: // ctors
     Key(const QString &qs) { set(qs); }
 
 public: // const
+    KeySeg last() const;
     QString toString() const;
     operator QString() const { return toString(); }
     QString operator () () const { return toString(); }

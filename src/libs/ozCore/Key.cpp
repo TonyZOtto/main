@@ -1,5 +1,10 @@
 #include "Key.h"
 
+KeySeg Key::last() const
+{
+    return mSegments.last();
+}
+
 QString Key::toString() const
 {
     return joinString(mSegments);
@@ -20,7 +25,6 @@ KeySeg::List Key::split(const AText &atx, const QChar hinge)
 }
 
 void Key::set(const char *pch)
-
 {
     mSegments = split(AText(pch));
 }

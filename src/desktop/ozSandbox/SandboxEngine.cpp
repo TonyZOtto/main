@@ -45,10 +45,12 @@ void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
     {
         const QQPoint cPt(cImageSize, ix);
         const QRgb cRgb = *pRgbPixel++;
-        const float cGreyF = ((float(qRed(cRgb))   / 255.0) * 0.2989)
-                           + ((float(qGreen(cRgb)) / 255.0) * 0.5870)
-                           + ((float(qBlue(cRgb))  / 255.0) * 0.1140);
-        tIndexImage.setPixel(cPt, qRound(255.0 * cGreyF));
+        const float cGreyF
+            = ((float(qRed(cRgb))   / 255.0) * 0.2989)
+            + ((float(qGreen(cRgb)) / 255.0) * 0.5870)
+            + ((float(qBlue(cRgb))  / 255.0) * 0.1140);
+        tIndexImage.setPixel(cPt,
+            qBound(4, 4 + qRound(247.0 * cGreyF), 251));
     }
     qInfo() << "Saving IndexImage.png:"
             << tIndexImage.save("IndexImage.png");
@@ -71,27 +73,22 @@ QObject *SandboxEngine::object()
 void SandboxEngine::setupColorTable()
 {
     mColorTable.fill(QColor(Qt::transparent).rgba(), 256);
-    setupColorTableLinear(  0,  15, 240, /* Bronze */
-        QQColor(0x99, 0x5F, 0x22), QQColor(0xFF, 0x9F, 0x42));
-    setupColorTableLinear(120, 135, 240, /* Silver */
-        QQColor(0x90, 0x90, 0x90), QQColor(0xF0, 0xF0, 0xF0));
-    setupColorTableLinear(240, 255, 240, /* Gold */
-        QQColor(0xC0, 0xA6, 0x00), QQColor(0xFF, 0xFF, 0x3F));
+    setupColorTableLinear(  4,  19, 240, /* Bronze */
+        QQColor(0x5F, 0x3F, 0x22), QQColor(0x7F, 0x5F, 0x42));
+    setupColorTableLinear(236, 251, 240, /* Silver */
+        QQColor(0xB0, 0xB0, 0xB0), QQColor(0xC0, 0xC0, 0xC0));
+    setupColorTableLinear(120, 135, 240, /* Gold */
+        QQColor(0x90, 0x40, 0x00), QQColor(0xCF, 0x7F, 0x2F));
 #if 1
-    setupColorTableLinear( 16, 119, 255, /* Sand */
-                            QQColor( 72,  72,  16),
-                            QQColor( 72,  72, 119));
+    setupColorTableLinear( 20, 119, 240, /* Sand */
+        QQColor( 48,  48,  16), QQColor(151, 151,  48));
+    setupColorTableLinear(136, 235, 240, /* Water */
+        QQColor( 32, 128, 128), QQColor(64, 231, 231));
 #else
     setupColorTableBilinear( 16, 119, 160, /* Sand */
                             QQColor(0x00, 0x20, 0x20),
                             QQColor(0x00, 0x50, 0x50),
                             QQColor(0x50, 0x70, 0x70));
-#endif
-#if 1
-    setupColorTableLinear(136, 239, 255, /* Water */
-                            QQColor(136, 180, 180),
-                            QQColor(239, 180, 180));
-#else
     setupColorTableBilinear(136, 239, 80, /* Water */
                             QQColor(0xD6, 0xB0, 0x69),
                             QQColor(0xEC, 0xCC, 0xA2),

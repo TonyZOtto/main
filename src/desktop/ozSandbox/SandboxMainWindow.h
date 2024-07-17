@@ -4,14 +4,13 @@
 
 #include <QPixmap>
 #include <QSize>
-class QGridLayout;
-class QLabel;
+class QToolBar;
 class QWidget;
 
+#include <ActionManager.h>
 #include <Types.h>
 class CommandLine;
 
-class SandboxActions;
 class SandboxApplication;
 class SandboxScene;
 
@@ -24,37 +23,42 @@ public:
     ~SandboxMainWindow();
 
 public slots:
-    void initialize(void);
-    void configure(void);
-    void setup(void);
-    void start(void);
+    void initialize();
+    void configure();
+    void actConnect();
+    void setup();
+    void start();
 
 signals:
-    void initialized(void);
-    void configured(void);
-    void setuped(void);
-    void started(void);
+    void initialized();
+    void actConnected();
+    void configured();
+    void setuped();
+    void started();
 
 
 public: // const
-    const QSize baseWidgetSize() const;
 
 public: // non-const
     Count & frameCount();
 
 public: // pointers
     SandboxApplication * app();
-    SandboxActions * actions();
+    ActionManager * actions();
+    QAction * action(const Key &aKey);
     SandboxScene * scene();
 
 private slots:
+    void initializeActions();
+    void setupActions();
 
 private:
     SandboxApplication * mpApplication=nullptr;
-    SandboxActions * mpActions=nullptr;
+    ActionManager * mpActions=nullptr;
     SandboxScene * mpScene=nullptr;
+    QToolBar * mpMainToolBar=nullptr;
 };
 
 inline SandboxApplication *SandboxMainWindow::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }
-inline SandboxActions *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
+inline ActionManager *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
 inline SandboxScene *SandboxMainWindow::scene() {  Q_CHECK_PTR(mpScene); return mpScene; }
