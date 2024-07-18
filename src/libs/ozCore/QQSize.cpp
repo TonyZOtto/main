@@ -2,6 +2,20 @@
 
 #include "Rational.h"
 
+QQSize::QQSize(const int aWidth, const Rational aAspect)
+{
+    setWidth(aWidth);
+    Rational tHeight = aAspect.multiplied(aWidth);
+    setHeight(tHeight.toInt());
+}
+
+QQSize::QQSize(const Rational aAspect, const int aHeight)
+{
+    setHeight(aHeight);
+    Rational tWidth = aAspect.multiplied(aHeight);
+    setWidth(tWidth.toInt());
+}
+
 int QQSize::area() const
 {
     return isValid() ? (width() * height()) : -1;

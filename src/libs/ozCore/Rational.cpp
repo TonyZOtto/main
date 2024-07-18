@@ -27,23 +27,43 @@ Rational Rational::flipped() const
     return Rational(d(), n());
 }
 
+Rational Rational::multiplied(const Term aNum) const
+{
+    Rational result(*this);
+    result.n(n() * aNum);
+    return result;
+}
+
+Rational Rational::divided(const Term aDen) const
+{
+    Rational result(*this);
+    result.d(d() * aDen);
+    return result;
+}
+
+Rational::Term Rational::toInt() const
+{
+    return isValid() ? qRound(qreal(n()) / qreal(d()))
+                     : cmInvalidTerm;
+}
+
 qreal Rational::toReal() const
 {
     if (notValid()) return qQNaN();
     return qreal(n()) / qreal(d());
 }
 
-void Rational::set(const Term num, const Term den)
+void Rational::set(const Term aNum, const Term aDen)
 {
-    n(num), d(den);
+    n(aNum), d(aDen);
 }
 
-void Rational::adjustDenominator(const Term den)
+void Rational::adjustDenominator(const Term aDen)
 {
-    if (isValid() && den != d())
+    if (isValid() && aDen != d())
     {
-        n(qRound(toReal() * den));
-        d(den);
+        n(qRound(toReal() * aDen));
+        d(aDen);
     }
 }
 
@@ -58,16 +78,16 @@ void Rational::nullify()
     n(0), d(0);
 }
 
-void Rational::add(const Rational rat)
+void Rational::add(const Rational aRat)
 {
-    if (d() == rat.d())
+    if (d() == aRat.d())
     {
-        n(n() + rat.n());
+        n(n() + aRat.n());
     }
     else
     {
-        signed tDen = d() * rat.d();
-        signed tNum = d() * rat.n() + n() * rat.d();
+        signed tDen = d() * aRat.d();
+        signed tNum = d() * aRat.n() + n() * aRat.d();
         set(tNum, tDen);
     }
 }

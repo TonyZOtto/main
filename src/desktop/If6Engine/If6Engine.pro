@@ -26,3 +26,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     ../../version.pri \
     INDIonly64.ico
+
+RESOURCES += \
+    If6Engine.qrc

@@ -19,40 +19,30 @@ public: // const
     bool notValid() const { return ! isValid(); }
     signed ratio() const;
     Rational flipped() const;
+    Rational multiplied(const Term aNum) const;
+    Rational divided(const Term aDen) const;
+    Term toInt() const;
     qreal toReal() const;
     operator qreal () const { return toReal(); }
 
 public: // non-const
-    void n(const Term num);
-    void d(const Term den);
-    void set(const Term num, const Term den);
-    void adjustDenominator(const Term den);
+    void n(const Term aNum);
+    void d(const Term aDen);
+    void set(const Term aNum, const Term aDen);
+    void adjustDenominator(const Term aDen);
     void normalize();
     void nullify();
-    void add(const Rational rat);
-    void operator + (const Rational rat) { add(rat); }
+    void add(const Rational aRat);
+    void operator + (const Rational aRat) { add(aRat); }
 
 private:
     Term  mNumerator;
     Term  mDenominator;
+    const Term cmInvalidTerm=INT_MIN;
 };
 
-inline Rational::Term Rational::n() const
-{
-    return mNumerator;
-}
+inline Rational::Term Rational::n() const { return mNumerator; }
+inline Rational::Term Rational::d() const { return mDenominator; }
+inline void Rational::n(const Term aNum) { mNumerator = aNum; }
+inline void Rational::d(const Term aDen) { mDenominator = aDen; }
 
-inline Rational::Term Rational::d() const
-{
-    return mDenominator;
-}
-
-inline void Rational::n(const Term num)
-{
-    mNumerator = num;
-}
-
-inline void Rational::d(const Term den)
-{
-    mDenominator = den;
-}
