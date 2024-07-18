@@ -1,6 +1,7 @@
 #include "VersionInfo.h"
 
 #include <QChar>
+#include <QCoreApplication>
 
 VersionInfo::VersionInfo() { clear(); }
 
@@ -20,6 +21,11 @@ bool VersionInfo::isNull() const
 void VersionInfo::copyright(const UText &co)
 {
     m_copyright = co;
+}
+
+void VersionInfo::legal(const UText &leg)
+{
+    m_legal = leg;
 }
 
 QString VersionInfo::toString(const StringOptions opts) const
@@ -83,6 +89,15 @@ QWORD VersionInfo::toQWord() const
     return stUnion.uQWord;
 }
 
+bool VersionInfo::set(QCoreApplication *pCoreApp)
+{
+    pCoreApp->setApplicationName(appname());
+//    pCoreApp->setApplicationDisplayName(product());
+    pCoreApp->setApplicationVersion(toString());
+    pCoreApp->setOrganizationName(orgname());
+    return true;
+}
+
 void VersionInfo::clear()
 {
     m_major = m_minor = m_release = m_branch = m_build = 0;
@@ -144,6 +159,11 @@ AText VersionInfo::orgname() const
     return m_orgname;
 }
 
+AText VersionInfo::product() const
+{
+    return m_product;
+}
+
 UText VersionInfo::company() const
 {
     return m_company;
@@ -158,6 +178,11 @@ UText VersionInfo::copyright() const
 UText VersionInfo::legal() const
 {
     return m_legal;
+}
+
+void VersionInfo::product(const AText &prod)
+{
+    m_product = prod;
 }
 
 QString VersionInfo::dottedString() const

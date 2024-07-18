@@ -1,4 +1,4 @@
-# {ozCode}/src/src.pri
+# {ottoAcode}/src/src.pri
 message(^^^^^^^^/src/src.pri)
 
 include(version.pri)

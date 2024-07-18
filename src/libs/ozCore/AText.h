@@ -23,7 +23,7 @@ public: // ctors
 
 public: // const
     QString toString() const;
-    operator QString () const { return toString(); }
+//    operator QString () const { return toString(); }
 
 public: // non-const
     char takeFirstChar();

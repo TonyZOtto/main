@@ -2,12 +2,14 @@
 
 #include <QMainWindow>
 
+class EngineApplication;
+
 class EngineMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    EngineMainWindow(QWidget *parent = nullptr);
+    EngineMainWindow(EngineApplication *pApp = nullptr);
     ~EngineMainWindow();
 
 public slots:
@@ -21,7 +23,10 @@ public: // const
 public: // non-const
 
 public: // pointers
+    EngineApplication * application();
 
 private:
-
+    EngineApplication * mpApplication=nullptr;
 };
+
+inline EngineApplication *EngineMainWindow::application() { Q_CHECK_PTR(mpApplication); return mpApplication; }

@@ -15,4 +15,5 @@ void EngineApplication::initialize()
 {
     connect(this, &EngineApplication::initialized,
             mainWindow(), &EngineMainWindow::initialize);
+    emit initialized();
 }

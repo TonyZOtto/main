@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QString>
 #include <QVersionNumber>
+class QCoreApplication;
+
 
 #include "AText.h"
 #include "Types.h"
@@ -40,6 +42,7 @@ public: // const
     QString toString(const StringOptions opts=$null) const;
     DWORD toDWord() const;
     QWORD toQWord() const;
+    bool set(QCoreApplication * pCoreApp);
 
 public: // non-const
     void clear();
@@ -48,6 +51,7 @@ public: // non-const
     void company(const UText &co);
     void copyright(const UText &co);
     void legal(const UText &leg);
+    void product(const AText &prod);
 
 private:
     QString dottedString() const;
@@ -67,6 +71,7 @@ public: // =============== Properties ===================
     AText branchname() const;
     AText appname() const;
     AText orgname() const;
+    AText product() const;
     UText company() const;
     UText copyright() const;
     UText legal() const;
@@ -83,6 +88,7 @@ private:
     AText           m_branchname;
     AText           m_appname;
     AText           m_orgname;
+    AText           m_product;
     UText           m_company;
     UText           m_copyright;
     UText           m_legal;
@@ -97,6 +103,7 @@ private:
     Q_PROPERTY(AText branchname READ branchname CONSTANT FINAL)
     Q_PROPERTY(AText appname READ appname CONSTANT FINAL)
     Q_PROPERTY(AText orgname READ orgname CONSTANT FINAL)
+    Q_PROPERTY(AText product READ product CONSTANT FINAL)
     Q_PROPERTY(UText company READ company CONSTANT FINAL)
     Q_PROPERTY(UText copyright READ copyright CONSTANT FINAL)
     Q_PROPERTY(UText legal READ legal CONSTANT FINAL)
