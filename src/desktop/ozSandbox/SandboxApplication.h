@@ -25,7 +25,7 @@ public slots:
     void setup(void);
     void start(void);
 
-    void actQuit();
+    void actQuit(const bool checked);
 
 
 signals:

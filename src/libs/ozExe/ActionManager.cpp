@@ -86,9 +86,10 @@ Boolean ActionManager::boolean(const Key &aKey, const BoolRoleFlag aBoolFlag)
 QAction *ActionManager::add(const Key &aKey, QString aText)
 {
     (void)remove(aKey);
-    if (aText.isEmpty())
+     if (aText.isEmpty())
         aText = "&" + aKey.last();
     QAction * result = new QAction(aText, this);
+    result->setEnabled(true);
     add(aKey, result);
     return result;
 }
@@ -100,8 +101,10 @@ void ActionManager::add(const Key &aKey, QAction *pAction)
     qDebug() << Q_FUNC_INFO << aKey
              << Qt::hex << qptrdiff(pAction);
     emit added(aKey, pAction);
-    if (mpMenu) mpMenu->addAction(pAction);
-    if (mpToolbar) mpToolbar->addAction(pAction);
+    if (mpMenu)
+        mpMenu->addAction(pAction);
+    if (mpToolbar)
+        mpToolbar->addAction(pAction);
 }
 
 bool ActionManager::remove(const Key &aKey)

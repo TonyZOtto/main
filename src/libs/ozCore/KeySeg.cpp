@@ -7,7 +7,8 @@ void KeySeg::set(const AText &atx)
     AText tInText = atx;
     AText tOutText(validFirstChar(tInText.takeFirstChar()));
     while ( ! tInText.isEmpty())
-        tOutText.append(validFirstChar(tInText.takeFirstChar()));
+        tOutText.append(validNextChar(tInText.takeFirstChar()));
+    AText::set(tOutText);
 }
 
 QString KeySeg::toString() const

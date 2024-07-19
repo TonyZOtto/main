@@ -47,10 +47,12 @@ public: // pointers
     ActionManager * actions();
     QAction * action(const Key &aKey);
     SandboxScene * scene();
+    QToolBar * toolBar();
 
 private slots:
     void initializeActions();
     void setupActions();
+    void setupToolbar();
 
 private:
     SandboxApplication * mpApplication=nullptr;
@@ -62,3 +64,4 @@ private:
 inline SandboxApplication *SandboxMainWindow::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }
 inline ActionManager *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
 inline SandboxScene *SandboxMainWindow::scene() {  Q_CHECK_PTR(mpScene); return mpScene; }
+inline QToolBar *SandboxMainWindow::toolBar()  {  Q_CHECK_PTR(mpMainToolBar); return mpMainToolBar; }

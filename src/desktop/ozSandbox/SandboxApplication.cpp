@@ -73,10 +73,11 @@ void SandboxApplication::start()
     emit started();
 }
 
-void SandboxApplication::actQuit()
+void SandboxApplication::actQuit(const bool checked)
 {
     qInfo() << Q_FUNC_INFO;
-    exit();
+    Q_UNUSED(checked);
+    exit(0);
 }
 
 SandboxScene *SandboxApplication::scene()
