@@ -7,6 +7,7 @@ class QDockWidget;
 class QGridLayout;
 class QStackedLayout;
 class QSlider;
+class QToolBar;
 class QWidget;
 
 #include <QQSize.h>
@@ -43,16 +44,19 @@ public: // pointers
 
 private:
     void setupMainStack(const QQSize aMaxSize);
+    QWidget *setupSplash(const QQSize aMaxSize);
+    QIcon splashIcon(const QQSize aBaseSize=QQSize(64)) const;
 
 private:
     EngineApplication * mpApplication=nullptr;
     QWidget * mpMainWidget=nullptr;
     QStackedLayout * mpMainStack=nullptr;
+    QToolBar * mpToolBar=nullptr;
     QGridLayout * mpLogPageGrid=nullptr;
     QGridLayout * mpGalleryPageGrid=nullptr;
     QWidget * mpSplashPage=nullptr;
-    QWidget * mpLogPageWidget=nullptr;
-    QWidget * mpGalleryPageWidget=nullptr;
+    QWidget * mpGalleryPage=nullptr;
+    QWidget * mpLogPage=nullptr;
     QDockWidget * mpLogDockWidget=nullptr;
     QSlider * mpLogSlider=nullptr;
     QSlider * mpGallerySlider=nullptr;

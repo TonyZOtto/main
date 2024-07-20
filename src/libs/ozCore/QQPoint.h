@@ -13,6 +13,7 @@ public:
     QQPoint(const QPoint other);
     QQPoint(const QQSize aSize, const Index ix);
     QQPoint(const int aX, const int aY);
+    QQPoint(const int aX, const int aY, const float aScaleF);
 
 public:
     void x(const int aX) { setX(aX); }
