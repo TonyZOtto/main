@@ -3,14 +3,16 @@
 
 #include <QObject>
 
+#include <QGuiApplication>
 #include <QIcon>
 #include <QMap>
+#include <QPair>
+#include <QPalette>
 
 #include <Key.h>
 #include <QQSize.h>
 #include <QQDir.h>
 
-#include "IconFactoryColorSet.h"
 
 class OZEXE_EXPORT IconFactory : public QObject
 {
@@ -29,11 +31,13 @@ public: // types
         ActiveOn    =   16 << QIcon::Active     | 8 << QIcon::On,
         SelectedOn  =   16 << QIcon::Selected   | 8 << QIcon::On,
     };
-    Q_DECLARE_FLAGS(Flags, Flag);
+    Q_DECLARE_FLAGS(Flags, Flag)
+
+    typedef QPair<Key, Flags> KeyModeState;
 
 public: // ctors
     explicit IconFactory(QObject *parent = nullptr);
-    IconFactory(const QDir &aBaseDir, QObject *parent = nullptr);
+    IconFactory(const QPalette &aPalette, QObject *parent = nullptr);
 
 public slots:
     void createIcon(const Key &aIconKey, const QQSize aSize);
@@ -42,22 +46,24 @@ signals:
     void iconCreated(const Key &aIconKey, const QIcon &aIcon);
 
 public: // const
-    const QDir baseDir() const;
+
+    const QPalette palette() const;
+
 
 public: // non-const
-    void set(const Flags aFlags, const IconFactoryColorSet &aColorSet);
-    bool baseDir(const QDir &aBaseDir);
+    void palette(const QPalette &aPalette);
 
 private: // const
     QByteArray generateSvg(const Key &aIconKey, const QQSize aSize, const Flag aFlag);
 
 private:
-    QQDir mBaseDir;
-    QMap<Flag, IconFactoryColorSet> mFlagColorSetMap;
+    QPalette mPalette = QGuiApplication::palette();
     QMap<Key, QByteArray> mKeySvgBytesMap;
     QMap<Key, QIcon> mKeyIconMap;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(IconFactory::Flags)
 
-inline const QDir IconFactory::baseDir() const { return mBaseDir; }
+inline const QPalette IconFactory::palette() const { return mPalette; }
+inline void IconFactory::palette(const QPalette &aPalette) { mPalette = aPalette; }
+

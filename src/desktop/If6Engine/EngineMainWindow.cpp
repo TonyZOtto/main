@@ -11,6 +11,7 @@
 #include <QPen>
 #include <QRect>
 #include <QStackedLayout>
+#include <QStyle>
 #include <QSlider>
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -61,29 +62,39 @@ void EngineMainWindow::initialize()
 void EngineMainWindow::setup()
 {
     setWindowTitle("INDIface Six Engine");
-    mpToolBar = addToolBar("Main");
-    Q_ASSERT(mpToolBar);
-    mpToolBar->addAction("&Splash");
-    mpToolBar->addAction("&Gallery");
-    mpToolBar->addAction("&Log");
-    mpToolBar->addAction("&Quit");
-    mpToolBar->show();
-
-    setCentralWidget(mpMainWidget);
-    setupMainStack(mpMainWidget->size());
+    setFixedSize(QSize(800, 600));
+    setupMainStack(size());
     mpMainWidget->setLayout(mpMainStack);
+    setCentralWidget(mpMainWidget);
+    mpToolBar = createToolBar();
     emit setuped();
 }
 
 void EngineMainWindow::setupMainStack(const QQSize aMaxSize)
 {
-    mpSplashPage = setupSplash(aMaxSize);
+    mpSplashPage = createSplashPage(aMaxSize);
     Q_ASSERT(mpMainStack);
     mpMainStack->addWidget(mpSplashPage);
     mpMainWidget->setLayout(mpMainStack);
+    mpMainStack->setCurrentWidget(mpSplashPage);
 }
 
-QWidget * EngineMainWindow::setupSplash(const QQSize aMaxSize)
+QToolBar *EngineMainWindow::createToolBar()
+{
+    QToolBar * result = addToolBar("Main");
+    Q_ASSERT(result);
+    result->addAction(styleIcon("Splash"), "&Splash");
+    result->addAction(styleIcon("Gallery"), "&Gallery");
+    result->addAction(styleIcon("Log"), "&Log");
+    result->addAction(styleIcon("Quit"), "&Quit");
+    result->setHidden(false);
+    result->setVisible(true);
+    result->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    result->show();
+    return result;
+}
+
+QWidget * EngineMainWindow::createSplashPage(const QQSize aMaxSize)
 {
     QWidget * result = new QWidget(this);
     Q_ASSERT(result);
@@ -96,7 +107,6 @@ QWidget * EngineMainWindow::setupSplash(const QQSize aMaxSize)
     Q_ASSERT(pIndiLabel);
     QQSize tEircSize(tEircPixmap.size(), cHalfSize);
     QQSize tIndiSize(tIndiPixmap.size(), cHalfSize);
-    tIndiPixmap = tIndiPixmap.scaledToWidth(tIndiSize.width());
     pEircLabel->setPixmap(tEircPixmap.scaledToWidth(tEircSize.width()));
     pIndiLabel->setPixmap(tIndiPixmap.scaledToWidth(tIndiSize.width()));
     QVBoxLayout * pBoxLayout = new QVBoxLayout(result);
@@ -108,33 +118,17 @@ QWidget * EngineMainWindow::setupSplash(const QQSize aMaxSize)
     return result;
 }
 
-QIcon EngineMainWindow::splashIcon(const QQSize aBaseSize) const
+QIcon EngineMainWindow::styleIcon(const Key aKey) const
 {
     QIcon result;
-    QQSize cSize = aBaseSize.square();
-    const int cWidth = cSize.width();
-    const int cHeight = cSize.height();
-    QPixmap tBasePixmap(cSize);
-    QRect tBaseRect(QPoint(0,0), cSize);
-    QPainterPath tBasePath;
-    tBasePath.moveTo(6,  2);
-    tBasePath.lineTo(cWidth - 6,  2);
-    tBasePath.arcTo(cWidth - 10, 2, 4, 4, 90, -90);
-    tBasePath.lineTo(cWidth - 6, cHeight - 6);
-    tBasePath.arcTo(cWidth - 10, cHeight - 10, 4, 4, 0, -90);
-    tBasePath.lineTo(6, cHeight - 6);
-    tBasePath.arcTo(2, cHeight - 10, 4, 4, 270, -90);
-    tBasePath.lineTo(2, 6);
-    tBasePath.arcTo(2, 2, 4, 4, 180, -90);
-    QBrush tTransparentBrush(Qt::transparent);
-    QBrush tBaseBrush(Qt::darkGray);
-    QPen tBlackPen(Qt::black);
-    QPainter tBasePainter(&tBasePixmap);
-    tBasePainter.fillRect(tBaseRect, tTransparentBrush);
-    tBasePainter.setPen(tBlackPen);
-    tBasePainter.setBrush(tBaseBrush);
-    tBasePainter.drawPath(tBasePath);
-    tBasePainter.end();
-    result.addPixmap(tBasePixmap);
+    QStyle * pStyle = QApplication::style();
+    if ("Splash" == aKey())
+        result = pStyle->standardIcon(QStyle::SP_DesktopIcon);
+    else if ("Gallery" == aKey())
+        result = pStyle->standardIcon(QStyle::SP_DirOpenIcon);
+    else if ("Log" == aKey())
+        result = pStyle->standardIcon(QStyle::SP_FileIcon);
+    else if ("Quit" == aKey())
+        result = pStyle->standardIcon(QStyle::SP_ArrowRight);
     return result;
 }

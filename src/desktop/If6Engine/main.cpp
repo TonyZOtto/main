@@ -16,9 +16,8 @@ int main(int argc, char *argv[])
     EngineApplication a(argc, argv);
     EngineMainWindow w;
     vi.set(&a);
-//    a.set(&vi);
     a.set(&w);
-    w.showMaximized();
-//    w.show();
+//    w.showMaximized();
+    w.show();
     return a.exec();
 }

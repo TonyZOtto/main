@@ -10,6 +10,7 @@ class QSlider;
 class QToolBar;
 class QWidget;
 
+#include <Key.h>
 #include <QQSize.h>
 
 class EngineApplication;
@@ -34,7 +35,6 @@ signals:
     void setuped();
 
 public: // const
-    QWidget splashPageWidget(const QQSize aMaxSize) const;
 
 public: // non-const
     QWidget showPage(const StackPage aPage);
@@ -44,8 +44,9 @@ public: // pointers
 
 private:
     void setupMainStack(const QQSize aMaxSize);
-    QWidget *setupSplash(const QQSize aMaxSize);
-    QIcon splashIcon(const QQSize aBaseSize=QQSize(64)) const;
+    QToolBar * createToolBar();
+    QWidget *createSplashPage(const QQSize aMaxSize);
+    QIcon styleIcon(const Key aKey) const;
 
 private:
     EngineApplication * mpApplication=nullptr;

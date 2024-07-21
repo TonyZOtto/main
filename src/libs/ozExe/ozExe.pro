@@ -20,7 +20,6 @@ SOURCES += \
 #    ConsoleStdIO.cpp \
 #    WidgetApplication.cpp \
     IconFactory.cpp \
-    IconFactoryColorSet.cpp \
     ozExe.cpp
 
 HEADERS += \
@@ -32,7 +31,6 @@ HEADERS += \
 #    ConsoleStdIO.h \
 #    WidgetApplication.h \
     IconFactory.h \
-    IconFactoryColorSet.h \
     ozExe.h \
     ozExe_global.h
 
