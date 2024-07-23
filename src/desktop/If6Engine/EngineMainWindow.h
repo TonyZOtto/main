@@ -30,6 +30,10 @@ public slots:
     void initialize();
     void setup();
 
+    void actSplashPage();
+    void actLogPage();
+    void actGalleryPage();
+
 signals:
     void initialized();
     void setuped();
@@ -65,4 +69,4 @@ private:
     QPixmap mIndiLogoPixmap;
 };
 
-inline EngineApplication *EngineMainWindow::application() { Q_CHECK_PTR(mpApplication); return mpApplication; }
+inline EngineApplication *EngineMainWindow::application() { Q_ASSERT(mpApplication); return mpApplication; }

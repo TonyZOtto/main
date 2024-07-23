@@ -14,10 +14,7 @@ int main(int argc, char *argv[])
     vi.legal(VER_LEGAL);
     vi.product(EIRVER_PRODUCT);
     EngineApplication a(argc, argv);
-    EngineMainWindow w;
     vi.set(&a);
-    a.set(&w);
-//    w.showMaximized();
-    w.show();
+    a.showMainWindow();
     return a.exec();
 }

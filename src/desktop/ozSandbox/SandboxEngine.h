@@ -68,6 +68,7 @@ private:
     ColorPhoto mSubjectPhoto;
     Grey16Photo mGrey16Photo;
     IndexPhoto mIndexPhoto;
+    IndexPhoto mNextIndexPhoto;
     QList<QRgb> mColorTable;
     ByteHistogram mGrey8Histogram;
 };

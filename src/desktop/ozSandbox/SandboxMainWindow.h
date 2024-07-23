@@ -50,9 +50,11 @@ public: // pointers
     QToolBar * toolBar();
 
 private slots:
-    void initializeActions();
     void setupActions();
-    void setupToolbar();
+    QToolBar * createToolBar();
+
+private:
+    QIcon styleIcon(const Key aKey) const;
 
 private:
     SandboxApplication * mpApplication=nullptr;
