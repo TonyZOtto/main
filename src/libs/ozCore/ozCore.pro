@@ -23,6 +23,7 @@ SOURCES += \
     QQDir.cpp \
     QQObject.cpp \
     QQPoint.cpp \
+    QQRect.cpp \
     QQSize.cpp \
     QQStringList.cpp \
     Rational.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     QQDir.h \
     QQObject.h \
     QQPoint.h \
+    QQRect.h \
     QQSize.h \
     QQStringList.h \
     Rational.h \

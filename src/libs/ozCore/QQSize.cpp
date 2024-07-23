@@ -4,10 +4,11 @@
 
 QQSize::QQSize(const QQSize aBaseSize, const QQSize aFitSize)
 {
-    if (isWider())
-        set(aFitSize.width(), aBaseSize.aspect());
+    const QQSize cMinSize = aBaseSize.min(aFitSize);
+    if (aFitSize.isWider())
+        set(cMinSize.width(), aFitSize.aspect());
     else
-        set(aBaseSize.aspect(), aFitSize.height());
+        set(aFitSize.aspect(), cMinSize.height());
 }
 
 int QQSize::area() const
@@ -23,6 +24,28 @@ int QQSize::max() const
 int QQSize::min() const
 {
     return qMin(width(), height());
+}
+
+QQSize QQSize::max(const QQSize other) const
+{
+    QQSize result;
+    if (isValid() && other.isValid())
+    {
+        result.width( qMax(width(),  other.width()));
+        result.height(qMax(height(), other.height()));
+    }
+    return result;
+}
+
+QQSize QQSize::min(const QQSize other) const
+{
+    QQSize result;
+    if (isValid() && other.isValid())
+    {
+        result.width( qMin(width(),  other.width()));
+        result.height(qMin(height(), other.height()));
+    }
+    return result;
 }
 
 Rational QQSize::aspect() const
@@ -81,6 +104,18 @@ signed int QQSize::factor(const QQSize rhs) const
         result = qMax(tWidthFactor.ratio(), tHeightFactor.ratio());
     }
     return result;
+}
+
+QQSize QQSize::width(const int aWidth)
+{
+    setWidth(aWidth);
+    return *this;
+}
+
+QQSize QQSize::height(const int aHeight)
+{
+    setHeight(aHeight);
+    return *this;
 }
 
 QQSize QQSize::set(const int aWidth, const int aHeight)

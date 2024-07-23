@@ -2,6 +2,7 @@
 #include "ozPhoto.h"
 
 #include <QImage>
+#include <QPixmap>
 
 #include <QQPoint.h>
 #include <QQSize.h>
@@ -13,6 +14,7 @@ class OZPHOTO_EXPORT BasePhoto
 public: // ctors
     BasePhoto();
     BasePhoto(const Photo::Type aType, const QImage &aQImage);
+    BasePhoto(const Photo::Type aType, const QPixmap &aPixmap);
     BasePhoto(const BasePhoto &other);
 
 public: // const

@@ -1,4 +1,5 @@
-QT += gui
+QT += gui \
+    widgets
 TEMPLATE = lib
 DEFINES += OZPHOTO_LIBRARY
 CONFIG += c++17
@@ -17,6 +18,8 @@ SOURCES += \
     GreyPhoto.cpp \
     IndexPhoto.cpp \
     Photo.cpp \
+    PhotoGallery.cpp \
+    PixmapStack.cpp \
     ozPhoto.cpp
 
 HEADERS += \
@@ -28,6 +31,8 @@ HEADERS += \
     GreyPhoto.h \
     IndexPhoto.h \
     Photo.h \
+    PhotoGallery.h \
+    PixmapStack.h \
     ozPhoto_global.h \
     ozPhoto.h
 

@@ -1,9 +1,9 @@
 <RCC>
-    <qresource prefix="/image/logo/ico">
+    <qresource prefix="/image/logo/png">
         <file>EclipseIRLogo.png</file>
         <file>INDI200.png</file>
     </qresource>
-    <qresource prefix="/image/logo/ic">
+    <qresource prefix="/image/logo/ico">
         <file>INDIonly64.ico</file>
     </qresource>
 </RCC>

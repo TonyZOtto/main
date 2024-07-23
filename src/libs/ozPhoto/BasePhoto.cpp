@@ -6,6 +6,9 @@ BasePhoto::BasePhoto() : mType(Photo::$null) {;}
 BasePhoto::BasePhoto(const Photo::Type aType, const QImage &aQImage)
     : mType(aType)
     , mBaseImage(aQImage.convertedTo(Photo::qformat(type()))) {;}
+BasePhoto::BasePhoto(const Photo::Type aType, const QPixmap &aPixmap)
+    : mType(aType)
+    , mBaseImage(aPixmap.toImage().convertedTo(Photo::qformat(type()))) {;}
 BasePhoto::BasePhoto(const BasePhoto &other)
     : mType(other.type())
     , mBaseImage(other.baseImage().convertedTo(Photo::qformat(type()))) {;}

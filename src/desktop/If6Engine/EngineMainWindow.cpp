@@ -10,6 +10,7 @@
 #include <QPainterPath>
 #include <QPen>
 #include <QRect>
+#include <QResizeEvent>
 #include <QStackedLayout>
 #include <QStyle>
 #include <QSlider>
@@ -37,12 +38,12 @@ EngineMainWindow::~EngineMainWindow()
 void EngineMainWindow::initialize()
 {
     mpMainWidget = new QWidget(this);
-    mpMainStack = new QStackedLayout(this);
-    mpLogPageGrid = new QGridLayout(this);
-    mpGalleryPageGrid = new QGridLayout(this);
-    mpSplashPage = new QWidget(this);
-    mpGalleryPage = new QWidget(this);
-    mpLogPage = new QWidget(this);
+    mpMainStack = new QStackedLayout();
+    mpLogPageGrid = new QGridLayout();
+    mpGalleryPageGrid = new QGridLayout();
+    mpSplashPage = new QWidget();
+    mpGalleryPage = new QWidget();
+    mpLogPage = new QWidget();
     mpLogDockWidget = new QDockWidget(this);
     mpLogSlider = new QSlider(this);
     mpGallerySlider = new QSlider(this);
@@ -74,7 +75,6 @@ void EngineMainWindow::initialize()
 void EngineMainWindow::setup()
 {
     setWindowTitle("INDIface Six Engine");
-    setFixedSize(QSize(800, 600));
     setupMainStack(size());
     Q_ASSERT(mpMainWidget);
     setCentralWidget(mpMainWidget);
@@ -102,6 +102,15 @@ void EngineMainWindow::actGalleryPage()
     Q_ASSERT(mpMainStack);
     Q_ASSERT(mpGalleryPage);
     mpMainStack->setCurrentWidget(mpGalleryPage);
+}
+
+void EngineMainWindow::resizeEvent(QResizeEvent *event)
+{
+    if (mCurrentSize != event->size())
+    {
+        mCurrentSize = event->size();
+        emit resized(mCurrentSize);
+    }
 }
 
 void EngineMainWindow::setupMainStack(const QQSize aMaxSize)
@@ -158,8 +167,8 @@ QWidget * EngineMainWindow::createSplashPage(const QQSize aMaxSize)
     QVBoxLayout * pBoxLayout = new QVBoxLayout(result);
     Q_ASSERT(pBoxLayout);
     pIndiLabel->setObjectName("createSplashPage():BoxLayout");
-    pBoxLayout->addWidget(pEircLabel);
-    pBoxLayout->addWidget(pIndiLabel);
+    pBoxLayout->addWidget(pEircLabel, Qt::AlignCenter);
+    pBoxLayout->addWidget(pIndiLabel, Qt::AlignCenter);
     result->setFixedSize(aMaxSize);
     result->setLayout(pBoxLayout);
     return result;

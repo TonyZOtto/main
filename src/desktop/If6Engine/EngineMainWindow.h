@@ -37,6 +37,7 @@ public slots:
 signals:
     void initialized();
     void setuped();
+    void resized(const QSize aSize);
 
 public: // const
 
@@ -47,6 +48,7 @@ public: // pointers
     EngineApplication * application();
 
 private:
+    void resizeEvent(QResizeEvent * event) override;
     void setupMainStack(const QQSize aMaxSize);
     QToolBar * createToolBar();
     QWidget *createSplashPage(const QQSize aMaxSize);
@@ -55,6 +57,7 @@ private:
 private:
     EngineApplication * mpApplication=nullptr;
     QWidget * mpMainWidget=nullptr;
+    QQSize mCurrentSize;
     QStackedLayout * mpMainStack=nullptr;
     QToolBar * mpToolBar=nullptr;
     QGridLayout * mpLogPageGrid=nullptr;

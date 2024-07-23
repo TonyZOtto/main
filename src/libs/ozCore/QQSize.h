@@ -17,9 +17,14 @@ public: // ctors
     QQSize(const QSize other) : QSize(other) {;}
 
 public: // const
+    int width() const;
+    int height() const;
     int area() const;
     int max() const;
     int min() const;
+    bool notEmpty() const { return ! isEmpty(); }
+    QQSize max(const QQSize other) const;
+    QQSize min(const QQSize other) const;
     Rational aspect() const;
     Rational scaleOf(const QQSize other) const;
     QQSize square() const;
@@ -30,8 +35,12 @@ public: // const
     signed factor(const QQSize rhs) const;
 
 public: // non-const
+    QQSize width(const int aWidth);
+    QQSize height(const int aHeight);
     QQSize set(const int aWidth, const int aHeight);
     QQSize set(const int aWidth, const Rational aAspect);
     QQSize set(const Rational aAspect, const int aHeight);
-
 };
+
+inline int QQSize::width() const {  return QSize::width(); }
+inline int QQSize::height() const { return QSize::height(); }

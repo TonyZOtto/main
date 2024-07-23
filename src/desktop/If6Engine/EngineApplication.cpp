@@ -28,5 +28,5 @@ void EngineApplication::actQuit()
 
 void EngineApplication::showMainWindow()
 {
-    mainWindow()->show();
+    mainWindow()->showMaximized();
 }
