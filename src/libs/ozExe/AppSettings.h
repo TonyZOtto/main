@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+class QSettings;
+
 class OZEXE_EXPORT AppSettings : public QObject
 {
     Q_OBJECT
@@ -22,5 +24,5 @@ public: // non-const
 public: // pointers
 
 private:
-
+    QSettings * mpSettings=nullptr;
 };

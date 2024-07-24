@@ -3,9 +3,14 @@
 #include <QCoreApplication>
 #include <QObject>
 
+class ApplicationHelper;
+
 class ConsoleApplication : public QCoreApplication
 {
     Q_OBJECT
 public:
-    ConsoleApplication();
+    ConsoleApplication(int &argc, char **argv);
+
+private:
+    ApplicationHelper * mpHelper=nullptr;
 };

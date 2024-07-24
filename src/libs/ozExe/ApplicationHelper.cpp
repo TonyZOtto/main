@@ -4,29 +4,51 @@
 #include <QCoreApplication>
 #include <QGuiApplication>
 
+#include "AppSettings.h"
 #include "CommandLine.h"
+#include "ConsoleApplication.h"
+#include "GuiApplication.h"
+#include "WidgetApplication.h"
 
 ApplicationHelper::ApplicationHelper(WidgetApplication *parent)
-    : mpWidgetApplication(parent)
-    , mType(App)
+    : QObject(parent)
+    , mpWidgetApplication(parent)
+    , mpCommandLine(new CommandLine(this))
+    , mpAppSettings(new AppSettings(this))
+    , mType(Widget)
 {
     setObjectName("ApplicationHelper:WidgetApplication");
 }
 
 ApplicationHelper::ApplicationHelper(ConsoleApplication *parent)
-    : mpConsoleApplication(parent)
+    : QObject(parent)
+    , mpConsoleApplication(parent)
+    , mpCommandLine(new CommandLine(this))
+    , mpAppSettings(new AppSettings(this))
     , mType(Core)
 {
     setObjectName("ApplicationHelper:ConsoleApplication");
-
 }
 
 ApplicationHelper::ApplicationHelper(GuiApplication *parent)
-    : mpGuiApplication(parent)
+    : QObject(parent)
+    , mpGuiApplication(parent)
+    , mpCommandLine(new CommandLine(this))
     , mType(Gui)
 {
     setObjectName("ApplicationHelper:GuiApplication");
+}
 
+QCoreApplication *ApplicationHelper::core()
+{
+    QCoreApplication * result=nullptr;
+    if (mpConsoleApplication)
+        result = mpConsoleApplication;
+    else if (mpGuiApplication)
+        result = mpGuiApplication;
+    else if (mpWidgetApplication)
+        result = mpWidgetApplication;
+    return result;
 }
 
 ConsoleApplication *ApplicationHelper::consoleApp()
