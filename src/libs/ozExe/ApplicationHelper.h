@@ -4,11 +4,11 @@
 #include <QObject>
 class CommandLine;
 class AppSettings;
-class QApplication;
-class QCoreApplication;
-class QGuiApplication;
 
 #include <VersionInfo.h>
+class WidgetApplication;
+class ConsoleApplication;
+class GuiApplication;
 
 class OZEXE_EXPORT ApplicationHelper : public QObject
 {
@@ -18,9 +18,9 @@ public:
     Q_ENUM(Type)
 
 public:
-    explicit ApplicationHelper(QApplication *parent);
-    explicit ApplicationHelper(QCoreApplication *parent);
-    explicit ApplicationHelper(QGuiApplication *parent);
+    explicit ApplicationHelper(WidgetApplication *parent);
+    explicit ApplicationHelper(ConsoleApplication *parent);
+    explicit ApplicationHelper(GuiApplication *parent);
 
 public slots:
 
@@ -33,16 +33,16 @@ public: // non-const
     void set(const VersionInfo vi);
 
 public: // pointers
-    QCoreApplication * core();
-    QGuiApplication * gui();
-    QApplication * app();
+    ConsoleApplication * consoleApp();
+    GuiApplication * guiApp();
+    WidgetApplication * widgetApp();
     CommandLine * commandLine();
     AppSettings * appSettings();
 
 private:
-    QApplication * mpQApplication=nullptr;
-    QCoreApplication * mpQCoreApplication=nullptr;
-    QGuiApplication * mpQGuiApplication=nullptr;
+    WidgetApplication * mpWidgetApplication=nullptr;
+    ConsoleApplication * mpConsoleApplication=nullptr;
+    GuiApplication * mpGuiApplication=nullptr;
     CommandLine * mpCommandLine=nullptr;
     AppSettings * mpAppSettings=nullptr;
     VersionInfo mVersionInfo;

@@ -6,61 +6,52 @@
 
 #include "CommandLine.h"
 
-ApplicationHelper::ApplicationHelper(QApplication *parent)
-    : mpQApplication(parent)
+ApplicationHelper::ApplicationHelper(WidgetApplication *parent)
+    : mpWidgetApplication(parent)
     , mType(App)
 {
-    setObjectName("ApplicationHelper:QApplication");
+    setObjectName("ApplicationHelper:WidgetApplication");
 }
 
-ApplicationHelper::ApplicationHelper(QCoreApplication *parent)
-    : mpQCoreApplication(parent)
+ApplicationHelper::ApplicationHelper(ConsoleApplication *parent)
+    : mpConsoleApplication(parent)
     , mType(Core)
 {
-    setObjectName("ApplicationHelper:QCoreApplication");
+    setObjectName("ApplicationHelper:ConsoleApplication");
 
 }
 
-ApplicationHelper::ApplicationHelper(QGuiApplication *parent)
-    : mpQGuiApplication(parent)
+ApplicationHelper::ApplicationHelper(GuiApplication *parent)
+    : mpGuiApplication(parent)
     , mType(Gui)
 {
-    setObjectName("ApplicationHelper:QGuiApplication");
+    setObjectName("ApplicationHelper:GuiApplication");
 
 }
 
-QCoreApplication *ApplicationHelper::core()
+ConsoleApplication *ApplicationHelper::consoleApp()
 {
-    QCoreApplication * result = nullptr;
-    if (nullptr != mpQApplication)
-        result = mpQApplication;
-    else if (nullptr != mpQCoreApplication)
-        result = mpQCoreApplication;
-    else if (nullptr != mpQGuiApplication)
-        result = mpQGuiApplication;
-    // else still nullptr
+    ConsoleApplication * result = nullptr;
+    if (nullptr != mpConsoleApplication)
+        result = mpConsoleApplication;
     Q_CHECK_PTR(result);
     return result;
 }
 
-QGuiApplication *ApplicationHelper::gui()
+GuiApplication *ApplicationHelper::guiApp()
 {
-    QGuiApplication * result = nullptr;
-    if (nullptr != mpQApplication)
-        result = mpQApplication;
-    else if (nullptr != mpQGuiApplication)
-        result = mpQGuiApplication;
-    // else still nullptr
+    GuiApplication * result = nullptr;
+    if (nullptr != mpGuiApplication)
+        result = mpGuiApplication;
     Q_CHECK_PTR(result);
     return result;
 }
 
-QApplication *ApplicationHelper::app()
+WidgetApplication *ApplicationHelper::widgetApp()
 {
-    QApplication * result = nullptr;
-    if (nullptr != mpQApplication)
-        result = mpQApplication;
-    // else still nullptr
+    WidgetApplication * result = nullptr;
+    if (nullptr != mpWidgetApplication)
+        result = mpWidgetApplication;
     Q_CHECK_PTR(result);
     return result;
 }

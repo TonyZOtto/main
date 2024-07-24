@@ -16,23 +16,19 @@ class OZEXE_EXPORT CommandLine : public QObject
 {
     Q_OBJECT
 public: // types
-    typedef QList<QCommandLineOption> OptionList;
 
 public: // ctors
     explicit CommandLine(int argc, char *argv[]);
+    CommandLine(int argc, char *argv[]);
 
 public: // const
-    const QCommandLineOption option(const QString &name) const;
-    const OptionList options() const;
     const QStringList rawArgumentList() const;
     const QStringList positionalArguments() const;
+    const SettingsName settingsName() const;
     const SettingsName::List settingsNameList() const;
     const KeyMap settingValues() const;
 
 public: // non-const
-    void addOption(const QCommandLineOption &opt);
-    void addOptions(const OptionList &opts);
-    void set(const OptionList &opts);
     void process();
 
 private: // non-const
@@ -54,7 +50,6 @@ signals:
 private:
     const QString cmExeFileName;
     const QStringList cmRawArgumentList;
-    OptionList mOptionList;
     QStringList mCommandArguments;
     QStringList mPositionalArguments;
     SettingsName::List mSettingsNameList;

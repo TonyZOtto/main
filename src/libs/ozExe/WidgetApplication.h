@@ -1,19 +1,11 @@
 #pragma once
-#include "ozExe.h"
 
+#include <QApplication>
 #include <QObject>
-#include "BaseApplication.h"
 
-class OZEXE_EXPORT WidgetApplication : public BaseApplication
+class WidgetApplication : public QApplication
 {
     Q_OBJECT
-protected: // ctors
-    WidgetApplication(int argc, char *argv[]);
-
-
-protected: // non-const
-    void initialize();
-    void configure();
-    void start();
-    void finish();
+public:
+    WidgetApplication();
 };

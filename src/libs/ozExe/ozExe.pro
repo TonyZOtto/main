@@ -19,7 +19,10 @@ SOURCES += \
 #    ConsoleApplication.cpp \
 #    ConsoleStdIO.cpp \
 #    WidgetApplication.cpp \
+    ConsoleApplication.cpp \
+    GuiApplication.cpp \
     IconFactory.cpp \
+    WidgetApplication.cpp \
     ozExe.cpp
 
 HEADERS += \
@@ -30,7 +33,10 @@ HEADERS += \
 #    ConsoleApplication.h \
 #    ConsoleStdIO.h \
 #    WidgetApplication.h \
+    ConsoleApplication.h \
+    GuiApplication.h \
     IconFactory.h \
+    WidgetApplication.h \
     ozExe.h \
     ozExe_global.h
 
