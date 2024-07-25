@@ -12,6 +12,7 @@ SOURCES += \
     FileInfo.cpp \
     FunctionInfo.cpp \
     LogItem.cpp \
+    LogObject.cpp \
     Logger.cpp \
     ozLog.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     Log.h \
     LogItem.h \
     LogMacros.h \
+    LogObject.h \
     Logger.h \
     ozLog_global.h \
     ozLog.h

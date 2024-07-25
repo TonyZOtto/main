@@ -3,9 +3,9 @@ message(------------/src/version.pri)
 
 OZVER_MAJOR        = 6
 OZVER_MINOR        = 90
-OZVER_BRANCH       = 0
+OZVER_BRANCH       = 30
 OZVER_RELEASE      = 1
-OZVER_STRING       = "v6.90A"
+OZVER_STRING       = "v6.90A+0030-Log"
 OZVER_COMPANY      = "ottoZcode"
 OZVER_ORGNAME      = "ottoZcode"
 EIRVER_APPNAME      = "EIRC INDIface6 Engine"
