@@ -7,5 +7,5 @@ class GuiApplication : public QGuiApplication
 {
     Q_OBJECT
 public:
-    GuiApplication();
+    GuiApplication(int &argc, char **argv);
 };

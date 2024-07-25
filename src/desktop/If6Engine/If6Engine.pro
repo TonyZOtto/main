@@ -14,6 +14,7 @@ SOURCES += \
     EngineMainWindow.cpp
 
 HEADERS += \
+    ../../version.h \
     EngineApplication.h \
     EngineMainWindow.h \
     version.h

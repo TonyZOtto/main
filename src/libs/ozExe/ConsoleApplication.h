@@ -7,5 +7,5 @@ class ConsoleApplication : public QCoreApplication
 {
     Q_OBJECT
 public:
-    ConsoleApplication();
+    ConsoleApplication(int &argc, char **argv);
 };
