@@ -5,8 +5,19 @@
 
 #include "Types.h"
 
-SettingsName::SettingsName() : mType($null), mSystemScope(false) {;}
-SettingsName::SettingsName(const QString &name, const bool okNotExist) { set(name, okNotExist); }
+SettingsName::SettingsName()
+    : mType($null)
+    , mSystemScope(false)
+    , mOrgName(QCoreApplication::organizationName())
+    , mAppName(QCoreApplication::applicationName()) {;}
+SettingsName::SettingsName(const QString &name,
+                           const bool okNotExist)
+    { set(name, okNotExist); }
+
+bool SettingsName::isValid() const
+{
+    return mType != $null;
+}
 
 QSettings::Scope SettingsName::scope() const
 {
@@ -30,14 +41,15 @@ SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 
 SettingsName::Type SettingsName::setFileName(const QString &s, const bool okNotExist)
 {
-    Type result = UnknownFile;
+    Type result = $null;
     QFileInfo tFI(s);
     if (tFI.exists() || okNotExist)
     {
-        if (tFI.suffix().isEmpty())                 result = $null;
-        else if (tFI.suffix().toUpper() == "INI")    result = IniFile;
-        else if (tFI.suffix().toUpper() == "JSON")   result = JsonFile;
-        else if (tFI.suffix().toUpper() == "XML")    result = XmlFile;
+        if (tFI.suffix().isEmpty())                 result = UnknownFile;
+        else if (tFI.suffix().toUpper() == "INI")   result = IniFile;
+        else if (tFI.suffix().toUpper() == "JSON")  result = JsonFile;
+        else if (tFI.suffix().toUpper() == "XML")   result = XmlFile;
+        else                                        result = UnknownFile;
     }
     if (result != $null)
     {

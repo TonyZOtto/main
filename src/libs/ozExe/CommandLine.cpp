@@ -1,10 +1,15 @@
 #include "CommandLine.h"
 
+#include <QByteArray>
+#include <QByteArrayList>
 #include <QCoreApplication>
+#include <QFile>
 #include <QFileInfo>
+#include <QVariant>
 
 
 #include "ApplicationHelper.h"
+#include "SettingsName.h"
 
 CommandLine::CommandLine(ApplicationHelper *parent)
     : QObject(parent)
@@ -35,8 +40,10 @@ CommandLine::CommandLine(int argc, char *argv[], ApplicationHelper * parent)
 
 void CommandLine::process()
 {
-    foreach (const QString cArg, cmRawArgumentList.mid(1))
+    mProcessingArguments = cmRawArgumentList.mid(1);
+    while ( ! mProcessingArguments.isEmpty())
     {
+        const QString cArg = mProcessingArguments.takeFirst();
         emit processing(cArg);
         if (cArg.startsWith('@'))
             processIncludeFile(cArg.mid(1));
@@ -52,17 +59,52 @@ void CommandLine::process()
 
 void CommandLine::processIncludeFile(const QString atsArg)
 {
-
+    QFile * pCommandFile = new QFile(atsArg, parent());
+    Q_ASSERT(pCommandFile);
+    if (pCommandFile->open(QIODevice::ReadOnly
+                           | QIODevice::Text))
+    {
+        QByteArray tBytes = pCommandFile->readAll();
+        QByteArrayList tByteLines = tBytes.split('\n');
+        pCommandFile->close();
+        pCommandFile->deleteLater();
+        foreach (QByteArray tLine, tByteLines)
+        {
+            if (tLine.endsWith('\r'))
+                tLine.chop(1);
+            mProcessingArguments.prepend(tLine);
+        }
+    }
 }
 
 void CommandLine::processSettingValue(const QString dlrArg)
 {
-
+    const Index cEqualsIndex = dlrArg.indexOf('=');
+    Key tKey;
+    QVariant tValue;
+    if (cEqualsIndex < 0)
+    {
+        tKey.set(dlrArg);
+        tValue = true;
+    }
+    else if (cEqualsIndex == dlrArg.count() - 1)
+    {   // trailing '='
+        tKey.set(dlrArg.chopped(1));
+        tValue = QString();
+    }
+    else
+    {
+        tKey.set(dlrArg.left(cEqualsIndex - 1));
+        tValue = dlrArg.mid(cEqualsIndex + 1);
+    }
+    mSettingValuesMap.insert(tKey, tValue);
 }
 
 void CommandLine::processSettingsName(const QString pctArg)
 {
-
+    const SettingsName cSName(pctArg);
+    if (cSName.type() != SettingsName::$null)
+        mSettingsName = cSName;
 }
 
 // static

@@ -7,7 +7,8 @@
 #include <QList>
 #include <QStringList>
 
-#include "KeyMap.h"
+#include <KeyMap.h>
+
 #include "SettingsName.h"
 class ApplicationHelper;
 
@@ -50,6 +51,7 @@ private:
     ApplicationHelper * mpHelper=nullptr;
     const QStringList cmRawArgumentList;
     const QFileInfo cmExeFileInfo;
+    QStringList mProcessingArguments;
     QStringList mPositionalArguments;
     QFileInfoList mPositionalFileInfos;
     SettingsName mSettingsName;
