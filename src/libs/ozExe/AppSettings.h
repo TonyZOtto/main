@@ -30,7 +30,7 @@ public slots:
     void pause();
     void resume();
     void finish();
-    void close();
+    void close(const bool writeFirst=false);
 
 signals:
     void opened(const SettingsName &aName);
@@ -68,6 +68,8 @@ public: // non-const
     bool read();
     bool write(const bool all=false);
     SettingsItem get(const Key &aKey);
+    bool defalt(const Key &aKey, const QVariant &aDefValue);
+    bool set(const Key &aKey, const QVariant &aNewValue);
     bool set(const SettingsItem &aItem);
     void set(const KeyMap &aMap);
     void set(const Key aGroupKey, const KeyMap &aMap);

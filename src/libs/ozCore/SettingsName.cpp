@@ -24,6 +24,16 @@ QSettings::Scope SettingsName::scope() const
     return systemScope() ? QSettings::SystemScope : QSettings::UserScope;
 }
 
+void SettingsName::clear()
+{
+    mString.clear(),
+    mType = $null,
+    mSystemScope = false,
+    mFileInfo = QFileInfo(),
+    mOrgName.clear(),
+    mAppName.clear();
+}
+
 SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 {
     QString tName = name;
