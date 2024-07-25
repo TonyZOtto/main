@@ -22,6 +22,7 @@ SOURCES += \
     ConsoleApplication.cpp \
     GuiApplication.cpp \
     IconFactory.cpp \
+    SettingsItem.cpp \
     WidgetApplication.cpp \
     ozExe.cpp
 
@@ -36,6 +37,7 @@ HEADERS += \
     ConsoleApplication.h \
     GuiApplication.h \
     IconFactory.h \
+    SettingsItem.h \
     WidgetApplication.h \
     ozExe.h \
     ozExe_global.h

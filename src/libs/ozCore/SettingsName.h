@@ -27,6 +27,7 @@ public: // ctors
 
 public: // const
     Type type() const;
+    bool isValid() const;
     bool systemScope() const;
     QSettings::Scope scope() const;
     QFileInfo fileInfo() const;

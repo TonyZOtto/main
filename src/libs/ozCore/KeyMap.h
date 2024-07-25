@@ -1,3 +1,4 @@
+#pragma once
 #include "ozCore.h"
 
 #include <QMap>
@@ -10,7 +11,8 @@ class OZCORE_EXPORT KeyMap : public QMap<Key, QVariant>
 public:
     KeyMap();
 
-
+private:
+    // mKeyValueMap;
 };
 
 
