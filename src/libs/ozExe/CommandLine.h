@@ -18,7 +18,7 @@ class OZEXE_EXPORT CommandLine : public QObject
 public: // types
 
 public: // ctors
-    explicit CommandLine(int argc, char *argv[]);
+    explicit CommandLine();
     CommandLine(int argc, char *argv[]);
 
 public: // const
