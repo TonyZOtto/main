@@ -5,8 +5,8 @@
 class SettingsItemData : public QSharedData
 {
 public:
-    SettingsItem::Flags     dFlags;
     Key                     dKey;
+    SettingsItem::Flags     dFlags;
     QVariant                dCurrentValue;
     QVariant                dDefaltValue;
     QVariant                dPreviousValue;

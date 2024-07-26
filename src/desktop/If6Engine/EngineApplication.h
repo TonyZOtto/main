@@ -4,11 +4,14 @@
 
 #include <VersionInfo.h>
 
+#include "EngineModule.h"
 class EngineMainWindow;
 
 class EngineApplication : public QApplication
 {
     Q_OBJECT
+public: // types
+
 public: // ctors
     EngineApplication(int &argc, char **argv);
 
@@ -29,6 +32,7 @@ public: // pointers
 
 private:
     EngineMainWindow * mpMainWindow=nullptr;
+    EngineModule::List mModuleList;
 };
 
 inline EngineMainWindow *EngineApplication::mainWindow()  { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
