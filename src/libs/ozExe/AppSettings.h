@@ -43,6 +43,9 @@ signals:
     void updated(const Key &aKey,
                  const QVariant &aNewValue,
                  const QVariant &aOldValue);
+    void watched(const Key &aKey,
+                 const QVariant &aNewValue,
+                 const QVariant &aOldValue);
     void seted(const Key &aKey,
                 const QVariant &aNewValue);
     void readed(const SettingsName &aSName,
@@ -69,10 +72,15 @@ public: // non-const
     bool write(const bool all=false);
     SettingsItem get(const Key &aKey);
     bool defalt(const Key &aKey, const QVariant &aDefValue);
+    bool defalt(const Key &aKey);
+    bool defalt(const Key::List &aKeyList);
     bool set(const Key &aKey, const QVariant &aNewValue);
     bool set(const SettingsItem &aItem);
     void set(const KeyMap &aMap);
+    void defalt(const KeyMap &aMap);
     void set(const Key aGroupKey, const KeyMap &aMap);
+    void defalt(const Key aGroupKey, const KeyMap &aMap);
+    void watch(const Key aKey);
 
 public: // pointers
 
@@ -83,6 +91,7 @@ private:
     EpochMilliseconds mUpdateMsec=0;
     bool mIsPaused=false;
     QMutex mReadWriteMutex;
+    Key::List mWatchKeyList;
     QMap<Key, SettingsItem> mKeyItemMap;
 };
 

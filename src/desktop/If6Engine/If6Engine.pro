@@ -10,12 +10,20 @@ include(../../useCore.pri)
 
 SOURCES += \
     EngineApplication.cpp \
+    EngineModule.cpp \
+    FaceDetectionModule.cpp \
+    InputModule.cpp \
+    OutputModule.cpp \
     main.cpp \
     EngineMainWindow.cpp
 
 HEADERS += \
     EngineApplication.h \
     EngineMainWindow.h \
+    EngineModule.h \
+    FaceDetectionModule.h \
+    InputModule.h \
+    OutputModule.h \
     version.h
 
 # Default rules for deployment.

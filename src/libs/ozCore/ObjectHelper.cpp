@@ -62,6 +62,15 @@ bool ObjectHelper::enumIsFlags(const QString &enumName) const
     return result;
 }
 
+QString ObjectHelper::enumKey(const QString &enumName, const int value) const
+{
+    QString result;
+    const QMetaEnum cMetaEnum = metaEnum(enumName);
+    if (cMetaEnum.isValid())
+        result = cMetaEnum.valueToKey(value);
+    return result;
+}
+
 int ObjectHelper::enumValue(const QString &enumName, const QString &key) const
 {
     int result = -2;

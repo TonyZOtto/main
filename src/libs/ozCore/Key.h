@@ -18,9 +18,12 @@ public: // ctors
     Key(const char * pch) { set(pch); }
     Key(const AText &atx) { set(atx); }
     Key(const QString &qs) { set(qs); }
+    Key(const KeySeg::List &segs) : mSegments(segs) {;}
 
 public: // const
     KeySeg last() const;
+    Key prepended(const Key &groupKey) const;
+    Key prepended(const KeySeg &seg) const;
     QString toString() const;
     operator QString() const { return toString(); }
     QString operator () () const { return toString(); }

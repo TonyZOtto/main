@@ -5,6 +5,22 @@ KeySeg Key::last() const
     return mSegments.last();
 }
 
+Key Key::prepended(const Key &groupKey) const
+{
+    KeySeg::List tSegs = mSegments;
+    KeySeg::List tGrpK = groupKey.mSegments;
+    while ( ! tGrpK.isEmpty())
+        tSegs.prepend(tGrpK.takeLast());
+    return tSegs;
+}
+
+Key Key::prepended(const KeySeg &seg) const
+{
+    KeySeg::List tSegs = mSegments;
+    tSegs.prepend(seg);
+    return tSegs;
+}
+
 QString Key::toString() const
 {
     return joinString(mSegments);

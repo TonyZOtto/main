@@ -23,7 +23,6 @@ public: // ctors
     Success();  // invalid
     operator = (const bool aIs);
 
-
 public: // const
     bool test() const;
     operator bool () const { return isTrue(); }

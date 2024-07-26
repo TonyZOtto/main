@@ -3,6 +3,7 @@
 #include <QTimer>
 
 #include "EngineMainWindow.h"
+#include "EngineModule.h"
 
 EngineApplication::EngineApplication(int &argc, char **argv)
     : QApplication(argc, argv)
@@ -14,6 +15,10 @@ EngineApplication::EngineApplication(int &argc, char **argv)
 
 void EngineApplication::initialize()
 {
+    for (int mix = EngineModule::$nullModule;
+         mix < EngineModule::$maxModule;
+         mix++)
+        mModuleList.append(new EngineModule(EngineModule::Module(mix), this));
     connect(this, &EngineApplication::initialized,
             mainWindow(), &EngineMainWindow::initialize);
     connect(mainWindow(), &EngineMainWindow::initialized,
