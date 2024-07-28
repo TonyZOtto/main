@@ -1,6 +1,5 @@
 #include "KeyMap.h"
 
-KeyMap::KeyMap() {}
 
 KeyMap::KeyMap(const EntryList entries)
 {

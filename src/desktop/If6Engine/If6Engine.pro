@@ -9,6 +9,8 @@ include(../desktop.pri)
 include(../../useCore.pri)
 
 SOURCES += \
+    BaseEngineTask.cpp \
+    BaseEngineThread.cpp \
     EngineApplication.cpp \
     EngineModule.cpp \
     FaceDetectionModule.cpp \
@@ -18,6 +20,8 @@ SOURCES += \
     EngineMainWindow.cpp
 
 HEADERS += \
+    BaseEngineTask.h \
+    BaseEngineThread.h \
     EngineApplication.h \
     EngineMainWindow.h \
     EngineModule.h \
