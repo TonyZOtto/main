@@ -6,6 +6,8 @@
 #include <Ident.h>
 #include <KeyMap.h>
 
+#include <BasePhoto.h>
+
 #include "INDIframe.h"
 
 class INDIFACE6_EXPORT FrameData

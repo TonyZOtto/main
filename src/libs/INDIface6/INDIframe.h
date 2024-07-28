@@ -8,7 +8,7 @@ class INDIframe : public QObject
 public: // types
     enum Class
     {
-        $nullKlass = 0,
+        $nullClass = 0,
         Input,
         Capture,
         Marked,

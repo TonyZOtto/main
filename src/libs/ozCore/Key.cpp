@@ -1,5 +1,10 @@
 #include "Key.h"
 
+bool Key::isNull() const
+{
+    return mSegments.isEmpty();
+}
+
 KeySeg Key::last() const
 {
     return mSegments.last();

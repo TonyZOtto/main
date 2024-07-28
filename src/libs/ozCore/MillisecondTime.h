@@ -10,7 +10,7 @@ class OZCORE_EXPORT MillisecondTime
 {
 public: // ctors
     MillisecondTime(void);
-    MillisecondTime(qint64 ems);
+    MillisecondTime(EpochMilliseconds ems);
     MillisecondTime(const QDateTime & dt);
 
 public: // const
@@ -22,7 +22,7 @@ public: // const
     QString toString(const QString & format=QString()) const;
     operator EpochMilliseconds(void) const;
 
-public: // const
+public: // non-const
     void set(const MillisecondTime other);
     MillisecondTime & operator += (const MillisecondTime d);
     MillisecondTime & operator -= (const MillisecondTime d);
