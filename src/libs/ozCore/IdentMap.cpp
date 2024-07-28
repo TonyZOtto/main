@@ -4,12 +4,12 @@ IdentMap::IdentMap() {}
 
 bool IdentMap::contains(const Id i) const
 {
-    return mIdIdentMap.contains(i);
+    return mIdUidMap.contains(i);
 }
 
 bool IdentMap::contains(const Key &k) const
 {
-    return mKeyIdentMap.contains(k);
+    return mKeyUidMap.contains(k);
 }
 
 bool IdentMap::contains(const Uid u) const
@@ -19,12 +19,14 @@ bool IdentMap::contains(const Uid u) const
 
 Ident IdentMap::get(const Id i) const
 {
-    return mIdIdentMap.value(i);
+    const Uid cUid = mIdUidMap.value(i);
+    return mUidIdentMap.value(cUid);
 }
 
 Ident IdentMap::get(const Key &k) const
 {
-    return mKeyIdentMap.value(k);
+    const Uid cUid = mKeyUidMap.value(k);
+    return mUidIdentMap.value(cUid);
 }
 
 Ident IdentMap::get(const Uid u) const
@@ -57,8 +59,8 @@ Uid IdentMap::add(const Uid::Type uk, const Key &k, const Id i, const QString &d
 void IdentMap::add(const Uid u, const Key &k, const Id i, const QString &d)
 {
     const Ident cIdent(u, k, i, d);
-    if (i) mIdIdentMap.insert(i, cIdent);
-    if (k.notNull()) mKeyIdentMap.insert(k, cIdent);
+    if (i) mIdUidMap.insert(i, u);
+    if (k.notNull()) mKeyUidMap.insert(k, u);
     mUidIdentMap.insert(u, cIdent);
 }
 
@@ -67,8 +69,8 @@ void IdentMap::remove(const Uid u)
     if (contains(u))
     {
         Ident cIdent = get(u);
-        if (contains(cIdent.id())) mIdIdentMap.remove(cIdent.id());
-        if (contains(cIdent.key())) mKeyIdentMap.remove(cIdent.key());
+        if (contains(cIdent.id())) mIdUidMap.remove(cIdent.id());
+        if (contains(cIdent.key())) mKeyUidMap.remove(cIdent.key());
         mUidIdentMap.remove(u);
     }
 }

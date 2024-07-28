@@ -9,7 +9,7 @@ MillisecondTime::MillisecondTime(void)
 {
 }
 
-MillisecondTime::MillisecondTime(qint64 ems)
+MillisecondTime::MillisecondTime(EpochMilliseconds ems)
     : mEpochMS(ems)
 {
 }
@@ -52,7 +52,7 @@ bool MillisecondTime::isBaseNull(void) const
     return smNullMST == smBaseMST;
 }
 
-MillisecondTime::operator qint64(void) const
+MillisecondTime::operator EpochMilliseconds(void) const
 {
     return mEpochMS;
 }

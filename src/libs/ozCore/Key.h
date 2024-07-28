@@ -21,6 +21,8 @@ public: // ctors
     Key(const KeySeg::List &segs) : mSegments(segs) {;}
 
 public: // const
+    bool isNull() const;
+    bool notNull() const { return ! isNull(); }
     KeySeg last() const;
     Key prepended(const Key &groupKey) const;
     Key prepended(const KeySeg &seg) const;
