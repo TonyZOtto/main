@@ -15,11 +15,15 @@ SOURCES += \
     Angle.cpp \
     Boolean.cpp \
     ByteHistogram.cpp \
+    Ident.cpp \
+    IdentMap.cpp \
     Key.cpp \
     KeyMap.cpp \
     KeySeg.cpp \
     KeySegList.cpp \
+    MillisecondTime.cpp \
     ObjectHelper.cpp \
+    QQBitArray.cpp \
     QQDir.cpp \
     QQObject.cpp \
     QQPoint.cpp \
@@ -31,7 +35,7 @@ SOURCES += \
     SCRect.cpp \
     SettingsName.cpp \
     Success.cpp \
-    UInt32.cpp \
+    Uid.cpp \
     VersionInfo.cpp \
     ozCore.cpp \
 
@@ -42,12 +46,16 @@ HEADERS += \
     Boolean.h \
     ByteHistogram.h \
     DualMap.h \
+    Ident.h \
+    IdentMap.h \
     Key.h \
     KeyMap.h \
     KeySeg.h \
     KeySegList.h \
     MetaType.h \
+    MillisecondTime.h \
     ObjectHelper.h \
+    QQBitArray.h \
     QQDir.h \
     QQObject.h \
     QQPoint.h \
@@ -60,7 +68,7 @@ HEADERS += \
     SettingsName.h \
     Success.h \
     Types.h \
-    UInt32.h \
+    Uid.h \
     VersionInfo.h \
     ozCore.h        \
     ozCore_global.h \

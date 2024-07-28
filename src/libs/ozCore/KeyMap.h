@@ -2,6 +2,7 @@
 #include "ozCore.h"
 
 #include <QMap>
+#include <QMetaType>
 #include <QVariant>
 
 #include "Key.h"
@@ -13,11 +14,17 @@ public: // types
     typedef QList<Entry> EntryList;
 
 public: // ctors
-    KeyMap();
     KeyMap(const EntryList entries);
     KeyMap(const EntryList entries, const Key groupKey);
 
 private:
+
+public: // QMetaType
+    KeyMap() = default;
+    ~KeyMap() = default;
+    KeyMap(const KeyMap &) = default;
+    KeyMap &operator=(const KeyMap &) = default;
 };
 
+Q_DECLARE_METATYPE(KeyMap);
 

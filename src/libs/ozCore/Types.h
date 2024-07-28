@@ -19,6 +19,7 @@ typedef quintptr        NWORD;
 typedef qptrdiff        SNWORD;
 typedef signed          INT;
 typedef unsigned        UINT;
+typedef unsigned        Id;
 
 typedef QString         UText;
 typedef QWORD           EpochMilliseconds;
@@ -26,3 +27,4 @@ typedef qsizetype       Index;
 typedef size_t          Count;
 
 typedef QList<int>      IntList;
+
