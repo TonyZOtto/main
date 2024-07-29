@@ -2,7 +2,7 @@
 
 #include <Key.h>
 
-class SettingsItemData : public QSharedData
+class OZEXE_EXPORT SettingsItemData : public QSharedData
 {
 public:
     Key                     dKey;

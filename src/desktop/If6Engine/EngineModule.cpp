@@ -2,17 +2,40 @@
 
 #include <ObjectHelper.h>
 
-EngineModule::EngineModule(const Module aModule, QObject *parent)
+#include "EngineApplication.h"
+
+EngineModule::EngineModule(const Module aModule, EngineApplication *parent)
     : QObject{parent}
+    , mpApplication(parent)
     , mModule(aModule)
 {
-    ObjectHelper tOH(this);
-    setObjectName("BaseEngineModule:" + tOH.enumKey("Module", aModule));
+    setObjectName("BaseEngineModule:" + moduleName());
 }
 
 void EngineModule::initialize()
 {
+    initializeSettings();
+}
 
+void EngineModule::connections()
+{
+
+}
+
+void EngineModule::configure()
+{
+
+}
+
+void EngineModule::setup()
+{
+
+}
+
+QString EngineModule::moduleName() const
+{
+    ObjectHelper tOH(this);
+    return tOH.enumKey("Module", module()) + "Module";
 }
 
 Success EngineModule::isValid() const
@@ -21,6 +44,11 @@ Success EngineModule::isValid() const
     success.expect($nullModule != module());
     success.expect($maxModule > module());
     return success;
+}
+
+EngineSettings *EngineModule::settings()
+{
+    return application()->settings();
 }
 
 KeyMap EngineModule::defaltSettings() const

@@ -7,14 +7,17 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include(../../version.pri)
 include(../desktop.pri)
 include(../../useCore.pri)
+include(../../useExe.pri)
 
 SOURCES += \
     BaseEngineTask.cpp \
     BaseEngineThread.cpp \
     EngineApplication.cpp \
     EngineModule.cpp \
-    FaceDetectionModule.cpp \
+    EngineSettings.cpp \
+    FaceDetModule.cpp \
     InputModule.cpp \
+    MarkerModule.cpp \
     OutputModule.cpp \
     main.cpp \
     EngineMainWindow.cpp
@@ -25,8 +28,10 @@ HEADERS += \
     EngineApplication.h \
     EngineMainWindow.h \
     EngineModule.h \
-    FaceDetectionModule.h \
+    EngineSettings.h \
+    FaceDetModule.h \
     InputModule.h \
+    MarkerModule.h \
     OutputModule.h \
     version.h
 
@@ -36,6 +41,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    ../../../doc/desktop/INDIface/Settings2.txt \
     ../../version.pri \
     INDIonly64.ico
 

@@ -1,12 +1,13 @@
 #pragma once
 
 #include "EngineModule.h"
+class EngineApplication;
 
 class OutputModule : public EngineModule
 {
     Q_OBJECT
 public:
-    explicit OutputModule(QObject *parent = nullptr);
+    explicit OutputModule(EngineApplication *parent = nullptr);
 
 public slots:
     virtual void initialize();

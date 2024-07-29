@@ -1,4 +1,5 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QSharedDataPointer>
 #include <QVariant>
@@ -7,7 +8,7 @@
 
 class SettingsItemData;
 
-class SettingsItem
+class OZEXE_EXPORT SettingsItem
 {
 public: // types
     enum Flag

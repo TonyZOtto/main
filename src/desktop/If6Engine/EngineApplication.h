@@ -1,13 +1,20 @@
 #pragma once
 
-#include <QApplication>
+#include <WidgetApplication.h>
 
 #include <VersionInfo.h>
+class ApplicationHelper;
 
 #include "EngineModule.h"
 class EngineMainWindow;
+class EngineSettings;
 
-class EngineApplication : public QApplication
+class FaceDetModule;
+class InputModule;
+class MarkerModule;
+class OutputModule;
+
+class EngineApplication : public WidgetApplication
 {
     Q_OBJECT
 public: // types
@@ -28,11 +35,19 @@ public: // const
 public: // non-const
 
 public: // pointers
+    ApplicationHelper * helper();
+    EngineSettings * settings();
+    EngineModule * module(const EngineModule::Module mix);
     EngineMainWindow * mainWindow();
 
 private:
+    ApplicationHelper * mpHelper=nullptr;
+    EngineSettings * mpSettings=nullptr;
     EngineMainWindow * mpMainWindow=nullptr;
     EngineModule::List mModuleList;
 };
 
-inline EngineMainWindow *EngineApplication::mainWindow()  { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
+inline ApplicationHelper *EngineApplication::helper()  { Q_ASSERT(mpHelper); return mpHelper; }
+inline EngineSettings *EngineApplication::settings() { Q_ASSERT(mpSettings); return mpSettings; }
+inline EngineMainWindow *EngineApplication::mainWindow() { Q_ASSERT(mpMainWindow); return mpMainWindow; }
+
