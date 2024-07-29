@@ -1,6 +1,6 @@
 #include "InputModule.h"
 
-InputModule::InputModule(QObject *parent)
+InputModule::InputModule(EngineApplication *parent)
     : EngineModule{Input, parent}
 {
     setObjectName("InputModule");
@@ -21,6 +21,7 @@ Success InputModule::isValid() const
 KeyMap InputModule::defaltSettings() const
 {
     KeyMap::EntryList tKMEL;
+    tKMEL << KeyMap::Entry("DeleteAfter", false);
     tKMEL << KeyMap::Entry("FacesProcessed", 0);        // WO
     tKMEL << KeyMap::Entry("FramesProcessed", 0);       // WO
     tKMEL << KeyMap::Entry("ImageId", "");              // WO?
@@ -33,24 +34,16 @@ KeyMap InputModule::defaltSettings() const
 }
 /*
 Input/BeginDateTime
-Input/DeleteAfter
+Input/
 Input/EndDateTime
-Input/FacesProcessed
-Input/FramesProcessed
-Input/ImageId
 Input/Junp
 Input/Loop
 Input/MaxCache
-Input/MaxDim
 Input/MoveAfter
 Input/NewOnly
 Input/NullFrames
 Input/NumFiles
 Input/OrderBy
-Input/Pause} = 1
-Input/Processing // =ImageId|Done
 Input/RestartSecs} = 1
-Input/SampleMsec
 Input/Skip
-Input/URL} = dir:///C:\H
- */
+*/

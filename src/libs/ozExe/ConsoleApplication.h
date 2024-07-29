@@ -1,11 +1,12 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QCoreApplication>
 #include <QObject>
 
 class ApplicationHelper;
 
-class ConsoleApplication : public QCoreApplication
+class OZEXE_EXPORT ConsoleApplication : public QCoreApplication
 {
     Q_OBJECT
 public:

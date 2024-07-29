@@ -69,6 +69,7 @@ public: // const
 
 public: // non-const
     bool read();
+    bool read(const Key aGroupKey);
     bool write(const bool all=false);
     SettingsItem get(const Key &aKey);
     bool defalt(const Key &aKey, const QVariant &aDefValue);
@@ -81,6 +82,8 @@ public: // non-const
     void set(const Key aGroupKey, const KeyMap &aMap);
     void defalt(const Key aGroupKey, const KeyMap &aMap);
     void watch(const Key aKey);
+    void remove(const Key aKey);
+    void removeGroup(const Key aGroupKey);
 
 public: // pointers
 

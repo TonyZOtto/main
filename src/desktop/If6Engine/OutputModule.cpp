@@ -1,6 +1,6 @@
 #include "OutputModule.h"
 
-OutputModule::OutputModule(QObject *parent)
+OutputModule::OutputModule(EngineApplication *parent)
     : EngineModule{Output, parent}
 {
     setObjectName("OutputModule");
@@ -13,9 +13,11 @@ void OutputModule::initialize()
 
 Success OutputModule::isValid() const
 {
-    Success success;
+    Success success = EngineModule::isValid();
+    success.expect(Output == module());
+    success.expect("OutputModule" == moduleName());
+    success.expect("OutputModule" == objectName());
     return success;
-
 }
 
 KeyMap OutputModule::defaltSettings() const

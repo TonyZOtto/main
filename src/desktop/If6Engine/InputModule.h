@@ -3,12 +3,13 @@
 #include <KeyMap.h>
 
 #include "EngineModule.h"
+class EngineApplication;
 
 class InputModule : public EngineModule
 {
     Q_OBJECT
 public:
-    explicit InputModule(QObject *parent = nullptr);
+    explicit InputModule(EngineApplication *parent = nullptr);
 
 
 public slots:

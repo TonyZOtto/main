@@ -1,12 +1,13 @@
 #pragma once
 
 #include "EngineModule.h"
+class EngineApplication;
 
-class FaceDetectionModule : public EngineModule
+class FaceDetModule : public EngineModule
 {
     Q_OBJECT
 public:
-    explicit FaceDetectionModule(QObject *parent = nullptr);
+    explicit FaceDetModule(EngineApplication *parent = nullptr);
 
 public slots:
     virtual void initialize();
