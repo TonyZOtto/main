@@ -65,9 +65,9 @@ void SettingsItem::currentValue(const QVariant &newValue)
     data->dCurrentValue = newValue;
 }
 
-void SettingsItem::previousValue(const QVariant &newValue)
+void SettingsItem::previousValue(const QVariant &prevValue)
 {
-    data->dPreviousValue = newValue;
+    data->dPreviousValue = prevValue;
 }
 
 void SettingsItem::defaltValue(const QVariant &defValue)
@@ -88,6 +88,11 @@ SettingsItem::Flags &SettingsItem::flags()
 SettingsItem::SettingsItem(const SettingsItem &rhs)
     : data{rhs.data}
 {}
+
+SettingsItem::SettingsItem(const Key &aKey, const QVariant &aDefalt)
+{
+    key(aKey), defaltValue(aDefalt);
+}
 
 SettingsItem &SettingsItem::operator=(const SettingsItem &rhs)
 {

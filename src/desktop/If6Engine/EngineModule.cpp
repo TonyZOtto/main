@@ -3,6 +3,7 @@
 #include <ObjectHelper.h>
 
 #include "EngineApplication.h"
+#include "EngineSettings.h"
 
 EngineModule::EngineModule(const Module aModule, EngineApplication *parent)
     : QObject{parent}
@@ -24,7 +25,7 @@ void EngineModule::connections()
 
 void EngineModule::configure()
 {
-
+    settings()->defalt(defaltSettings());
 }
 
 void EngineModule::setup()

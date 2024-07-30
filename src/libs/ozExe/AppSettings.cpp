@@ -113,6 +113,36 @@ bool AppSettings::write(const bool all)
     return result;
 }
 
+bool AppSettings::write(const Key aGroupKey)
+{
+    bool result = false;
+    beginGroup(aGroupKey);
+    write();
+    endGroup(aGroupKey);
+    return result;
+}
+
+bool AppSettings::defalt(const Key &aKey, const QVariant &aDefValue)
+{
+    bool result = false;
+    if (notContains(aKey))
+    {
+        SettingsItem tItem(aKey, aDefValue);
+        result = set(tItem, isOpen());
+    }
+    return result;
+}
+
+void AppSettings::defalt(const KeyMap &aDefaltMap)
+{
+    foreach (const Key cKey, aDefaltMap.keys())
+    {
+        const QVariant cDefalt = aDefaltMap.value(cKey);
+        SettingsItem tItem(cKey, cDefalt);
+        set(tItem);
+    }
+}
+
 bool AppSettings::set(const Key &aKey, const QVariant &aNewValue)
 {
     SettingsItem tItem;
@@ -165,6 +195,12 @@ bool AppSettings::remove(const Key aKey)
     if (result)
         settings()->remove(aKey());
     return result;
+}
+
+SettingsItem::Flags &AppSettings::flags(const Key aKey)
+{
+    static SettingsItem::Flags stFlags;
+    return contains(aKey) ? mKeyItemMap[aKey].flags() : stFlags;
 }
 
 Key AppSettings::fullKey(const Key &aKey)

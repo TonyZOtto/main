@@ -5,6 +5,10 @@
 class EngineSettings : public AppSettings
 {
     Q_OBJECT
-public:
+public: // ctors
     explicit EngineSettings(QObject *parent = nullptr);
+
+public: // const
+
+public: // non-const
 };

@@ -29,9 +29,9 @@ public: // built in
     ~SettingsItem();
 
 public: // ctors
-    SettingsItem(const Key &key);
-    SettingsItem(const Key &key, const QVariant &defalt);
-    SettingsItem(const Key &key, const QVariant &current, const QVariant &defalt);
+    SettingsItem(const Key &aKey);
+    SettingsItem(const Key &aKey, const QVariant &aDefalt);
+    SettingsItem(const Key &aKey, const QVariant &aCurrent, const QVariant &aDefalt);
 
 public: // const
     Key key() const;
@@ -45,7 +45,7 @@ public: // const
 public: // non-const
     void key(const Key &newKey);
     void currentValue(const QVariant &newValue);
-    void previousValue(const QVariant &newValue);
+    void previousValue(const QVariant &prevValue);
     void defaltValue(const QVariant &defValue);
     void flags(const Flags aFlags);
     Flags & flags();

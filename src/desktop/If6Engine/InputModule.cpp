@@ -1,5 +1,7 @@
 #include "InputModule.h"
 
+#include "EngineSettings.h"
+
 InputModule::InputModule(EngineApplication *parent)
     : EngineModule{Input, parent}
 {
@@ -9,7 +11,11 @@ InputModule::InputModule(EngineApplication *parent)
 
 void InputModule::initialize()
 {
-
+    EngineModule::initialize();
+    settings()->flags("FacesProcessed").setFlag(SettingsItem::WriteOnly);
+    settings()->flags("FramesProcessed").setFlag(SettingsItem::WriteOnly);
+    settings()->flags("Processing").setFlag(SettingsItem::WriteOnly);
+    settings()->write(moduleName());
 }
 
 Success InputModule::isValid() const

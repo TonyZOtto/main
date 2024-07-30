@@ -64,6 +64,7 @@ public: // const
     bool isOpen() const;
     bool notOpen() const { return ! isOpen(); }
     bool contains(const Key &aKey);
+    bool notContains(const Key &aKey) { return ! contains(aKey); }
     SettingsItem get(const Key &aKey);
     KeyMap map() const;
     KeyMap map(const Key aGroupKey) const;
@@ -75,12 +76,11 @@ public: // non-const
     bool write(const bool all=false);
     bool write(const Key aGroupKey);
     bool defalt(const Key &aKey, const QVariant &aDefValue);
-    bool defalt(const Key &aKey);
     bool defalt(const Key::List &aKeyList);
+    void defalt(const KeyMap &aDefaltMap);
     bool set(const Key &aKey, const QVariant &aNewValue);
     bool set(SettingsItem /*copy*/ aItem, const bool aWrite=false);
     void set(const KeyMap &aMap);
-    void defalt(const KeyMap &aMap);
     void set(const Key aGroupKey, const KeyMap &aMap);
     void update(/*non-const ref*/KeyMap &aMap, const bool aWrite=false);
     void update(const Key aGroupKey, /*non-const ref*/KeyMap &aMap, const bool aWrite=false);
@@ -88,6 +88,7 @@ public: // non-const
     void watch(const Key aKey);
     bool remove(const Key aKey);
     void removeGroup(const Key aGroupKey);
+    SettingsItem::Flags & flags(const Key aKey);
 
 private:
     Key fullKey(const Key &aKey);
