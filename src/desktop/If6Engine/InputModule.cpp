@@ -26,6 +26,7 @@ KeyMap InputModule::defaltSettings() const
     tKMEL << KeyMap::Entry("FramesProcessed", 0);       // WO
     tKMEL << KeyMap::Entry("ImageId", "");              // WO?
     tKMEL << KeyMap::Entry("MaxDim", 2048);
+    tKMEL << KeyMap::Entry("MaxQueue", 4);
     tKMEL << KeyMap::Entry("Pause", false);
     tKMEL << KeyMap::Entry("Processing", "");           // WO
     tKMEL << KeyMap::Entry("SampleMsec", 0);

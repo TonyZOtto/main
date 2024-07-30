@@ -25,6 +25,7 @@ public: // ctors
 
 public: // const
     bool test() const;
+    operator () () const { return isTrue(); }
     operator bool () const { return isTrue(); }
 
 public: // non-const

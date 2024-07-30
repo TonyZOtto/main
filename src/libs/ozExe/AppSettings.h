@@ -62,7 +62,9 @@ signals:
 
 public: // const
     bool isOpen() const;
+    bool notOpen() const { return ! isOpen(); }
     bool contains(const Key &aKey);
+    SettingsItem get(const Key &aKey);
     KeyMap map() const;
     KeyMap map(const Key aGroupKey) const;
     SettingsName settingsName() const;
@@ -71,21 +73,32 @@ public: // non-const
     bool read();
     bool read(const Key aGroupKey);
     bool write(const bool all=false);
-    SettingsItem get(const Key &aKey);
+    bool write(const Key aGroupKey);
     bool defalt(const Key &aKey, const QVariant &aDefValue);
     bool defalt(const Key &aKey);
     bool defalt(const Key::List &aKeyList);
     bool set(const Key &aKey, const QVariant &aNewValue);
-    bool set(const SettingsItem &aItem);
+    bool set(SettingsItem /*copy*/ aItem, const bool aWrite=false);
     void set(const KeyMap &aMap);
     void defalt(const KeyMap &aMap);
     void set(const Key aGroupKey, const KeyMap &aMap);
+    void update(/*non-const ref*/KeyMap &aMap, const bool aWrite=false);
+    void update(const Key aGroupKey, /*non-const ref*/KeyMap &aMap, const bool aWrite=false);
     void defalt(const Key aGroupKey, const KeyMap &aMap);
     void watch(const Key aKey);
-    void remove(const Key aKey);
+    bool remove(const Key aKey);
     void removeGroup(const Key aGroupKey);
 
+private:
+    Key fullKey(const Key &aKey);
+    Key beginGroup(const Key &aKey);
+    QVariant value(const Key &aKey) const;
+    void setValue(const Key &aKey, const QVariant &aValue);
+    Key endGroup(const Key &aKey);
+    void endGroup();
+
 public: // pointers
+    QSettings * settings() const;
 
 private:
     SettingsName mSettingsName;
@@ -95,7 +108,10 @@ private:
     bool mIsPaused=false;
     QMutex mReadWriteMutex;
     Key::List mWatchKeyList;
+    Key mCurrentGroup;
     QMap<Key, SettingsItem> mKeyItemMap;
 };
 
 inline SettingsName AppSettings::settingsName() const { return mSettingsName; }
+inline QSettings *AppSettings::settings() const { Q_ASSERT(mpSettings); return mpSettings; }
+

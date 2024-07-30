@@ -5,9 +5,23 @@ bool Key::isNull() const
     return mSegments.isEmpty();
 }
 
+Count Key::count() const
+{
+    return mSegments.count();
+}
+
 KeySeg Key::last() const
 {
     return mSegments.last();
+}
+
+KeySeg::List Key::last(const Count aCount) const
+{
+    KeySeg::List result;
+    Index tMidIndex = count() - aCount;
+    if (tMidIndex < 0) tMidIndex = 0;
+    result = mSegments.mid(tMidIndex);
+    return result;
 }
 
 Key Key::prepended(const Key &groupKey) const
@@ -29,6 +43,11 @@ Key Key::prepended(const KeySeg &seg) const
 QString Key::toString() const
 {
     return joinString(mSegments);
+}
+
+bool Key::operator ==(const Key &rhs) const
+{
+    return mSegments == rhs.mSegments;
 }
 
 bool Key::operator <(const Key &rhs) const
@@ -58,6 +77,20 @@ void Key::set(const AText &atx)
 void Key::set(const QString &qs)
 {
     mSegments = split(AText(qs));
+}
+
+Key Key::append(const Key &aKey)
+{
+    mSegments.append(aKey.mSegments);
+    return *this;
+}
+
+Key Key::removeTail(const Key &aKey)
+{
+    KeySeg::List mTail = last(aKey.count());
+    if (aKey == mTail)
+        mSegments.remove(count() - aKey.count(), aKey.count());
+    return *this;
 }
 
 // static
