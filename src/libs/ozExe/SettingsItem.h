@@ -34,17 +34,28 @@ public: // ctors
     SettingsItem(const Key &key, const QVariant &current, const QVariant &defalt);
 
 public: // const
+    Key key() const;
     QVariant value() const;
+    QVariant currentValue() const;
+    QVariant defaltValue() const;
+    QVariant previousValue() const;
+    Flags flags() const;
+    bool operator == (const SettingsItem rhs) const;
 
 public: // non-const
-    void value(const QVariant &newValue);
-    void defalt(const QVariant &defValue);
+    void key(const Key &newKey);
+    void currentValue(const QVariant &newValue);
+    void previousValue(const QVariant &newValue);
+    void defaltValue(const QVariant &defValue);
     void flags(const Flags aFlags);
+    Flags & flags();
 
 public: // pointers
 
 private:
     QSharedDataPointer<SettingsItemData> data;
 };
+
+
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SettingsItem::Flags)
