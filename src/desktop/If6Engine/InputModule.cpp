@@ -1,5 +1,8 @@
 #include "InputModule.h"
 
+#include <MachineHelper.h>
+#include <StateMachine.h>
+
 #include "EngineSettings.h"
 
 InputModule::InputModule(EngineApplication *parent)
@@ -38,6 +41,19 @@ KeyMap InputModule::defaltSettings() const
     tKMEL << KeyMap::Entry("SampleMsec", 0);
     tKMEL << KeyMap::Entry("URL", "");
     return KeyMap(tKMEL);
+}
+
+void InputModule::initializeMachines()
+{
+    mpInputMachine = new StateMachine("InputMachine", this);
+    mpInputHelper = new MachineHelper(mpInputMachine);
+    mpStoredMachine = new StateMachine("StoredMachine", this);
+    mpStoredHelper = new MachineHelper(mpStoredMachine);
+}
+
+Key::List InputModule::storedMachineStates()
+{
+
 }
 /*
 Input/BeginDateTime

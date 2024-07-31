@@ -1,8 +1,9 @@
-QT       += core
-QT       += gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core
+QT += gui
+QT += widgets
+QT += statemachine
 CONFIG += c++17
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../../version.pri)
 include(../desktop.pri)
@@ -17,8 +18,10 @@ SOURCES += \
     EngineSettings.cpp \
     FaceDetModule.cpp \
     InputModule.cpp \
+    InputModuleMachine.cpp \
     MarkerModule.cpp \
     OutputModule.cpp \
+    StoredInputMachine.cpp \
     main.cpp \
     EngineMainWindow.cpp
 
@@ -31,8 +34,10 @@ HEADERS += \
     EngineSettings.h \
     FaceDetModule.h \
     InputModule.h \
+    InputModuleMachine.h \
     MarkerModule.h \
     OutputModule.h \
+    StoredInputMachine.h \
     version.h
 
 # Default rules for deployment.

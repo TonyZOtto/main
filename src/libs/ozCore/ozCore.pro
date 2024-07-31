@@ -1,7 +1,6 @@
-## QT -= gui
 QT *= gui
 QT *= widgets
-
+QT *= statemachine
 TEMPLATE = lib
 DEFINES += OZCORE_LIBRARY
 CONFIG += c++17
@@ -21,6 +20,7 @@ SOURCES += \
     KeyMap.cpp \
     KeySeg.cpp \
     KeySegList.cpp \
+    MachineHelper.cpp \
     MillisecondTime.cpp \
     ObjectHelper.cpp \
     QQBitArray.cpp \
@@ -34,6 +34,8 @@ SOURCES += \
     RationalList.cpp \
     SCRect.cpp \
     SettingsName.cpp \
+    State.cpp \
+    StateMachine.cpp \
     Success.cpp \
     Uid.cpp \
     VersionInfo.cpp \
@@ -52,6 +54,7 @@ HEADERS += \
     KeyMap.h \
     KeySeg.h \
     KeySegList.h \
+    MachineHelper.h \
     MetaType.h \
     MillisecondTime.h \
     ObjectHelper.h \
@@ -66,6 +69,8 @@ HEADERS += \
     RationalList.h \
     SCRect.h \
     SettingsName.h \
+    State.h \
+    StateMachine.h \
     Success.h \
     Types.h \
     Uid.h \

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <KeyMap.h>
+class MachineHelper;
+class StateMachine;
 
 #include "EngineModule.h"
 class EngineApplication;
@@ -22,6 +24,13 @@ public: // const
     virtual KeyMap defaltSettings() const;
 
 
-private:
+private slots:
+    void initializeMachines();
+    Key::List storedMachineStates();
 
+private:
+    StateMachine * mpInputMachine=nullptr;
+    StateMachine * mpStoredMachine=nullptr;
+    MachineHelper * mpInputHelper=nullptr;
+    MachineHelper * mpStoredHelper=nullptr;
 };
