@@ -1,4 +1,5 @@
 #pragma once
+#include "ozCore.h"
 
 #include <QState>
 
@@ -6,7 +7,7 @@
 
 class StateMachine;
 
-class State : public QState
+class OZCORE_EXPORT State : public QState
 {
     Q_OBJECT
 public: // types

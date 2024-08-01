@@ -19,6 +19,7 @@ SOURCES += \
     FaceDetModule.cpp \
     InputModule.cpp \
     InputModuleMachine.cpp \
+    LiveInputMachine.cpp \
     MarkerModule.cpp \
     OutputModule.cpp \
     StoredInputMachine.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     FaceDetModule.h \
     InputModule.h \
     InputModuleMachine.h \
+    LiveInputMachine.h \
     MarkerModule.h \
     OutputModule.h \
     StoredInputMachine.h \

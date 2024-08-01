@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ozCore.h"
 
 #include <QObject>
 
@@ -7,7 +7,7 @@
 
 class StateMachine;
 
-class MachineHelper : public QObject
+class OZCORE_EXPORT MachineHelper : public QObject
 {
     Q_OBJECT
 public: // ctors

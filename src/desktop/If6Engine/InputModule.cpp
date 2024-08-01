@@ -53,7 +53,9 @@ void InputModule::initializeMachines()
 
 Key::List InputModule::storedMachineStates()
 {
-
+    Key::List result;
+    result << "Idle";
+    return result;
 }
 /*
 Input/BeginDateTime
