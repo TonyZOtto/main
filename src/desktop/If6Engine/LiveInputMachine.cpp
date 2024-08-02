@@ -5,3 +5,8 @@ LiveInputMachine::LiveInputMachine(QObject *parent)
 {
     setObjectName("LiveInputMachine");
 }
+
+void LiveInputMachine::initialize()
+{
+
+}

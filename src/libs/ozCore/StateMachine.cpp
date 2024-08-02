@@ -9,6 +9,11 @@ StateMachine::StateMachine(const Key &aMachineKey, QObject *parent)
     setObjectName("StateMachine:" + machineKey()());
 }
 
+void StateMachine::initialize()
+{
+
+}
+
 State *StateMachine::addState(const Key aStateKey)
 {
     if (mKeyStateDMap.contains(aStateKey))

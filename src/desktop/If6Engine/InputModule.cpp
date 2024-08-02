@@ -4,6 +4,9 @@
 #include <StateMachine.h>
 
 #include "EngineSettings.h"
+#include "InputModuleMachine.h"
+#include "LiveInputMachine.h"
+#include "StoredInputMachine.h"
 
 InputModule::InputModule(EngineApplication *parent)
     : EngineModule{Input, parent}
@@ -45,10 +48,21 @@ KeyMap InputModule::defaltSettings() const
 
 void InputModule::initializeMachines()
 {
-    mpInputMachine = new StateMachine("InputMachine", this);
-    mpInputHelper = new MachineHelper(mpInputMachine);
-    mpStoredMachine = new StateMachine("StoredMachine", this);
-    mpStoredHelper = new MachineHelper(mpStoredMachine);
+    mpInputModuleMachine = new InputModuleMachine(this);
+    mpLiveInputMachine = new LiveInputMachine(this);
+    mpStoredInputMachine = new StoredInputMachine(this);
+    Q_ASSERT(mpInputModuleMachine);
+    Q_ASSERT(mpLiveInputMachine);
+    Q_ASSERT(mpStoredInputMachine);
+    mpInputModuleMachine->set(mpLiveInputMachine);
+    mpInputModuleMachine->set(mpStoredInputMachine);
+    mpInputModuleMachine->initialize();
+    mpLiveInputMachine->initialize();
+    mpStoredInputMachine->initialize();
+    mpLiveHelper = new MachineHelper(mpLiveInputMachine);
+    mpStoredHelper = new MachineHelper(mpStoredInputMachine);
+    Q_ASSERT(mpLiveHelper);
+    Q_ASSERT(mpStoredHelper);
 }
 
 Key::List InputModule::storedMachineStates()

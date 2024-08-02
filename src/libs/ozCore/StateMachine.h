@@ -16,9 +16,10 @@ public: // ctors
     explicit StateMachine(const Key &aMachineKey, QObject *parent = nullptr);
 
 public slots:
-    State * addState(const Key aStateKey);
+    virtual void initialize();
 
 signals:
+    void initialized();
 
 public: // const
     const Key machineKey() const;
@@ -27,6 +28,7 @@ public: // const
     bool contains(State * pState) const;
 
 public: // non-const
+    State * addState(const Key aStateKey);
 
 public: // pointers
     State * state(const Key &aStateKey);

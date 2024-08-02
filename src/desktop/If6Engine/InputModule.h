@@ -2,10 +2,12 @@
 
 #include <KeyMap.h>
 class MachineHelper;
-class StateMachine;
 
 #include "EngineModule.h"
 class EngineApplication;
+class InputModuleMachine;
+class LiveInputMachine;
+class StoredInputMachine;
 
 class InputModule : public EngineModule
 {
@@ -29,8 +31,9 @@ private slots:
     Key::List storedMachineStates();
 
 private:
-    StateMachine * mpInputMachine=nullptr;
-    StateMachine * mpStoredMachine=nullptr;
-    MachineHelper * mpInputHelper=nullptr;
+    InputModuleMachine * mpInputModuleMachine=nullptr;
+    LiveInputMachine * mpLiveInputMachine=nullptr;
+    StoredInputMachine * mpStoredInputMachine=nullptr;
+    MachineHelper * mpLiveHelper=nullptr;
     MachineHelper * mpStoredHelper=nullptr;
 };
