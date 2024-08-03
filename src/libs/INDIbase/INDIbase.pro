@@ -1,24 +1,17 @@
 QT += gui
-
 TEMPLATE = lib
-DEFINES += INDIFACE6_LIBRARY
+DEFINES += INDIBASE_LIBRARY
 CONFIG += c++17
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../libs.pri)
-include(../../useCore.pri)
-include(../../usePhoto.pri)
 
 SOURCES += \
-    FrameData.cpp \
-    INDIface6.cpp \
-    INDIframe.cpp
+    INDIbase.cpp
 
 HEADERS += \
-    FrameData.h \
-    INDIface6_global.h \
-    INDIface6.h \
-    INDIframe.h
+    INDIbase_global.h \
+    INDIbase.h
 
 # Default rules for deployment.
 unix {

@@ -1,8 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    INDIbase6 \
-    INDIface6 \
+    INDIbase \
+    INDIface \
     QtCV \
     ozColor \
     ozCore \
