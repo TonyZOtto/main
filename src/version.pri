@@ -1,5 +1,5 @@
 # {ottoZcode}/src/version.pri
-message(------------/src/version.pri)
+#message(------------/src/version.pri)
 
 OZVER_MAJOR        = 6
 OZVER_MINOR        = 90

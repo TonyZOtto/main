@@ -6,6 +6,6 @@ INCLUDEPATH *= $$LIBDIR/ozColor ../../libs/ozColor ../ozColor
 windows:LIBS *= -lozColor6
 linux:LIBS *= -lozColor
 LIBS *= -L$$DESTDIR
-message(--------/src/useColor.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
+#message(--------/src/useColor.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
 
 
