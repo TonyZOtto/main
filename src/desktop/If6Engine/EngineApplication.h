@@ -2,8 +2,11 @@
 
 #include <WidgetApplication.h>
 
+class QVariant;
+
 #include <VersionInfo.h>
 class ApplicationHelper;
+class Key;
 
 #include "EngineModule.h"
 class EngineMainWindow;
@@ -24,11 +27,16 @@ public: // ctors
 
 public slots:
     void initialize();
+    void configure();
     void actQuit();
     void showMainWindow();
+    void watchedSetting(const Key &aKey,
+                        const QVariant &aNewValue,
+                        const QVariant &aOldValue);
 
 signals:
     void initialized();
+    void urlChanged(const QUrl &newUrl);
 
 public: // const
 
@@ -39,6 +47,8 @@ public: // pointers
     EngineSettings * settings();
     EngineModule * module(const EngineModule::Module mix);
     EngineMainWindow * mainWindow();
+
+public slots:
 
 private:
     ApplicationHelper * mpHelper=nullptr;

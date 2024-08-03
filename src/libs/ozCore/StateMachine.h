@@ -29,6 +29,9 @@ public: // const
 
 public: // non-const
     State * addState(const Key aStateKey);
+    void addState(QAbstractState * pState);
+    QSignalTransition *addTransition(const typename QtPrivate::FunctionPointer<Func>::Object *obj,
+                                     Func signal, QAbstractState *target);
 
 public: // pointers
     State * state(const Key &aStateKey);

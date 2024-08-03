@@ -3,6 +3,7 @@
 #include <QTimer>
 
 #include <ApplicationHelper.h>
+#include <CommandLine.h>
 
 #include "EngineMainWindow.h"
 #include "EngineModule.h"
@@ -32,6 +33,19 @@ void EngineApplication::initialize()
     emit initialized();
 }
 
+void EngineApplication::configure()
+{
+    Q_ASSERT(mpSettings);
+    helper()->commandLine()->process();
+    const KeyMap cCmdMap = helper()->commandLine()
+                               ->settingValues();
+    settings()->set(cCmdMap);
+    connect(settings(), &EngineSettings::watched,
+            this, &EngineApplication::watchedSetting);
+    settings()->watch("Input/URL");
+
+}
+
 void EngineApplication::actQuit()
 {
     QApplication::exit(1);
@@ -49,4 +63,14 @@ EngineModule *EngineApplication::module(const EngineModule::Module mix)
     Q_ASSERT(mix < mModuleList.count());
     Q_ASSERT(mModuleList[mix]);
     return mModuleList[mix];
+}
+
+void EngineApplication::watchedSetting(const Key &aKey, const QVariant &aNewValue, const QVariant &aOldValue)
+{
+    if (false)
+        ;
+    else if (aKey == "Input/URL")
+        emit urlChanged(aNewValue.toUrl());
+    else
+        ;
 }

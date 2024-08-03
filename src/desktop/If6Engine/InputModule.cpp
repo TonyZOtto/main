@@ -1,8 +1,13 @@
 #include "InputModule.h"
 
+#include <QFinalState>
+#include <QState>
+
 #include <MachineHelper.h>
 #include <StateMachine.h>
+#include <Url.h>
 
+#include "EngineApplication.h"
 #include "EngineSettings.h"
 #include "InputModuleMachine.h"
 #include "LiveInputMachine.h"
@@ -18,10 +23,17 @@ InputModule::InputModule(EngineApplication *parent)
 void InputModule::initialize()
 {
     EngineModule::initialize();
+}
+
+void InputModule::configure()
+{
+    EngineModule::configure();
     settings()->flags("FacesProcessed").setFlag(SettingsItem::WriteOnly);
     settings()->flags("FramesProcessed").setFlag(SettingsItem::WriteOnly);
     settings()->flags("Processing").setFlag(SettingsItem::WriteOnly);
     settings()->write(moduleName());
+    connect(application(), &EngineApplication::watchedSetting,
+            this, &InputModule::watchedChanged);
 }
 
 Success InputModule::isValid() const
@@ -54,6 +66,7 @@ void InputModule::initializeMachines()
     Q_ASSERT(mpInputModuleMachine);
     Q_ASSERT(mpLiveInputMachine);
     Q_ASSERT(mpStoredInputMachine);
+
     mpInputModuleMachine->set(mpLiveInputMachine);
     mpInputModuleMachine->set(mpStoredInputMachine);
     mpInputModuleMachine->initialize();
@@ -63,6 +76,34 @@ void InputModule::initializeMachines()
     mpStoredHelper = new MachineHelper(mpStoredInputMachine);
     Q_ASSERT(mpLiveHelper);
     Q_ASSERT(mpStoredHelper);
+
+    QState * pIdleState = new QState();
+    QFinalState * pFinalState = new QFinalState();
+    mpInputModuleMachine->addState(pIdleState);
+    mpInputModuleMachine->addState(mpLiveInputMachine);
+    mpInputModuleMachine->addState(mpStoredInputMachine);
+    mpInputModuleMachine->addState(pFinalState);
+    mpInputModuleMachine->addTransition(pIdleState,
+            &InputModule::newLiveUrl, mpLiveInputMachine);
+    mpInputModuleMachine->addTransition(pIdleState,
+            &InputModule::newStoredUrl, mpStoredInputMachine);
+    mpInputModuleMachine->addTransition(pIdleState,
+            &InputModule::shutdown, pFinalState);
+    mpLiveInputMachine->addTransition(pIdleState);
+    mpStoredInputMachine->addTransition(pIdleState);
+    mpInputModuleMachine->setInitialState(pIdleState);
+}
+
+void InputModule::urlChanged(const QUrl &newUrl)
+{
+    const Url cUrl(newUrl);
+    switch (Url(newUrl).scheme())
+    {
+    case dir:       emit newStoredUrl();    break;
+    case http:
+    case https:     emit newLiveUrl();      break;
+    default:                                break;
+    }
 }
 
 Key::List InputModule::storedMachineStates()

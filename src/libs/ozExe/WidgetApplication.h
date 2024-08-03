@@ -9,9 +9,16 @@ class ApplicationHelper;
 class OZEXE_EXPORT WidgetApplication : public QApplication
 {
     Q_OBJECT
-public:
+public: // ctors
     WidgetApplication(int &argc, char **argv);
+
+public:
+    ApplicationHelper * helper();
+
 
 private:
     ApplicationHelper * mpHelper=nullptr;
 };
+
+inline ApplicationHelper *WidgetApplication::helper() { Q_ASSERT(mpHelper); return mpHelper; }
+

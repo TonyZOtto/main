@@ -38,6 +38,7 @@ SOURCES += \
     StateMachine.cpp \
     Success.cpp \
     Uid.cpp \
+    Url.cpp \
     VersionInfo.cpp \
     ozCore.cpp \
 
@@ -74,6 +75,7 @@ HEADERS += \
     Success.h \
     Types.h \
     Uid.h \
+    Url.h \
     VersionInfo.h \
     ozCore.h        \
     ozCore_global.h \

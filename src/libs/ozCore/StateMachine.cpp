@@ -27,6 +27,16 @@ State *StateMachine::addState(const Key aStateKey)
     return result;
 }
 
+void StateMachine::addState(QAbstractState *pState)
+{
+    QStateMachine::addState(pState);
+}
+
+QSignalTransition *StateMachine::addTransition(const QtPrivate::FunctionPointer<Func>::Object *obj, Func signal, QAbstractState *target)
+{
+    return QStateMachine::addTransition(obj, signal, target);
+}
+
 const Key StateMachine::stateKey(State *pState) const
 {
     return mKeyStateDMap.at(pState);
