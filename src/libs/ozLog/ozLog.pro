@@ -8,23 +8,27 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include(../libs.pri)
 
 SOURCES += \
-    Context.cpp \
-    FileInfo.cpp \
-    FunctionInfo.cpp \
+    LogCategory.cpp \
+    LogContext.cpp \
+    LogEngine.cpp \
+    LogFileInfo.cpp \
+    LogFunctionInfo.cpp \
     LogItem.cpp \
+    LogItemObj.cpp \
     LogObject.cpp \
-    Logger.cpp \
     ozLog.cpp
 
 HEADERS += \
-    Context.h \
-    FileInfo.h \
-    FunctionInfo.h \
     Log.h \
+    LogCategory.h \
+    LogContext.h \
+    LogEngine.h \
+    LogFileInfo.h \
+    LogFunctionInfo.h \
     LogItem.h \
+    LogItemObj.h \
     LogMacros.h \
     LogObject.h \
-    Logger.h \
     ozLog_global.h \
     ozLog.h
 

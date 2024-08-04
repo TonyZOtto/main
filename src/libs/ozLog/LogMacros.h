@@ -1,10 +1,13 @@
 #pragma once
 
-#include "Context.h"
-#include "LogItem.h"
-#include "Logger.h"
+#include "LogContext.h"
+#include "LogItemObj.h"
+#include "LogEngine.h"
 
-#define LOGCTX() Context(Q_FILE_INFO, __FILE__, __LOG_CONTEXT__, __LINE__)
+#define LOGCATEGORYH(name)
+#define LOGCATEGORYHQMT(name, qmt)
+#define LOGCATEGORYCPP(name)
+#define LOGCTX() LogContext(Q_FILE_INFO, __FILE__, LOG_CATEGORY_NAME, __LINE__)
 #define LOGITEMMSG(msg) LogItem(LOGCTX, msg);
 #define LOGITEMFMTL(fmt, names, values) LogItem(LOGCTX, fmt, names, values);
 #define LOGITEMDUMP(names, values) LogItem(LOGCTX, names, values);

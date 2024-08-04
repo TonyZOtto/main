@@ -1,29 +1,27 @@
-#include "FileInfo.h"
+#include "LogFileInfo.h"
 
 #include <QDir>
 
-FileInfo::FileInfo(const QString &fpath) : QFileInfo(fpath) {;}
+LogFileInfo::LogFileInfo(const QString &fpath) : QFileInfo(fpath) {;}
 
-bool FileInfo::isNull() const
+bool LogFileInfo::isNull() const
 {
     return fileName().isEmpty();
 }
 
-bool FileInfo::isSuffix(const QString &sfx) const
+bool LogFileInfo::isSuffix(const QString &sfx) const
 {
     return suffix().compare(sfx, Qt::CaseInsensitive);
 }
 
-QStringList FileInfo::infoStrings(int verbosity) const
+QStringList LogFileInfo::infoStrings(int verbosity) const
 {
     QStringList result;
     const QString cPath = path();
     const QDir cDir(cPath);
     if (verbosity < 0) verbosity = 2;
-
     if (isFile())
         result << QString("File:               %1").arg(fileName());
-
     if (cDir.isRelative())
         result << QString("Relative Directory: %1").arg(cDir.path());
     if ((verbosity > 1 && cDir.isAbsolute()) || verbosity >= 3)
@@ -37,13 +35,13 @@ QStringList FileInfo::infoStrings(int verbosity) const
     return result;
 }
 
-QString FileInfo::permissionsString() const
+QString LogFileInfo::permissionsString() const
 {
     QString result;
     return result;
 }
 
-QString FileInfo::flagString(const bool isSet) const
+QString LogFileInfo::flagString(const bool isSet) const
 {
     QString result;
     QStringList tNames;

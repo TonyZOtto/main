@@ -10,13 +10,13 @@
 #include <QStringList>
 #include <QTimeZone>
 
-class OZLOG_EXPORT FileInfo : public QFileInfo
+class OZLOG_EXPORT LogFileInfo : public QFileInfo
 {
 public: // types
 
 
 public: // ctors
-    FileInfo(const QString &fpath);
+    LogFileInfo(const QString &fpath);
 
 public: // const
     bool isNull() const;
@@ -44,12 +44,12 @@ private: // non-const
 private:
 
 public: // metatype
-    FileInfo() = default;
-    FileInfo(const FileInfo &other) = default;
-    FileInfo &operator = (const FileInfo &other) = default;
-    ~FileInfo() = default;
+    LogFileInfo() = default;
+    LogFileInfo(const LogFileInfo &other) = default;
+    LogFileInfo &operator = (const LogFileInfo &other) = default;
+    ~LogFileInfo() = default;
 
 };
 
-Q_DECLARE_METATYPE(FileInfo)
+Q_DECLARE_METATYPE(LogFileInfo)
 
