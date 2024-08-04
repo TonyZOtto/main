@@ -14,10 +14,10 @@ public: // types
     typedef QList<ArgumentInfo> ArgumentInfoList;
 
 public: // shared pointer data
-    QString             dQFuncInfo;
+    QByteArray          dQFuncInfo;
     LogFileInfo         dFileInfo;
     int                 dFileLine;
-    QString             dCategory;
+    QByteArray          dCategory;
     QString             dMessage;
     QString             dFormat;
     ArgumentInfoList    dArguments;
@@ -27,6 +27,7 @@ public: // shared pointer data
 
 };
 
+// shared data members
 LogItem::LogItem() : data(new LogItemData) {;}
 LogItem::LogItem(const LogItem &rhs) : data{rhs.data} {;}
 LogItem::~LogItem() {;}

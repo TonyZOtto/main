@@ -12,6 +12,7 @@ SOURCES += \
     LogContext.cpp \
     LogEngine.cpp \
     LogFileInfo.cpp \
+    LogFunction.cpp \
     LogFunctionInfo.cpp \
     LogItem.cpp \
     LogItemObj.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     LogContext.h \
     LogEngine.h \
     LogFileInfo.h \
+    LogFunction.h \
     LogFunctionInfo.h \
     LogItem.h \
     LogItemObj.h \
