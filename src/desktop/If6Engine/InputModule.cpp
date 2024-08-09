@@ -5,7 +5,6 @@
 
 #include <MachineHelper.h>
 #include <StateMachine.h>
-#include <Url.h>
 
 #include "EngineApplication.h"
 #include "EngineSettings.h"
@@ -60,50 +59,10 @@ KeyMap InputModule::defaltSettings() const
 
 void InputModule::initializeMachines()
 {
-    mpInputModuleMachine = new InputModuleMachine(this);
-    mpLiveInputMachine = new LiveInputMachine(this);
-    mpStoredInputMachine = new StoredInputMachine(this);
-    Q_ASSERT(mpInputModuleMachine);
-    Q_ASSERT(mpLiveInputMachine);
-    Q_ASSERT(mpStoredInputMachine);
-
-    mpInputModuleMachine->set(mpLiveInputMachine);
-    mpInputModuleMachine->set(mpStoredInputMachine);
-    mpInputModuleMachine->initialize();
-    mpLiveInputMachine->initialize();
-    mpStoredInputMachine->initialize();
-    mpLiveHelper = new MachineHelper(mpLiveInputMachine);
-    mpStoredHelper = new MachineHelper(mpStoredInputMachine);
-    Q_ASSERT(mpLiveHelper);
-    Q_ASSERT(mpStoredHelper);
-
-    QState * pIdleState = new QState();
-    QFinalState * pFinalState = new QFinalState();
-    mpInputModuleMachine->addState(pIdleState);
-    mpInputModuleMachine->addState(mpLiveInputMachine);
-    mpInputModuleMachine->addState(mpStoredInputMachine);
-    mpInputModuleMachine->addState(pFinalState);
-    mpInputModuleMachine->addTransition(pIdleState,
-            &InputModule::newLiveUrl, mpLiveInputMachine);
-    mpInputModuleMachine->addTransition(pIdleState,
-            &InputModule::newStoredUrl, mpStoredInputMachine);
-    mpInputModuleMachine->addTransition(pIdleState,
-            &InputModule::shutdown, pFinalState);
-    mpLiveInputMachine->addTransition(pIdleState);
-    mpStoredInputMachine->addTransition(pIdleState);
-    mpInputModuleMachine->setInitialState(pIdleState);
-}
-
-void InputModule::urlChanged(const QUrl &newUrl)
-{
-    const Url cUrl(newUrl);
-    switch (Url(newUrl).scheme())
-    {
-    case dir:       emit newStoredUrl();    break;
-    case http:
-    case https:     emit newLiveUrl();      break;
-    default:                                break;
-    }
+    mpInputMachine = new StateMachine("InputMachine", this);
+    mpInputHelper = new MachineHelper(mpInputMachine);
+    mpStoredMachine = new StateMachine("StoredMachine", this);
+    mpStoredHelper = new MachineHelper(mpStoredMachine);
 }
 
 Key::List InputModule::storedMachineStates()

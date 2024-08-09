@@ -1,43 +1,31 @@
 TEMPLATE = subdirs
  
 SUBDIRS +=          \
-    QtCV            \
-    ozLog           \
     ozCore          \
-    ozQtCV          \
     ozGui           \
     ozExe           \
     ozColor         \
     ozPhoto         \
     ozWidgets       \
-#    INDIface        \
-#    INDIbase        \
+	INDIbase6		\
+	INDIface6		\
     If6Engine       \
 
-QtCV.subdir             = libs/QtCV
-ozLog.subdir            = libs/ozLog
 ozCore.subdir           = libs/ozCore
-ozQtCV.subdir           = libs/ozQtCV
 ozGui.subdir            = libs/ozGui
 ozExe.subdir            = libs/ozExe
 ozColor.subdir          = libs/ozColor
 ozPhoto.subdir          = libs/ozPhoto
-#INDIface.subdir         = libs/INDIface
-#INDIbase.subdir         = libs/INDIbase
+INDIbase6.subdir        = libs/INDIbase6
+INDIface6.subdir        = libs/INDIface6
 ozWidgets.subdir        = libs/ozWidgets
 If6Engine.subdir        = desktop/If6Engine
 
-QtCV.depends            =
-ozLog.depends           =
-ozCore.depends          =           ozLog
-ozQtCV.depends          =           ozLog   ozCore
-ozGui.depends           =                   ozCore
-ozExe.depends           =                   ozCore          ozGui
-ozColor.depends         =                   ozCore
-ozPhoto.depends         =                   ozCore                          ozColor
-#INDIface.subdir         =
-#INDIbase.subdir         =
-ozWidgets.depends       =                   ozCore          ozGui
-#If6Engine.depends       =   QtCV    ozLog   ozCore  ozQtCV  ozGui   ozExe   ozColor ozPhoto INDIface    INDIbase    ozWidgets
-If6Engine.depends       =   QtCV    ozLog   ozCore  ozQtCV  ozGui   ozExe   ozColor ozPhoto ozWidgets
+ozCore.depends          =
+ozGui.depends           =   ozCore
+ozExe.depends           =   ozCore          ozGui
+ozColor.depends         =   ozCore
+ozPhoto.depends         =   ozCore                  ozColor
+ozWidgets.depends       =   ozCore          ozGui
+If6Engine.depends       =   ozCore    ozExe ozGui   ozColor ozPhoto	INDIface6	INDIbase6
 

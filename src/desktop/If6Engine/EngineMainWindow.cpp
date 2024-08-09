@@ -74,8 +74,7 @@ void EngineMainWindow::initialize()
 
 void EngineMainWindow::setup()
 {
-    setWindowTitle("INDIface Six Engine "
-                   + QCoreApplication::applicationVersion());
+    setWindowTitle("INDIface Six Engine");
     setupMainStack(size());
     Q_ASSERT(mpMainWidget);
     setCentralWidget(mpMainWidget);

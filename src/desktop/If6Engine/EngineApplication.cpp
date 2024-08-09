@@ -1,6 +1,7 @@
 #include "EngineApplication.h"
 
 #include <QTimer>
+#include <QUrl>
 
 #include <ApplicationHelper.h>
 #include <CommandLine.h>

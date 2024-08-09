@@ -4,3 +4,4 @@ SUBDIRS += \
     console \
     desktop \
     libs \
+    ozSandbox

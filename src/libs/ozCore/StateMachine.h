@@ -19,7 +19,6 @@ public slots:
     virtual void initialize();
 
 signals:
-    void initialized();
 
 public: // const
     const Key machineKey() const;
@@ -30,8 +29,8 @@ public: // const
 public: // non-const
     State * addState(const Key aStateKey);
     void addState(QAbstractState * pState);
-    QSignalTransition *addTransition(const typename QtPrivate::FunctionPointer<Func>::Object *obj,
-                                     Func signal, QAbstractState *target);
+//    QSignalTransition *addTransition(const typename QtPrivate::FunctionPointer<Func>::Object *obj,
+  //                                   Func signal, QAbstractState *target);
 
 public: // pointers
     State * state(const Key &aStateKey);

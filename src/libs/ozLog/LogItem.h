@@ -16,11 +16,18 @@
 
 class OZLOG_EXPORT LogItem : public QObject
 {
-    Q_OBJECT
+    Q_GADGET
 public: // types
+    enum Flag
+    {
+        $null = 0,
+    };
+    Q_DECLARE_FLAGS(Flags, Flag);
+    Q_FLAG(Flags);
+
     struct ArgumentInfo
     {
-        QByteArray  name;
+        QByteArray      name;
         QVariant    value;
         QString     info;
     };
@@ -34,27 +41,25 @@ public: // ctors
             const char * argName2=0, const QVariant &argValue2=QVariant(),
             const char * argName3=0, const QVariant &argValue3=QVariant(),
             const char * argName4=0, const QVariant &argValue4=QVariant());
-    LogItem(const Context &ctx,
-            const QStringList &argNames, const QVariantList &argValues);
     LogItem(const Context &ctx, const char * pchFormat,
             const QStringList &argNames, const QVariantList &argValues);
 
 public:
     void set(const Context &ctx);
     void set(const char * pchMessage);
-    void set(const QStringList &argNameList, const QVariantList &argValueList);
     void set(const char * pchFormat, const ArgumentInfoList &args);
 
 private: // ------------------------ properties ------------------------
-    QString             m_qFuncInfo;
-    QFileInfo           m_fileInfo;
-    int                 m_fileLine;
+    FunctionInfo        m_functionInfo;
+    FileInfo            m_fileInfo;
+    unsigned            m_fileLine;
     QString             m_category;
     QString             m_message;
     QString             m_format;
     ArgumentInfoList    m_arguments;
     QString             m_debugHead;
-    QStringList         m_debugStrings;
     QString             m_debugFoot;
+    QStringList         m_debugStrings;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(LogItem::Flags);

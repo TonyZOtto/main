@@ -1,4 +1,5 @@
 #pragma once
+#include "ozExe.h"
 
 #include <QCoreApplication>
 #include <QObject>

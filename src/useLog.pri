@@ -1,4 +1,4 @@
-# {ottoZcode}/src/useLog.pri
+# {Eclipse6}/src/useLog.pri
 include(LIBDIR.pri)
 include(DESTDIR.pri)
 
