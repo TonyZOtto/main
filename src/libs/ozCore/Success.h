@@ -23,9 +23,9 @@ public: // ctors
     Success();  // invalid
     operator = (const bool aIs);
 
-
 public: // const
     bool test() const;
+    operator () () const { return isTrue(); }
     operator bool () const { return isTrue(); }
 
 public: // non-const

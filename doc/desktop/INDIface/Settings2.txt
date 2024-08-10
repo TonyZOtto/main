@@ -1,0 +1,251 @@
+Clothes/Ankle} for 29b3270 = 0
+Clothes/Enable} = 0
+Clothes/LowerColor} for 29b3270 =
+Clothes/LowerConfidence} for 29b3270 = 20
+Clothes/Shoulder} for 29b3270 = 0
+Clothes/UnderCrop} for 29b3270 = 0
+Clothes/UpperColor} for 29b3270 = #ecd7c8
+Clothes/UpperConfidence} for 29b3270 = 60
+Clothes/Waist} for 29b3270 = 0
+Clothes/Width} for 29b3270 = 0
+Detect/CharcolDir} = empty
+Detect/DetectorsXml
+Detect/Enable} = 1
+Detect/FaceDetector
+Detect/Factor} for 29d7158 = 0
+Detect/Flags} for 29d7158 = 1
+Detect/ForceFind} for 29d7158 = false
+Detect/GroupMethod} for 29d7158 = 3
+Detect/InputOverCrop} = 0
+Detect/MarkAll} for 29d7158 = false
+Detect/MarkColors} for 29d7158 = empty
+Detect/MarkExtraColor} for 29d7158 = empty
+Detect/MarkScaleColor} for 29d7158 = empty
+Detect/MaxAcross} for 29d7158 = 0
+Detect/MaxDensity} for 29d7158 = 0
+Detect/MaxDetectors} for 29d7158 = 0
+Detect/MaxDimension} for 29d7158 = 4096
+Detect/MaxPixels} for 29d7158 = 0
+Detect/MaxResults} for 29d7158 = 10
+Detect/MinAcross} for 29d7158 = 0
+Detect/MinPixels} for 29d7158 = 0
+Detect/MinQuality} for 29d7158 = 800
+Detect/OutputDir} = empty
+Detect/Scale} for 29d7158 = 0
+Detect/SkinDir} = empty
+Enroll/Command} = empty
+Enroll/Description
+Enroll/EyePoints
+Enroll/FaceId
+Enroll/FaceKey
+Enroll/FaceStatus
+Enroll/InputDir
+Enroll/NewPersonId
+Enroll/PersonKey
+Enroll/PersonMode
+Enroll/PersonMode
+Enroll/Reason
+Enroll/Results
+Enroll/SetDescription
+Enroll/Status
+FaceBase/DataDir
+FaceBase/MaxLoad
+FaceBase/ReloadMins
+FaceColor/DARK/MarkedDir} = empty
+FaceColor/DARK/MinConfidence} for 29b9328 = 100
+FaceColor/DARK/OutputDir} = c:\deleteme\darkcolor
+FaceColor/DARK/TargetColor} for 29b9328 = #343d4b
+FaceColor/Enable} = 1
+FaceColor/LIGHT/MarkedDir} = empty
+FaceColor/LIGHT/MinConfidence} for 29b96e8 = 900
+FaceColor/LIGHT/OutputDir} = empty
+FaceColor/LIGHT/TargetColor} for 29b96e8 =
+FaceColor/NoOutputDir} = c:\deleteme\nofacecolor
+FaceColor/OTHER/MarkedDir} = empty
+FaceColor/OTHER/MinConfidence} for 29b9918 = 900
+FaceColor/OTHER/OutputDir} = empty
+FaceColor/OTHER/TargetColor} for 29b9918 =
+Generate/DataDir
+Generate/Enable} = 1
+Generate/EyeScale} for 29d4b98 = 0
+Generate/Factor} = 3
+Generate/LeftDetector} for 29d4b98 = LEye
+Generate/MinConsistency} for 29d4b98 = 100
+Generate/OutputDir} = empty
+Generate/RightDetector} for 29d4b98 = REye
+Generate/RoiScale} for 29d4b98 = 100
+Height/Enable} = 0
+Height/GridCols} for 29d1f98 = 16
+Height/GridEyes} for 29d1f98 = empty
+Height/GridFile} for 29d1f98 = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\eir255_System\DataDir\\height_calibration.txt
+Height/GridImage} for 29d1f98 = empty
+Height/GridRows} for 29d1f98 = 12
+Height/HeightScale} for 29d1f98 = 10
+Height/HeightUnits} for 29d1f98 = 25
+Height/MinConfidence} for 29d1f98 = 300
+Height/MinConsistency} for 29d1f98 = 400
+Height/TargetEyePixels} for 29d1f98 = 35
+Height/TargetHeight} for 29d1f98 = 92
+Input/BeginDateTime
+Input/DeleteAfter
+Input/EndDateTime
+Input/FacesProcessed
+Input/FramesProcessed
+Input/ImageId
+Input/Junp
+Input/Loop
+Input/MaxCache
+Input/MaxDim
+Input/MoveAfter
+Input/NewOnly
+Input/NullFrames
+Input/NumFiles
+Input/OrderBy
+Input/Pause} = 1
+Input/Processing // =ImageId|Done
+Input/RestartSecs} = 1
+Input/SampleMsec
+Input/Skip
+Input/URL} = dir:///C:\HotEclipseIR\_EIRC PRESENTS\Video\Elgin POI\Facial Rec Data
+Match/AppendPersonId} = 1
+Match/Enable} = 0
+Match/MaxDistance} for 7efd14 = 1000
+Match/MaxFaces} for 7efd14 = 99
+Match/MaxPersonFaces} for 7efd14 = 5
+Match/MaxResults} for 7efd14 = 10
+Match/MinConfidence} for 7efd14 = 925
+Match/MinDistance} for 7efd14 = 1e-07
+Match/PersonMethod} for 7efd14 = 3
+Match/PersonMode} for 7efd14 = 4
+Match/PossibleConfidence} for 7efd14 = 700
+Match/StrongConfidence} for 7efd14 = 650
+Match/StrongPersonCount} for 7efd14 = 3
+Match/TierMethod} for 7efd14 = 0
+Options/Delimiter
+Options/Install
+Options/NoPrompt} = true
+Options/PollCount
+Options/Shutdown} = false
+Options/UpdateMsec} for 29b99a0 = 500
+Options/Version
+Options/WatchDogAction
+Options/WatchDogMins
+Options/WatchDogValue} = Start
+Output/BadFaceDir} = empty
+Output/BaseDir} = c:\HotEclipseIR\basedir
+Output/BodyDir} = empty
+Output/Capture2Dir} = empty
+Output/CaptureDir} = empty
+Output/ClothesDir} = c:\deletme\clothes1
+Output/ClothesFaceDir} = empty
+Output/FaceCacheDir} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\facedetectcache
+Output/FaceDir} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\gallery
+Output/FaceFormat} = PNG
+Output/FaceIdFormat
+Output/FacePerformanceFile
+Output/FaceQuality} = -1
+Output/ForceHeight} = false
+Output/ForceMarked} = 1
+Output/Format} = JPG
+Output/FraamePerformanceFile
+Output/FrameIdFormat
+Output/HeightDir} = empty
+Output/HeightFaceDir} = empty
+Output/ImageDir} = empty
+Output/LogDetail} = detail
+Output/LogFile} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\log/IfSearch-@.log
+Output/LogStdout
+Output/MarkAllColor} = empty
+Output/MarkAllEyeColor} = #000000
+Output/MarkAllEyes} = true
+Output/MarkBackgroundColor} = #000000
+Output/MarkBackgroundFile} = empty
+Output/MarkBackgroundTransparency} = 100
+Output/MarkBadFaceColor} = empty
+Output/MarkBestColor
+Output/MarkClothes} = 0
+Output/MarkEyeColor} = #00ff00
+Output/MarkEyeRoiColor} = #000000
+Output/MarkFaceColor} = #ffff00
+Output/MarkNoEyesColor} = empty
+Output/MarkOverCrop} = 175
+Output/MarkOverMark} = 150
+Output/MarkPossibleColor
+Output/MarkStrongColor
+Output/MarkWeakColor
+Output/MarkedDir} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\capturedir
+Output/MarkedFaceDir} = empty
+Output/MatchDir} = empty
+Output/MaxCache} = 90
+Output/NoClothesDir} = empty
+Output/NoEyesDir} = empty
+Output/NoFaceDir} = c:\deleteme\noface1
+Output/NoHeightDir} = empty
+Output/NoMarkDir} = empty
+Output/NoMatchDir} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\gallery
+Output/Quality} = -1
+Output/ReconDir} = empty
+Output/RolloverHours
+Output/RolloverKeep
+Output/UnMarkedDir} = empty
+Output/VectorDir} = empty
+Output/WriteFaceInfo} = true
+Output/XmlDir} = empty
+PreProcess/Aspect} for 7efef8 = 0
+PreProcess/Clip new
+PreProcess/Crop} for 7efef8 = empty
+PreProcess/Rotate} for 7efef8 = 0
+PreProcess/Scale} for 7efef8 = 0
+Resolve/ActiveOnly
+Resolve/Consistency} = 0
+Resolve/Description
+Resolve/Enable} = 0
+Resolve/FaceColor} = empty
+Resolve/FaceDir} = c:\HotEclipseIR\Video\Elimator\100\Marked Frames
+Resolve/FaceId
+Resolve/FaceKey
+Resolve/Height} = empty
+Resolve/LowerClothes} = 300
+Resolve/MarkedDir} = c:\HotEclipseIR\Video\Elimator\100\Match
+Resolve/MaxConfidence} = 1000
+Resolve/MinConfidence} = 60
+Resolve/PersonId
+Resolve/PersonKey
+Resolve/Quality} = 0
+Resolve/Reason
+Resolve/ReportFile
+Resolve/Results
+Resolve/Status
+Resolve/UpperClothes} = 100
+Retrieve/Command} = empty
+Retrieve/OutputDir} = c:\hoteclipseir\bg_MatchPoint\dbrepair\200
+Retrieve/ReconDir} = empty
+Search/AuthFailConfidence
+Search/AuthMaxFaces
+Search/AuthMinFaces
+Search/AuthPassConfidence
+Search/AuthTimeout
+Search/Authenticate
+Search/Command} = empty
+Search/Confidence
+Search/InputDir
+Search/MaxDistance} for 7efd1c =
+Search/MaxFaces} for 7efd1c = 99
+Search/MaxPersonFaces} for 7efd1c = 5
+Search/MaxResults} for 7efd1c = 10
+Search/MinConfidence} for 7efd1c = 500
+Search/MinDistance} for 7efd1c = 1e-07
+Search/OutputDir} = C:\EIR\FWGEN600.02\eir255_SearchPoint6.1\.\eir255_System\outdirs\Camera0\search_output
+Search/PersonId
+Search/PersonKey
+Search/PersonMethod} for 7efd1c = 4
+Search/PersonMode} for 7efd1c = true
+Search/PossibleConfidence} for 7efd1c = 650
+Search/Reason
+Search/Results
+Search/SimilarityDir} = empty
+Search/Status
+Search/StrongConfidence} for 7efd1c = 850
+Search/StrongPersonCount} for 7efd1c = 3
+Search/TierMethod} for 7efd1c = 0
+Source/Changed} = false

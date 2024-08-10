@@ -17,6 +17,7 @@ public: // const
     QStringList namesOfEnums(const bool all=false) const;
     QStringList keysInEnum(const QString &enumName) const;
     bool enumIsFlags(const QString &enumName) const;
+    QString enumKey(const QString &enumName, const int value) const;
     int enumValue(const QString &enumName, const QString &key) const;
     QStringList flagKeys(const QString &enumName, int flags, const bool isSet=true) const;
 

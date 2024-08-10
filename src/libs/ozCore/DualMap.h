@@ -8,9 +8,9 @@
 #include <QtGlobal>
 
 #include <QMap>
-#include <QtDebug>
 
-template <class A, class B> class DualMap
+template <class A, class B>
+class DualMap
 {
 public:
     DualMap(void) {}

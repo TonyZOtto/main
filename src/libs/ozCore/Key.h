@@ -18,18 +18,28 @@ public: // ctors
     Key(const char * pch) { set(pch); }
     Key(const AText &atx) { set(atx); }
     Key(const QString &qs) { set(qs); }
+    Key(const KeySeg::List &segs) : mSegments(segs) {;}
 
 public: // const
+    bool isNull() const;
+    bool notNull() const { return ! isNull(); }
+    Count count() const;
     KeySeg last() const;
+    KeySeg::List last(const Count aCount) const;
+    Key prepended(const Key &groupKey) const;
+    Key prepended(const KeySeg &seg) const;
     QString toString() const;
     operator QString() const { return toString(); }
     QString operator () () const { return toString(); }
-    bool operator <(const Key &rhs) const;
+    bool operator == (const Key &rhs) const;
+    bool operator < (const Key &rhs) const;
 
 public: // non-const
     void set(const char * pch);
     void set(const AText &atx);
     void set(const QString &qs);
+    Key append(const Key &aKey);
+    Key removeTail(const Key &aKey);
 
 private: // static
     static KeySeg::List split(const AText &atx, const QChar hinge=QChar('/'));

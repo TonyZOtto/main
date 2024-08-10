@@ -1,7 +1,6 @@
-## QT -= gui
 QT *= gui
 QT *= widgets
-
+QT *= statemachine
 TEMPLATE = lib
 DEFINES += OZCORE_LIBRARY
 CONFIG += c++17
@@ -15,11 +14,16 @@ SOURCES += \
     Angle.cpp \
     Boolean.cpp \
     ByteHistogram.cpp \
+    Ident.cpp \
+    IdentMap.cpp \
     Key.cpp \
     KeyMap.cpp \
     KeySeg.cpp \
     KeySegList.cpp \
+    MachineHelper.cpp \
+    MillisecondTime.cpp \
     ObjectHelper.cpp \
+    QQBitArray.cpp \
     QQDir.cpp \
     QQObject.cpp \
     QQPoint.cpp \
@@ -30,8 +34,11 @@ SOURCES += \
     RationalList.cpp \
     SCRect.cpp \
     SettingsName.cpp \
+    State.cpp \
+    StateMachine.cpp \
     Success.cpp \
-    UInt32.cpp \
+    Uid.cpp \
+    Url.cpp \
     VersionInfo.cpp \
     ozCore.cpp \
 
@@ -42,12 +49,17 @@ HEADERS += \
     Boolean.h \
     ByteHistogram.h \
     DualMap.h \
+    Ident.h \
+    IdentMap.h \
     Key.h \
     KeyMap.h \
     KeySeg.h \
     KeySegList.h \
+    MachineHelper.h \
     MetaType.h \
+    MillisecondTime.h \
     ObjectHelper.h \
+    QQBitArray.h \
     QQDir.h \
     QQObject.h \
     QQPoint.h \
@@ -58,9 +70,12 @@ HEADERS += \
     RationalList.h \
     SCRect.h \
     SettingsName.h \
+    State.h \
+    StateMachine.h \
     Success.h \
     Types.h \
-    UInt32.h \
+    Uid.h \
+    Url.h \
     VersionInfo.h \
     ozCore.h        \
     ozCore_global.h \

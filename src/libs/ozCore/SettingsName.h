@@ -27,6 +27,7 @@ public: // ctors
 
 public: // const
     Type type() const;
+    bool isValid() const;
     bool systemScope() const;
     QSettings::Scope scope() const;
     QFileInfo fileInfo() const;
@@ -34,12 +35,12 @@ public: // const
     QString appName() const;
 
 public: // non-const
+    void clear();
     Type set(const QString &name, const bool okNotExist=false);
 
 private:
     Type setFileName(const QString &s, const bool okNotExist=false);
     Type setOrgApp(const QString &s);
-
 
 private:
     QString mString;

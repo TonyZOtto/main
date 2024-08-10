@@ -23,9 +23,9 @@ If6Engine.subdir        = desktop/If6Engine
 
 ozCore.depends          =
 ozGui.depends           =   ozCore
-ozExe.depends           =   ozCore			ozGui
+ozExe.depends           =   ozCore          ozGui
 ozColor.depends         =   ozCore
 ozPhoto.depends         =   ozCore                  ozColor
-ozWidgets.depends       = 	ozCore			ozGui
+ozWidgets.depends       =   ozCore          ozGui
 If6Engine.depends       =   ozCore    ozExe ozGui   ozColor ozPhoto	INDIface6	INDIbase6
 
