@@ -30,15 +30,13 @@ void SandboxScene::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     mpView = new QGraphicsView(this);
-
-
 }
 
 void SandboxScene::setup()
 {
     qInfo() << Q_FUNC_INFO;
     view()->setMinimumSize(viewRect().size());
-    widget()->setMinimumSize(viewRect().size());
+    view()->centerOn(viewRect().center());
 }
 
 void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)

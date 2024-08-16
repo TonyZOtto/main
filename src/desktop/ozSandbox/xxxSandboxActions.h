@@ -112,4 +112,4 @@ private:
 
 };
 
-inline SandboxMainWindow *SandboxActions::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
+inline SandboxMainWindow *SandboxActions::mainWindow() { Q_ASSERT(mpMainWindow); return mpMainWindow; }

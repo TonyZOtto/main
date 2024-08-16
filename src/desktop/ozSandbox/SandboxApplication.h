@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QApplication>
+#include <WidgetApplication.h>
 
 class ApplicationHelper;
 class AppSettings;
@@ -12,7 +12,7 @@ class SandboxMainWindow;
 class SandboxScene;
 
 
-class SandboxApplication : public QApplication
+class SandboxApplication : public WidgetApplication
 {
     Q_OBJECT
 public: // ctors
@@ -58,8 +58,8 @@ private:
 };
 
 inline SandboxData SandboxApplication::data() const { return mData; }
-inline void SandboxApplication::set(SandboxMainWindow *pMainWindow) { Q_CHECK_PTR(pMainWindow); mpMainWindow = pMainWindow; }
-inline SandboxMainWindow *SandboxApplication::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
-inline SandboxEngine *SandboxApplication::engine() { Q_CHECK_PTR(mpEngine); return mpEngine; }
-inline ApplicationHelper *SandboxApplication::appHelper() { Q_CHECK_PTR(mpHelper); return mpHelper; }
+inline void SandboxApplication::set(SandboxMainWindow *pMainWindow) { Q_ASSERT(pMainWindow); mpMainWindow = pMainWindow; }
+inline SandboxMainWindow *SandboxApplication::mainWindow() { Q_ASSERT(mpMainWindow); return mpMainWindow; }
+inline SandboxEngine *SandboxApplication::engine() { Q_ASSERT(mpEngine); return mpEngine; }
+inline ApplicationHelper *SandboxApplication::appHelper() { Q_ASSERT(mpHelper); return mpHelper; }
 

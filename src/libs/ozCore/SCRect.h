@@ -21,6 +21,7 @@ public: // ctors
 
 public: // const
     QQSize size() const;
+    QQPoint center() const;
     int width() const;
     int height() const;
     QRect toQRect(const Anchor aAnchor=TopLeft) const;
@@ -31,3 +32,4 @@ private:
 };
 
 inline QQSize SCRect::size() const { return mSize; }
+inline QQPoint SCRect::center() const { return mCenter; }

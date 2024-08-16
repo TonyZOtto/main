@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QSize>
 class QToolBar;
+class QToolButton;
 class QWidget;
 
 #include <ActionManager.h>
@@ -44,26 +45,28 @@ public: // non-const
 
 public: // pointers
     SandboxApplication * app();
-    ActionManager * actions();
-    QAction * action(const Key &aKey);
+  //  ActionManager * actions();
+//    QAction * action(const Key &aKey);
     SandboxScene * scene();
     QToolBar * toolBar();
 
 private slots:
     void setupActions();
-    QToolBar * createToolBar();
+    QToolBar * createMainToolBar();
 
 private:
     QIcon styleIcon(const Key aKey) const;
 
 private:
     SandboxApplication * mpApplication=nullptr;
-    ActionManager * mpActions=nullptr;
+//    ActionManager * mpActions=nullptr;
     SandboxScene * mpScene=nullptr;
     QToolBar * mpMainToolBar=nullptr;
+    QToolButton * mpQuitButton=nullptr;
+    QToolButton * mpFlipButton=nullptr;
 };
 
-inline SandboxApplication *SandboxMainWindow::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }
-inline ActionManager *SandboxMainWindow::actions() { Q_CHECK_PTR(mpActions); return mpActions; }
-inline SandboxScene *SandboxMainWindow::scene() {  Q_CHECK_PTR(mpScene); return mpScene; }
-inline QToolBar *SandboxMainWindow::toolBar()  {  Q_CHECK_PTR(mpMainToolBar); return mpMainToolBar; }
+inline SandboxApplication *SandboxMainWindow::app() { Q_ASSERT(mpApplication); return mpApplication; }
+//inline ActionManager *SandboxMainWindow::actions() { Q_ASSERT(mpActions); return mpActions; }
+inline SandboxScene *SandboxMainWindow::scene() {  Q_ASSERT(mpScene); return mpScene; }
+inline QToolBar *SandboxMainWindow::toolBar()  {  Q_ASSERT(mpMainToolBar); return mpMainToolBar; }

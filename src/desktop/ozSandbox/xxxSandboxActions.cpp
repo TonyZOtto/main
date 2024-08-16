@@ -27,10 +27,10 @@ void SandboxActions::setup()
 {
     mRunState = Paused;
     createIcons();
-    Q_CHECK_PTR(mpQuitAction);
-    Q_CHECK_PTR(mpStopAction);
-    Q_CHECK_PTR(mpPauseAction);
-    Q_CHECK_PTR(mpResumeAction);
+    Q_ASSERT(mpQuitAction);
+    Q_ASSERT(mpStopAction);
+    Q_ASSERT(mpPauseAction);
+    Q_ASSERT(mpResumeAction);
     mpQuitAction->setIcon(mQuitIcon);
     mpStopAction->setIcon(mStopIcon);
     mpPauseAction->setIcon(mPauseIcon);
@@ -39,7 +39,7 @@ void SandboxActions::setup()
     mpStopAction->setShortcut(QKeySequence("Alt+S"));
     mpPauseAction->setShortcut(QKeySequence("Alt+P"));
     mpResumeAction->setShortcut(QKeySequence("Alt+R"));
-    Q_CHECK_PTR(mpToolbar);
+    Q_ASSERT(mpToolbar);
     mpToolbar->addAction(mpQuitAction);
     mpToolbar->addAction(mpStopAction);
     mpToolbar->addAction(mpPauseAction);
@@ -51,7 +51,7 @@ void SandboxActions::setup()
 
 void SandboxActions::objconnect()
 {
-    Q_CHECK_PTR(mpQuitAction);
+    Q_ASSERT(mpQuitAction);
     connect(mpQuitAction, &QAction::triggered, this, &SandboxActions::quit);
     emit connected();
 }

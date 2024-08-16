@@ -6,7 +6,7 @@
 #include "SandboxMainWindow.h"
 
 SandboxApplication::SandboxApplication(int &argc, char **argv)
-    : QApplication{argc, argv}
+    : WidgetApplication{argc, argv}
     , mpHelper(new ApplicationHelper(this))
 {
     qInfo() << Q_FUNC_INFO;
