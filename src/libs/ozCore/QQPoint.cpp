@@ -11,3 +11,8 @@ QQPoint::QQPoint(const int aX, const int aY, const float aScaleF)
     setX(qRound(float(aX) * aScaleF)),
     setY(qRound(float(aY) * aScaleF));
 }
+
+QQPoint QQPoint::up() const
+{
+    return QQPoint(x(), y() - 1);
+}

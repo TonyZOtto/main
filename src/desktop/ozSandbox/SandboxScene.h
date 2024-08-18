@@ -73,5 +73,5 @@ private:
 
 inline SCRect SandboxScene::viewRect() const { return mViewRect; }
 inline void SandboxScene::viewRect(const SCRect &aViewRect) { mViewRect = aViewRect; }
-inline SandboxMainWindow *SandboxScene::mainWindow() { Q_CHECK_PTR(mpMainWindow); return mpMainWindow; }
-inline QGraphicsView *SandboxScene::view() { Q_CHECK_PTR(mpView); return mpView; }
+inline SandboxMainWindow *SandboxScene::mainWindow() { Q_ASSERT(mpMainWindow); return mpMainWindow; }
+inline QGraphicsView *SandboxScene::view() { Q_ASSERT(mpView); return mpView; }

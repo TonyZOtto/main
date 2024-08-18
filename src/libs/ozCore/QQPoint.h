@@ -15,7 +15,13 @@ public:
     QQPoint(const int aX, const int aY);
     QQPoint(const int aX, const int aY, const float aScaleF);
 
-public:
+public: // const
+    int x() const { return QPoint::x(); } // TODO Why?
+    int y() const { return QPoint::y(); }
+    QQPoint up() const;
+
+
+public: // non-const
     void x(const int aX) { setX(aX); }
     void y(const int aY) { setY(aY); }
 };

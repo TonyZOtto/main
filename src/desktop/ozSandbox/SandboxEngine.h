@@ -2,6 +2,8 @@
 
 #include <QObject>
 
+#include <QTransform>
+
 #include <BrightnessContrast.h>
 #include <ByteHistogram.h>
 #include <ColorPhoto.h>
@@ -26,6 +28,7 @@ public slots:
     void configure(void) {;}
     void setup(void);
     void start(void) {;}
+    void process(const QTransform &xf);
 
     void setSubjectPhoto(const ColorPhoto &aCP);
 
@@ -49,6 +52,7 @@ public: // non-const
 private slots:
 
 private:
+    bool processOnce(const QTransform &xf);
     BrightnessContrast processHistogram(const Grey16Photo aGrey16Photo);
     void setupColorTable();
     void setupColorTableLinear(const BYTE aFrom,
@@ -67,10 +71,10 @@ private:
     SandboxApplication * mpApplication=nullptr;
     ColorPhoto mSubjectPhoto;
     Grey16Photo mGrey16Photo;
-    IndexPhoto mIndexPhoto;
-    IndexPhoto mNextIndexPhoto;
+    IndexPhoto mPreviousIndexPhoto;
+    IndexPhoto mCurrentIndexPhoto;
     QList<QRgb> mColorTable;
     ByteHistogram mGrey8Histogram;
 };
 
-inline SandboxApplication *SandboxEngine::app() { Q_CHECK_PTR(mpApplication); return mpApplication; }
+inline SandboxApplication *SandboxEngine::app() { Q_ASSERT(mpApplication); return mpApplication; }
