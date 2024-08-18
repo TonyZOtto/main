@@ -2,7 +2,7 @@
 
 #include <MillisecondTime.h>
 
-QRandomGenerator64 Uid::smRandom64(quint32(MillisecondTime::current()));
+QRandomGenerator64 Uid::smRandom64 = quint64(MillisecondTime::current());
 
 Uid::Uid() {;}
 

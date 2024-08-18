@@ -5,7 +5,7 @@ Success::Success()
     invalidate();
 }
 
-Success::operator =(const bool aIs)
+bool Success::operator =(const bool aIs)
 {
     set(aIs);
     return isTrue();

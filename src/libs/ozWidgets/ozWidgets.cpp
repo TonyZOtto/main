@@ -1,3 +1,3 @@
-#include "qzWidgets.h"
+#include "ozWidgets.h"
 
 qzWidgets::qzWidgets() {}

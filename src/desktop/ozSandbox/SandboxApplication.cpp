@@ -7,7 +7,6 @@
 
 SandboxApplication::SandboxApplication(int &argc, char **argv)
     : QApplication{argc, argv}
-    , mpHelper(new ApplicationHelper(this))
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("SandboxApplication:" + applicationName());
@@ -87,10 +86,10 @@ SandboxScene *SandboxApplication::scene()
 
 CommandLine *SandboxApplication::commandLine()
 {
-    return appHelper()->commandLine();
+    return nullptr; //appHelper()->commandLine();
 }
 
 AppSettings *SandboxApplication::settings()
 {
-    return appHelper()->appSettings();
+    return nullptr; //appHelper()->appSettings();
 }

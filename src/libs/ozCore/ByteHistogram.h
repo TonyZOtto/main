@@ -25,7 +25,7 @@ public: // const
     Count at(const BYTE aSample) const;
     CountList ktileList(const BYTE aWidth) const;
     SampleList distribution(const Count aCountPerBin) const;
-    operator [] (const BYTE aSample) const { return at(aSample); }
+//    operator [] (const BYTE aSample) const { return at(aSample); }
 
 public: // non-const
     void add(const BYTE aSample);

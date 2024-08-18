@@ -25,3 +25,4 @@ ozPhoto.depends         =   ozCore                  ozColor
 ozWidgets.depends       = # tbd
 ozSandbox.depends       =   ozCore    ozExe ozGui   ozColor ozPhoto
 
+

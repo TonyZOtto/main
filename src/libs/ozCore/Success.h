@@ -21,11 +21,11 @@ class OZCORE_EXPORT Success : public Boolean
 {
 public: // ctors
     Success();  // invalid
-    operator = (const bool aIs);
+    bool operator = (const bool aIs);
 
 public: // const
     bool test() const;
-    operator () () const { return isTrue(); }
+    bool operator () () const { return isTrue(); }
     operator bool () const { return isTrue(); }
 
 public: // non-const

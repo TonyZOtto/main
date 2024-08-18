@@ -5,6 +5,7 @@
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
+#include <QStyle>
 #include <QToolBar>
 #include <QTimer>
 #include <QWidget>

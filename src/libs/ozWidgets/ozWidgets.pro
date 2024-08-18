@@ -7,11 +7,13 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include("../libs.pri")
 
 SOURCES += \
-    qzWidgets.cpp
+    BaseGridLayout.cpp \
+    ozWidgets.cpp
 
 HEADERS += \
-    ozWidgets_global.h \
-    qzWidgets.h
+    BaseGridLayout.h \
+    ozWidgets.h \
+    ozWidgets_global.h
 
 # Default rules for deployment.
 unix {
