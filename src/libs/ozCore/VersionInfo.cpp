@@ -1,31 +1,123 @@
 #include "VersionInfo.h"
 
-#include <QChar>
 #include <QCoreApplication>
+#include <QGuiApplication>
 
-VersionInfo::VersionInfo() { clear(); }
-
-VersionInfo::VersionInfo(const BYTE maj, const WORD min, const BYTE rls, const WORD bch,
-                         const WORD bld, const char *bnm, const char *app, const char *org)
+class VersionInfoData : public QSharedData
 {
-    set(maj, min, rls, bch, bld, bnm, app, org);
-    // TODO company, legal
-    // TODO setApp()
+public:
+    BYTE            d_major;        // 0..99
+    WORD            d_minor;        // 0..999
+    BYTE            d_release;      // _A..Z,AA..WW,X0..9A..X,0xA?,0xB?,0xC?,0xF?
+    WORD            d_branch;       // 0001..4999 Issue, 5001..5999 Customer
+    WORD            d_build;        // ++at Develop,Current,Release,Main
+    AText           d_branchname;
+    AText           d_appname;
+    AText           d_appdesc;
+    AText           d_orgname;
+    AText           d_product;
+    UText           d_company;
+    UText           d_copyright;
+    UText           d_legal;
+    QVersionNumber  d_qtVersion;
+    VersionInfo::WindowsVersion  d_windowsVersion;
+    VersionInfo::LinuxVersion    d_linuxVersion;
+};
+
+VersionInfo::VersionInfo(const BYTE maj, const WORD min,
+            const BYTE rls, const WORD bch, const WORD bld,
+            const char *bnm, const char *app,
+            const char *org, const char *desc)
+: data(new VersionInfoData)
+{
+    set(maj, min, rls, bch, bld, bnm, app, org, desc);
 }
+
+BYTE VersionInfo::major() const
+{
+    return data->d_major;
+}
+
+WORD VersionInfo::minor() const
+{
+    return data->d_minor;
+}
+
+BYTE VersionInfo::release() const
+{
+    return data->d_release;
+}
+
+WORD VersionInfo::branch() const
+{
+    return data->d_branch;
+}
+
+WORD VersionInfo::build() const
+{
+    return data->d_build;
+}
+
+AText VersionInfo::branchname() const
+{
+    return data->d_branchname;
+}
+
+AText VersionInfo::appname() const
+{
+    return data->d_appname;
+}
+
+AText VersionInfo::appdesc() const
+{
+    return data->d_appdesc;
+}
+
+AText VersionInfo::orgname() const
+{
+    return data->d_orgname;
+}
+
+AText VersionInfo::product() const
+{
+    return data->d_product;
+}
+
+UText VersionInfo::company() const
+{
+    return data->d_company;
+}
+
+UText VersionInfo::copyright() const
+{
+    return data->d_copyright;
+}
+
+UText VersionInfo::legal() const
+{
+    return data->d_legal;
+}
+
+
+QVersionNumber VersionInfo::qtVersion() const
+{
+    return data->d_qtVersion;
+}
+
+VersionInfo::WindowsVersion VersionInfo::windowsVersion() const
+{
+    return data->d_windowsVersion;
+}
+
+VersionInfo::LinuxVersion VersionInfo::linuxVersion() const
+{
+    return data->d_linuxVersion;
+}
+
 
 bool VersionInfo::isNull() const
 {
     return 0 == major() && 0 == minor();
-}
-
-void VersionInfo::copyright(const UText &co)
-{
-    m_copyright = co;
-}
-
-void VersionInfo::legal(const UText &leg)
-{
-    m_legal = leg;
 }
 
 QString VersionInfo::toString(const StringOptions opts) const
@@ -38,7 +130,7 @@ QString VersionInfo::toString(const StringOptions opts) const
     else
     {
         result = QString("%1.%2%3").arg(major()).arg(minor(), 2, QChar('0'))
-                          .arg(releaseString(opts));
+        .arg(releaseString(opts));
         if (branch() && ! opts.testFlag(WithoutBranch))
         {
             result += QString("+%1").arg(branch(), 4, QChar('0'));
@@ -52,8 +144,7 @@ QString VersionInfo::toString(const StringOptions opts) const
         result += QString(" [%1]").arg(toDWord(), 8, 16, QChar('0'));
     if (opts.testFlag(WithQWord))
         result += QString(" [%1]").arg(toQWord(), 16, 16, QChar('0'));
-    return result;
-}
+    return result;}
 
 DWORD VersionInfo::toDWord() const
 {
@@ -89,113 +180,83 @@ QWORD VersionInfo::toQWord() const
     return stUnion.uQWord;
 }
 
-bool VersionInfo::set(QCoreApplication *pCoreApp)
+bool VersionInfo::updateApp(QCoreApplication *pCoreApp) const
 {
     pCoreApp->setApplicationName(appname());
-//    pCoreApp->setApplicationDisplayName(product());
     pCoreApp->setApplicationVersion(toString());
     pCoreApp->setOrganizationName(orgname());
+    QGuiApplication * pGuiApp = qobject_cast<QGuiApplication *>(pCoreApp);
+    if (pGuiApp)
+        pGuiApp->setApplicationDisplayName(appdesc());
     return true;
 }
 
 void VersionInfo::clear()
 {
-    m_major = m_minor = m_release = m_branch = m_build = 0;
-    m_branchname.clear(), m_appname.clear(), m_orgname.clear();
-    m_company.clear(), m_copyright.clear(), m_legal.clear();
-    m_qtVersion = QVersionNumber();
-    m_windowsVersion = WindowsVersion{0,0,0,0};
-    m_linuxVersion = LinuxVersion{0,0,0};
+    data->d_major = data->d_minor = data->d_release = data->d_branch = data->d_build = 0;
+    data->d_branchname.clear(), data->d_appname.clear(), data->d_orgname.clear();
+    data->d_company.clear(), data->d_copyright.clear(), data->d_legal.clear();
+    data->d_qtVersion = QVersionNumber();
+    data->d_windowsVersion = WindowsVersion{0,0,0,0};
+    data->d_linuxVersion = LinuxVersion{0,0,0};
 }
 
-void VersionInfo::set(const BYTE maj, const WORD min, const BYTE rls, const WORD bch,
-                      const WORD bld, const char *bnm, const char *app, const char *org)
+void VersionInfo::set(const VersionInfo &vi)
 {
-    m_major = maj, m_minor = min, m_release = rls, m_branch = bch, m_build = bld;
-    m_branchname = AText(bnm), m_appname = AText(app), m_orgname = AText(org);
-    m_linuxVersion = LinuxVersion{maj, min, rls};
+    set(vi.major(), vi.minor(), vi.release(),
+        vi.branch(), vi.build(), vi.branchname(),
+        vi.appname(), vi.orgname(), vi.appdesc());
+    data->d_product = vi.product(), data->d_company = vi.company(),
+        data->d_copyright = vi.copyright(), data->d_legal = vi.legal();
+    data->d_linuxVersion = vi.data->d_linuxVersion;
     setQt();
     setWindows();
 }
 
-// =============== Properties ===================
-BYTE VersionInfo::major() const
+void VersionInfo::set(const BYTE maj, const WORD min,
+        const BYTE rls, const WORD bch, const WORD bld,
+        const char *bnm, const char *app,
+        const char *org, const char *desc)
 {
-    return m_major;
+    data->d_major = maj, data->d_minor = min, data->d_release = rls,
+        data->d_branch = bch, data->d_build = bld;
+    data->d_branchname = AText(bnm), data->d_appname = AText(app),
+        data->d_orgname = AText(org), data->d_appdesc = AText(desc);
+    data->d_linuxVersion = LinuxVersion{maj, min, rls};
+    setQt();
+    setWindows();
 }
 
-WORD VersionInfo::minor() const
+void VersionInfo::company(const UText &co)
 {
-    return m_minor;
+    data->d_company = co;
 }
 
-BYTE VersionInfo::release() const
+void VersionInfo::copyright(const UText &co)
 {
-    return m_release;
+    data->d_copyright = co;
 }
 
-WORD VersionInfo::branch() const
+void VersionInfo::legal(const UText &leg)
 {
-    return m_branch;
-}
-
-WORD VersionInfo::build() const
-{
-    return m_build;
-}
-
-AText VersionInfo::branchname() const
-{
-    return m_branchname;
-}
-
-AText VersionInfo::appname() const
-{
-    return m_appname;
-}
-
-AText VersionInfo::orgname() const
-{
-    return m_orgname;
-}
-
-AText VersionInfo::product() const
-{
-    return m_product;
-}
-
-UText VersionInfo::company() const
-{
-    return m_company;
-}
-
-UText VersionInfo::copyright() const
-{
-    return m_copyright;
-}
-
-
-UText VersionInfo::legal() const
-{
-    return m_legal;
+    data->d_legal = leg;
 }
 
 void VersionInfo::product(const AText &prod)
 {
-    m_product = prod;
+    data->d_product = prod;
 }
 
 QString VersionInfo::dottedString() const
 {
-    return QString("%1.%2.%3.%4").arg(1000 * major() + minor(), 4, QChar('0'))
-                 .arg(release()).arg(branch()).arg(build());
-
+    return QString("%1.%2.%3.%4")
+        .arg(1000 * major() + minor(), 4, QChar('0'))
+        .arg(release()).arg(branch()).arg(build());
 }
 
 QString VersionInfo::releaseString(const StringOptions opts) const
 {
     QString result= QString(".%1").arg(release(), 3, QChar('0'));
-
     const unsigned cRelease = release();
     if (0 == cRelease || (cRelease >= 0xF0 && opts.testFlag(WithoutFinal)))  result.clear();
     else if (cRelease > 1 && cRelease <=26) result = QString(QChar((BYTE)('A') + release() - 1));
@@ -203,10 +264,7 @@ QString VersionInfo::releaseString(const StringOptions opts) const
     else if (cRelease >= 0xB0 && cRelease <= 0xBF) result = namedRelease("Beta", opts);
     else if (cRelease >= 0xC0 && cRelease <= 0xCF) result = namedRelease("RC", opts);
     else if (cRelease >= 0xF0 && cRelease <= 0xFF) result = namedRelease("Final", opts);
-
-
-    return result;
-}
+    return result;}
 
 QString VersionInfo::namedRelease(const char *name, const StringOptions opts) const
 {
@@ -220,25 +278,22 @@ void VersionInfo::setQt()
 {
     IntList tIntList;
     tIntList << major() << minor() << release() << branch() << build();
-    m_qtVersion = QVersionNumber(tIntList);
+    data->d_qtVersion = QVersionNumber(tIntList);
 }
 
 void VersionInfo::setWindows()
 {
-    m_windowsVersion = WindowsVersion{SWORD(major() * 1000 + minor()), release(), SWORD(branch()), SWORD(build())};
+    data->d_windowsVersion = WindowsVersion{SWORD(major() * 1000 + minor()), release(), SWORD(branch()), SWORD(build())};
 }
 
-QVersionNumber VersionInfo::qtVersion() const
+// builtin
+VersionInfo::VersionInfo() : data(new VersionInfoData) {;}
+VersionInfo::VersionInfo(const VersionInfo &rhs) : data{rhs.data} {;}
+VersionInfo::~VersionInfo() {;}
+VersionInfo &VersionInfo::operator=(const VersionInfo &rhs)
 {
-    return m_qtVersion;
+    if (this != &rhs)
+        data.operator=(rhs.data);
+    return *this;
 }
 
-VersionInfo::WindowsVersion VersionInfo::windowsVersion() const
-{
-    return m_windowsVersion;
-}
-
-VersionInfo::LinuxVersion VersionInfo::linuxVersion() const
-{
-    return m_linuxVersion;
-}

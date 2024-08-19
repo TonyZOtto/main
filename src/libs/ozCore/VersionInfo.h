@@ -1,18 +1,18 @@
 #pragma once
 #include "ozCore.h"
 
-#include <QObject>
-#include <QString>
+#include <QSharedDataPointer>
+
 #include <QVersionNumber>
 class QCoreApplication;
-
 
 #include "AText.h"
 #include "Types.h"
 
-class OZCORE_EXPORT VersionInfo : public QObject
+class VersionInfoData;
+
+class OZCORE_EXPORT VersionInfo
 {
-    Q_GADGET
 public: // types
     struct WindowsVersion   { SWORD     word[4]; };
     struct LinuxVersion     { UINT      uint[3]; };
@@ -32,22 +32,41 @@ public: // types
     Q_FLAGS(StringOptions);
 
 public: // ctors
-    explicit VersionInfo();
     VersionInfo(const BYTE maj, const WORD min, const BYTE rls,
-                const WORD bch, const WORD bld, const char * bnm,
-                const char * app, const char * org);
+              const WORD bch, const WORD bld, const char * bnm,
+              const char * app, const char * org, const char * desc);
 
 public: // const
+    BYTE major() const;
+    WORD minor() const;        // 0..999
+    BYTE release() const;      // _A..Z,AA..WW,X0..9A..X,0xA?,0xB?,0xC?,0xF?
+    WORD branch() const;       // 0001..4999 Issue, 5001..5999 Customer
+    WORD build() const;        // ++at Develop,Current,Release,Main
+    AText branchname() const;
+    AText appname() const;
+    AText appdesc() const;
+    AText orgname() const;
+    AText product() const;
+    UText company() const;
+    UText copyright() const;
+    UText legal() const;
+    QVersionNumber  qtVersion() const;
+    WindowsVersion  windowsVersion() const;
+    LinuxVersion    linuxVersion() const;
     bool isNull() const;
     QString toString(const StringOptions opts=$null) const;
     DWORD toDWord() const;
     QWORD toQWord() const;
-    bool set(QCoreApplication * pCoreApp);
+    bool updateApp(QCoreApplication * pCoreApp) const;
+
 
 public: // non-const
     void clear();
-    void set(const BYTE maj, const WORD min, const BYTE rls, const WORD bch,
-             const WORD bld, const char * bnm, const char * app, const char * org);
+    void set(const VersionInfo &vi);
+    void set(const BYTE maj, const WORD min, const BYTE rls,
+             const WORD bch, const WORD bld, const char * bnm,
+             const char * app, const char * org,
+             const char * desc);
     void company(const UText &co);
     void copyright(const UText &co);
     void legal(const UText &leg);
@@ -60,56 +79,13 @@ private:
     void setQt();
     void setWindows();
 
-signals:
 
-public: // =============== Properties ===================
-    BYTE major() const;
-    WORD minor() const;
-    BYTE release() const;
-    WORD branch() const;
-    WORD build() const;
-    AText branchname() const;
-    AText appname() const;
-    AText orgname() const;
-    AText product() const;
-    UText company() const;
-    UText copyright() const;
-    UText legal() const;
-    QVersionNumber qtVersion() const;
-    WindowsVersion windowsVersion() const;
-    LinuxVersion linuxVersion() const;
+public: // builtin
+    VersionInfo();
+    VersionInfo(const VersionInfo &);
+    VersionInfo &operator=(const VersionInfo &);
+    ~VersionInfo();
 
 private:
-    BYTE            m_major;        // 0..99
-    WORD            m_minor;        // 0..999
-    BYTE            m_release;      // _A..Z,AA..WW,X0..9A..X,0xA?,0xB?,0xC?,0xF?
-    WORD            m_branch;       // 0001..4999 Issue, 5001..5999 Customer
-    WORD            m_build;        // ++at Develop,Current,Release,Main
-    AText           m_branchname;
-    AText           m_appname;
-    AText           m_orgname;
-    AText           m_product;
-    UText           m_company;
-    UText           m_copyright;
-    UText           m_legal;
-    QVersionNumber  m_qtVersion;
-    WindowsVersion  m_windowsVersion;
-    LinuxVersion    m_linuxVersion;
-    Q_PROPERTY(BYTE major READ major CONSTANT FINAL)
-    Q_PROPERTY(WORD minor READ minor CONSTANT FINAL)
-    Q_PROPERTY(BYTE release READ release CONSTANT FINAL)
-    Q_PROPERTY(WORD branch READ branch CONSTANT FINAL)
-    Q_PROPERTY(WORD build READ build CONSTANT FINAL)
-    Q_PROPERTY(AText branchname READ branchname CONSTANT FINAL)
-    Q_PROPERTY(AText appname READ appname CONSTANT FINAL)
-    Q_PROPERTY(AText orgname READ orgname CONSTANT FINAL)
-    Q_PROPERTY(AText product READ product CONSTANT FINAL)
-    Q_PROPERTY(UText company READ company CONSTANT FINAL)
-    Q_PROPERTY(UText copyright READ copyright CONSTANT FINAL)
-    Q_PROPERTY(UText legal READ legal CONSTANT FINAL)
-    Q_PROPERTY(QVersionNumber qtVersion READ qtVersion CONSTANT FINAL)
-    Q_PROPERTY(WindowsVersion windowsVersion READ windowsVersion CONSTANT FINAL)
+    QSharedDataPointer<VersionInfoData> data;
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(VersionInfo::StringOptions);
-
