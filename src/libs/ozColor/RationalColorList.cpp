@@ -1,10 +1,10 @@
-#include "RationalColors.h"
+#include "RationalColorList.h"
 
 #include <Color.h>
 
-RationalColors::RationalColors() { ctor(); }
+RationalColorList::RationalColorList() { ctor(); }
 
-void RationalColors::ctor()
+void RationalColorList::ctor()
 {
     if (mRationalList.isEmpty())
         mRationalList = RationalList(Color::$maxComponent, 1024);

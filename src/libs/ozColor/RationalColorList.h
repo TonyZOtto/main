@@ -6,12 +6,12 @@
 #include <Rational.h>
 #include <RationalList.h>
 
-class OZCOLOR_EXPORT RationalColors
+class OZCOLOR_EXPORT RationalColorList
 {
 
 
 public: // ctors
-    RationalColors();
+    RationalColorList();
 
 public: // const
 
