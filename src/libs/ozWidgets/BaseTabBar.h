@@ -1,10 +1,11 @@
 #pragma once
+#include "ozWidgets.h"
 
 #include <QTabBar>
 
-class BaseTabBar : public QTabBar
+class OZWIDGETS_EXPORT BaseTabBar : public QTabBar
 {
     Q_OBJECT
 public:
-    BaseTabBar();
+    BaseTabBar(QWidget *parent = nullptr);
 };

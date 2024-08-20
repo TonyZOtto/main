@@ -12,14 +12,19 @@ include(../../usePhoto.pri)
 include(../../useWidgets.pri)
 
 SOURCES += \
-    main.cpp \
-    MainWindow.cpp
+    EvalMainWindow.cpp \
+    SplashPage.cpp \
+    main.cpp
 
 HEADERS += \
-    MainWindow.h \
+    EvalMainWindow.h \
+    SplashPage.h \
     version.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    If7ODEval.qrc

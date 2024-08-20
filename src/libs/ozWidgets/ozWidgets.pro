@@ -15,6 +15,7 @@ SOURCES += \
     BaseToolBar.cpp \
     BaseToolButton.cpp \
     GridStackPage.cpp \
+    QQLabel.cpp \
     TriggerItem.cpp \
     TriggerManager.cpp \
     ozWidgets.cpp\
@@ -26,6 +27,7 @@ HEADERS += \
     BaseToolBar.h \
     BaseToolButton.h \
     GridStackPage.h \
+    QQLabel.h \
     TriggerItem.h \
     TriggerManager.h \
     ozWidgets.h \

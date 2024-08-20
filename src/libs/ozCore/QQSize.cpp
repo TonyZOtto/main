@@ -86,6 +86,12 @@ bool QQSize::equals(const QQSize rhs) const
            && height() == rhs.height();
 }
 
+QQSize QQSize::divided(const QQSize dividend) const
+{
+    return QQSize(height() / dividend.height(),
+                  width()  / dividend.width());
+}
+
 signed int QQSize::factor(const QQSize rhs) const
 {
     if (equals(rhs)) return 0;

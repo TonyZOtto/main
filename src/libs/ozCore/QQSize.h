@@ -32,7 +32,9 @@ public: // const
     bool isWider() const;
     bool isTaller() const;
     bool equals(const QQSize rhs) const;
+    QQSize divided(const QQSize dividend) const;
     signed factor(const QQSize rhs) const;
+    QQSize operator / (const QQSize &dividend) const { return divided(dividend); }
 
 public: // non-const
     QQSize width(const int aWidth);

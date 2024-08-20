@@ -1,3 +1,7 @@
 #include "BaseTabBar.h"
 
-BaseTabBar::BaseTabBar() {}
+BaseTabBar::BaseTabBar(QWidget *parent)
+    : QTabBar(parent)
+{
+    setObjectName("BaseTabBar");
+}
