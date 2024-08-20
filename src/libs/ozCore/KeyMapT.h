@@ -38,7 +38,7 @@ public: // non-const
         { beginGroup(aGroupKey); set(aEntryList); endGroup(aGroupKey); }
     void clear() { mKeyTDMap.clear(); clearGroup(); }
     Key beginGroup(const Key &aGroupKey, const bool root=false)
-        { if (root) mCurrentGroupKey.clear(); mCurrentGroupKey.append(aGroupKey); }
+        { if (root) mCurrentGroupKey.clear(); mCurrentGroupKey.append(aGroupKey); return *this; }
     Key endGroup(const Key &aGroupKey)
         { mCurrentGroupKey.removeTail(aGroupKey); return mCurrentGroupKey; }
     void clearGroup() { mCurrentGroupKey.clear(); }

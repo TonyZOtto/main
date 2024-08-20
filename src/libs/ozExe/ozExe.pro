@@ -22,6 +22,7 @@ SOURCES += \
     IconFactory.cpp \
     MdiMainWindow.cpp \
     SettingsItem.cpp \
+    StackedMainWindow.cpp \
     WidgetApplication.cpp \
     ozExe.cpp
 
@@ -37,6 +38,7 @@ HEADERS += \
     IconFactory.h \
     MdiMainWindow.h \
     SettingsItem.h \
+    StackedMainWindow.h \
     WidgetApplication.h \
     ozExe.h \
     ozExe_global.h

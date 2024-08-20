@@ -131,7 +131,8 @@ QString VersionInfo::toString(const StringOptions opts) const
     {
         result = QString("%1%2.%3%4")
                      .arg(opts.testFlag(WithLowerVDot) ? "v." : "")
-                     .arg(major()).arg(minor(), 2, QChar('0'))
+                     .arg(major())
+                     .arg(minor(), 2, 10, QChar('0'))
                      .arg(releaseString(opts));
         if (branch() && ! opts.testFlag(WithoutBranch))
         {
@@ -143,7 +144,7 @@ QString VersionInfo::toString(const StringOptions opts) const
     if (opts.testFlag(WithDotted))
         result += QString(" [%1]").arg(dottedString());
     if (opts.testFlag(WithDWord))
-        result += QString(" [%1]").arg(toDWord(), 8, 16, QChar('0'));
+        result += QString(" [%1]").arg(toDWord(),  8, 16, QChar('0'));
     if (opts.testFlag(WithQWord))
         result += QString(" [%1]").arg(toQWord(), 16, 16, QChar('0'));
     return result;}
@@ -196,7 +197,7 @@ bool VersionInfo::updateApp(QCoreApplication *pCoreApp) const
 void VersionInfo::clear()
 {
     data->d_major = data->d_minor = data->d_release = data->d_branch = data->d_build = 0;
-    data->d_branchname.clear(), data->d_appname.clear(), data->d_orgname.clear();
+    data->d_branchname.clear(), data->d_appname.clear(), data->d_orgname.clear(),
     data->d_company.clear(), data->d_copyright.clear(), data->d_legal.clear();
     data->d_qtVersion = QVersionNumber();
     data->d_windowsVersion = WindowsVersion{0,0,0,0};
@@ -252,16 +253,16 @@ void VersionInfo::product(const AText &prod)
 QString VersionInfo::dottedString() const
 {
     return QString("%1.%2.%3.%4")
-        .arg(1000 * major() + minor(), 4, QChar('0'))
+        .arg(1000 * major() + minor(), 4, 10, QChar('0'))
         .arg(release()).arg(branch()).arg(build());
 }
 
 QString VersionInfo::releaseString(const StringOptions opts) const
 {
-    QString result= QString(".%1").arg(release(), 3, QChar('0'));
+    QString result= QString(".%1").arg(release(), 3, 10, QChar('0'));
     const unsigned cRelease = release();
     if (0 == cRelease || (cRelease >= 0xF0 && opts.testFlag(WithoutFinal)))  result.clear();
-    else if (cRelease > 1 && cRelease <=26) result = QString(QChar((BYTE)('A') + release() - 1));
+    else if (cRelease > 1 && cRelease <=26) result = QChar(BYTE(cRelease + 0x40));
     else if (cRelease >= 0xA0 && cRelease <= 0xAF) result = namedRelease("Alpha", opts);
     else if (cRelease >= 0xB0 && cRelease <= 0xBF) result = namedRelease("Beta", opts);
     else if (cRelease >= 0xC0 && cRelease <= 0xCF) result = namedRelease("RC", opts);

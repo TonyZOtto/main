@@ -10,18 +10,22 @@ include(../../useColor.pri)
 
 SOURCES += \
     BaseGridLayout.cpp \
+    BaseStackedLayout.cpp \
     BaseTabBar.cpp \
     BaseToolBar.cpp \
     BaseToolButton.cpp \
+    GridStackPage.cpp \
     TriggerItem.cpp \
     TriggerManager.cpp \
     ozWidgets.cpp\
 
 HEADERS += \
     BaseGridLayout.h \
+    BaseStackedLayout.h \
     BaseTabBar.h \
     BaseToolBar.h \
     BaseToolButton.h \
+    GridStackPage.h \
     TriggerItem.h \
     TriggerManager.h \
     ozWidgets.h \

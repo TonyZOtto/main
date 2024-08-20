@@ -3,7 +3,7 @@
 #include <WidgetApplication.h>
 
 MainWindow::MainWindow(WidgetApplication *wapp)
-    : GridMainWindow(wapp)
+    : StackedMainWindow(wapp)
 {
     setObjectName("MainWindow:" + wapp->applicationName());
 }

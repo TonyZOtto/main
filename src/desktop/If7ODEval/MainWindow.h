@@ -1,12 +1,14 @@
 #pragma once
 
-#include <GridMainWindow.h>
+#include <StackedMainWindow.h>
 
-class MainWindow : public GridMainWindow
+class MainWindow : public StackedMainWindow
 {
     Q_OBJECT
 
 public:
     MainWindow(WidgetApplication *wapp);
     ~MainWindow();
+
+private:
 };

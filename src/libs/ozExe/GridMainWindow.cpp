@@ -17,4 +17,5 @@ GridMainWindow::GridMainWindow(BaseGridLayout *pGrid,
     , mpGridLayout(pGrid)
 {
     setObjectName("GridMainWindow");
+    Q_ASSERT(mpGridLayout);
 }
