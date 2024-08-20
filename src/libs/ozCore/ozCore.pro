@@ -40,6 +40,7 @@ SOURCES += \
     Uid.cpp \
     Url.cpp \
     VersionInfo.cpp \
+#    VersionInfoGadget.cpp \
     ozCore.cpp \
 
 
@@ -53,6 +54,7 @@ HEADERS += \
     IdentMap.h \
     Key.h \
     KeyMap.h \
+    KeyMapT.h \
     KeySeg.h \
     KeySegList.h \
     MachineHelper.h \

@@ -6,6 +6,6 @@ INCLUDEPATH *= $$LIBDIR/ozWidgets ../../libs/ozWidgets ../ozWidgets
 windows:LIBS *= -lozWidgets6
 linux:LIBS *= -lozWidgets
 LIBS *= -L$$DESTDIR
-message(--------/src/useWidgets.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
+#message(--------/src/useWidgets.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
 
 

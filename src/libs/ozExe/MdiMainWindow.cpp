@@ -2,8 +2,8 @@
 
 #include <QMdiArea>
 
-MdiMainWindow::MdiMainWindow(QWidget *parent)
-    : BaseMainWindow{parent}
+MdiMainWindow::MdiMainWindow(WidgetApplication *wapp)
+    : BaseMainWindow{wapp}
     , mpMdiArea(new QMdiArea(this))
 {
     setObjectName("MdiMainWindow");

@@ -77,7 +77,8 @@ Boolean ActionManager::boolean(const Key &aKey, const BoolRoleFlag aBoolFlag)
         case ContextVisible:    result = pAction->isShortcutVisibleInContextMenu(); break;
         case Visible:           result = pAction->isVisible();      break;
         case Separator:         result = pAction->isSeparator();    break;
-        case $nullText: default: /* leave invalid */                break;
+        case $nullBool:
+        default:                /* leave invalid */                 break;
         }
     }
     return result;

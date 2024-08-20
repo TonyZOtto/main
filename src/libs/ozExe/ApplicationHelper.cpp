@@ -6,75 +6,62 @@
 
 #include "AppSettings.h"
 #include "CommandLine.h"
+#include "TriggerManager.h"
 #include "ConsoleApplication.h"
 #include "GuiApplication.h"
 #include "WidgetApplication.h"
 
-ApplicationHelper::ApplicationHelper(WidgetApplication *parent)
-    : QObject(parent)
-    , mpWidgetApplication(parent)
+ApplicationHelper::ApplicationHelper()
+    : QObject(qApp)
     , mpCommandLine(new CommandLine(this))
     , mpAppSettings(new AppSettings(this))
-    , mType(Widget)
+    , mpTriggerManager(new TriggerManager(this))
+    , mType($null)
 {
-    setObjectName("ApplicationHelper:WidgetApplication");
+    setObjectName("ApplicationHelper:"
+                  + QCoreApplication::applicationName());
 }
 
-ApplicationHelper::ApplicationHelper(ConsoleApplication *parent)
-    : QObject(parent)
-    , mpConsoleApplication(parent)
-    , mpCommandLine(new CommandLine(this))
-    , mpAppSettings(new AppSettings(this))
-    , mType(Core)
+void ApplicationHelper::set(WidgetApplication *wapp)
 {
-    setObjectName("ApplicationHelper:ConsoleApplication");
+    Q_ASSERT(qobject_cast<WidgetApplication *>(wapp));
+    mpWidgetApplication = wapp;
+    mType = Widget;
 }
 
-ApplicationHelper::ApplicationHelper(GuiApplication *parent)
-    : QObject(parent)
-    , mpGuiApplication(parent)
-    , mpCommandLine(new CommandLine(this))
-    , mType(Gui)
+void ApplicationHelper::set(ConsoleApplication *capp)
 {
-    setObjectName("ApplicationHelper:GuiApplication");
+    Q_ASSERT(qobject_cast<ConsoleApplication *>(capp));
+    mpConsoleApplication = capp;
+    mType = Console;
+}
+
+void ApplicationHelper::set(GuiApplication *gapp)
+{
+    Q_ASSERT(qobject_cast<GuiApplication *>(gapp));
+    mpGuiApplication = gapp;
+    mType = Gui;
+}
+
+void ApplicationHelper::set(const VersionInfo vi)
+{
+    mVersionInfo = vi;
+    vi.updateApp(core());
 }
 
 QCoreApplication *ApplicationHelper::core()
 {
     QCoreApplication * result=nullptr;
-    if (mpConsoleApplication)
-        result = mpConsoleApplication;
-    else if (mpGuiApplication)
-        result = mpGuiApplication;
-    else if (mpWidgetApplication)
-        result = mpWidgetApplication;
+    switch (type())
+    {
+    case Console:   result = mpConsoleApplication;  break;
+    case Gui:       result = mpGuiApplication;      break;
+    case Widget:    result = mpWidgetApplication;   break;
+    default:        /* leave nullptr */             break;
+    }
     return result;
 }
 
-ConsoleApplication *ApplicationHelper::consoleApp()
-{
-    ConsoleApplication * result = nullptr;
-    if (nullptr != mpConsoleApplication)
-        result = mpConsoleApplication;
-    Q_CHECK_PTR(result);
-    return result;
-}
 
-GuiApplication *ApplicationHelper::guiApp()
-{
-    GuiApplication * result = nullptr;
-    if (nullptr != mpGuiApplication)
-        result = mpGuiApplication;
-    Q_CHECK_PTR(result);
-    return result;
-}
 
-WidgetApplication *ApplicationHelper::widgetApp()
-{
-    WidgetApplication * result = nullptr;
-    if (nullptr != mpWidgetApplication)
-        result = mpWidgetApplication;
-    Q_CHECK_PTR(result);
-    return result;
-}
 

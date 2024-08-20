@@ -1,7 +1,9 @@
 #include "BaseMainWindow.h"
 
-BaseMainWindow::BaseMainWindow(QWidget *parent)
-    : QMainWindow{parent}
+#include "WidgetApplication.h"
+
+BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
+    : QMainWindow{nullptr}
 {
-    setObjectName("BaseMainWindow");
+    setObjectName("BaseMainWindow:" + wapp->applicationName());
 }

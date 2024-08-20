@@ -1,16 +1,17 @@
 #pragma once
+#include "ozExe.h"
 
 #include "BaseMainWindow.h"
 
 class BaseGridLayout;
 
-class GridMainWindow : public BaseMainWindow
+class OZEXE_EXPORT GridMainWindow : public BaseMainWindow
 {
     Q_OBJECT
 public:
-    GridMainWindow(QWidget *parent = nullptr);
+    GridMainWindow(WidgetApplication *wapp);
     GridMainWindow(BaseGridLayout * pGrid,
-                   QWidget *parent = nullptr);
+                   WidgetApplication *wapp);
 
 private:
     BaseGridLayout * mpGridLayout=nullptr;

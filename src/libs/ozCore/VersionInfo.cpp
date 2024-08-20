@@ -129,8 +129,10 @@ QString VersionInfo::toString(const StringOptions opts) const
     }
     else
     {
-        result = QString("%1.%2%3").arg(major()).arg(minor(), 2, QChar('0'))
-        .arg(releaseString(opts));
+        result = QString("%1%2.%3%4")
+                     .arg(opts.testFlag(WithLowerVDot) ? "v." : "")
+                     .arg(major()).arg(minor(), 2, QChar('0'))
+                     .arg(releaseString(opts));
         if (branch() && ! opts.testFlag(WithoutBranch))
         {
             result += QString("+%1").arg(branch(), 4, QChar('0'));

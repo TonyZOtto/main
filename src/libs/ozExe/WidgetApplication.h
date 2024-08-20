@@ -4,7 +4,7 @@
 #include <QApplication>
 #include <QObject>
 
-class ApplicationHelper;
+#include <ApplicationHelper.h>
 
 class OZEXE_EXPORT WidgetApplication : public QApplication
 {
@@ -13,12 +13,9 @@ public: // ctors
     WidgetApplication(int &argc, char **argv);
 
 public:
-    ApplicationHelper * helper();
 
 
 private:
-    ApplicationHelper * mpHelper=nullptr;
 };
 
-inline ApplicationHelper *WidgetApplication::helper() { Q_ASSERT(mpHelper); return mpHelper; }
 

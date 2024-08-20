@@ -87,7 +87,7 @@ void CommandLine::processSettingValue(const QString dlrArg)
         tKey.set(dlrArg);
         tValue = true;
     }
-    else if (cEqualsIndex == dlrArg.count() - 1)
+    else if (cEqualsIndex == dlrArg.length() - 1)
     {   // trailing '='
         tKey.set(dlrArg.chopped(1));
         tValue = QString();

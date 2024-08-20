@@ -1,14 +1,15 @@
 #pragma once
+#include "ozExe.h"
 
 #include "BaseMainWindow.h"
 
 class QMdiArea;
 
-class MdiMainWindow : public BaseMainWindow
+class OZEXE_EXPORT MdiMainWindow : public BaseMainWindow
 {
     Q_OBJECT
 public:
-    MdiMainWindow(QWidget *parent = nullptr);
+    MdiMainWindow(WidgetApplication *wapp = nullptr);
 
 private:
     QMdiArea * mpMdiArea=nullptr;

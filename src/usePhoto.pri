@@ -6,6 +6,6 @@ INCLUDEPATH *= $$LIBDIR/ozPhoto ../../libs/ozPhoto ../ozPhoto
 windows:LIBS *= -lozPhoto6
 linux:LIBS *= -lozPhoto
 LIBS *= -L$$DESTDIR
-message(--------/src/usePhoto.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
+#message(--------/src/usePhoto.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
 
 

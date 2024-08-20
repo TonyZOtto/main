@@ -11,7 +11,7 @@ signed Angle::degrees() const
 qreal Angle::degreesF() const
 {
     Angle tAngle(Rational(*this));
-    tAngle.adjustDenominator(3600000000);
+    tAngle.adjustDenominator(36000000L);
     return tAngle.toReal();
 }
 
@@ -27,10 +27,10 @@ void Angle::set(const signed deg)
 
 void Angle::set(const qreal rad)
 {
-    Rational::set(qRound(rad * 200000000.0), 200000000);
+    Rational::set(qRound(rad * 2000000.0), 2000000);
 }
 
 void Angle::setDegreesF(const qreal degf)
 {
-    Rational::set(qRound(degf * 3600000000.0), 3600000000);
+    Rational::set(qRound(degf * 36000000.0), 36000000);
 }

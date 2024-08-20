@@ -21,7 +21,7 @@ void AText::set(const AText aText)
 
 void AText::setRight(const AText &aText)
 {
-    const Count cLeft = qMax(count() - aText.count(), 0);
+    const Count cLeft = qMax(length() - aText.length(), 0);
     set(left(cLeft) + aText);
 }
 

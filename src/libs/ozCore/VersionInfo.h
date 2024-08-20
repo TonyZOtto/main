@@ -20,6 +20,7 @@ public: // types
     {
         $null                   = 0,
         Dotted                  = 0x00000001,
+        WithLowerVDot           = 0x00000002,
         WithDotted              = 0x01000000,
         WithDWord               = 0x02000000,
         WithQWord               = 0x04000000,

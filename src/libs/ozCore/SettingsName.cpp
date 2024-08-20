@@ -77,7 +77,7 @@ SettingsName::Type SettingsName::setOrgApp(const QString &s)
     else if (s.startsWith(':'))
         mOrgName = QCoreApplication::organizationName(), mAppName = s.mid(1);
     else if (s.endsWith(':'))
-        mOrgName = s.first(s.count() - 1), mAppName = QCoreApplication::applicationName();
+        mOrgName = s.first(s.length() - 1), mAppName = QCoreApplication::applicationName();
     else
     {
         Index ix = s.indexOf(':');

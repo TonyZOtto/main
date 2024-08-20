@@ -2,9 +2,9 @@
 
 #include <BaseGridLayout.h>
 
-GridMainWindow::GridMainWindow(QWidget *parent)
-    : BaseMainWindow(parent)
-    , mpGridLayout(new BaseGridLayout(this))
+GridMainWindow::GridMainWindow(WidgetApplication *wapp)
+    : BaseMainWindow(wapp)
+    , mpGridLayout(new BaseGridLayout())
 {
     setObjectName("GridMainWindow");
     Q_ASSERT(mpGridLayout);
@@ -12,8 +12,8 @@ GridMainWindow::GridMainWindow(QWidget *parent)
 }
 
 GridMainWindow::GridMainWindow(BaseGridLayout *pGrid,
-                               QWidget *parent)
-    : BaseMainWindow(parent)
+                               WidgetApplication *wapp)
+    : BaseMainWindow(wapp)
     , mpGridLayout(pGrid)
 {
     setObjectName("GridMainWindow");

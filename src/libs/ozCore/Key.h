@@ -38,6 +38,7 @@ public: // non-const
     void set(const char * pch);
     void set(const AText &atx);
     void set(const QString &qs);
+    void clear();
     Key append(const Key &aKey);
     Key removeTail(const Key &aKey);
 

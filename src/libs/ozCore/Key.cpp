@@ -79,6 +79,11 @@ void Key::set(const QString &qs)
     mSegments = split(AText(qs));
 }
 
+void Key::clear()
+{
+    mSegments.clear();
+}
+
 Key Key::append(const Key &aKey)
 {
     mSegments.append(aKey.mSegments);
@@ -87,9 +92,10 @@ Key Key::append(const Key &aKey)
 
 Key Key::removeTail(const Key &aKey)
 {
-    KeySeg::List mTail = last(aKey.count());
-    if (aKey == mTail)
-        mSegments.remove(count() - aKey.count(), aKey.count());
+    const Count cSegCount = aKey.count();
+    const KeySeg::List cTail = last(cSegCount);
+    if (aKey == cTail)
+        mSegments.remove(count() - cSegCount, cSegCount);
     return *this;
 }
 

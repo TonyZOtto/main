@@ -8,19 +8,21 @@ include(../libs.pri)
 include(../../useCore.pri)
 
 SOURCES += \
+    AnyColor.cpp \
     BrightnessContrast.cpp \
     Color.cpp \
     Pixel32.cpp \
-    RationalColors.cpp \
+    RationalColorList.cpp \
     RgbColor.cpp \
     Rgba32Table.cpp \
     ozColor.cpp
 
 HEADERS += \
+    AnyColor.h \
     BrightnessContrast.h \
     Color.h \
     Pixel32.h \
-    RationalColors.h \
+    RationalColorList.h \
     RgbColor.h \
     Rgba32Table.h \
     ozColor_global.h \

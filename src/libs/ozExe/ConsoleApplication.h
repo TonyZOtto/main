@@ -13,5 +13,4 @@ public:
     ConsoleApplication(int &argc, char **argv);
 
 private:
-    ApplicationHelper * mpHelper=nullptr;
 };
