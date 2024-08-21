@@ -16,7 +16,7 @@ public:
 public: // const
 
 public: // non-const
-    void setup();
+    virtual void setup();
     void addPage(StackedMainPage * pPage);
 
 public: // pointers

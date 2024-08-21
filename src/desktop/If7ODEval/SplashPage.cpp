@@ -11,7 +11,6 @@ SplashPage::SplashPage(EvalMainWindow *parent)
     : StackedMainPage("Splash", parent)
 {
     setObjectName("SplashPage");
-    setup(mainWindow()->size());
 }
 
 void SplashPage::setup(const QQSize aMaxSize)
@@ -26,6 +25,7 @@ void SplashPage::setup(const QQSize aMaxSize)
     QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
     pTextLabel->setFont(QFont("Helvetica", 64));
+
     gridLayout()->addWidget(pEclipseLabel, 0, 0);
     gridLayout()->addWidget(pINDIonlyLabel, 1, 0);
     gridLayout()->addWidget(pTextLabel, 0, 1, 2, 1);

@@ -6,10 +6,18 @@
 
 EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
     : StackedMainWindow(wapp)
+    , mpSplashPage(new SplashPage(this))
 {
     setObjectName("MainWindow:" + wapp->applicationName());
-    addPage(new SplashPage(this));
-    update();
 }
 
 EvalMainWindow::~EvalMainWindow() {;}
+
+void EvalMainWindow::setup()
+{
+    showMaximized();
+    StackedMainWindow::setup();
+    mpSplashPage->setup(size());
+    addPage(mpSplashPage);
+    update();
+}

@@ -17,11 +17,12 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
     mainStackWidget()->setObjectName("StackedMainWindow:MainStackWidget");
     mainStackLayout()->setObjectName("StackedMainWindow:MainStackLayout");
     tabBar()->setObjectName("StackedMainWindow:TabBar");
-    setup();
 }
 
 void StackedMainWindow::setup()
 {
+    updateGeometry();
+    tabBar()->setShape(QTabBar::RoundedEast);
     QWidget * pMainWidget = new QWidget(this);
     QHBoxLayout * pHBox = new QHBoxLayout();
     pHBox->addWidget(tabBar(), 0, Qt::AlignRight | Qt::AlignTop);
@@ -34,5 +35,8 @@ void StackedMainWindow::setup()
 void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
     mainStackLayout()->addWidget(pPage);
-    tabBar()->addTab(pPage->title());
+    mainStackLayout()->setCurrentWidget(pPage);
+    const int cTabIndex = tabBar()->addTab(pPage->title());
+    tabBar()->setCurrentIndex(cTabIndex);
+    update();
 }

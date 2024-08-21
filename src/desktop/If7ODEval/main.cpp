@@ -1,7 +1,10 @@
+#include <QTimer>
+
 #include <ApplicationHelper.h>
-#include <GridMainWindow.h>
 #include <VersionInfo.h>
 #include <WidgetApplication.h>
+
+#include "EvalMainWindow.h"
 
 Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
@@ -18,9 +21,9 @@ int main(int argc, char *argv[])
     WidgetApplication a(argc, argv);
     APPH->set(&a);
     APPH->set(vi);
-    GridMainWindow w(&a);
+    EvalMainWindow w(&a);
     w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot
                                  | VersionInfo::WithDotted));
-    w.showMaximized();
+    QTimer::singleShot(500, &w, &EvalMainWindow::setup);
     return a.exec();
 }
