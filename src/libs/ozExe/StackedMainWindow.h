@@ -13,6 +13,9 @@ class OZEXE_EXPORT StackedMainWindow : public BaseMainWindow
 public:
     StackedMainWindow(WidgetApplication *wapp);
 
+public slots:
+    void setCurrent(const int ix);
+
 public: // const
 
 public: // non-const

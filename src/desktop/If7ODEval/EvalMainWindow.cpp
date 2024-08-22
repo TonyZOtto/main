@@ -2,11 +2,13 @@
 
 #include <WidgetApplication.h>
 
+#include "LogPage.h"
 #include "SplashPage.h"
 
 EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
     : StackedMainWindow(wapp)
     , mpSplashPage(new SplashPage(this))
+    , mpLogPage(new LogPage(this))
 {
     setObjectName("MainWindow:" + wapp->applicationName());
 }
@@ -16,8 +18,13 @@ EvalMainWindow::~EvalMainWindow() {;}
 void EvalMainWindow::setup()
 {
     showMaximized();
+    updateGeometry();
     StackedMainWindow::setup();
     mpSplashPage->setup(size());
+    mpLogPage->setup(size());
+    mpLogPage->addLine("Log Started");
     addPage(mpSplashPage);
+    addPage(mpLogPage);
+    setCurrent(0);
     update();
 }
