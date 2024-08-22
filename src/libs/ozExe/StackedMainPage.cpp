@@ -10,6 +10,7 @@ StackedMainPage::StackedMainPage(const QString &aTitle, StackedMainWindow *paren
     , mpPageGridLayout(new QGridLayout())
     , mTitle(aTitle)
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("StackedMainPage");
     gridLayout()->setObjectName("StackedMainPage:PageGridLayout");
 }

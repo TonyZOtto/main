@@ -9,7 +9,7 @@ class OZCORE_EXPORT QQSize : public QSize
 {
 public: // ctors
     QQSize() : QSize(-1, -1) {;}
-    QQSize(const int aDim) : QSize(aDim, aDim) {;}
+    explicit QQSize(const int aDim) : QSize(aDim, aDim) {;}
     QQSize(const int aWidth, const int aHeight) : QSize(aWidth, aHeight) {;}
     QQSize(const int aWidth, const Rational aAspect) { set(aWidth, aAspect); }
     QQSize(const Rational aAspect, const int aHeight) { set(aAspect, aHeight); }
