@@ -10,11 +10,13 @@
 SplashPage::SplashPage(EvalMainWindow *parent)
     : StackedMainPage("Splash", parent)
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("SplashPage");
 }
 
 void SplashPage::setup(const QQSize aMaxSize)
 {
+    qInfo() << Q_FUNC_INFO;
     QQSize tRightSize = aMaxSize / QQSize(1, 2);
     QQSize tLeftSize = tRightSize / QQSize(2, 1);
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");

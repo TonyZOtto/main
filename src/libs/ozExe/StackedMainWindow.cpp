@@ -13,6 +13,7 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
     , mpMainStackLayout(new QStackedLayout())
     , mpTabBar(new BaseTabBar(this))
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("StackedMainWindow");
     mainStackWidget()->setObjectName("StackedMainWindow:MainStackWidget");
     mainStackLayout()->setObjectName("StackedMainWindow:MainStackLayout");
@@ -21,6 +22,7 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
 
 void StackedMainWindow::setup()
 {
+    qInfo() << Q_FUNC_INFO;
     updateGeometry();
     tabBar()->setShape(QTabBar::RoundedEast);
     QWidget * pMainWidget = new QWidget(this);
@@ -34,6 +36,7 @@ void StackedMainWindow::setup()
 
 void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
+    qInfo() << Q_FUNC_INFO;
     mainStackLayout()->addWidget(pPage);
     mainStackLayout()->setCurrentWidget(pPage);
     const int cTabIndex = tabBar()->addTab(pPage->title());
