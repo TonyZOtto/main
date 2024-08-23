@@ -22,6 +22,8 @@ public: // ctors
         { set(aEntryList, aGroupKey); }
 
 public: // const
+    bool contains(const Key &aKey)
+        { return mKeyTDMap.contains(mCurrentGroupKey + aKey); }
     T get(const Key &aKey)
         { return mKeyTDMap.at(mCurrentGroupKey + aKey); }
     Key key(const T &aT)
@@ -42,6 +44,8 @@ public: // non-const
     Key endGroup(const Key &aGroupKey)
         { mCurrentGroupKey.removeTail(aGroupKey); return mCurrentGroupKey; }
     void clearGroup() { mCurrentGroupKey.clear(); }
+    void remove(const Key &aKey)
+        { mKeyTDMap.remove(mCurrentGroupKey + aKey); }
 
 private:
     DualMap<Key, T> mKeyTDMap;

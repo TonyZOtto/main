@@ -27,7 +27,6 @@ public: // data
     QIcon d_icon;
     QSize d_iconSize;
     QFont d_font;
-//    AnyColor d_foreColor;
     QColor d_foreColor;
     QColor d_backColor;
     QAction * d_pAction;
@@ -52,13 +51,38 @@ public: // ctor
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TriggerItemData::Flags)
 
-// QSharedDataPointer functions
+// our ctors
 TriggerItem::TriggerItem(const Key &aKey)
     : data(new TriggerItemData)
 {
     data->d_key = aKey;
 }
 
+// const access
+Key TriggerItem::key() const { return data->d_key; }
+
+bool TriggerItem::keyEquals(const TriggerItem &other) const
+{
+    return key() == other.key();
+}
+
+bool TriggerItem::keyLess(const TriggerItem &other) const
+{
+    return key() < other.key();
+}
+
+bool TriggerItem::operator ==(const TriggerItem &other) const
+{
+    return keyEquals(other);
+}
+
+bool TriggerItem::operator <(const TriggerItem &other) const
+{
+    return keyLess(other);
+}
+
+
+// QSharedDataPointer functions
 TriggerItem::TriggerItem() : data(new TriggerItemData) {;}
 TriggerItem::TriggerItem(const TriggerItem &rhs) : data{rhs.data} {;}
 TriggerItem::~TriggerItem() {;}

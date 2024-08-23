@@ -18,6 +18,8 @@ public slots:
 signals:
 
 public: // const
+    bool contains(const Key &aKey);
+    bool notContains(const Key &aKey) { return ! contains(aKey); }
     TriggerItem item(const Key &aKey);
 
 public: // non-const

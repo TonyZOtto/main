@@ -23,6 +23,12 @@ class TriggerItem
 public: // our ctors
     TriggerItem(const Key &aKey);
 
+public: // const
+    Key key() const;
+    bool keyEquals(const TriggerItem &other) const;
+    bool keyLess(const TriggerItem &other) const;
+    bool operator == (const TriggerItem &other) const;
+    bool operator <  (const TriggerItem &other) const;
 
 public: // QSharedDataPointer functions
     TriggerItem();
