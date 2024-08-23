@@ -13,11 +13,13 @@ include(../../useWidgets.pri)
 
 SOURCES += \
     EvalMainWindow.cpp \
+    LogPage.cpp \
     SplashPage.cpp \
     main.cpp
 
 HEADERS += \
     EvalMainWindow.h \
+    LogPage.h \
     SplashPage.h \
     version.h
 

@@ -4,6 +4,8 @@
 #include <QHBoxLayout>
 #include <QStackedLayout>
 
+#include <QQSize.h>
+
 #include "BaseTabBar.h"
 #include "StackedMainPage.h"
 
@@ -20,18 +22,32 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
     tabBar()->setObjectName("StackedMainWindow:TabBar");
 }
 
+void StackedMainWindow::setCurrent(const int ix)
+{
+    tabBar()->setCurrentIndex(ix);
+    mainStackLayout()->setCurrentIndex(ix);
+}
+
 void StackedMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     updateGeometry();
     tabBar()->setShape(QTabBar::RoundedEast);
     QWidget * pMainWidget = new QWidget(this);
+    setCentralWidget(pMainWidget);
+    qDebug() << "CentralWidgetSize" << pMainWidget->size();
+
     QHBoxLayout * pHBox = new QHBoxLayout();
+    tabBar()->setShape(QTabBar::RoundedEast);
+    QQSize tTabBarSize = tabBar()->size();
+    qDebug() << "tTabBarSize" << tTabBarSize;
+    tabBar()->setMaximumWidth(tTabBarSize.width());
     pHBox->addWidget(tabBar(), 0, Qt::AlignRight | Qt::AlignTop);
     mainStackWidget()->setLayout(mainStackLayout());
     pHBox->addWidget(mainStackWidget(), 0,  Qt::AlignLeft | Qt::AlignTop);
     pMainWidget->setLayout(pHBox);
-    setCentralWidget(pMainWidget);
+    connect(tabBar(), &QTabBar::currentChanged,
+            this, &StackedMainWindow::setCurrent);
 }
 
 void StackedMainWindow::addPage(StackedMainPage *pPage)
