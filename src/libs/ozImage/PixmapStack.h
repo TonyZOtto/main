@@ -4,7 +4,7 @@
 #include <QStack>
 #include <QPixmap>
 
-#include <BasePhoto.h>
+#include <BaseImage.h>
 #include <QQSize.h>
 #include <Types.h>
 
@@ -31,9 +31,9 @@ public: // const
     QPixmap at(const Index ix) const;
     QPixmap rawAt(const Index ix) const;
     QPixmap operator [] (const Index ix) const { return at(ix); }
-    BasePhoto at(const Index ix, const Photo::Type aType) const;
+    BaseImage at(const Index ix, const Image::Type aType) const;
     QPixmap resolve() const;
-    BasePhoto resolve(const Photo::Type aType) const;
+    BaseImage resolve(const Image::Type aType) const;
 
 public: // non-const
     void set(const QQSize aImageSize);
@@ -44,10 +44,10 @@ public: // non-const
                 const Qt::AspectRatioMode aQARM=Qt::IgnoreAspectRatio);
     void back(const QColor aColor);
     void back(const QPixmap aPixmap);
-    void back(const BasePhoto aPhoto);
+    void back(const BaseImage aPhoto);
     void push(const QColor aColor);
     void push(const QPixmap aPixmap);
-    void push(const BasePhoto aPhoto);
+    void push(const BaseImage aPhoto);
     QPixmap pop();
 
 private:

@@ -1,32 +1,32 @@
-#include "BasePhoto.h"
+#include "BaseImage.h"
 
 #include <SCRect.h>
 
-BasePhoto::BasePhoto() : mType(Photo::$null) {;}
-BasePhoto::BasePhoto(const Photo::Type aType, const QImage &aQImage)
+BaseImage::BaseImage() : mType(Image::$null) {;}
+BaseImage::BaseImage(const Image::Type aType, const QImage &aQImage)
     : mType(aType)
-    , mBaseImage(aQImage.convertedTo(Photo::qformat(type()))) {;}
-BasePhoto::BasePhoto(const Photo::Type aType, const QPixmap &aPixmap)
+    , mBaseImage(aQImage.convertedTo(Image::qformat(type()))) {;}
+BaseImage::BaseImage(const Image::Type aType, const QPixmap &aPixmap)
     : mType(aType)
-    , mBaseImage(aPixmap.toImage().convertedTo(Photo::qformat(type()))) {;}
-BasePhoto::BasePhoto(const BasePhoto &other)
+    , mBaseImage(aPixmap.toImage().convertedTo(Image::qformat(type()))) {;}
+BaseImage::BaseImage(const BaseImage &other)
     : mType(other.type())
-    , mBaseImage(other.baseImage().convertedTo(Photo::qformat(type()))) {;}
+    , mBaseImage(other.baseImage().convertedTo(Image::qformat(type()))) {;}
 
-QQPoint BasePhoto::center() const
+QQPoint BaseImage::center() const
 {
     return baseImage().rect().center();
 }
 
-QQSize BasePhoto::size() const
+QQSize BaseImage::size() const
 {
     return baseImage().size();
 }
 
-BasePhoto BasePhoto::scaledCrop(const QQSize aCropSize,
+BaseImage BaseImage::scaledCrop(const QQSize aCropSize,
     const unsigned int minScale, const unsigned int maxScale)
 {
-    BasePhoto result(*this);
+    BaseImage result(*this);
     if (size() == aCropSize) return result;             /*===\*/
 
     signed tRatio = size().factor(aCropSize);
@@ -46,18 +46,18 @@ BasePhoto BasePhoto::scaledCrop(const QQSize aCropSize,
     return result;
 }
 
-void BasePhoto::set(const BasePhoto &rhs)
+void BaseImage::set(const BaseImage &rhs)
 {
     mType = rhs.type();
     mBaseImage = rhs.baseImage();
 }
 
-void BasePhoto::set(const QImage &aQImage)
+void BaseImage::set(const QImage &aQImage)
 {
-    mBaseImage = aQImage.convertedTo(Photo::qformat(type()));
+    mBaseImage = aQImage.convertedTo(Image::qformat(type()));
 }
 
-void BasePhoto::scale(const signed int aRatio)
+void BaseImage::scale(const signed int aRatio)
 {
     QQSize tNewSize = size();
     if (aRatio < 0)
@@ -67,8 +67,8 @@ void BasePhoto::scale(const signed int aRatio)
     baseImage() = baseImage().scaled(tNewSize);
 }
 
-bool BasePhoto::isPlanar() const
+bool BaseImage::isPlanar() const
 {
-    return Photo::isPlanar(mType);
+    return Image::isPlanar(mType);
 }
 

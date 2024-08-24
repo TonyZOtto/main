@@ -51,9 +51,9 @@ QPixmap PixmapStack::rawAt(const Index ix) const
     return result;
 }
 
-BasePhoto PixmapStack::at(const Index ix, const Photo::Type aType) const
+BaseImage PixmapStack::at(const Index ix, const Image::Type aType) const
 {
-    return BasePhoto(aType, at(ix));
+    return BaseImage(aType, at(ix));
 }
 
 QPixmap PixmapStack::resolve() const

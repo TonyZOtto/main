@@ -1,9 +1,9 @@
-#include "Photo.h"
+#include "Image.h"
 
-Photo::Photo(QObject *parent) : QObject{parent} {;}
+Image::Image(QObject *parent) : QObject{parent} {;}
 
 
-QImage::Format Photo::qformat(const Photo::Type aType)
+QImage::Format Image::qformat(const Image::Type aType)
 {
     QImage::Format result = QImage::Format_Invalid;
     switch (aType)
@@ -23,7 +23,7 @@ QImage::Format Photo::qformat(const Photo::Type aType)
 }
 
 // static
-bool Photo::isPlanar(const Photo::Type aType)
+bool Image::isPlanar(const Image::Type aType)
 {
     bool result = false;
     if (aType == Grey)          result = true;

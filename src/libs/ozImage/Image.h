@@ -4,7 +4,7 @@
 
 #include <QImage>
 
-class Photo : public QObject
+class Image : public QObject
 {
     Q_OBJECT
 public: // types
@@ -24,14 +24,14 @@ public: // types
     Q_ENUM(Type);
 
 public:
-    explicit Photo(QObject *parent = nullptr);
+    explicit Image(QObject *parent = nullptr);
 
 signals:
 
 public:
 
 public: // static
-    static QImage::Format qformat(const Photo::Type aType);
-    static bool isPlanar(const Photo::Type aType);
+    static QImage::Format qformat(const Image::Type aType);
+    static bool isPlanar(const Image::Type aType);
 
 };

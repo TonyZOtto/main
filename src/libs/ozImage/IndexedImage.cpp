@@ -1,21 +1,21 @@
-#include "IndexPhoto.h"
+#include "IndexedImage.h"
 
 #include <BrightnessContrast.h>
 
 #include "Grey16Photo.h"
 
-IndexPhoto::IndexPhoto() {}
-IndexPhoto::IndexPhoto(const QImage aIndexImage)
-    : BasePhoto(Photo::Index, aIndexImage) {;}
-IndexPhoto::IndexPhoto(const BasePhoto &other) : BasePhoto(other) {;}
-IndexPhoto::IndexPhoto(const Grey16Photo &aGrey16,
+IndexedImage::IndexedImage() {}
+IndexedImage::IndexedImage(const QImage aIndexImage)
+    : BaseImage(Image::Index, aIndexImage) {;}
+IndexedImage::IndexedImage(const BaseImage &other) : BaseImage(other) {;}
+IndexedImage::IndexedImage(const Grey16Image &aGrey16,
                        const BrightnessContrast aBC)
-    : BasePhoto(Photo::Index, QImage(aGrey16.size(), QImage::Format_Indexed8))
+    : BaseImage(Image::Index, QImage(aGrey16.size(), QImage::Format_Indexed8))
 {
     set(aGrey16, aBC);
 }
 
-void IndexPhoto::set(const Grey16Photo &aGrey16, const BrightnessContrast aBC)
+void IndexedImage::set(const Grey16Image &aGrey16, const BrightnessContrast aBC)
 {
     for (Index rix = 0; rix < aGrey16.size().height(); ++rix)
     {
@@ -31,7 +31,7 @@ void IndexPhoto::set(const Grey16Photo &aGrey16, const BrightnessContrast aBC)
     }
 }
 
-bool IndexPhoto::isPlanar() const
+bool IndexedImage::isPlanar() const
 {
     return true;
 }
