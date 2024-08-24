@@ -8,4 +8,3 @@ linux:LIBS *= -lozWidgets
 LIBS *= -L$$DESTDIR
 #message(--------/src/useWidgets.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
 
-

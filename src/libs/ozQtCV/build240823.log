@@ -1,0 +1,115 @@
+
+[ 99%] Built target example_tapi_squares
+[100%] Building CXX object samples/tapi/CMakeFiles/example_tapi_ufacedetect.dir/ufacedetect.cpp.obj
+[100%] Linking CXX executable ..\..\bin\example_tapi_ufacedetect.exe
+[100%] Built target example_tapi_ufacedetect
+[100%] Building CXX object samples/tapi/CMakeFiles/example_tapi_video_acceleration.dir/video_acceleration.cpp.obj
+[100%] Linking CXX executable ..\..\bin\example_tapi_video_acceleration.exe
+[100%] Built target example_tapi_video_acceleration
+[100%] Building CXX object samples/directx/CMakeFiles/example_directx_d3d10_interop.dir/d3d10_interop.cpp.obj
+In file included from C:\code\repo\opencv\samples\directx\d3d10_interop.cpp:18:
+In file included from C:\code\repo\opencv\samples\directx/d3dsample.hpp:15:
+C:\code\repo\opencv\samples\directx/winapp.hpp:53:22: warning: cast to 'const char *' from smaller integer type 'ATOM'
+      (aka 'unsigned short') [-Wint-to-pointer-cast]
+   53 |                      (LPCTSTR)wc, m_window_name.c_str(),
+      |                      ^~~~~~~~~~~
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2201:22: note: expanded from macro 'CreateWindow'
+ 2201 | #define CreateWindow __MINGW_NAME_AW(CreateWindow)
+      |                      ^
+C:/Qt/Tools/llvm-mingw1706_64/include/_mingw_unicode.h:20:32: note: expanded from macro '__MINGW_NAME_AW'
+   20 | # define __MINGW_NAME_AW(func) func##A
+      |                                ^
+<scratch space>:322:1: note: expanded from here
+  322 | CreateWindowA
+      | ^
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2206:136: note: expanded from macro 'CreateWindowA'
+ 2206 |   ...CreateWindowExA((DWORD)0,lpClassName,lpWindowName,dwStyle,x,y,nWidth,nHeight,hWndParent,hMenu,hInstance,lpParam)
+      |                               ^~~~~~~~~~~
+C:\code\repo\opencv\samples\directx\d3d10_interop.cpp:91:41: warning: missing field 'Height' initializer
+      [-Wmissing-field-initializers]
+   91 |         D3D10_TEXTURE2D_DESC desc = { 0 };
+      |                                         ^
+C:\code\repo\opencv\samples\directx\d3d10_interop.cpp:178:21: warning: enumeration value 'MODE_GPU_NV12' not handled in
+      switch [-Wswitch]
+  178 |             switch (mode)
+      |                     ^~~~
+3 warnings generated.
+[100%] Linking CXX executable ..\..\bin\example_directx_d3d10_interop.exe
+[100%] Built target example_directx_d3d10_interop
+[100%] Building CXX object samples/directx/CMakeFiles/example_directx_d3d11_interop.dir/d3d11_interop.cpp.obj
+In file included from C:\code\repo\opencv\samples\directx\d3d11_interop.cpp:18:
+In file included from C:\code\repo\opencv\samples\directx/d3dsample.hpp:15:
+C:\code\repo\opencv\samples\directx/winapp.hpp:53:22: warning: cast to 'const char *' from smaller integer type 'ATOM'
+      (aka 'unsigned short') [-Wint-to-pointer-cast]
+   53 |                      (LPCTSTR)wc, m_window_name.c_str(),
+      |                      ^~~~~~~~~~~
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2201:22: note: expanded from macro 'CreateWindow'
+ 2201 | #define CreateWindow __MINGW_NAME_AW(CreateWindow)
+      |                      ^
+C:/Qt/Tools/llvm-mingw1706_64/include/_mingw_unicode.h:20:32: note: expanded from macro '__MINGW_NAME_AW'
+   20 | # define __MINGW_NAME_AW(func) func##A
+      |                                ^
+<scratch space>:322:1: note: expanded from here
+  322 | CreateWindowA
+      | ^
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2206:136: note: expanded from macro 'CreateWindowA'
+ 2206 |   ...CreateWindowExA((DWORD)0,lpClassName,lpWindowName,dwStyle,x,y,nWidth,nHeight,hWndParent,hMenu,hInstance,lpParam)
+      |                               ^~~~~~~~~~~
+1 warning generated.
+[100%] Linking CXX executable ..\..\bin\example_directx_d3d11_interop.exe
+[100%] Built target example_directx_d3d11_interop
+[100%] Building CXX object samples/directx/CMakeFiles/example_directx_d3d9_interop.dir/d3d9_interop.cpp.obj
+In file included from C:\code\repo\opencv\samples\directx\d3d9_interop.cpp:18:
+In file included from C:\code\repo\opencv\samples\directx/d3dsample.hpp:15:
+C:\code\repo\opencv\samples\directx/winapp.hpp:53:22: warning: cast to 'const char *' from smaller integer type 'ATOM'
+      (aka 'unsigned short') [-Wint-to-pointer-cast]
+   53 |                      (LPCTSTR)wc, m_window_name.c_str(),
+      |                      ^~~~~~~~~~~
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2201:22: note: expanded from macro 'CreateWindow'
+ 2201 | #define CreateWindow __MINGW_NAME_AW(CreateWindow)
+      |                      ^
+C:/Qt/Tools/llvm-mingw1706_64/include/_mingw_unicode.h:20:32: note: expanded from macro '__MINGW_NAME_AW'
+   20 | # define __MINGW_NAME_AW(func) func##A
+      |                                ^
+<scratch space>:318:1: note: expanded from here
+  318 | CreateWindowA
+      | ^
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2206:136: note: expanded from macro 'CreateWindowA'
+ 2206 |   ...CreateWindowExA((DWORD)0,lpClassName,lpWindowName,dwStyle,x,y,nWidth,nHeight,hWndParent,hMenu,hInstance,lpParam)
+      |                               ^~~~~~~~~~~
+C:\code\repo\opencv\samples\directx\d3d9_interop.cpp:156:21: warning: enumeration value 'MODE_GPU_NV12' not handled in
+      switch [-Wswitch]
+  156 |             switch (mode)
+      |                     ^~~~
+2 warnings generated.
+[100%] Linking CXX executable ..\..\bin\example_directx_d3d9_interop.exe
+[100%] Built target example_directx_d3d9_interop
+[100%] Building CXX object samples/directx/CMakeFiles/example_directx_d3d9ex_interop.dir/d3d9ex_interop.cpp.obj
+In file included from C:\code\repo\opencv\samples\directx\d3d9ex_interop.cpp:18:
+In file included from C:\code\repo\opencv\samples\directx/d3dsample.hpp:15:
+C:\code\repo\opencv\samples\directx/winapp.hpp:53:22: warning: cast to 'const char *' from smaller integer type 'ATOM'
+      (aka 'unsigned short') [-Wint-to-pointer-cast]
+   53 |                      (LPCTSTR)wc, m_window_name.c_str(),
+      |                      ^~~~~~~~~~~
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2201:22: note: expanded from macro 'CreateWindow'
+ 2201 | #define CreateWindow __MINGW_NAME_AW(CreateWindow)
+      |                      ^
+C:/Qt/Tools/llvm-mingw1706_64/include/_mingw_unicode.h:20:32: note: expanded from macro '__MINGW_NAME_AW'
+   20 | # define __MINGW_NAME_AW(func) func##A
+      |                                ^
+<scratch space>:318:1: note: expanded from here
+  318 | CreateWindowA
+      | ^
+C:/Qt/Tools/llvm-mingw1706_64/include/winuser.h:2206:136: note: expanded from macro 'CreateWindowA'
+ 2206 |   ...CreateWindowExA((DWORD)0,lpClassName,lpWindowName,dwStyle,x,y,nWidth,nHeight,hWndParent,hMenu,hInstance,lpParam)
+      |                               ^~~~~~~~~~~
+C:\code\repo\opencv\samples\directx\d3d9ex_interop.cpp:156:21: warning: enumeration value 'MODE_GPU_NV12' not handled in
+      switch [-Wswitch]
+  156 |             switch (mode)
+      |                     ^~~~
+2 warnings generated.
+[100%] Linking CXX executable ..\..\bin\example_directx_d3d9ex_interop.exe
+[100%] Built target example_directx_d3d9ex_interop
+[100%] Building CXX object samples/opengl/CMakeFiles/example_opengl_opengl.dir/opengl.cpp.obj
+[100%] Linking CXX executable ..\..\bin\example_opengl_opengl.exe
+[100%] Built target example_opengl_opengl

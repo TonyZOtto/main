@@ -6,7 +6,9 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 include(../libs.pri)
 include(../../useCore.pri)
+include(../../useGui.pri)
 include(../../useColor.pri)
+include(../../useImage.pri)
 
 SOURCES += \
     BaseGridLayout.cpp \
@@ -15,6 +17,10 @@ SOURCES += \
     BaseToolBar.cpp \
     BaseToolButton.cpp \
     GridStackPage.cpp \
+    ImageFileDropWidget.cpp \
+    ImageFileTreeWidget.cpp \
+    ImageGalleryConfig.cpp \
+    ImageGalleryWidget.cpp \
     QQLabel.cpp \
     TriggerItem.cpp \
     TriggerManager.cpp \
@@ -27,6 +33,10 @@ HEADERS += \
     BaseToolBar.h \
     BaseToolButton.h \
     GridStackPage.h \
+    ImageFileDropWidget.h \
+    ImageFileTreeWidget.h \
+    ImageGalleryConfig.h \
+    ImageGalleryWidget.h \
     QQLabel.h \
     TriggerItem.h \
     TriggerManager.h \

@@ -19,6 +19,7 @@ SOURCES += \
     Image.cpp \
     IndexedImage.cpp \
     PixmapStack.cpp \
+    ThumbImage.cpp \
     ozImage.cpp \
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     Image.h \
     IndexedImage.h \
     PixmapStack.h \
+    ThumbImage.h \
     ozImage.h \
     ozImage_global.h \
 

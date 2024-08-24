@@ -11,21 +11,41 @@ bool TriggerManager::contains(const Key &aKey)
     return mKeyItemMap.contains(aKey);
 }
 
-TriggerItem TriggerManager::item(const Key &aKey)
+TriggerItem TriggerManager::get(const Key &aKey) const
 {
-    return mKeyItemMap.get(aKey);
+    return mKeyItemMap.value(aKey);
 }
 
-void TriggerManager::add(const TriggerItem &aItem)
+bool TriggerManager::set(const TriggerItem &aItem)
 {
-    if (contains(aItem.key()))
-        qWarning() << "TriggerManager already contains" << aItem.key();
-    mKeyItemMap.set(aItem.key(), aItem);
+    const Key cKey = aItem.key();
+    Q_ASSERT(cKey.notNull());
+    const bool result = contains(cKey);
+    if (result)
+    {
+        const TriggerItem cOldItem = get(cKey);
+        mKeyItemMap.remove(cKey);
+        mKeyItemMap.insert(cKey, aItem);
+        emit replaced(aItem, cOldItem);
+    }
+    else
+    {
+        mKeyItemMap.insert(cKey, aItem);
+        emit added(aItem);
+    }
+    return result;
 }
 
 void TriggerManager::remove(const Key &aKey)
 {
     if (notContains(aKey))
+    {
         qWarning() << "TriggerManager doesn't contain" << aKey;
-    mKeyItemMap.remove(aKey);
+        emit removed(TriggerItem());
+    }
+    else
+    {
+        emit removed(get(aKey));
+        mKeyItemMap.remove(aKey);
+    }
 }

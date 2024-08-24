@@ -1,6 +1,7 @@
 #pragma once
 #include "ozCore.h"
 
+#include <QList>
 #include <QPoint>
 
 #include "QQSize.h"
@@ -8,7 +9,10 @@
 
 class OZCORE_EXPORT QQPoint : public QPoint
 {
-public:
+public: // types
+    typedef QList<QQPoint> List;
+
+public: // ctors
     QQPoint();
     QQPoint(const QPoint other);
     QQPoint(const QQSize aSize, const Index ix);

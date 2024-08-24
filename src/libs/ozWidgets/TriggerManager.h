@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <KeyMapT.h>
+#include <QMap>
 
 #include "TriggerItem.h"
 
@@ -16,18 +16,21 @@ public: // ctors
 public slots:
 
 signals:
+    void added(const TriggerItem &item);
+    void replaced(const TriggerItem &newItem, const TriggerItem &oldItem);
+    void removed(const TriggerItem &item);
 
 public: // const
     bool contains(const Key &aKey);
     bool notContains(const Key &aKey) { return ! contains(aKey); }
-    TriggerItem item(const Key &aKey);
+    TriggerItem get(const Key &aKey) const;
 
 public: // non-const
-    void add(const TriggerItem &aItem);
+    bool set(const TriggerItem &aItem);
     void remove(const Key &aKey);
 
 private slots:
 
 private:
-    KeyMapT<TriggerItem> mKeyItemMap;
+    QMap<Key, TriggerItem> mKeyItemMap;
 };

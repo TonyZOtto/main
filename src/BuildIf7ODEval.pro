@@ -5,7 +5,7 @@ SUBDIRS +=          \
     ozExe           \
     ozGui           \
     ozColor         \
-    ozPhoto         \
+    ozImage         \
     ozWidgets       \
     If7ODEval       \
 
@@ -13,7 +13,7 @@ ozCore.subdir           = libs/ozCore
 ozExe.subdir            = libs/ozExe
 ozGui.subdir            = libs/ozGui
 ozColor.subdir          = libs/ozColor
-ozPhoto.subdir          = libs/ozPhoto
+ozImage.subdir          = libs/ozImage
 ozWidgets.subdir        = libs/ozWidgets
 If7ODEval.subdir        = desktop/If7ODEval
 
@@ -21,8 +21,8 @@ ozCore.depends          =
 ozExe.depends           =   ozCore                  ozWidgets
 ozGui.depends           =   ozCore
 ozColor.depends         =   ozCore
-ozPhoto.depends         =   ozCore                              ozColor
-ozWidgets.depends       =   ozCore                              ozColor
-If7ODEval.depends       =   ozCore    ozExe ozGui               ozColor ozPhoto
+ozImage.depends         =   ozCore                              ozColor
+ozWidgets.depends       =   ozCore                              ozColor	ozImage
+If7ODEval.depends       =   ozCore    ozExe ozGui               ozColor ozImage
 
 

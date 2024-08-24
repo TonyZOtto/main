@@ -33,6 +33,7 @@ public: // data
     QLabel * d_pLabel;
     QPushButton * d_pPushButton;
     BaseToolButton * d_pToolButton;
+    QMenu * d_pMenuContains;
     QKeySequence d_shortcut;
     Qt::ToolButtonStyle d_ToolButtonStyle;
     Qt::ArrowType d_arrowType;
@@ -60,7 +61,7 @@ TriggerItem::TriggerItem(const Key &aKey)
 
 // const access
 Key TriggerItem::key() const { return data->d_key; }
-
+/*
 bool TriggerItem::keyEquals(const TriggerItem &other) const
 {
     return key() == other.key();
@@ -80,7 +81,7 @@ bool TriggerItem::operator <(const TriggerItem &other) const
 {
     return keyLess(other);
 }
-
+*/
 
 // QSharedDataPointer functions
 TriggerItem::TriggerItem() : data(new TriggerItemData) {;}

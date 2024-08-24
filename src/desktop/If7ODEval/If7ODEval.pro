@@ -12,12 +12,14 @@ include(../../usePhoto.pri)
 include(../../useWidgets.pri)
 
 SOURCES += \
+    AcquirePage.cpp \
     EvalMainWindow.cpp \
     LogPage.cpp \
     SplashPage.cpp \
     main.cpp
 
 HEADERS += \
+    AcquirePage.h \
     EvalMainWindow.h \
     LogPage.h \
     SplashPage.h \

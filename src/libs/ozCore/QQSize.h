@@ -1,12 +1,16 @@
 #pragma once
 #include "ozCore.h"
 
+#include <QList>
 #include <QSize>
 
 #include "Rational.h"
 
 class OZCORE_EXPORT QQSize : public QSize
 {
+public: // types
+    typedef QList<QQSize> List;
+
 public: // ctors
     QQSize() : QSize(-1, -1) {;}
     explicit QQSize(const int aDim) : QSize(aDim, aDim) {;}

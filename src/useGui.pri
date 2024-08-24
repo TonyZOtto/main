@@ -6,6 +6,6 @@ INCLUDEPATH *= $$LIBDIR/ozGui ../../libs/ozGui ../ozGui
 windows:LIBS *= -lozGui6
 linux:LIBS *= -lozGui
 LIBS *= -L$$DESTDIR
-message(--------/src/useGui.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
+#message(--------/src/useGui.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )
 
 

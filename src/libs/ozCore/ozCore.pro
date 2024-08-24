@@ -58,6 +58,7 @@ HEADERS += \
     KeySeg.h \
     KeySegList.h \
     MachineHelper.h \
+    MatrixT.h \
     MetaType.h \
     MillisecondTime.h \
     ObjectHelper.h \
