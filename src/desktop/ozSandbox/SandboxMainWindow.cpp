@@ -70,7 +70,7 @@ void SandboxMainWindow::setup()
     update();
 
     scene()->set(SandboxScene::BackColor, Qt::green);
-    scene()->setup();
+//    scene()->setup();
     setMinimumSize(scene()->viewRect().size());
     setCentralWidget(scene()->widget());
     update();

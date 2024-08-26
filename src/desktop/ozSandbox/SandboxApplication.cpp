@@ -1,6 +1,7 @@
 #include "SandboxApplication.h"
 
 #include <ApplicationHelper.h>
+#include <Image.h>
 
 #include "SandboxEngine.h"
 #include "SandboxMainWindow.h"
@@ -60,9 +61,9 @@ void SandboxApplication::configure()
 void SandboxApplication::setup()
 {
     qInfo() << Q_FUNC_INFO;
-    engine()->setup();
+//    engine()->setup();
     QImage tSubjectImage(":/image/MM512A.jpg");
-    engine()->setSubjectPhoto(BasePhoto(Photo::Color, tSubjectImage));
+    engine()->setSubjectImage(BaseImage(Image::Color, tSubjectImage));
     emit setuped();
 }
 

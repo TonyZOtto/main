@@ -39,6 +39,11 @@ public: // calculated or read-only
     QQSize::List        d_typicalThumbSizes;
 };
 
+QString ImageGalleryConfig::title() const
+{
+    return data->d_title;
+}
+
 ImageGalleryConfig::ImageGalleryConfig()
     : data(new ImageGalleryConfigData)
 {}

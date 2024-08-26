@@ -2,7 +2,7 @@
 
 #include <BrightnessContrast.h>
 
-#include "Grey16Photo.h"
+#include "Grey16Image.h"
 
 IndexedImage::IndexedImage() {}
 IndexedImage::IndexedImage(const QImage aIndexImage)

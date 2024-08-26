@@ -22,7 +22,7 @@ public:
                                 QWidget *parent=nullptr);
 
 public slots:
-    QQPoint append(const ThumbImage )
+    QQPoint append(const ThumbImage aThumb);
     void select(const QQPoint pt);
     void deselect();
     void deselect(const QQPoint pt);

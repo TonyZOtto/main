@@ -6,7 +6,10 @@ class ImageGalleryConfigData;
 
 class ImageGalleryConfig
 {
-public:
+public: // const
+    QString title() const;
+
+public: // QSharedDataPointer
     ImageGalleryConfig();
     ImageGalleryConfig(const ImageGalleryConfig &);
     ImageGalleryConfig &operator=(const ImageGalleryConfig &);
