@@ -1,4 +1,4 @@
-#include "Grey16Photo.h"
+#include "Grey16Image.h"
 #include "ozImage.h"
 
 Grey16Image::Grey16Image() {}
