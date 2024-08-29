@@ -94,6 +94,18 @@ SettingsItem AppSettings::get(const Key &aKey)
     return mKeyItemMap.value(aKey);
 }
 
+KeyMap AppSettings::map() const
+{
+    Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map()
+
+}
+
+KeyMap AppSettings::map(const Key aGroupKey) const
+{
+    Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map(Key)
+    Q_UNUSED(aGroupKey);
+}
+
 bool AppSettings::write(const bool all)
 {
     bool result = false;

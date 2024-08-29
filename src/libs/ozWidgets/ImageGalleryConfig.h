@@ -1,4 +1,5 @@
 #pragma once
+#include "ozWidgets.h"
 
 #include <QSharedDataPointer>
 
@@ -8,7 +9,7 @@
 
 class ImageGalleryConfigData;
 
-class ImageGalleryConfig
+class OZWIDGETS_EXPORT ImageGalleryConfig
 {
 public: // our ctors
     ImageGalleryConfig(const QString &aTitle);

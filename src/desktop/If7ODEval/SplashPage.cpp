@@ -16,9 +16,10 @@ SplashPage::SplashPage(EvalMainWindow *parent)
 
 void SplashPage::setup(const QQSize aMaxSize)
 {
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << aMaxSize;
     QQSize tRightSize = aMaxSize / QQSize(1, 2);
     QQSize tLeftSize = tRightSize / QQSize(2, 1);
+    qDebug() << tRightSize << tLeftSize;
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");
     QPixmap tINDIonlyPixmap(":/png/INDI200.png");
     QQSize tEclipseSize(tEclipsePixmap.size(), tLeftSize);

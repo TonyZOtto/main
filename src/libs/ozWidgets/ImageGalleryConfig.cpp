@@ -50,6 +50,8 @@ ImageGalleryConfig::ImageGalleryConfig(const QString &aTitle)
 
 ImageGalleryConfig::ImageGalleryConfig(const KeyMap &aMap)
 {
+    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::ImageGalleryConfig(aMap)
+    Q_UNUSED(aMap);
 
 }
 
@@ -90,6 +92,8 @@ QString ImageGalleryConfig::title() const
 
 void ImageGalleryConfig::set(const KeyMap &aMap)
 {
+    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::set()
+    Q_UNUSED(aMap);
 }
 
 void ImageGalleryConfig::set(const Key &aKey, const QVariant &aValue)
