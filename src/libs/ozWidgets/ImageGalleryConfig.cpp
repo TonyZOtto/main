@@ -124,24 +124,19 @@ void ImageGalleryConfig::set(const Key &aKey, const QVariant &aValue)
     else qWarning() << Q_FUNC_INFO << "Unhandled Config item" << aKey << aValue;
 }
 
-ImageGalleryConfig::ImageGalleryConfig()
-    : data(new ImageGalleryConfigData)
-{}
 
-ImageGalleryConfig::ImageGalleryConfig(const ImageGalleryConfig &rhs)
-    : data{rhs.data}
-{}
+void ImageGalleryConfig::calculate()
+{
+    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::calculate()
+}
 
+// QSharedDataPointer
+ImageGalleryConfig::ImageGalleryConfig() : data(new ImageGalleryConfigData) {;}
+ImageGalleryConfig::ImageGalleryConfig(const ImageGalleryConfig &rhs) : data{rhs.data} {;}
+ImageGalleryConfig::~ImageGalleryConfig() {}
 ImageGalleryConfig &ImageGalleryConfig::operator=(const ImageGalleryConfig &rhs)
 {
     if (this != &rhs)
         data.operator=(rhs.data);
     return *this;
-}
-
-ImageGalleryConfig::~ImageGalleryConfig() {}
-
-void ImageGalleryConfig::calculate()
-{
-    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::calculate()
 }

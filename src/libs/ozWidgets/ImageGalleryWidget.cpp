@@ -2,7 +2,8 @@
 
 ImageGalleryWidget::ImageGalleryWidget(const ImageGalleryConfig &cfg,
                                        QWidget *parent)
-    : QWidget(parent)
+    :QWidget(parent)
+    , cmConfig(cfg)
 {
     setObjectName("ImageGalleryWidget:" + cfg.title());
 }

@@ -98,12 +98,15 @@ KeyMap AppSettings::map() const
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map()
 
+
+    return KeyMap();
 }
 
 KeyMap AppSettings::map(const Key aGroupKey) const
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map(Key)
     Q_UNUSED(aGroupKey);
+    return KeyMap();
 }
 
 bool AppSettings::write(const bool all)

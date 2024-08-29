@@ -34,17 +34,19 @@ void StackedMainWindow::setup()
     showMaximized();
     QWidget * pMainWidget = new QWidget(this);
     setCentralWidget(pMainWidget);
+    update();
+    updateGeometry();
     qDebug() << "CentralWidgetSize" << pMainWidget->size();
-    QHBoxLayout * pHBox = new QHBoxLayout(pMainWidget);
+    QGridLayout * pGrid = new QGridLayout(pMainWidget);
 
     tabBar()->setShape(QTabBar::RoundedEast);
     QQSize tTabBarSize = tabBar()->size();
     qDebug() << "tTabBarSize" << tTabBarSize;
     tabBar()->setMaximumWidth(tTabBarSize.width());
-    pHBox->addWidget(tabBar(), 0, Qt::AlignRight | Qt::AlignTop);
+    pGrid->addWidget(tabBar(), 0, Qt::AlignRight | Qt::AlignTop);
+    pGrid->addWidget(mainStackWidget(), 0,  Qt::AlignLeft | Qt::AlignTop);
+    pMainWidget->setLayout(pGrid);
     mainStackWidget()->setLayout(mainStackLayout());
-    pHBox->addWidget(mainStackWidget(), 0,  Qt::AlignLeft | Qt::AlignTop);
-    pMainWidget->setLayout(pHBox);
     connect(tabBar(), &QTabBar::currentChanged,
             this, &StackedMainWindow::setCurrent);
 }
