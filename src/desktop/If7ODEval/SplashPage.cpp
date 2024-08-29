@@ -16,19 +16,22 @@ SplashPage::SplashPage(EvalMainWindow *parent)
 
 void SplashPage::setup(const QQSize aMaxSize)
 {
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << aMaxSize;
     QQSize tRightSize = aMaxSize / QQSize(1, 2);
     QQSize tLeftSize = tRightSize / QQSize(2, 1);
+    qDebug() << tRightSize << tLeftSize;
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");
     QPixmap tINDIonlyPixmap(":/png/INDI200.png");
     QQSize tEclipseSize(tEclipsePixmap.size(), tLeftSize);
     QQSize tINDIonlySize(tINDIonlyPixmap.size(), tLeftSize);
+    qDebug() << tEclipsePixmap.size() << tEclipseSize
+             << tINDIonlyPixmap.size() << tINDIonlySize;
 //    QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
     //  QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
     QQLabel * pEclipseLabel = new QQLabel("EclipsePixmap");
     QQLabel * pINDIonlyLabel = new QQLabel("INDIonlyPixmap");
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
-    pTextLabel->setFont(QFont("Helvetica", 64));
+    pTextLabel->setFont(QFont("Helvetica", 48));
 
     gridLayout()->addWidget(pEclipseLabel, 0, 0);
     gridLayout()->addWidget(pINDIonlyLabel, 1, 0);

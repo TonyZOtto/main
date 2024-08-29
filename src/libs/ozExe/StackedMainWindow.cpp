@@ -31,9 +31,11 @@ void StackedMainWindow::setCurrent(const int ix)
 void StackedMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
-    updateGeometry();
+    showMaximized();
     QWidget * pMainWidget = new QWidget(this);
     setCentralWidget(pMainWidget);
+    update();
+    updateGeometry();
     qDebug() << "CentralWidgetSize" << pMainWidget->size();
     QHBoxLayout * pHBox = new QHBoxLayout(pMainWidget);
 

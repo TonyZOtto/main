@@ -94,6 +94,17 @@ SettingsItem AppSettings::get(const Key &aKey)
     return mKeyItemMap.value(aKey);
 }
 
+KeyMap AppSettings::map() const
+{
+
+    return KeyMap();
+}
+
+KeyMap AppSettings::map(const Key aGroupKey) const
+{
+    return KeyMap();
+}
+
 bool AppSettings::write(const bool all)
 {
     bool result = false;

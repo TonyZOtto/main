@@ -13,6 +13,7 @@
 #include <ThumbImage.h>
 
 #include "ImageGalleryConfig.h"
+#include "ImageGalleryItem.h"
 
 class OZWIDGETS_EXPORT ImageGalleryWidget : public QWidget
 {
