@@ -4,7 +4,7 @@
 #include <BrightnessContrast.h>
 
 #include "BaseImage.h"
-#include "Grey16Photo.h"
+#include "Grey16Image.h"
 
 class OZIMAGE_EXPORT IndexedImage : public BaseImage
 {

@@ -22,7 +22,7 @@ ozExe.depends           =   ozCore
 ozGui.depends           =   ozCore
 ozColor.depends         =   ozCore
 ozImage.depends         =   ozCore                  ozColor
-ozWidgets.depends       = 	ozCore							ozImage
+ozWidgets.depends       =   ozCore                          ozImage
 ozSandbox.depends       =   ozCore    ozExe ozGui   ozColor ozImage
 
 

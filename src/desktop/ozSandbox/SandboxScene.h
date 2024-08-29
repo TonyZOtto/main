@@ -11,7 +11,7 @@ class QWidget;
 
 #include <SCRect.h>
 #include <Types.h>
-class BasePhoto;
+class BaseImage;
 
 class SandboxMainWindow;
 
@@ -53,7 +53,7 @@ public: // const
 public: // non-const
     void viewRect(const SCRect &aViewRect);
     void set(const Layer aLayer, const QColor &aFillColor);
-    void set(const Layer aLayer, const BasePhoto &aPhoto);
+    void set(const Layer aLayer, const BaseImage &aImage);
     void set(const Layer aLayer, const QImage &aImage);
     void set(const Layer aLayer, const QPixmap &aPixmap);
 

@@ -3,7 +3,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsView>
 
-#include <BasePhoto.h>
+#include <BaseImage.h>
 
 #include "SandboxMainWindow.h"
 
@@ -47,10 +47,10 @@ void SandboxScene::set(const Layer aLayer, const QColor &aFillColor)
     set(aLayer, tPixmap);
 }
 
-void SandboxScene::set(const Layer aLayer, const BasePhoto &aPhoto)
+void SandboxScene::set(const Layer aLayer, const BaseImage &aImage)
 {
     qInfo() << Q_FUNC_INFO << aLayer;
-    set(aLayer, aPhoto.baseImage());
+    set(aLayer, aImage.baseImage());
 }
 
 void SandboxScene::set(const Layer aLayer, const QImage &aImage)

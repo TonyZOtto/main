@@ -6,9 +6,9 @@
 
 #include <BrightnessContrast.h>
 #include <ByteHistogram.h>
-#include <ColorPhoto.h>
-#include <Grey16Photo.h>
-#include <IndexPhoto.h>
+#include <ColorImage.h>
+#include <Grey16Image.h>
+#include <IndexedImage.h>
 #include <QQColor.h>
 #include <Types.h>
 
@@ -30,7 +30,7 @@ public slots:
     void start(void) {;}
     void process(const QTransform &xf);
 
-    void setSubjectPhoto(const ColorPhoto &aCP);
+    void setSubjectImage(const ColorImage &aCP);
 
 signals:
     void initialized(void);
@@ -53,7 +53,7 @@ private slots:
 
 private:
     bool processOnce(const QTransform &xf);
-    BrightnessContrast processHistogram(const Grey16Photo aGrey16Photo);
+    BrightnessContrast processHistogram(const Grey16Image aGrey16Image);
     void setupColorTable();
     void setupColorTableLinear(const BYTE aFrom,
                                const BYTE aTo,
@@ -69,10 +69,10 @@ private:
 
 private:
     SandboxApplication * mpApplication=nullptr;
-    ColorPhoto mSubjectPhoto;
-    Grey16Photo mGrey16Photo;
-    IndexPhoto mPreviousIndexPhoto;
-    IndexPhoto mCurrentIndexPhoto;
+    ColorImage mSubjectImage;
+    Grey16Image mGrey16Image;
+    IndexedImage mPreviousIndexedImage;
+    IndexedImage mCurrentIndexedImage;
     QList<QRgb> mColorTable;
     ByteHistogram mGrey8Histogram;
 };

@@ -14,7 +14,7 @@ SOURCES += \
     BasePixel32.cpp \
     BasePixelBehavior.cpp \
     ColorImage.cpp \
-    Grey16Photo.cpp \
+    Grey16Image.cpp \
     GreyImage.cpp \
     Image.cpp \
     IndexedImage.cpp \
@@ -27,7 +27,7 @@ HEADERS += \
     BasePixel32.h \
     BasePixelBehavior.h \
     ColorImage.h \
-    Grey16Photo.h \
+    Grey16Image.h \
     GreyImage.h \
     Image.h \
     IndexedImage.h \

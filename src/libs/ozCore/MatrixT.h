@@ -13,11 +13,11 @@ public: // ctors
     MatrixT(const QQSize sz, const T &fillT=T()) { fill(sz, fillT); }
 
 public: // const
+    QQSize size() { return mSize; }
     T get(const QQPoint pt) const { return mTList.at(pt.x(), pt.y()); }
     T get(const int x, const int y) const
     { const Index cix = index(x, y);
         return isValid(cix) ? mTList.value(cix) : T(); }
-    QQSize size() const { return mSize; }
 
 public: // non-const
     void set(const QQPoint pt, const T &t)

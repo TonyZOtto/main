@@ -34,12 +34,12 @@ void SandboxEngine::process(const QTransform &xf)
         tChanged = processOnce(xf);
 }
 
-void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
+void SandboxEngine::setSubjectImage(const ColorImage &aCP)
 {
     qInfo() << Q_FUNC_INFO;
     const QImage cColorImage
         = aCP.baseImage().copy(scene()->viewRect().toQRect());
-    mSubjectPhoto.set(cColorImage);
+    mSubjectImage.set(cColorImage);
     QMultiMap<WORD, QQPoint> mGreyPointMMap;
     SCRect cImageRect(cColorImage.rect());
     QQSize cImageSize = cImageRect.size();
@@ -61,17 +61,17 @@ void SandboxEngine::setSubjectPhoto(const ColorPhoto &aCP)
     }
     qInfo() << "Saving IndexImage.png:"
             << tIndexImage.save("IndexImage.png");
-    mPreviousIndexPhoto = IndexPhoto(tIndexImage);
-    scene()->set(SandboxScene::OldSubject, mPreviousIndexPhoto);
-//    scene()->set(SandboxScene::OldSubject, mSubjectPhoto);
+    mPreviousIndexedImage = IndexedImage(tIndexImage);
+    scene()->set(SandboxScene::OldSubject, mPreviousIndexedImage.baseImage());
+//    scene()->set(SandboxScene::OldSubject, mSubjectImage);
 }
 
 bool SandboxEngine::processOnce(const QTransform &xf)
 {
     bool result = false;
-    mPreviousIndexPhoto = mCurrentIndexPhoto;
-    const Index cWidth = mCurrentIndexPhoto.size().width();
-    const Index cLastRowIx = mCurrentIndexPhoto.size().height() - 1;
+    mPreviousIndexedImage = mCurrentIndexedImage;
+    const Index cWidth = mCurrentIndexedImage.size().width();
+    const Index cLastRowIx = mCurrentIndexedImage.size().height() - 1;
     for (Index tRow = cLastRowIx; tRow > 0; --tRow)
     {
         const Index cStartColIx = (cLastRowIx & 1) ? (cWidth - 1) : 0;
@@ -81,15 +81,15 @@ bool SandboxEngine::processOnce(const QTransform &xf)
         {
             const QQPoint cDestPoint(tCol, tRow);
             const QQPoint cSourcePoint = xf.map(cDestPoint);
-            const BYTE cPixelBelow = mPreviousIndexPhoto.baseImage().pixel(cSourcePoint);
-            const BYTE cPixelAbove = mPreviousIndexPhoto.baseImage().pixel(cSourcePoint.up());
+            const BYTE cPixelBelow = mPreviousIndexedImage.baseImage().pixel(cSourcePoint);
+            const BYTE cPixelAbove = mPreviousIndexedImage.baseImage().pixel(cSourcePoint.up());
             const bool cSwap = cPixelBelow > cPixelAbove;
             result |= cSwap;
-            mCurrentIndexPhoto.baseImage().setPixel(cDestPoint, cSwap ? cPixelAbove : cPixelBelow);
-            mCurrentIndexPhoto.baseImage().setPixel(cDestPoint.up(), cSwap ? cPixelBelow : cPixelAbove);
+            mCurrentIndexedImage.baseImage().setPixel(cDestPoint, cSwap ? cPixelAbove : cPixelBelow);
+            mCurrentIndexedImage.baseImage().setPixel(cDestPoint.up(), cSwap ? cPixelBelow : cPixelAbove);
         }
     }
-//    show(mCurrentIndexPhoto);
+//    show(mCurrentIndexImage);
     return result;
 }
 
@@ -180,14 +180,14 @@ void SandboxEngine::setupColorTableBilinear(const BYTE aFrom,
 }
 
 #if 0
-BrightnessContrast SandboxEngine::processHistogram(const Grey16Photo aGrey16Photo)
+BrightnessContrast SandboxEngine::processHistogram(const Grey16Image aGrey16Image)
 {
     qInfo() << Q_FUNC_INFO;
     BrightnessContrast result;
 
     // Gather Histogram
-    WORD * pGrey16Data = (WORD *)aGrey16Photo.baseImage().constBits();
-    const Count nPixel = QQSize(aGrey16Photo.baseImage().size()).area();
+    WORD * pGrey16Data = (WORD *)aGrey16Image.baseImage().constBits();
+    const Count nPixel = QQSize(aGrey16Image.baseImage().size()).area();
     Count kPixel = 0;
     do
     {

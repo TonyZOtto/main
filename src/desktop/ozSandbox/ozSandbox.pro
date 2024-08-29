@@ -10,7 +10,7 @@ include(../../useCore.pri)
 include(../../useGui.pri)
 include(../../useExe.pri)
 include(../../useColor.pri)
-include(../../usePhoto.pri)
+include(../../useImage.pri)
 
 SOURCES += \
     SandboxApplication.cpp \
