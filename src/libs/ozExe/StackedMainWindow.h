@@ -5,6 +5,9 @@
 
 #include <QStackedLayout>
 
+#include <Key.h>
+#include <KeyMap.h>
+
 class BaseTabBar;
 class StackedMainPage;
 
@@ -17,6 +20,7 @@ public slots:
     void setCurrent(const int ix);
 
 public: // const
+    KeyMap settings(const Key groupName);
 
 public: // non-const
     virtual void setup();

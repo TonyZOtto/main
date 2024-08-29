@@ -20,6 +20,7 @@ SOURCES += \
     ImageFileDropWidget.cpp \
     ImageFileTreeWidget.cpp \
     ImageGalleryConfig.cpp \
+    ImageGalleryItem.cpp \
     ImageGalleryWidget.cpp \
     QQLabel.cpp \
     TriggerItem.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     ImageFileDropWidget.h \
     ImageFileTreeWidget.h \
     ImageGalleryConfig.h \
+    ImageGalleryItem.h \
     ImageGalleryWidget.h \
     QQLabel.h \
     TriggerItem.h \

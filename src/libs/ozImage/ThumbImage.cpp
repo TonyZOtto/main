@@ -2,12 +2,16 @@
 
 QQSize ThumbImage::smDefaltSize(192);
 
-ThumbImage::ThumbImage(const BaseImage &image,
+ThumbImage::ThumbImage()
+    : cmAspectMode(Qt::KeepAspectRatio)
+    , cmAspectCenter(false) {;}
+
+ThumbImage::ThumbImage(const BaseImage &origImage,
                        const QQSize thumbSize,
                        const Qt::AspectRatioMode aspectMode,
                        const bool aspectCenter,
                        const QColor backColor)
-    : cmOrigImage(image)
+    : cmOrigImage(origImage)
     , cmThumbSize(thumbSize)
     , cmAspectMode(aspectMode)
     , cmAspectCenter(aspectCenter)

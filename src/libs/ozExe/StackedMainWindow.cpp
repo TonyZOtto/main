@@ -32,12 +32,11 @@ void StackedMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     updateGeometry();
-    tabBar()->setShape(QTabBar::RoundedEast);
     QWidget * pMainWidget = new QWidget(this);
     setCentralWidget(pMainWidget);
     qDebug() << "CentralWidgetSize" << pMainWidget->size();
+    QHBoxLayout * pHBox = new QHBoxLayout(pMainWidget);
 
-    QHBoxLayout * pHBox = new QHBoxLayout();
     tabBar()->setShape(QTabBar::RoundedEast);
     QQSize tTabBarSize = tabBar()->size();
     qDebug() << "tTabBarSize" << tTabBarSize;
@@ -52,6 +51,7 @@ void StackedMainWindow::setup()
 
 void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
+    Q_ASSERT(pPage);
     qInfo() << Q_FUNC_INFO;
     mainStackLayout()->addWidget(pPage);
     mainStackLayout()->setCurrentWidget(pPage);

@@ -1,4 +1,5 @@
 #pragma once
+#include "ozImage.h"
 
 #include "BaseImage.h"
 
@@ -8,14 +9,16 @@
 #include <QQSize.h>
 #include <SCRect.h>
 
-class ThumbImage : public BaseImage
+class OZIMAGE_EXPORT ThumbImage : public BaseImage
 {
 public:
-    ThumbImage(const BaseImage &image,
+    ThumbImage();
+    ThumbImage(const BaseImage &origImage,
                const QQSize thumbSize=QQSize(),
                const Qt::AspectRatioMode aspectMode=Qt::IgnoreAspectRatio,
                const bool aspectCenter=true,
                const QColor backColor=QColor());
+    virtual ~ThumbImage() {;}
 
 public: // const
     BaseImage origImage() const;

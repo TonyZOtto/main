@@ -2,6 +2,8 @@
 
 #include <QObject>
 
+#include <Types.h>
+
 class Color
 {
     Q_GADGET

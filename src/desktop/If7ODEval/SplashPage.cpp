@@ -23,8 +23,10 @@ void SplashPage::setup(const QQSize aMaxSize)
     QPixmap tINDIonlyPixmap(":/png/INDI200.png");
     QQSize tEclipseSize(tEclipsePixmap.size(), tLeftSize);
     QQSize tINDIonlySize(tINDIonlyPixmap.size(), tLeftSize);
-    QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
-    QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
+//    QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
+    //  QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
+    QQLabel * pEclipseLabel = new QQLabel("EclipsePixmap");
+    QQLabel * pINDIonlyLabel = new QQLabel("INDIonlyPixmap");
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
     pTextLabel->setFont(QFont("Helvetica", 64));
 

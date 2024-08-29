@@ -23,7 +23,9 @@ public: // ctors
 public: // const
     bool isNull() const;
     bool notNull() const { return ! isNull(); }
+    bool startsWith(const Key &other) const;
     Count count() const;
+    KeySeg seg(const Index ix) const;
     KeySeg last() const;
     KeySeg::List last(const Count aCount) const;
     Key prepended(const Key &groupKey) const;

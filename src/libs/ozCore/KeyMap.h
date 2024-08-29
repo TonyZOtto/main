@@ -17,6 +17,11 @@ public: // ctors
     KeyMap(const EntryList entries);
     KeyMap(const EntryList entries, const Key groupKey);
 
+public: // const
+    KeyMap group(const Key &key) const;
+
+public: // non-const
+
 private:
 
 public: // QMetaType

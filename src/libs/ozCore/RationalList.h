@@ -15,14 +15,14 @@ public: // types
 
 public: // ctors
     RationalList();
-    RationalList(const Count nCount,
-                 const Term aDen=65536);
+    RationalList(const Count nCount, const Term aDen=0);
 
 public: // const
     bool isEmpty() const;
     bool isValid() const;
     Count count() const { return mNumeratorList.count(); }
     Rational at(const Index ix) const;
+    BYTE byte(const Index ix) const;
     List n() const;
     Rational n(const Index ix) const;
     Term d() const;
@@ -30,6 +30,7 @@ public: // const
 public: // non-const
     Rational at(const Index ix);
     Rational & r(const Index ix);
+    void set(const Index ix, const WORDF wfv);
     void n(const Index ix, const Term num);
     void n(const List aNumList);
     void d(const Term aDen);
@@ -38,7 +39,7 @@ public: // non-const
     void clear();
 
 private:
-    bool isValidIndex(const Index ix) const { return ix >= 0 && ix < Index(count()); }
+    bool isValidIndex(const Index ix) const;
 
 private:
     List mNumeratorList;

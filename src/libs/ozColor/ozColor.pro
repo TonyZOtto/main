@@ -9,8 +9,10 @@ include(../../useCore.pri)
 
 SOURCES += \
     AnyColor.cpp \
+    AnyColorTable.cpp \
     BrightnessContrast.cpp \
     Color.cpp \
+    ColorTable.cpp \
     Pixel32.cpp \
     RationalColorList.cpp \
     RgbColor.cpp \
@@ -19,8 +21,10 @@ SOURCES += \
 
 HEADERS += \
     AnyColor.h \
+    AnyColorTable.h \
     BrightnessContrast.h \
     Color.h \
+    ColorTable.h \
     Pixel32.h \
     RationalColorList.h \
     RgbColor.h \

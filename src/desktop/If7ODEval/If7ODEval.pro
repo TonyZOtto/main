@@ -8,8 +8,10 @@ include(../desktop.pri)
 include(../../useCore.pri)
 include(../../useExe.pri)
 include(../../useColor.pri)
+include(../../useImage.pri)
 include(../../usePhoto.pri)
 include(../../useWidgets.pri)
+#include(../../useOCV4.pri)
 
 SOURCES += \
     AcquirePage.cpp \

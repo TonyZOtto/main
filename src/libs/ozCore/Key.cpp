@@ -5,9 +5,22 @@ bool Key::isNull() const
     return mSegments.isEmpty();
 }
 
+bool Key::startsWith(const Key &other) const
+{
+    if (count() < other.count())    return false;
+    for (Seq ix = 0; ix < other.count(); ++ix)
+        if (seg(ix) != other.seg(ix))   return false;
+    return true;
+}
+
 Count Key::count() const
 {
     return mSegments.count();
+}
+
+KeySeg Key::seg(const Index ix) const
+{
+    return mSegments.value(ix);
 }
 
 KeySeg Key::last() const

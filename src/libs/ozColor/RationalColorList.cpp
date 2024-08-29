@@ -2,10 +2,11 @@
 
 #include <Color.h>
 
-RationalColorList::RationalColorList() { ctor(); }
+RationalColorList::RationalColorList() {;}
+RationalColorList::RationalColorList(const Count max)
+    : mRationalList(max, 65536) {;}
 
-void RationalColorList::ctor()
+void RationalColorList::set(const Index ix, const WORDF wfv)
 {
-    if (mRationalList.isEmpty())
-        mRationalList = RationalList(Color::$maxComponent, 1024);
+    mRationalList.set(ix, wfv);
 }
