@@ -32,19 +32,20 @@ void StackedMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     showMaximized();
-    QWidget * pMainWidget = new QWidget(this);
-    setCentralWidget(pMainWidget);
     update();
     updateGeometry();
-    qDebug() << "CentralWidgetSize" << pMainWidget->size();
+    QWidget * pMainWidget = new QWidget(this);
+    setCentralWidget(pMainWidget);
+    qDebug() << "StackedMainWindow" << size()
+            << "CentralWidgetSize" << pMainWidget->size();
     QGridLayout * pGrid = new QGridLayout(pMainWidget);
 
     tabBar()->setShape(QTabBar::RoundedEast);
     QQSize tTabBarSize = tabBar()->size();
     qDebug() << "tTabBarSize" << tTabBarSize;
     tabBar()->setMaximumWidth(tTabBarSize.width());
-    pGrid->addWidget(tabBar(), 0, Qt::AlignRight | Qt::AlignTop);
-    pGrid->addWidget(mainStackWidget(), 0,  Qt::AlignLeft | Qt::AlignTop);
+    pGrid->addWidget(tabBar(), 0, 0, Qt::AlignRight | Qt::AlignTop);
+    pGrid->addWidget(mainStackWidget(), 0, 1, Qt::AlignLeft | Qt::AlignTop);
     pMainWidget->setLayout(pGrid);
     mainStackWidget()->setLayout(mainStackLayout());
     connect(tabBar(), &QTabBar::currentChanged,
@@ -54,10 +55,9 @@ void StackedMainWindow::setup()
 void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
     Q_ASSERT(pPage);
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << pPage->objectName();
+    const int cTabIndex = tabBar()->addTab(pPage->title());
     mainStackLayout()->addWidget(pPage);
     mainStackLayout()->setCurrentWidget(pPage);
-    const int cTabIndex = tabBar()->addTab(pPage->title());
-    tabBar()->setCurrentIndex(cTabIndex);
     update();
 }
