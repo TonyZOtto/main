@@ -16,8 +16,10 @@ SOURCES += \
     BaseTabBar.cpp \
     BaseToolBar.cpp \
     BaseToolButton.cpp \
+    DropWidgetView.cpp \
     GridStackPage.cpp \
     ImageFileDropWidget.cpp \
+    ImageFileListWidget.cpp \
     ImageFileTreeWidget.cpp \
     ImageGalleryConfig.cpp \
     ImageGalleryItem.cpp \
@@ -33,8 +35,10 @@ HEADERS += \
     BaseTabBar.h \
     BaseToolBar.h \
     BaseToolButton.h \
+    DropWidgetView.h \
     GridStackPage.h \
     ImageFileDropWidget.h \
+    ImageFileListWidget.h \
     ImageFileTreeWidget.h \
     ImageGalleryConfig.h \
     ImageGalleryItem.h \

@@ -3,6 +3,10 @@
 
 #include <QWidget>
 
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QDropEvent>
+
 class OZWIDGETS_EXPORT ImageFileDropWidget : public QWidget
 {
     Q_OBJECT

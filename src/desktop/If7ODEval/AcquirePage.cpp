@@ -19,6 +19,16 @@ AcquirePage::AcquirePage(EvalMainWindow *parent)
     setObjectName("AcquirePage");
 }
 
+void AcquirePage::initialize()
+{
+
+}
+
+void AcquirePage::configure()
+{
+
+}
+
 void AcquirePage::setup()
 {
     const ImageGalleryConfig cConfig(QQSize(128)); // TODO read settings

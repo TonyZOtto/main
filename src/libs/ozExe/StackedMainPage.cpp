@@ -15,6 +15,21 @@ StackedMainPage::StackedMainPage(const QString &aTitle, StackedMainWindow *paren
     gridLayout()->setObjectName("StackedMainPage:PageGridLayout");
 }
 
+void StackedMainPage::initialize()
+{
+
+}
+
+void StackedMainPage::configure()
+{
+
+}
+
+void StackedMainPage::setup()
+{
+
+}
+
 QSize StackedMainPage::pageSize() const
 {
     return mainWindow()->size();

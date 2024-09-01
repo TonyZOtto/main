@@ -15,8 +15,12 @@ class AcquirePage : public StackedMainPage
 public:
     AcquirePage(EvalMainWindow *parent);
 
+public:
+
 public slots:
-    void setup();
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
 
 signals:
 
