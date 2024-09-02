@@ -1,5 +1,7 @@
 #include "Rational.h"
 
+Rational::Term Rational::smInvalidTerm = INT_MIN;
+
 Rational::Rational() : mNumerator(0), mDenominator(0) {;}
 Rational::Rational(const Term num, const Term den)
     : mNumerator(num), mDenominator(den) {;}
@@ -44,7 +46,7 @@ Rational Rational::divided(const Term aDen) const
 Rational::Term Rational::toInt() const
 {
     return isValid() ? qRound(qreal(n()) / qreal(d()))
-                     : cmInvalidTerm;
+                     : smInvalidTerm;
 }
 
 qreal Rational::toReal() const

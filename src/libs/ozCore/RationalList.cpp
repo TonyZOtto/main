@@ -21,9 +21,9 @@ bool RationalList::isValid() const
     return 0 != mDenominator;
 }
 
-Rational RationalList::at(const Index ix) const
+Rational RationalList::get(const Index ix) const
 {
-    return Rational(n(ix),  d());
+    return Rational(rat(ix),  d());
 }
 
 void RationalList::set(const Index ix, const WORDF wfv)
@@ -31,7 +31,7 @@ void RationalList::set(const Index ix, const WORDF wfv)
     if (isValidIndex(ix)) mNumeratorList[ix] = qRound(wfv * (float)d());
 }
 
-Rational RationalList::n(const Index ix) const
+Rational RationalList::rat(const Index ix) const
 {
     return isValidIndex(ix) ? mNumeratorList.at(ix) : INT_MIN;
 }

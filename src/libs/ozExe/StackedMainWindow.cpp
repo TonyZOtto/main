@@ -56,7 +56,7 @@ void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
     Q_ASSERT(pPage);
     qInfo() << Q_FUNC_INFO << pPage->objectName();
-    const int cTabIndex = tabBar()->addTab(pPage->title());
+    tabBar()->addTab(pPage->title());
     mainStackLayout()->addWidget(pPage);
     mainStackLayout()->setCurrentWidget(pPage);
     update();

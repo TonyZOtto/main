@@ -8,7 +8,19 @@ AnyColor::AnyColor(const QString &aString) { set(aString); }
 
 BYTE AnyColor::byte(const Color::Component cc) const
 {
-    return 0; // TODO
+    BYTE result = 0;
+    const Rational::Term cNum = mComponentValueList.n(cc);
+    const Rational::Term cDen = mComponentValueList.d();
+    if (Q_LIKELY(cDen == 65536))
+    {
+        result = cNum / 256;
+    }
+    else
+    {
+        const WORDF cFloat = (WORDF)cNum / (WORDF)cDen;
+        result = qRound(cFloat * 256);
+    }
+    return result;
 }
 
 QRgb AnyColor::qrgba32() const

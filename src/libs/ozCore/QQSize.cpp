@@ -112,15 +112,9 @@ signed int QQSize::factor(const QQSize rhs) const
     return result;
 }
 
-QQSize QQSize::width(const int aWidth)
+QQSize QQSize::add(const int aInt)
 {
-    setWidth(aWidth);
-    return *this;
-}
-
-QQSize QQSize::height(const int aHeight)
-{
-    setHeight(aHeight);
+    width(aInt + width()), height(aInt + height());
     return *this;
 }
 

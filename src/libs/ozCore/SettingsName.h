@@ -33,6 +33,7 @@ public: // const
     QFileInfo fileInfo() const;
     QString orgName() const;
     QString appName() const;
+    QString toString() const;
 
 public: // non-const
     void clear();

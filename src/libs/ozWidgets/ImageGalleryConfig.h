@@ -29,23 +29,21 @@ public: // non-const
     void set(const KeyMap &aMap);
     void set(const Key &aKey, const QVariant &aValue);
 
+private: // non-const
+    void calculate();
+
+
+private: // static
+    static QQSize::List smTypicalThumbSizes;
+
+private:
+    QQSize mCellSize;
 
 public:  // QSharedDataPointer
     ImageGalleryConfig();
     ImageGalleryConfig(const ImageGalleryConfig &);
     ImageGalleryConfig &operator=(const ImageGalleryConfig &);
     ~ImageGalleryConfig();
-
-private: // non-const
-    void calculate();
-
-private:
-    QQSize mCellSize;
-
-private: // static
-    static QQSize::List smTypicalThumbSizes;
-
-
 private:
     QSharedDataPointer<ImageGalleryConfigData> data;
 };

@@ -49,6 +49,7 @@ ImageGalleryConfig::ImageGalleryConfig(const QString &aTitle)
 }
 
 ImageGalleryConfig::ImageGalleryConfig(const KeyMap &aMap)
+    : data(new ImageGalleryConfigData)
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::ImageGalleryConfig(aMap)
     Q_UNUSED(aMap);
@@ -57,6 +58,7 @@ ImageGalleryConfig::ImageGalleryConfig(const KeyMap &aMap)
 
 ImageGalleryConfig::ImageGalleryConfig(const QQSize thumbSize,
                                        const QString &aTitle)
+    : data(new ImageGalleryConfigData)
 {
     data->dTitle = aTitle;
     data->dThumbSize = thumbSize;
@@ -127,7 +129,20 @@ void ImageGalleryConfig::set(const Key &aKey, const QVariant &aValue)
 
 void ImageGalleryConfig::calculate()
 {
-    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryConfig::calculate()
+    QQSize tCellSize(data->dThumbSize);
+    tCellSize += 2 * data->dMarkWidth;
+    tCellSize += data->dCellSeparation;
+    const Qt::Edges cEdges = data->dTitleEdges;
+    const int cHeight = data->dTitleHeight;
+    if (cEdges.testFlag(Qt::TopEdge))
+        tCellSize.height(cHeight + tCellSize.height());
+    if (cEdges.testFlag(Qt::BottomEdge))
+        tCellSize.height(cHeight + tCellSize.height());
+    if (cEdges.testFlag(Qt::LeftEdge))
+        tCellSize.width(cHeight + tCellSize.width());
+    if (cEdges.testFlag(Qt::RightEdge))
+        tCellSize.width(cHeight + tCellSize.width());
+    mCellSize = tCellSize;
 }
 
 // QSharedDataPointer

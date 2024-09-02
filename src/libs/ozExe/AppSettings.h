@@ -65,7 +65,7 @@ public: // const
     bool notOpen() const { return ! isOpen(); }
     bool contains(const Key &aKey);
     bool notContains(const Key &aKey) { return ! contains(aKey); }
-    SettingsItem get(const Key &aKey);
+    SettingsItem get(const Key &aKey) const;
     KeyMap map() const;
     KeyMap map(const Key aGroupKey) const;
     SettingsName settingsName() const;

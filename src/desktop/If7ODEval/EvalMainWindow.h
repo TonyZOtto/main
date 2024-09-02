@@ -2,6 +2,7 @@
 
 #include <StackedMainWindow.h>
 
+class AcquirePage;
 class LogPage;
 class SplashPage;
 
@@ -19,4 +20,5 @@ public slots:
 private:
     SplashPage * mpSplashPage=nullptr;
     LogPage * mpLogPage=nullptr;
+    AcquirePage * mpAcquirePage=nullptr;
 };

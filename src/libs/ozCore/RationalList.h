@@ -21,18 +21,19 @@ public: // const
     bool isEmpty() const;
     bool isValid() const;
     Count count() const { return mNumeratorList.count(); }
-    Rational at(const Index ix) const;
+    Rational get(const Index ix) const;
     BYTE byte(const Index ix) const;
-    List n() const;
-    Rational n(const Index ix) const;
+    List rats() const;
+    Rational rat(const Index ix) const;
+    Term n(const Index ix) const;
     Term d() const;
 
 public: // non-const
-    Rational at(const Index ix);
+    Rational get(const Index ix);
     Rational & r(const Index ix);
     void set(const Index ix, const WORDF wfv);
-    void n(const Index ix, const Term num);
-    void n(const List aNumList);
+    void rats(const Index ix, const Term num);
+    void rats(const List aNumList);
     void d(const Term aDen);
     void adjustDenominator(const Term den);
     void adjustDenominator(const Index ix, const Term den);
@@ -46,6 +47,7 @@ private:
     Term mDenominator;
 };
 
-inline RationalList::List RationalList::n() const { return mNumeratorList; }
+inline RationalList::List RationalList::rats() const { return mNumeratorList; }
+inline RationalList::Term RationalList::n(const Index ix) const { return isValidIndex(ix) ? mNumeratorList.value(ix) : Rational::invalidTerm(); }
 inline RationalList::Term RationalList::d() const { return mDenominator; }
-inline void RationalList::n(const List aNumList) { mNumeratorList = aNumList; }
+inline void RationalList::rats(const List aNumList) { mNumeratorList = aNumList; }

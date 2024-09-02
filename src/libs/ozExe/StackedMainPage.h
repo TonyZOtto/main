@@ -5,6 +5,7 @@
 
 class QGridLayout;
 
+#include <QQSize.h>
 class BaseTabBar;
 class StackedMainWindow;
 
@@ -17,7 +18,7 @@ public:
 public slots:
     virtual void initialize();
     virtual void configure();
-    virtual void setup();
+    virtual void setup(const QQSize aMaxSize);
 
 signals:
 

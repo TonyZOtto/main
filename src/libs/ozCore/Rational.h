@@ -35,14 +35,18 @@ public: // non-const
     void add(const Rational aRat);
     void operator + (const Rational aRat) { add(aRat); }
 
+public: // static
+    static Term invalidTerm();
+
 private:
     Term  mNumerator;
     Term  mDenominator;
-    const Term cmInvalidTerm=INT_MIN;
+    static Term smInvalidTerm;
 };
 
 inline Rational::Term Rational::n() const { return mNumerator; }
 inline Rational::Term Rational::d() const { return mDenominator; }
+inline Rational::Term Rational::invalidTerm() { return smInvalidTerm; }
 inline void Rational::n(const Term aNum) { mNumerator = aNum; }
 inline void Rational::d(const Term aDen) { mDenominator = aDen; }
 

@@ -43,6 +43,8 @@ public: // const
 public: // non-const
     QQSize width(const int aWidth);
     QQSize height(const int aHeight);
+    QQSize add(const int aInt);
+    QQSize operator += (const int aInt) { return add(aInt); }
     QQSize set(const int aWidth, const int aHeight);
     QQSize set(const int aWidth, const Rational aAspect);
     QQSize set(const Rational aAspect, const int aHeight);
@@ -50,3 +52,5 @@ public: // non-const
 
 inline int QQSize::width() const {  return QSize::width(); }
 inline int QQSize::height() const { return QSize::height(); }
+inline QQSize QQSize::width(const int aWidth) { setWidth(aWidth); return *this; }
+inline QQSize QQSize::height(const int aHeight) { setHeight(aHeight); return *this; }

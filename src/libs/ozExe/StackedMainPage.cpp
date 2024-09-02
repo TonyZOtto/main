@@ -25,9 +25,9 @@ void StackedMainPage::configure()
 
 }
 
-void StackedMainPage::setup()
+void StackedMainPage::setup(const QQSize aMaxSize)
 {
-
+    Q_UNUSED(aMaxSize);
 }
 
 QSize StackedMainPage::pageSize() const

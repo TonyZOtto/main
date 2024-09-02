@@ -29,8 +29,10 @@ void AcquirePage::configure()
 
 }
 
-void AcquirePage::setup()
+void AcquirePage::setup(const QQSize aMaxSize)
 {
+    Q_UNUSED(aMaxSize);
+
     const ImageGalleryConfig cConfig(QQSize(128)); // TODO read settings
     const KeyMap cSettings = APPH->appSettings()->map("Acquire");
     const ImageGalleryConfig cIGConfig(cSettings.group("Gallery"));

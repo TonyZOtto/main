@@ -24,6 +24,18 @@ QSettings::Scope SettingsName::scope() const
     return systemScope() ? QSettings::SystemScope : QSettings::UserScope;
 }
 
+QString SettingsName::toString() const
+{
+    QString result;
+    if ($null == type())
+        ; // leave empty
+    else if (OrgApp == type())
+        result = orgName() + ":" + appName();
+    else // it must be a file of some kind
+        result = fileInfo().filePath();
+    return result;
+}
+
 void SettingsName::clear()
 {
     mString.clear(),

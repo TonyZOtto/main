@@ -20,7 +20,7 @@ public:
 public slots:
     virtual void initialize();
     virtual void configure();
-    virtual void setup();
+    virtual void setup(const QQSize aMaxSize);
 
 signals:
 

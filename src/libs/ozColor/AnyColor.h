@@ -20,6 +20,7 @@ public: // const
     BYTE byte(const Color::Component cc) const;
     QRgb qrgba32() const;
 
+
 public: // non-const
     void set(const QString &aString);
     void set(const Color::Component cc, const WORDF wfv);

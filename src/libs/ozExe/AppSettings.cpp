@@ -7,11 +7,13 @@
 AppSettings::AppSettings(QObject *parent)
     : QObject{parent}
 {
+    qInfo() << Q_FUNC_INFO << (parent ? parent->objectName() : "NULL");
     setObjectName("AppSettings");
 }
 
 void AppSettings::open(const SettingsName &aName)
 {
+    qInfo() << Q_FUNC_INFO << aName.toString();
     close();
     mSettingsName = aName;
     switch (settingsName().type())
@@ -46,26 +48,31 @@ void AppSettings::open(const SettingsName &aName)
 
 void AppSettings::start(const EpochMilliseconds &sampleMsec)
 {
+    qInfo() << Q_FUNC_INFO << "TODO: UNUSED" << sampleMsec;
     Q_UNUSED(sampleMsec);
 }
 
 void AppSettings::pause()
 {
+    qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
 void AppSettings::resume()
 {
+    qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
 void AppSettings::finish()
 {
+    qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
 void AppSettings::close(const bool writeFirst)
 {
+    qInfo() << Q_FUNC_INFO << settingsName().toString() << writeFirst;
     if (writeFirst)
         write();
     if (mpSettings)
@@ -81,6 +88,7 @@ bool AppSettings::isOpen() const
     success.expect(mpSettings);
     if (success.test())
         success.expect(mpSettings->status() == QSettings::NoError);
+    qInfo() << Q_FUNC_INFO << success();
     return success();
 }
 
@@ -89,7 +97,7 @@ bool AppSettings::contains(const Key &aKey)
     return mKeyItemMap.contains(fullKey(aKey));
 }
 
-SettingsItem AppSettings::get(const Key &aKey)
+SettingsItem AppSettings::get(const Key &aKey) const
 {
     return mKeyItemMap.value(aKey);
 }
@@ -97,20 +105,28 @@ SettingsItem AppSettings::get(const Key &aKey)
 KeyMap AppSettings::map() const
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map()
-
-
     return KeyMap();
 }
 
 KeyMap AppSettings::map(const Key aGroupKey) const
 {
-    Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map(Key)
-    Q_UNUSED(aGroupKey);
-    return KeyMap();
+    qInfo() << Q_FUNC_INFO << aGroupKey;
+    KeyMap result;
+    settings()->beginGroup(aGroupKey());
+    const QStringList cKeys = settings()->allKeys();
+    foreach (const QString cKey, cKeys)
+    {
+        const SettingsItem cItem = get(cKey);
+        const QVariant cValue = cItem.value();
+        result.insert(cKey, cValue);
+    }
+    settings()->endGroup();
+    return result;
 }
 
 bool AppSettings::write(const bool all)
 {
+    qInfo() << Q_FUNC_INFO << all;
     bool result = false;
     if (notOpen()) return result;
     settings()->beginGroup(mCurrentGroup());
@@ -130,6 +146,7 @@ bool AppSettings::write(const bool all)
 
 bool AppSettings::write(const Key aGroupKey)
 {
+    qInfo() << Q_FUNC_INFO << aGroupKey;
     bool result = false;
     beginGroup(aGroupKey);
     write();
