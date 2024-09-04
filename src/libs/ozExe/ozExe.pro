@@ -17,6 +17,7 @@ SOURCES += \
     BaseMainWindow.cpp \
     CommandLine.cpp \
     ConsoleApplication.cpp \
+    ErrorManager.cpp \
     GridMainWindow.cpp \
     GuiApplication.cpp \
     IconFactory.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     BaseMainWindow.h \
     CommandLine.h \
     ConsoleApplication.h \
+    ErrorManager.h \
     GridMainWindow.h \
     GuiApplication.h \
     IconFactory.h \

@@ -12,6 +12,7 @@ include(../libs.pri)
 SOURCES += \
     AText.cpp \
     Angle.cpp \
+    BaseErrorItem.cpp \
     Boolean.cpp \
     ByteHistogram.cpp \
     Ident.cpp \
@@ -47,6 +48,7 @@ SOURCES += \
 HEADERS += \
     AText.h \
     Angle.h \
+    BaseErrorItem.h \
     Boolean.h \
     ByteHistogram.h \
     DualMap.h \

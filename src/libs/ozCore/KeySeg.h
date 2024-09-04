@@ -9,6 +9,8 @@
 #include <QRegularExpressionMatch>
 #include <QString>
 
+#include "Types.h"
+
 class OZCORE_EXPORT KeySeg : public AText
 {
 public: // types
@@ -21,6 +23,7 @@ public: // ctors
     KeySeg(const QString &qs) { set(qs); }
 
 public: // const
+    Id toId() const;
     QString toString() const;
     operator QString () const { return toString(); }
     QString operator() () const { return toString(); }

@@ -2,8 +2,8 @@
 
 #include <ApplicationHelper.h>
 #include <VersionInfo.h>
-#include <WidgetApplication.h>
 
+#include "EvalApplication.h"
 #include "EvalMainWindow.h"
 
 Q_GLOBAL_STATIC(ApplicationHelper, APPH)
@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
                    VER_APPNAME, VER_ORGNAME, VER_APPDESC);
     vi.copyright(EIRVER_COPYRIGHT);
     vi.product(EIRVER_PRODUCT);
-    WidgetApplication a(argc, argv);
+    EvalApplication a(argc, argv);
     APPH->set(&a);
     APPH->set(vi);
     EvalMainWindow w(&a);
     w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot
                                  | VersionInfo::WithDotted));
-    QTimer::singleShot(500, &w, &EvalMainWindow::setup);
+    QTimer::singleShot(500, &a, &EvalApplication::initialize);
     return a.exec();
 }

@@ -32,6 +32,7 @@ public: // ctors
     explicit ApplicationHelper();
 
 public slots:
+    void initialize();
 
 signals:
 

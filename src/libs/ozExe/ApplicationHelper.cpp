@@ -22,6 +22,11 @@ ApplicationHelper::ApplicationHelper()
                   + QCoreApplication::applicationName());
 }
 
+void ApplicationHelper::initialize()
+{
+
+}
+
 void ApplicationHelper::set(WidgetApplication *wapp)
 {
     Q_ASSERT(qobject_cast<WidgetApplication *>(wapp));

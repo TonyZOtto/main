@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QString>
+#include <QVariant>
 
 #include "Ident.h"
 #include "Key.h"
@@ -30,6 +31,8 @@ public: // non-const
     Uid add(const Uid::Type uk, const Key &k, const Id i=0, const QString &d=QString());
     void add(const Uid u, const Key &k, const Id i=0, const QString &d=QString());
     void remove(const Uid u);
+    Uid set(const Uid u, const QVariant &v);
+    Uid set(const Key &k, const QVariant &v);
 
 private:
     QMap<Id, Uid> mIdUidMap;
