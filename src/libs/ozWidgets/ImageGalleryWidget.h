@@ -19,10 +19,10 @@ class OZWIDGETS_EXPORT ImageGalleryWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ImageGalleryWidget(const ImageGalleryConfig &cfg,
-                                QWidget *parent=nullptr);
+    explicit ImageGalleryWidget(QWidget *parent=nullptr);
 
 public slots:
+    void configure(const ImageGalleryConfig &cfg);
     void add(const ImageGalleryItem &item);
     QQPoint append(const ThumbImage aThumb);
     void select(const QQPoint pt);
@@ -43,7 +43,7 @@ private: // non-const
 private:
     QGraphicsScene * mpScene=nullptr;
     QGraphicsView * mpView=nullptr;
-    const ImageGalleryConfig cmConfig;
+    ImageGalleryConfig mConfig;
     QList<ImageGalleryItem> mItemList;
     MatrixT<ThumbImage> mThumbMatrix;
     QQPoint mSelectPoint;

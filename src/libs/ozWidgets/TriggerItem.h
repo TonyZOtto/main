@@ -22,7 +22,7 @@ class TriggerItemData;
 class TriggerItem
 {
 public: // our ctors
-    TriggerItem(const Key &aKey);
+    TriggerItem(const Key &aKey, const QString &text=QString());
 
 public: // const
     Key key() const;

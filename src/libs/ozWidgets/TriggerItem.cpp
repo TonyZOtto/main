@@ -17,50 +17,56 @@ public: // types
     Q_DECLARE_FLAGS(Flags, Flag)
 
 public: // data
-    Key d_key;
-    QString d_text;
-    QString d_title;
-    Flags d_flags;
-    QString d_toolTip;
-    QString d_statisTip;
-    QString d_whatsThis;
-    QIcon d_icon;
-    QSize d_iconSize;
-    QFont d_font;
-    QColor d_foreColor;
-    QColor d_backColor;
-    QAction * d_pAction;
-    QLabel * d_pLabel;
-    QPushButton * d_pPushButton;
-    BaseToolButton * d_pToolButton;
-    QMenu * d_pMenuContains;
-    QKeySequence d_shortcut;
-    Qt::ToolButtonStyle d_ToolButtonStyle;
-    Qt::ArrowType d_arrowType;
+    Key dkey;
+    QString dtext;
+    QString dtitle;
+    Flags dflags;
+    QString dtoolTip;
+    QString dstatisTip;
+    QString dwhatsThis;
+    QIcon dicon;
+    QSize diconSize;
+    QFont dfont;
+    QColor dforeColor;
+    QColor dbackColor;
+    QAction * dpAction;
+    QLabel * dpLabel;
+    QPushButton * dpPushButton;
+    BaseToolButton * dpToolButton;
+    QMenu * dpMenuContains;
+    QKeySequence dshortcut;
+    Qt::ToolButtonStyle dToolButtonStyle;
+    Qt::ArrowType darrowType;
 
 public: // ctor
     TriggerItemData()
-        : d_flags($null)
-        , d_pAction(nullptr)
-        , d_pLabel(nullptr)
-        , d_pPushButton(nullptr)
-        , d_pToolButton(nullptr)
-        , d_ToolButtonStyle(Qt::ToolButtonTextBesideIcon)
-        , d_arrowType(Qt::NoArrow)
+        : dflags($null)
+        , dpAction(nullptr)
+        , dpLabel(nullptr)
+        , dpPushButton(nullptr)
+        , dpToolButton(nullptr)
+        , dToolButtonStyle(Qt::ToolButtonTextBesideIcon)
+        , darrowType(Qt::NoArrow)
     {;}
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TriggerItemData::Flags)
 
 // our ctors
-TriggerItem::TriggerItem(const Key &aKey)
+TriggerItem::TriggerItem(const Key &aKey, const QString &text)
     : data(new TriggerItemData)
 {
-    data->d_key = aKey;
+    data->dkey = aKey;
+    data->dtext = text.isEmpty() ? aKey.last()() : text;
 }
 
 // const access
-Key TriggerItem::key() const { return data->d_key; }
+Key TriggerItem::key() const { return data->dkey; }
+QString TriggerItem::text() const { return data->dtext; }
+QString TriggerItem::title() const { return data->dtitle; }
+
+
+
 /*
 bool TriggerItem::keyEquals(const TriggerItem &other) const
 {

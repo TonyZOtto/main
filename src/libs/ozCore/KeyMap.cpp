@@ -21,3 +21,17 @@ KeyMap KeyMap::group(const Key &key) const
             result.insert(cKey, value(cKey));
     return result;
 }
+
+void KeyMap::clear(const Key &key)
+{
+    replace(key, QVariant());
+}
+
+void KeyMap::replace(const Key &key, const QVariant &value)
+{
+    if (contains(key))
+    {
+        remove(key);
+        insert(key, value);
+    }
+}

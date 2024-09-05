@@ -19,3 +19,10 @@ GridMainWindow::GridMainWindow(BaseGridLayout *pGrid,
     setObjectName("GridMainWindow");
     Q_ASSERT(mpGridLayout);
 }
+
+void GridMainWindow::initialize()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TODO Anything
+    emit initialized();
+}

@@ -11,6 +11,14 @@ class OZEXE_EXPORT MdiMainWindow : public BaseMainWindow
 public:
     MdiMainWindow(WidgetApplication *wapp = nullptr);
 
+public slots:
+    void initialize();
+
+signals:
+    void initialized();
+    void initializeError(const QString errorString);
+
+
 private:
     QMdiArea * mpMdiArea=nullptr;
 };

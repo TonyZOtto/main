@@ -37,6 +37,7 @@ public: // const
 
 public: // non-const
     void clear();
+    Type setDefaltOrgApp();
     Type set(const QString &name, const bool okNotExist=false);
 
 private:

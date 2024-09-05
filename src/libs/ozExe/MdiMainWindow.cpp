@@ -11,3 +11,10 @@ MdiMainWindow::MdiMainWindow(WidgetApplication *wapp)
     mpMdiArea->setObjectName("QMdiArea:" + objectName());
 }
 
+void MdiMainWindow::initialize()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TODO Anything
+    emit initialized();
+}
+

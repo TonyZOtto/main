@@ -12,10 +12,19 @@ class OZEXE_EXPORT WidgetApplication : public QApplication
 public: // ctors
     WidgetApplication(int &argc, char **argv);
 
+public slots:
+    void initialize();
+    void configure();
+    void setup();
+
+signals:
+    void initialized();
+    void configured();
+    void setuped();
+    void startupError(const QString errorString);
+
 public:
 
 
 private:
 };
-
-

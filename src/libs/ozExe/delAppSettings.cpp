@@ -1,17 +1,17 @@
-#include "AppSettings.h"
+#include "delAppSettings.h"
 
 #include <Success.h>
 
 #include "SettingsItem.h"
 
-AppSettings::AppSettings(QObject *parent)
+delAppSettings::delAppSettings(QObject *parent)
     : QObject{parent}
 {
     qInfo() << Q_FUNC_INFO << (parent ? parent->objectName() : "NULL");
     setObjectName("AppSettings");
 }
 
-void AppSettings::open(const SettingsName &aName)
+void delAppSettings::open(const SettingsName &aName)
 {
     qInfo() << Q_FUNC_INFO << aName.toString();
     close();
@@ -36,41 +36,44 @@ void AppSettings::open(const SettingsName &aName)
     {
         if (mpSettings->status() == QSettings::NoError)
         {
+            qDebug() << "Settings opened:" << settingsName().toString();
+
             emit opened(settingsName());
         }
         else
         {
+            qWarning() << "Settings->status()" << mpSettings->status();
             emit openFail("Invalid Settings", settingsName());
             close();
         }
     }
 }
 
-void AppSettings::start(const EpochMilliseconds &sampleMsec)
+void delAppSettings::start(const EpochMilliseconds &sampleMsec)
 {
     qInfo() << Q_FUNC_INFO << "TODO: UNUSED" << sampleMsec;
     Q_UNUSED(sampleMsec);
 }
 
-void AppSettings::pause()
+void delAppSettings::pause()
 {
     qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
-void AppSettings::resume()
+void delAppSettings::resume()
 {
     qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
-void AppSettings::finish()
+void delAppSettings::finish()
 {
     qInfo() << Q_FUNC_INFO << "TODO";
 
 }
 
-void AppSettings::close(const bool writeFirst)
+void delAppSettings::close(const bool writeFirst)
 {
     qInfo() << Q_FUNC_INFO << settingsName().toString() << writeFirst;
     if (writeFirst)
@@ -82,7 +85,7 @@ void AppSettings::close(const bool writeFirst)
     }
 }
 
-bool AppSettings::isOpen() const
+bool delAppSettings::isOpen() const
 {
     Success success;
     success.expect(mpSettings);
@@ -92,23 +95,23 @@ bool AppSettings::isOpen() const
     return success();
 }
 
-bool AppSettings::contains(const Key &aKey)
+bool delAppSettings::contains(const Key &aKey)
 {
     return mKeyItemMap.contains(fullKey(aKey));
 }
 
-SettingsItem AppSettings::get(const Key &aKey) const
+SettingsItem delAppSettings::get(const Key &aKey) const
 {
     return mKeyItemMap.value(aKey);
 }
 
-KeyMap AppSettings::map() const
+KeyMap delAppSettings::map() const
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO AppSettings::map()
     return KeyMap();
 }
 
-KeyMap AppSettings::map(const Key aGroupKey) const
+KeyMap delAppSettings::map(const Key aGroupKey) const
 {
     qInfo() << Q_FUNC_INFO << aGroupKey;
     KeyMap result;
@@ -124,11 +127,11 @@ KeyMap AppSettings::map(const Key aGroupKey) const
     return result;
 }
 
-bool AppSettings::write(const bool all)
+bool delAppSettings::write(const bool all)
 {
     qInfo() << Q_FUNC_INFO << all;
     bool result = false;
-    if (notOpen()) return result;
+    if (notOpen()) return result;                       /*=====*/
     settings()->beginGroup(mCurrentGroup());
     foreach (const Key cKey, mKeyItemMap.keys())
     {
@@ -144,7 +147,7 @@ bool AppSettings::write(const bool all)
     return result;
 }
 
-bool AppSettings::write(const Key aGroupKey)
+bool delAppSettings::write(const Key aGroupKey)
 {
     qInfo() << Q_FUNC_INFO << aGroupKey;
     bool result = false;
@@ -154,7 +157,7 @@ bool AppSettings::write(const Key aGroupKey)
     return result;
 }
 
-bool AppSettings::defalt(const Key &aKey, const QVariant &aDefValue)
+bool delAppSettings::defalt(const Key &aKey, const QVariant &aDefValue)
 {
     bool result = false;
     if (notContains(aKey))
@@ -165,7 +168,7 @@ bool AppSettings::defalt(const Key &aKey, const QVariant &aDefValue)
     return result;
 }
 
-void AppSettings::defalt(const KeyMap &aDefaltMap)
+void delAppSettings::defalt(const KeyMap &aDefaltMap)
 {
     foreach (const Key cKey, aDefaltMap.keys())
     {
@@ -175,7 +178,7 @@ void AppSettings::defalt(const KeyMap &aDefaltMap)
     }
 }
 
-bool AppSettings::set(const Key &aKey, const QVariant &aNewValue)
+bool delAppSettings::set(const Key &aKey, const QVariant &aNewValue)
 {
     SettingsItem tItem;
     if (contains(aKey))
@@ -187,7 +190,7 @@ bool AppSettings::set(const Key &aKey, const QVariant &aNewValue)
     return set(tItem);
 }
 
-bool AppSettings::set(SettingsItem /*copy*/ aItem, const bool aWrite)
+bool delAppSettings::set(SettingsItem /*copy*/ aItem, const bool aWrite)
 {
     mKeyItemMap.remove(aItem.key());
     aItem.flags().setFlag(SettingsItem::Changed);
@@ -199,7 +202,7 @@ bool AppSettings::set(SettingsItem /*copy*/ aItem, const bool aWrite)
         return true;
 }
 
-void AppSettings::update(/*non-const ref*/KeyMap & aMap, const bool aWrite)
+void delAppSettings::update(/*non-const ref*/KeyMap & aMap, const bool aWrite)
 {
     foreach (const Key cKey, aMap.keys())
     {
@@ -212,7 +215,7 @@ void AppSettings::update(/*non-const ref*/KeyMap & aMap, const bool aWrite)
         write(true);
 }
 
-void AppSettings::update(const Key aGroupKey, KeyMap & aMap, const bool aWrite)
+void delAppSettings::update(const Key aGroupKey, KeyMap & aMap, const bool aWrite)
 {
     if (notOpen()) return;
     beginGroup(aGroupKey);
@@ -220,7 +223,7 @@ void AppSettings::update(const Key aGroupKey, KeyMap & aMap, const bool aWrite)
     endGroup(aGroupKey);
 }
 
-bool AppSettings::remove(const Key aKey)
+bool delAppSettings::remove(const Key aKey)
 {
     if (notOpen()) return false;
     bool result = settings()->contains(aKey);
@@ -229,36 +232,36 @@ bool AppSettings::remove(const Key aKey)
     return result;
 }
 
-SettingsItem::Flags &AppSettings::flags(const Key aKey)
+SettingsItem::Flags &delAppSettings::flags(const Key aKey)
 {
     static SettingsItem::Flags stFlags;
     return contains(aKey) ? mKeyItemMap[aKey].flags() : stFlags;
 }
 
-Key AppSettings::fullKey(const Key &aKey)
+Key delAppSettings::fullKey(const Key &aKey)
 {
     return mCurrentGroup + aKey;
 }
 
-Key AppSettings::beginGroup(const Key &aKey)
+Key delAppSettings::beginGroup(const Key &aKey)
 {
     mCurrentGroup.append(aKey);
     return mCurrentGroup;
 }
 
-QVariant AppSettings::value(const Key &aKey) const
+QVariant delAppSettings::value(const Key &aKey) const
 {
     if (notOpen()) return QVariant();
     return settings()->value(aKey);
 }
 
-void AppSettings::setValue(const Key &aKey, const QVariant &aValue)
+void delAppSettings::setValue(const Key &aKey, const QVariant &aValue)
 {
     if (notOpen()) return;
     settings()->setValue(aKey, aValue);
 }
 
-Key AppSettings::endGroup(const Key &aKey)
+Key delAppSettings::endGroup(const Key &aKey)
 {
     mCurrentGroup.removeTail(aKey);
     return mCurrentGroup;

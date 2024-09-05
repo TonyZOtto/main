@@ -21,6 +21,8 @@ public: // const
     KeyMap group(const Key &key) const;
 
 public: // non-const
+    void clear(const Key &key);
+    void replace(const Key &key, const QVariant &value);
 
 private:
 

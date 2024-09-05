@@ -12,5 +12,5 @@ public:
     SplashPage(EvalMainWindow *parent);
 
 public slots:
-    void setup(const QQSize aMaxSize);
+    void setup() override;
 };

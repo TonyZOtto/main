@@ -12,6 +12,13 @@ public:
     GridMainWindow(WidgetApplication *wapp);
     GridMainWindow(BaseGridLayout * pGrid,
                    WidgetApplication *wapp);
+public slots:
+    void initialize();
+
+signals:
+    void initialized();
+    void initializeError(const QString errorString);
+
 
 private:
     BaseGridLayout * mpGridLayout=nullptr;

@@ -35,15 +35,19 @@ CommandLine::CommandLine(int argc, char *argv[], ApplicationHelper * parent)
     , cmRawArgumentList(parseRawArguments(argc, argv))
     , cmExeFileInfo(cmRawArgumentList.first())
 {
+    qInfo() << Q_FUNC_INFO << cmRawArgumentList;
     setObjectName("CommandLine");
 }
 
 void CommandLine::process()
 {
+    qInfo() << Q_FUNC_INFO << cmRawArgumentList;
+    mSettingsName.setDefaltOrgApp();
     mProcessingArguments = cmRawArgumentList.mid(1);
     while ( ! mProcessingArguments.isEmpty())
     {
         const QString cArg = mProcessingArguments.takeFirst();
+        qDebug() << "process()ing:" << cArg;
         emit processing(cArg);
         if (cArg.startsWith('@'))
             processIncludeFile(cArg.mid(1));
@@ -55,10 +59,14 @@ void CommandLine::process()
             mPositionalArguments.append(cArg),
             mPositionalFileInfos.append(QFileInfo(cArg));
     }
+    qDebug() << mSettingValuesMap
+             << mSettingsName.toString()
+             << mPositionalArguments;
 }
 
 void CommandLine::processIncludeFile(const QString atsArg)
 {
+    qInfo() << Q_FUNC_INFO << atsArg;
     QFile * pCommandFile = new QFile(atsArg, parent());
     Q_ASSERT(pCommandFile);
     if (pCommandFile->open(QIODevice::ReadOnly
@@ -79,6 +87,7 @@ void CommandLine::processIncludeFile(const QString atsArg)
 
 void CommandLine::processSettingValue(const QString dlrArg)
 {
+    qInfo() << Q_FUNC_INFO << dlrArg;
     const Index cEqualsIndex = dlrArg.indexOf('=');
     Key tKey;
     QVariant tValue;
@@ -102,6 +111,7 @@ void CommandLine::processSettingValue(const QString dlrArg)
 
 void CommandLine::processSettingsName(const QString pctArg)
 {
+    qInfo() << Q_FUNC_INFO << pctArg;
     const SettingsName cSName(pctArg);
     if (cSName.type() != SettingsName::$null)
         mSettingsName = cSName;
@@ -113,5 +123,6 @@ QStringList CommandLine::parseRawArguments(int argc, char *argv[])
     QStringList result;
     for (int ix = 1; ix < argc; ++ix)
         result.append(QString(argv[ix]));
+    qInfo() << Q_FUNC_INFO << result;
     return result;
 }

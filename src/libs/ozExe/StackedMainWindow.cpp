@@ -1,13 +1,18 @@
 #include "StackedMainWindow.h"
 
 #include <QWidget>
+#include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QStackedLayout>
 
+#include <ApplicationHelper.h>
 #include <QQSize.h>
+#include <Settings.h>
+#include <Value.h>
 
 #include "BaseTabBar.h"
 #include "StackedMainPage.h"
+#include "WidgetApplication.h"
 
 StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
     : BaseMainWindow(wapp)
@@ -20,6 +25,15 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
     mainStackWidget()->setObjectName("StackedMainWindow:MainStackWidget");
     mainStackLayout()->setObjectName("StackedMainWindow:MainStackLayout");
     tabBar()->setObjectName("StackedMainWindow:TabBar");
+}
+
+void StackedMainWindow::initialize()
+{
+
+}
+
+void StackedMainWindow::configure()
+{
 }
 
 void StackedMainWindow::setCurrent(const int ix)

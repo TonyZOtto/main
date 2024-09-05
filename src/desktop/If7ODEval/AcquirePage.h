@@ -3,6 +3,7 @@
 #include <StackedMainPage.h>
 
 class ImageFileDropWidget;
+class ImageFileListWidget;
 class ImageFileTreeWidget;
 class ImageGalleryWidget;
 class StackedMainWindow;
@@ -20,7 +21,7 @@ public:
 public slots:
     virtual void initialize();
     virtual void configure();
-    virtual void setup(const QQSize aMaxSize);
+    virtual void setup();
 
 signals:
 
@@ -33,6 +34,7 @@ public: //
 
 private:
     ImageFileDropWidget * mpDropWidget=nullptr;
+    ImageFileListWidget * mpListWidget=nullptr;
     ImageFileTreeWidget * mpTreeWidget=nullptr;
     ImageGalleryWidget * mpGalleryWidget=nullptr;
 };

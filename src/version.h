@@ -9,6 +9,11 @@
 #define VER_BUILD           1001
 #define VER_BRANCHNAME      "develop"
 #define VER_ORGNAME         "ottoZcode"
+#ifdef QT_DEBUG
+#define EIRVER_ORGNAME      "EclipseRD"
+#else
+#define EIRVER_ORGNAME      "EclipseIR"
+#endif
 #define VER_PRODUCT         "ozCode"
 #define EIRVER_PRODUCT      "INDIface7 Engine"
 #define VER_COPYRIGHT       "Copyright (c) 1993-2024, Anthony Otto. All rights reserved worldwide. See LEGAL.txt for more information."

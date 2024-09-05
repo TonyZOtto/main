@@ -18,12 +18,12 @@ public:
 public slots:
     virtual void initialize();
     virtual void configure();
-    virtual void setup(const QQSize aMaxSize);
+    virtual void setup();
 
 signals:
 
 public: // const
-    QSize pageSize() const;
+    QQSize pageSize() const;
     QString title() const;
 
 public: // non-const
@@ -32,7 +32,7 @@ public: //
 
 public: // pointers
     StackedMainWindow * mainWindow() const;
-    QGridLayout * gridLayout();
+    QGridLayout * pageGridLayout();
 
 private:
     StackedMainWindow * mpMainWindow=nullptr;
@@ -42,4 +42,4 @@ private:
 
 inline QString StackedMainPage::title() const { return mTitle; }
 inline StackedMainWindow *StackedMainPage::mainWindow() const { Q_ASSERT(mpMainWindow); return mpMainWindow; }
-inline QGridLayout *StackedMainPage::gridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }
+inline QGridLayout *StackedMainPage::pageGridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }

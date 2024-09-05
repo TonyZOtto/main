@@ -10,4 +10,7 @@ public:
 
 public slots:
     void initialize();
+
+signals:
+
 };

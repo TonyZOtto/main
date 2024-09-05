@@ -28,6 +28,8 @@ public: // const
 public: // non-const
     bool set(const TriggerItem &aItem);
     void remove(const Key &aKey);
+    TriggerItem & item(const Key &aKey);
+    TriggerItem & operator [] (const Key &aKey) { return item(aKey); }
 
 private slots:
 

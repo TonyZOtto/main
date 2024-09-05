@@ -11,8 +11,6 @@ include(../../useCore.pri)
 include(../../useWidgets.pri)
 
 SOURCES += \
-    ActionManager.cpp \
-    AppSettings.cpp \
     ApplicationHelper.cpp \
     BaseMainWindow.cpp \
     CommandLine.cpp \
@@ -22,15 +20,13 @@ SOURCES += \
     GuiApplication.cpp \
     IconFactory.cpp \
     MdiMainWindow.cpp \
-    SettingsItem.cpp \
+    Settings.cpp \
     StackedMainPage.cpp \
     StackedMainWindow.cpp \
     WidgetApplication.cpp \
     ozExe.cpp
 
 HEADERS += \
-    ActionManager.h \
-    AppSettings.h \
     ApplicationHelper.h \
     BaseMainWindow.h \
     CommandLine.h \
@@ -40,7 +36,7 @@ HEADERS += \
     GuiApplication.h \
     IconFactory.h \
     MdiMainWindow.h \
-    SettingsItem.h \
+    Settings.h \
     StackedMainPage.h \
     StackedMainWindow.h \
     WidgetApplication.h \

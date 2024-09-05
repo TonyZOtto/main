@@ -113,5 +113,6 @@ QString MillisecondTime::toString(const QString & format) const
 
 QString MillisecondTime::baseString(const QString & format)
 {
-    return QDateTime::fromMSecsSinceEpoch(smBaseMST).toString(format);
+    return QDateTime::fromMSecsSinceEpoch(smBaseMST)
+        .toString(format.isEmpty() ? "yyyy/MM/dd hh:mm:ss.zzz" : format);
 }

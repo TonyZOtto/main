@@ -15,7 +15,11 @@ public:
     ~EvalMainWindow();
 
 public slots:
-    virtual void setup();
+    void initialize();
+    void configure();
+    void setup();
+
+signals:
 
 private:
     SplashPage * mpSplashPage=nullptr;

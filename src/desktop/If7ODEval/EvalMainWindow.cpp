@@ -1,10 +1,18 @@
 #include "EvalMainWindow.h"
 
+#include <QScreen>
+
+#include <ApplicationHelper.h>
+#include <QQSize.h>
+#include <Settings.h>
+#include <Value.h>
 #include <WidgetApplication.h>
 
 #include "AcquirePage.h"
 #include "LogPage.h"
 #include "SplashPage.h"
+
+Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
 EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
     : StackedMainWindow(wapp)
@@ -18,16 +26,32 @@ EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
 
 EvalMainWindow::~EvalMainWindow() {;}
 
-void EvalMainWindow::setup()
+void EvalMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     showMaximized();
     updateGeometry();
+}
+
+void EvalMainWindow::configure()
+{
+    qInfo() << Q_FUNC_INFO;
+    QScreen * pScreen = QGuiApplication::primaryScreen();
+    QQSize tScreenSize = pScreen->size();
+    Value tPageUnderSizeValue(APPH->settings()->
+                              get("MainWindow/PageUnderSize", QSize(30, 100)));
+    QQSize tPageUnderSize = tPageUnderSizeValue.size();
+    pageSize(tScreenSize - tPageUnderSize);
+}
+
+void EvalMainWindow::setup()
+{
+    qInfo() << Q_FUNC_INFO;
     StackedMainWindow::setup();
-    mpSplashPage->setup(size());
-    mpLogPage->setup(size());
+    mpSplashPage->setup();
+    mpLogPage->setup();
     mpLogPage->addLine("Log Started");
-    mpAcquirePage->setup(size());
+    mpAcquirePage->setup();
     addPage(mpSplashPage);
     addPage(mpLogPage);
     addPage(mpAcquirePage);

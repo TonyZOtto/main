@@ -1,11 +1,12 @@
 #include "AcquirePage.h"
 
 #include <ApplicationHelper.h>
-#include <AppSettings.h>
 #include <ImageFileDropWidget.h>
+#include <ImageFileListWidget.h>
 #include <ImageFileTreeWidget.h>
 #include <ImageGalleryConfig.h>
 #include <ImageGalleryWidget.h>
+#include <Settings.h>
 
 Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
@@ -14,7 +15,9 @@ Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 AcquirePage::AcquirePage(EvalMainWindow *parent)
     : StackedMainPage("Acquire", parent)
     , mpDropWidget(new ImageFileDropWidget(this))
+    , mpListWidget(new ImageFileListWidget(this))
     , mpTreeWidget(new ImageFileTreeWidget(this))
+    , mpGalleryWidget(new ImageGalleryWidget(this))
 {
     setObjectName("AcquirePage");
 }
@@ -26,16 +29,20 @@ void AcquirePage::initialize()
 
 void AcquirePage::configure()
 {
-
+    const ImageGalleryConfig cGalleryConfig(APPH->settings()
+                                    ->map("Acquire/Gallery"));
+    mpGalleryWidget->configure(cGalleryConfig);
 }
 
-void AcquirePage::setup(const QQSize aMaxSize)
+void AcquirePage::setup()
 {
-    Q_UNUSED(aMaxSize);
 
-    const ImageGalleryConfig cConfig(QQSize(128)); // TODO read settings
-    const KeyMap cSettings = APPH->appSettings()->map("Acquire");
-    const ImageGalleryConfig cIGConfig(cSettings.group("Gallery"));
-    mpGalleryWidget = new ImageGalleryWidget(cConfig, this);
+    mpDropWidget->setup();
 
+    pageGridLayout()->addWidget(mpDropWidget, 0, 0);
+    pageGridLayout()->addWidget(mpListWidget, 1, 0);
+    pageGridLayout()->addWidget(mpTreeWidget, 2, 0);
+    pageGridLayout()->addWidget(mpGalleryWidget, 0, 1, 3, 1);
+
+    StackedMainPage::setup();
 }

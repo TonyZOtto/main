@@ -17,7 +17,7 @@ public:
     LogPage(EvalMainWindow *parent);
 
 public slots:
-    void setup(const QQSize aMaxSize);
+    void setup();
     void addLine(const QString &aString);
 
 

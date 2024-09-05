@@ -13,11 +13,11 @@ LogPage::LogPage(EvalMainWindow *parent)
     setObjectName("LogPage");
 }
 
-void LogPage::setup(const QQSize aMaxSize)
+void LogPage::setup()
 {
-    (void)aMaxSize;
-    gridLayout()->addWidget(textEdit());
-    setLayout(gridLayout());
+    StackedMainPage::setup();
+    pageGridLayout()->addWidget(textEdit());
+    setLayout(pageGridLayout());
 }
 
 void LogPage::addLine(const QString &aString)

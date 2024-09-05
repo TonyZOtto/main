@@ -46,6 +46,14 @@ void SettingsName::clear()
     mAppName.clear();
 }
 
+SettingsName::Type SettingsName::setDefaltOrgApp()
+{
+    mSystemScope = false,
+    mOrgName = QCoreApplication::organizationName(),
+    mAppName = QCoreApplication::applicationName();
+    return mType = OrgApp;
+}
+
 SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 {
     QString tName = name;

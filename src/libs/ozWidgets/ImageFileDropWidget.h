@@ -13,5 +13,12 @@ class OZWIDGETS_EXPORT ImageFileDropWidget : public QWidget
 public:
     explicit ImageFileDropWidget(QWidget *parent = nullptr);
 
+public slots:
+    void setup();
+
 signals:
+    void setuped();
+
+private:
+
 };

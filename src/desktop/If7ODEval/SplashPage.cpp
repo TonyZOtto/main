@@ -14,10 +14,11 @@ SplashPage::SplashPage(EvalMainWindow *parent)
     setObjectName("SplashPage");
 }
 
-void SplashPage::setup(const QQSize aMaxSize)
+void SplashPage::setup()
 {
-    qInfo() << Q_FUNC_INFO << aMaxSize;
-    QQSize tRightSize = aMaxSize / QQSize(1, 2);
+    qInfo() << Q_FUNC_INFO;
+    StackedMainPage::setup();
+    QQSize tRightSize = pageSize() / QQSize(1, 2);
     QQSize tLeftSize = tRightSize / QQSize(2, 1);
     qDebug() << tRightSize << tLeftSize;
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");
@@ -33,11 +34,11 @@ void SplashPage::setup(const QQSize aMaxSize)
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
     pTextLabel->setFont(QFont("Helvetica", 48));
 
-    gridLayout()->addWidget(pEclipseLabel, 0, 0);
-    gridLayout()->addWidget(pINDIonlyLabel, 1, 0);
-    gridLayout()->addWidget(pTextLabel, 0, 1, 2, 1);
-    gridLayout()->setAlignment(pEclipseLabel,  Qt::AlignCenter | Qt::AlignHCenter);
-    gridLayout()->setAlignment(pINDIonlyLabel, Qt::AlignCenter | Qt::AlignHCenter);
-    gridLayout()->setAlignment(pTextLabel,     Qt::AlignCenter | Qt::AlignHCenter);
-    setLayout(gridLayout());
+    pageGridLayout()->addWidget(pEclipseLabel, 0, 0);
+    pageGridLayout()->addWidget(pINDIonlyLabel, 1, 0);
+    pageGridLayout()->addWidget(pTextLabel, 0, 1, 2, 1);
+    pageGridLayout()->setAlignment(pEclipseLabel,  Qt::AlignCenter | Qt::AlignHCenter);
+    pageGridLayout()->setAlignment(pINDIonlyLabel, Qt::AlignCenter | Qt::AlignHCenter);
+    pageGridLayout()->setAlignment(pTextLabel,     Qt::AlignCenter | Qt::AlignHCenter);
+    setLayout(pageGridLayout());
 }

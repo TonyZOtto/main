@@ -16,13 +16,13 @@
 
 class QSettings;
 
-class OZEXE_EXPORT AppSettings : public QObject
+class OZEXE_EXPORT delAppSettings : public QObject
 {
     Q_OBJECT
 public: // types
 
 public: // ctors
-    explicit AppSettings(QObject *parent = nullptr);
+    explicit delAppSettings(QObject *parent = nullptr);
 
 public slots:
     void open(const SettingsName &aName);
@@ -113,6 +113,6 @@ private:
     QMap<Key, SettingsItem> mKeyItemMap;
 };
 
-inline SettingsName AppSettings::settingsName() const { return mSettingsName; }
-inline QSettings *AppSettings::settings() const { Q_ASSERT(mpSettings); return mpSettings; }
+inline SettingsName delAppSettings::settingsName() const { return mSettingsName; }
+inline QSettings *delAppSettings::settings() const { Q_ASSERT(mpSettings); return mpSettings; }
 

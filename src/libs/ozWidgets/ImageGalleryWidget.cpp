@@ -1,11 +1,14 @@
 #include "ImageGalleryWidget.h"
 
-ImageGalleryWidget::ImageGalleryWidget(const ImageGalleryConfig &cfg,
-                                       QWidget *parent)
-    :QWidget(parent)
-    , cmConfig(cfg)
+ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
+    : QWidget(parent)
 {
-    setObjectName("ImageGalleryWidget:" + cfg.title());
+    setObjectName("ImageGalleryWidget");
+}
+
+void ImageGalleryWidget::configure(const ImageGalleryConfig &cfg)
+{
+    mConfig = cfg;
 }
 
 void ImageGalleryWidget::add(const ImageGalleryItem &item)
@@ -13,6 +16,7 @@ void ImageGalleryWidget::add(const ImageGalleryItem &item)
     Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryWidget::add()
     Q_UNUSED(item);
 }
+
 
 QQPoint ImageGalleryWidget::append(const ThumbImage aThumb)
 {

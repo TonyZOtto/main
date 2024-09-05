@@ -12,7 +12,7 @@ StackedMainPage::StackedMainPage(const QString &aTitle, StackedMainWindow *paren
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("StackedMainPage");
-    gridLayout()->setObjectName("StackedMainPage:PageGridLayout");
+    pageGridLayout()->setObjectName("StackedMainPage:PageGridLayout");
 }
 
 void StackedMainPage::initialize()
@@ -25,12 +25,12 @@ void StackedMainPage::configure()
 
 }
 
-void StackedMainPage::setup(const QQSize aMaxSize)
+void StackedMainPage::setup()
 {
-    Q_UNUSED(aMaxSize);
+    setLayout(pageGridLayout());
 }
 
-QSize StackedMainPage::pageSize() const
+QQSize StackedMainPage::pageSize() const
 {
     return mainWindow()->size();
 }
