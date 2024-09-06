@@ -5,3 +5,18 @@ ImageFileTreeWidget::ImageFileTreeWidget(QWidget *parent)
 {
     setObjectName("ImageFileTreeWidget");
 }
+
+void ImageFileTreeWidget::initialize()
+{
+
+}
+
+void ImageFileTreeWidget::configure()
+{
+
+}
+
+void ImageFileTreeWidget::setup()
+{
+
+}

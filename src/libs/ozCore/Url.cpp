@@ -18,7 +18,7 @@ Url::Scheme Url::parseScheme(const QString &s)
 {
     Url::Scheme result = $null;
     if (false)
-        ;
+        {;}
     else if (s.compare("dir", Qt::CaseInsensitive))
         result = dir;
     else if (s.compare("http", Qt::CaseInsensitive))
@@ -28,7 +28,7 @@ Url::Scheme Url::parseScheme(const QString &s)
     else if (s.compare("ftp", Qt::CaseInsensitive))
         result = ftp;
     else
-        ;
+        {;}
     return result;
 }
 

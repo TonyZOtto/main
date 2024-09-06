@@ -13,7 +13,6 @@ BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
 void BaseMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    QScreen tScreen();
 
     // TODO Anything
     emit initialized();

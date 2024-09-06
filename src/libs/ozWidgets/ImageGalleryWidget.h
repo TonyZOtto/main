@@ -22,7 +22,10 @@ public:
     explicit ImageGalleryWidget(QWidget *parent=nullptr);
 
 public slots:
-    void configure(const ImageGalleryConfig &cfg);
+    void initialize();
+    void configure();
+    void setup();
+
     void add(const ImageGalleryItem &item);
     QQPoint append(const ThumbImage aThumb);
     void select(const QQPoint pt);
@@ -30,13 +33,14 @@ public slots:
     void deselect(const QQPoint pt);
 
 signals:
+    void initialized();
+    void configured();
+    void setuped();
+
 
 private: // pointers
     QGraphicsScene * scene();
     QGraphicsView * view();
-
-private slots:
-    void setup();
 
 private: // non-const
 

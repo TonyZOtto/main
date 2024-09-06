@@ -14,9 +14,13 @@ public:
     explicit ImageFileDropWidget(QWidget *parent = nullptr);
 
 public slots:
+    void initialize();
+    void configure();
     void setup();
 
 signals:
+    void initialized();
+    void configured();
     void setuped();
 
 private:

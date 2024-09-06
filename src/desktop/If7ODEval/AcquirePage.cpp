@@ -19,25 +19,39 @@ AcquirePage::AcquirePage(EvalMainWindow *parent)
     , mpTreeWidget(new ImageFileTreeWidget(this))
     , mpGalleryWidget(new ImageGalleryWidget(this))
 {
+    qInfo() << Q_FUNC_INFO;
     setObjectName("AcquirePage");
 }
 
 void AcquirePage::initialize()
 {
+    qInfo() << Q_FUNC_INFO;
+    mpDropWidget->initialize();
+    mpListWidget->initialize();
+    mpTreeWidget->initialize();
+    mpGalleryWidget->initialize();
 
+    emit initialized();
 }
 
 void AcquirePage::configure()
 {
-    const ImageGalleryConfig cGalleryConfig(APPH->settings()
-                                    ->map("Acquire/Gallery"));
-    mpGalleryWidget->configure(cGalleryConfig);
+    qInfo() << Q_FUNC_INFO;
+    mpDropWidget->configure();
+    mpListWidget->configure();
+    mpTreeWidget->configure();
+    mpGalleryWidget->configure();
+    emit configured();
 }
 
 void AcquirePage::setup()
 {
+    qInfo() << Q_FUNC_INFO;
 
     mpDropWidget->setup();
+    mpListWidget->setup();
+    mpTreeWidget->setup();
+    mpGalleryWidget->setup();
 
     pageGridLayout()->addWidget(mpDropWidget, 0, 0);
     pageGridLayout()->addWidget(mpListWidget, 1, 0);
@@ -45,4 +59,5 @@ void AcquirePage::setup()
     pageGridLayout()->addWidget(mpGalleryWidget, 0, 1, 3, 1);
 
     StackedMainPage::setup();
+    emit setuped();
 }

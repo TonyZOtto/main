@@ -6,9 +6,19 @@ ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     setObjectName("ImageGalleryWidget");
 }
 
-void ImageGalleryWidget::configure(const ImageGalleryConfig &cfg)
+void ImageGalleryWidget::initialize()
 {
-    mConfig = cfg;
+
+}
+
+void ImageGalleryWidget::configure()
+{
+//    mConfig = cfg;
+}
+
+void ImageGalleryWidget::setup()
+{
+
 }
 
 void ImageGalleryWidget::add(const ImageGalleryItem &item)
@@ -45,8 +55,4 @@ void ImageGalleryWidget::deselect(const QQPoint pt)
 
 }
 
-void ImageGalleryWidget::setup()
-{
-    Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryWidget::setup()
 
-}

@@ -10,6 +10,16 @@ ImageFileDropWidget::ImageFileDropWidget(QWidget *parent)
     setObjectName("ImageFileDropWidget");
 }
 
+void ImageFileDropWidget::initialize()
+{
+
+}
+
+void ImageFileDropWidget::configure()
+{
+
+}
+
 void ImageFileDropWidget::setup()
 {
     qInfo() << Q_FUNC_INFO;

@@ -9,5 +9,15 @@ class OZWIDGETS_EXPORT ImageFileListWidget : public QWidget
 public:
     explicit ImageFileListWidget(QWidget *parent = nullptr);
 
+public slots:
+    void initialize();
+    void configure();
+    void setup();
+
 signals:
+    void initialized();
+    void configured();
+    void setuped();
+
+
 };

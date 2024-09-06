@@ -24,6 +24,9 @@ public slots:
     virtual void setup();
 
 signals:
+    void initialized();
+    void configured();
+    void setuped();
 
 public: // const
 
