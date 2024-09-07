@@ -10,9 +10,12 @@ SettingsName::SettingsName()
     , mSystemScope(false)
     , mOrgName(QCoreApplication::organizationName())
     , mAppName(QCoreApplication::applicationName()) {;}
+
 SettingsName::SettingsName(const QString &name,
                            const bool okNotExist)
-    { set(name, okNotExist); }
+{
+    set(name, okNotExist);
+}
 
 bool SettingsName::isValid() const
 {
@@ -48,14 +51,19 @@ void SettingsName::clear()
 
 SettingsName::Type SettingsName::setDefaltOrgApp()
 {
+    SettingsName::Type result = $null;
+    mType = OrgApp,
     mSystemScope = false,
     mOrgName = QCoreApplication::organizationName(),
     mAppName = QCoreApplication::applicationName();
-    return mType = OrgApp;
+    result = mType;
+    qDebug() << Q_FUNC_INFO << result << toString();
+    return result;
 }
 
 SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 {
+    qInfo() << Q_FUNC_INFO << name << okNotExist;
     QString tName = name;
     mType = $null;
     mString = tName;
@@ -71,6 +79,7 @@ SettingsName::Type SettingsName::set(const QString &name, const bool okNotExist)
 
 SettingsName::Type SettingsName::setFileName(const QString &s, const bool okNotExist)
 {
+    qInfo() << Q_FUNC_INFO << s << okNotExist;
     Type result = $null;
     QFileInfo tFI(s);
     if (tFI.exists() || okNotExist)
@@ -91,6 +100,7 @@ SettingsName::Type SettingsName::setFileName(const QString &s, const bool okNotE
 
 SettingsName::Type SettingsName::setOrgApp(const QString &s)
 {
+    qInfo() << Q_FUNC_INFO << s;
     Type result = $null;
     if ( ! s.contains(':'))
         mOrgName = QCoreApplication::organizationName(), mAppName = s;
@@ -107,5 +117,6 @@ SettingsName::Type SettingsName::setOrgApp(const QString &s)
     }
     if ( ! orgName().isEmpty() && ! appName().isEmpty())
         result = OrgApp;
+    qDebug() << Q_FUNC_INFO << result << toString();
     return result;
 }

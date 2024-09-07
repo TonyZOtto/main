@@ -12,5 +12,16 @@ public:
     SplashPage(EvalMainWindow *parent);
 
 public slots:
-    void setup() override;
+
+signals:
+
+public: // const
+
+public: // non-const
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
+
+public: // pointers
+
 };

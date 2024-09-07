@@ -12,9 +12,9 @@ public: // ctor
     explicit BaseMainWindow(WidgetApplication *wapp);
 
 public slots:
-    void initialize();
-    void configure();
-    void setup();
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
 
 signals:
     void initialized();

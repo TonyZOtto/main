@@ -8,7 +8,7 @@
 #include <ImageGalleryWidget.h>
 #include <Settings.h>
 
-Q_GLOBAL_STATIC(ApplicationHelper, APPH)
+//Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
 #include "EvalMainWindow.h"
 
@@ -30,8 +30,6 @@ void AcquirePage::initialize()
     mpListWidget->initialize();
     mpTreeWidget->initialize();
     mpGalleryWidget->initialize();
-
-    emit initialized();
 }
 
 void AcquirePage::configure()
@@ -41,7 +39,6 @@ void AcquirePage::configure()
     mpListWidget->configure();
     mpTreeWidget->configure();
     mpGalleryWidget->configure();
-    emit configured();
 }
 
 void AcquirePage::setup()
@@ -59,5 +56,4 @@ void AcquirePage::setup()
     pageGridLayout()->addWidget(mpGalleryWidget, 0, 1, 3, 1);
 
     StackedMainPage::setup();
-    emit setuped();
 }

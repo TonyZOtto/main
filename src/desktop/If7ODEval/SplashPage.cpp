@@ -14,10 +14,23 @@ SplashPage::SplashPage(EvalMainWindow *parent)
     setObjectName("SplashPage");
 }
 
+void SplashPage::initialize()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TOOD anything?
+}
+
+void SplashPage::configure()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TOOD anything?
+}
+
 void SplashPage::setup()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainPage::setup();
+
     QQSize tRightSize = pageSize() / QQSize(1, 2);
     QQSize tLeftSize = tRightSize / QQSize(2, 1);
     qDebug() << tRightSize << tLeftSize;

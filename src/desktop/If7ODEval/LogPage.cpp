@@ -13,8 +13,21 @@ LogPage::LogPage(EvalMainWindow *parent)
     setObjectName("LogPage");
 }
 
+void LogPage::initialize()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TOOD anything?
+}
+
+void LogPage::configure()
+{
+    qInfo() << Q_FUNC_INFO;
+    // TOOD anything?
+}
+
 void LogPage::setup()
 {
+    qInfo() << Q_FUNC_INFO;
     StackedMainPage::setup();
     pageGridLayout()->addWidget(textEdit());
     setLayout(pageGridLayout());

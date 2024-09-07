@@ -1,9 +1,5 @@
 #include "EvalApplication.h"
 
-//#include <ApplicationHelper.h>
-//Q_GLOBAL_STATIC(ApplicationHelper, APPH)
-
-
 EvalApplication::EvalApplication(int &argc, char **argv)
     : WidgetApplication(argc, argv)
 {
@@ -15,4 +11,16 @@ void EvalApplication::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     emit initialized();
+}
+
+void EvalApplication::configure()
+{
+    qInfo() << Q_FUNC_INFO;
+    emit configured();
+}
+
+void EvalApplication::setup()
+{
+    qInfo() << Q_FUNC_INFO;
+    emit setuped();
 }

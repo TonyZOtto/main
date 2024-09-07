@@ -16,9 +16,6 @@ public:
     explicit StackedMainPage(const QString &aTitle, StackedMainWindow *parent);
 
 public slots:
-    virtual void initialize();
-    virtual void configure();
-    virtual void setup();
 
 signals:
 
@@ -27,6 +24,9 @@ public: // const
     QString title() const;
 
 public: // non-const
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
 
 public: //
 

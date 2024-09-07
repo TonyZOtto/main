@@ -39,7 +39,6 @@ public slots:
     void initialize();
     void configure();
     void setup();
-    void windowInitialized();
     void handleStartupError(const QString errorString);
 
 signals:

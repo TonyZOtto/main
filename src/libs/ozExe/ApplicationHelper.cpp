@@ -38,7 +38,7 @@ void ApplicationHelper::configure()
 {
     qInfo() << Q_FUNC_INFO;
 
-    emit setuped();
+    emit configured();
 }
 
 void ApplicationHelper::setup()
@@ -46,12 +46,6 @@ void ApplicationHelper::setup()
     qInfo() << Q_FUNC_INFO;
 
     emit setuped();
-}
-
-void ApplicationHelper::windowInitialized()
-{
-    qInfo() << Q_FUNC_INFO;
-    qDebug() << "Initialization Complete";
 }
 
 void ApplicationHelper::handleStartupError(const QString errorString)

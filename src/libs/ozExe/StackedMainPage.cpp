@@ -10,23 +10,26 @@ StackedMainPage::StackedMainPage(const QString &aTitle, StackedMainWindow *paren
     , mpPageGridLayout(new QGridLayout())
     , mTitle(aTitle)
 {
-    qInfo() << Q_FUNC_INFO;
-    setObjectName("StackedMainPage");
+    qInfo() << Q_FUNC_INFO << title();
+    setObjectName("StackedMainPage:" + aTitle);
     pageGridLayout()->setObjectName("StackedMainPage:PageGridLayout");
 }
 
 void StackedMainPage::initialize()
 {
+    qInfo() << Q_FUNC_INFO << title();
 
 }
 
 void StackedMainPage::configure()
 {
+    qInfo() << Q_FUNC_INFO << title();
 
 }
 
 void StackedMainPage::setup()
 {
+    qInfo() << Q_FUNC_INFO << title();
     setLayout(pageGridLayout());
 }
 

@@ -11,6 +11,7 @@ class QTimer;
 #include <KeyMap.h>
 #include <SettingsName.h>
 #include <Types.h>
+#include <Uid.h>
 
 class OZEXE_EXPORT Settings : public QObject
 {
@@ -40,6 +41,8 @@ public: // const
     bool contains(const Key &key) const;
     QVariant get(const Key &key) const;
     QVariant get(const Key &key, const QVariant &defalt) const;
+    Uid instanceUid() const;
+    SettingsName settingsName() const;
     KeyMap map() const;
     KeyMap map(const Key &groupKey) const;
 
@@ -63,6 +66,7 @@ private:
 private:
     QSettings * mpQSettings=nullptr;
     QTimer * mpWatchTimer=nullptr;
+    Uid mInstanceUid;
     SettingsName mSettingsName;
     Key mCurrentGroup;
     KeyMap mCurrentWatches;
@@ -70,4 +74,6 @@ private:
 
 };
 
+inline Uid Settings::instanceUid() const  { return mInstanceUid; }
+inline SettingsName Settings::settingsName() const { return mSettingsName; }
 inline QSettings *Settings::qsettings() const { Q_ASSERT(mpQSettings); return mpQSettings; }

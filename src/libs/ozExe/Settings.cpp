@@ -8,6 +8,7 @@
 Settings::Settings(QObject *parent)
     : QObject{parent}
 {
+    qInfo() << Q_FUNC_INFO << "NoName";
     setObjectName("Settings");
     close();
 }
@@ -15,12 +16,14 @@ Settings::Settings(QObject *parent)
 Settings::Settings(const SettingsName &sname, QObject *parent)
     : QObject{parent}
 {
+    qInfo() << Q_FUNC_INFO << sname.toString();
     open(sname);
     setObjectName("Settings:" + SettingsName().toString());
 }
 
 void Settings::startWatch(const EpochMilliseconds ems)
 {
+    qInfo() << Q_FUNC_INFO << settingsName().toString() << ems;
     if ( ! mpWatchTimer)
     {
         mpWatchTimer = new QTimer(this);
@@ -83,8 +86,9 @@ KeyMap Settings::map(const Key &groupKey) const
 bool Settings::open(const SettingsName &sname)
 {
     bool result = false;
-    qInfo() << Q_FUNC_INFO << sname.toString();
     close();
+    mInstanceUid = Uid(true);
+    qInfo() << Q_FUNC_INFO << sname.toString() << instanceUid().tail();
     switch(sname.type())
     {
     case SettingsName::OrgApp:
@@ -118,16 +122,18 @@ bool Settings::open(const SettingsName &sname)
     }
     else
     {
+        qCritical() << "Settings::open(" << mSettingsName.toString() << ") FAILED";
         emit openError(mSettingsName);
         mSettingsName.clear();
         close();
     }
+    qInfo() << Q_FUNC_INFO << true << mSettingsName.toString() << instanceUid().tail();
     return result;
 }
 
 void Settings::close()
 {
-    qInfo() << Q_FUNC_INFO << mSettingsName.toString();
+    qInfo() << Q_FUNC_INFO << mSettingsName.toString() << instanceUid().tail();
     if (mpWatchTimer) mpWatchTimer->stop();
     if (mpQSettings)
     {
@@ -139,4 +145,5 @@ void Settings::close()
     foreach (const Key cKey, mCurrentWatches.keys())
         mCurrentWatches.clear(cKey);
     mSettingsName.clear();
+    qDebug() << Q_FUNC_INFO << "exit";
 }

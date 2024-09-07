@@ -13,27 +13,22 @@ class EvalMainWindow;
 class AcquirePage : public StackedMainPage
 {
     Q_OBJECT
-public:
+public: // ctors
     AcquirePage(EvalMainWindow *parent);
 
-public:
 
 public slots:
-    virtual void initialize();
-    virtual void configure();
-    virtual void setup();
 
 signals:
-    void initialized();
-    void configured();
-    void setuped();
 
 public: // const
 
 public: // non-const
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
 
-public: //
-
+public: // pointers
 
 private:
     ImageFileDropWidget * mpDropWidget=nullptr;

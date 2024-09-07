@@ -18,16 +18,12 @@ public:
     StackedMainWindow(WidgetApplication *wapp);
 
 public slots:
-    void initialize();
-    void configure();
-    void setup();
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
     void setCurrent(const int ix);
 
 signals:
-    void initialized();
-    void configured();
-    void setuped();
-    void startupError(const QString errorString);
 
 public: // const
     QQSize pageSize() const;

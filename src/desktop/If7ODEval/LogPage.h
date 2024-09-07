@@ -17,8 +17,19 @@ public:
     LogPage(EvalMainWindow *parent);
 
 public slots:
-    void setup();
     void addLine(const QString &aString);
+
+signals:
+
+public: // const
+
+public: // non-const
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
+
+
+public: // pointers
 
 
 public: // pointers

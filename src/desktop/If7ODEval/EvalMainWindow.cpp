@@ -22,6 +22,9 @@ EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("MainWindow:" + wapp->applicationName());
+    APPH->set(wapp);
+    APPH->set(this);
+    APPH->makeConnections();
 }
 
 EvalMainWindow::~EvalMainWindow() {;}
@@ -31,6 +34,7 @@ void EvalMainWindow::initialize()
     qInfo() << Q_FUNC_INFO;
     showMaximized();
     updateGeometry();
+    emit initialized();
 }
 
 void EvalMainWindow::configure()
@@ -42,6 +46,7 @@ void EvalMainWindow::configure()
                               get("MainWindow/PageUnderSize", QSize(30, 100)));
     QQSize tPageUnderSize = tPageUnderSizeValue.size();
     pageSize(tScreenSize - tPageUnderSize);
+    emit configured();
 }
 
 void EvalMainWindow::setup()
@@ -57,4 +62,5 @@ void EvalMainWindow::setup()
     addPage(mpAcquirePage);
     setCurrent(0);
     update();
+    emit setuped();
 }

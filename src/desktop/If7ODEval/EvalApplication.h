@@ -9,7 +9,9 @@ public:
     EvalApplication(int &argc, char **argv);
 
 public slots:
-    void initialize();
+    virtual void initialize();
+    virtual void configure();
+    virtual void setup();
 
 signals:
 

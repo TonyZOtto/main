@@ -29,20 +29,18 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
 
 void StackedMainWindow::initialize()
 {
+    qInfo() << Q_FUNC_INFO;
 
 }
 
 void StackedMainWindow::configure()
 {
-}
+    qInfo() << Q_FUNC_INFO;
 
-void StackedMainWindow::setCurrent(const int ix)
-{
-    tabBar()->setCurrentIndex(ix);
-    mainStackLayout()->setCurrentIndex(ix);
 }
 
 void StackedMainWindow::setup()
+
 {
     qInfo() << Q_FUNC_INFO;
     showMaximized();
@@ -64,6 +62,13 @@ void StackedMainWindow::setup()
     mainStackWidget()->setLayout(mainStackLayout());
     connect(tabBar(), &QTabBar::currentChanged,
             this, &StackedMainWindow::setCurrent);
+}
+
+void StackedMainWindow::setCurrent(const int ix)
+{
+    qInfo() << Q_FUNC_INFO << ix;
+    tabBar()->setCurrentIndex(ix);
+    mainStackLayout()->setCurrentIndex(ix);
 }
 
 void StackedMainWindow::addPage(StackedMainPage *pPage)
