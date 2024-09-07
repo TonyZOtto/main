@@ -22,7 +22,7 @@ public: // types
     };
 
 public: // ctors
-    SettingsName();
+    explicit SettingsName(const bool orgapp=false);
     SettingsName(const QString &name, const bool okNotExist=false);
 
 public: // const

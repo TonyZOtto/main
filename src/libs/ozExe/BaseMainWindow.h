@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 
+#include <QQSize.h>
+#include <Value.h>
+
+
 class WidgetApplication;
 
 class OZEXE_EXPORT BaseMainWindow : public QMainWindow
@@ -25,12 +29,15 @@ signals:
 public: // const
 
 public: // non-const
+    QQSize mainSize(const bool live=false);
 
 public: // pointers
     WidgetApplication * app() const;
 
 private:
     WidgetApplication * mpApp=nullptr;
+    QQSize mMainSize;
+    Value mMainUnderSizeValue;
 };
 
 inline WidgetApplication *BaseMainWindow::app() const { Q_ASSERT(mpApp); return mpApp; }

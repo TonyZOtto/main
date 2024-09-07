@@ -1,14 +1,15 @@
 #include "Value.h"
 
 Value::Value() {;}
-Value::Value(const QVariant other) { set(other); }
+Value::Value(const QVariant other) : QVariant(other) {;}
+Value::Value(const QQSize sz) : QVariant(sz) {;}
 
 QQSize Value::size() const
 {
     QQSize result;
     if (canConvert<QSize>()) result = QQSize(toSize());
     if (canConvert<int>()) result = QQSize(toInt());
-    // TODO conver from string
+    // TODO convert from string
     return result;
 }
 

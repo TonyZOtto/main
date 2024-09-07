@@ -11,13 +11,14 @@
 #include "ConsoleApplication.h"
 #include "GuiApplication.h"
 #include "Settings.h"
+#include "SettingsName.h"
 #include "TriggerManager.h"
 #include "WidgetApplication.h"
 
 ApplicationHelper::ApplicationHelper()
     : QObject(qApp)
     , mpCommandLine(new CommandLine(this))
-    , mpSettings(new Settings(this))
+    , mpSettings(new Settings(SettingsName(true), this))
     , mpTriggerManager(new TriggerManager(this))
     , mType($null)
 {

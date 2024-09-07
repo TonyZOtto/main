@@ -5,8 +5,9 @@
 
 #include "Types.h"
 
-SettingsName::SettingsName()
-    : mType($null)
+
+SettingsName::SettingsName(const bool orgapp)
+    : mType(orgapp ? OrgApp : $null)
     , mSystemScope(false)
     , mOrgName(QCoreApplication::organizationName())
     , mAppName(QCoreApplication::applicationName()) {;}

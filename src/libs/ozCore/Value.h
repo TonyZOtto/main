@@ -10,6 +10,7 @@ class OZCORE_EXPORT Value : public QVariant
 public: // ctors
     Value();
     Value(const QVariant other);
+    Value(const QQSize sz);
 
 public: // const
     QQSize size() const;
