@@ -36,8 +36,10 @@ void AcquirePage::configure()
 {
     qInfo() << Q_FUNC_INFO;
     mConfiguration = APPH->settings()->map("Acquire");
-    const ImageGalleryConfig cConfig = mConfiguration.group("Gallery");
-    mpGalleryWidget->config(cConfig);
+    ImageGalleryConfig tGalleryConfig;
+//    tGalleryConfig.set("ThumbSize", QQSize(256));
+  //  tGalleryConfig.set(mConfiguration.group("Gallery"));
+    //mpGalleryWidget->config(tGalleryConfig);
     mpDropWidget->configure();
     mpListWidget->configure();
     mpTreeWidget->configure();

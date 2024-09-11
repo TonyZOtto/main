@@ -107,6 +107,10 @@ QObject *SandboxEngine::object()
 void SandboxEngine::setupColorTable()
 {
     mColorTable.fill(QColor(Qt::transparent).rgba(), 256);
+    setupColorTableLinear(  0,   3, 240, /* Low */
+        QQColor(0x10, 0x10, 0x10), QQColor(0x30, 0x30, 0x30));
+    setupColorTableLinear(236, 255, 240, /* High */
+        QQColor(0xC0, 0xC0, 0xC0), QQColor(0xF0, 0xF0, 0xF0));
     setupColorTableLinear(  4,  19, 240, /* Bronze */
         QQColor(0x5F, 0x3F, 0x22), QQColor(0x7F, 0x5F, 0x42));
     setupColorTableLinear(236, 251, 240, /* Silver */

@@ -2,6 +2,7 @@
 
 ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     : QWidget(parent)
+    , mpConfig(new ImageGalleryConfig(this))
 {
     setObjectName("ImageGalleryWidget");
 }
@@ -18,7 +19,7 @@ void ImageGalleryWidget::configure()
 
 void ImageGalleryWidget::setup()
 {
-
+    calculate();
 }
 
 void ImageGalleryWidget::add(const ImageGalleryItem &item)
@@ -35,10 +36,10 @@ QQPoint ImageGalleryWidget::append(const ThumbImage aThumb)
     return QQPoint();
 }
 
-void ImageGalleryWidget::select(const QQPoint pt)
+void ImageGalleryWidget::select(const QQPoint cellPoint)
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryWidget::select(pt)
-    Q_UNUSED(pt);
+    Q_UNUSED(cellPoint);
 
 }
 
@@ -48,11 +49,24 @@ void ImageGalleryWidget::deselect()
 
 }
 
-void ImageGalleryWidget::deselect(const QQPoint pt)
+void ImageGalleryWidget::deselect(const QQPoint cellPoint)
 {
     Q_ASSERT(!"MUSTDO"); // MUSTDO ImageGalleryWidget::deselect(pt)
-    Q_UNUSED(pt);
+    Q_UNUSED(cellPoint);
 
+}
+
+void ImageGalleryWidget::calculate()
+{
+    calculateViewGeometry();
+}
+
+void ImageGalleryWidget::calculateViewGeometry()
+{
+    if (config()->ViewPixelSize().isEmpty())
+    {
+
+    }
 }
 
 

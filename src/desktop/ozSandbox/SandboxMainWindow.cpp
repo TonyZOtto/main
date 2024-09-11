@@ -10,6 +10,8 @@
 #include <QTimer>
 #include <QWidget>
 
+#include <Key.h>
+
 #include "SandboxApplication.h"
 #include "SandboxEngine.h"
 #include "SandboxScene.h"

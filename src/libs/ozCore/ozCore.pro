@@ -41,6 +41,8 @@ SOURCES += \
     Uid.cpp \
     Url.cpp \
     Value.cpp \
+    Variable.cpp \
+    VariableSet.cpp \
     VersionInfo.cpp \
 #    VersionInfoGadget.cpp \
     ozCore.cpp \
@@ -83,6 +85,8 @@ HEADERS += \
     Uid.h \
     Url.h \
     Value.h \
+    Variable.h \
+    VariableSet.h \
     VersionInfo.h \
     ozCore.h        \
     ozCore_global.h \

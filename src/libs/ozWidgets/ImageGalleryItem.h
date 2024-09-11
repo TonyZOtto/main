@@ -9,7 +9,7 @@
 #include <ThumbImage.h>
 #include <Types.h>
 
-#include "ImageGalleryConfig.h"
+class ImageGalleryConfig;
 
 class ImageGalleryItemData : public QSharedData
 {
@@ -36,11 +36,10 @@ public: // const
 
 
 public: // static
-    static void config(const ImageGalleryConfig &cfg);
 
 private:
     static Seq smCurrentSeq;
-    static ImageGalleryConfig smConfig;
+    static ImageGalleryConfig * mpConfig;
 
     // QSharedData
 public:

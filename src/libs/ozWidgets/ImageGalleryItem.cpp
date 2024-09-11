@@ -1,7 +1,6 @@
 #include "ImageGalleryItem.h"
 
 Seq ImageGalleryItem::smCurrentSeq = 0;
-ImageGalleryConfig ImageGalleryItem::smConfig;
 
 // QSharedData
 ImageGalleryItem::ImageGalleryItem()

@@ -6,9 +6,10 @@ class ImageGalleryDataData : public QSharedData
 {
 public:
     SCRect              dSceneRect;
+    QQSize              dViewPixelSize;
     SCRect              dOriginViewRect;
     SCRect              dCurrentViewRect;
-    QQSize              dViewPixelSize;
+    QQSize              dViewCeLlSize;
 
 };
 

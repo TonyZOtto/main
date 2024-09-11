@@ -8,9 +8,9 @@ class QToolBar;
 class QToolButton;
 class QWidget;
 
-#include <ActionManager.h>
 #include <Types.h>
 class CommandLine;
+class Key;
 
 class SandboxApplication;
 class SandboxScene;

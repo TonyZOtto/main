@@ -13,6 +13,7 @@
 #include <ThumbImage.h>
 
 #include "ImageGalleryConfig.h"
+#include "ImageGalleryData.h"
 #include "ImageGalleryItem.h"
 
 class OZWIDGETS_EXPORT ImageGalleryWidget : public QWidget
@@ -28,28 +29,33 @@ public slots:
 
     void add(const ImageGalleryItem &item);
     QQPoint append(const ThumbImage aThumb);
-    void select(const QQPoint pt);
+    void select(const QQPoint cellPoint);
     void deselect();
-    void deselect(const QQPoint pt);
+    void deselect(const QQPoint cellPoint);
 
 signals:
     void initialized();
     void configured();
     void setuped();
 
+public: // const
+    ImageGalleryConfig * config();
+
 public: // non-const
-    void config(const ImageGalleryConfig cfg);
 
 private: // pointers
     QGraphicsScene * scene();
     QGraphicsView * view();
 
 private: // non-const
+    void calculate();
+    void calculateViewGeometry();
 
 private:
     QGraphicsScene * mpScene=nullptr;
     QGraphicsView * mpView=nullptr;
-    ImageGalleryConfig mConfig;
+    ImageGalleryConfig * mpConfig;
+    ImageGalleryData mData;
     QList<ImageGalleryItem> mItemList;
     MatrixT<ThumbImage> mThumbMatrix;
     QQPoint mSelectPoint;
@@ -58,4 +64,4 @@ private:
 
 };
 
-inline void ImageGalleryWidget::config(const ImageGalleryConfig cfg) { mConfig = cfg; }
+inline ImageGalleryConfig * ImageGalleryWidget::config() { return mpConfig; }
