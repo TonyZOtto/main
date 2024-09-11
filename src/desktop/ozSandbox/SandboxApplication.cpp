@@ -61,7 +61,7 @@ void SandboxApplication::configure()
 void SandboxApplication::setup()
 {
     qInfo() << Q_FUNC_INFO;
-//    engine()->setup();
+    engine()->setup();
     QImage tSubjectImage(":/image/MM512A.jpg");
     engine()->setSubjectImage(BaseImage(Image::Color, tSubjectImage));
     emit setuped();
