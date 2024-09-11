@@ -18,10 +18,9 @@ QQSize::List ImageGalleryConfig::smTypicalThumbSizes
 
 class ImageGalleryConfigData : public QSharedData
 {
-public: // read-write
+public:
     QString             dTitle;
-    QQSize              dMaxThumbsSize;
-    Count               dMaxThumbsArea;
+    QQSize              dViewCellSize;
     QQSize              dThumbSize;
     int                 dMarkWidth;
     int                 dCellSeparation;
@@ -29,10 +28,9 @@ public: // read-write
     QColor              dSelectColor;
     Qt::AspectRatioMode dAspectMode;
     bool                dAspectCenter;
-    QQSize              dViewSize;
-    bool                dAllowScroll;
-    Qt::Orientations    dScrollOrientations;
+    Qt::Orientation     dScrollOrientation;
     Rgba32Table         dMarkColorTable;
+    QColor              dEmptyCellColor;
     Qt::Edges           dTitleEdges;
     int                 dTitleHeight;
     QString             dTitleFont;
@@ -62,18 +60,7 @@ ImageGalleryConfig::ImageGalleryConfig(const QQSize thumbSize,
 {
     data->dTitle = aTitle;
     data->dThumbSize = thumbSize;
-    // defalts
-    data->dMaxThumbsArea = 0;
-    data->dMarkWidth = 5;
-    data->dCellSeparation = 5;
-    data->dIsMultiSelect = false;
-    data->dAspectMode = Qt::KeepAspectRatioByExpanding;
-    data->dAspectCenter = true;
-    data->dAllowScroll = false;
-    data->dTitleEdges = Qt::Edges(0);
-    data->dTitleHeight = 9;
-    data->dTitlePoints = 7;
-    data->dTitleWeight = 500;
+    // setDefalts();
     calculate();
 }
 
@@ -100,6 +87,8 @@ void ImageGalleryConfig::set(const KeyMap &aMap)
 
 void ImageGalleryConfig::set(const Key &aKey, const QVariant &aValue)
 {
+    Q_UNUSED(aKey); Q_UNUSED(aValue);
+    /*
     if (false)  ;
     else if (aKey == "Title")   data->dTitle = aValue.toString();
     else if (aKey == "MaxThumbsSize")  data->dMaxThumbsSize = aValue.toSize();
@@ -123,7 +112,7 @@ void ImageGalleryConfig::set(const Key &aKey, const QVariant &aValue)
     else if (aKey == "dTitleWeight")  data->dTitleWeight = aValue.toInt();
     else if (aKey == "dTitleForeColor")  QColor(data->dTitleForeColor = aValue.toString());
     else if (aKey == "dTitleBackColor")  QColor(data->dTitleBackColor = aValue.toString());
-    else qWarning() << Q_FUNC_INFO << "Unhandled Config item" << aKey << aValue;
+    else qWarning() << Q_FUNC_INFO << "Unhandled Config item" << aKey << aValue; */
 }
 
 

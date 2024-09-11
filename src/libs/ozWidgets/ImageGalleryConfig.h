@@ -8,7 +8,7 @@
 #include <Types.h>
 
 class ImageGalleryConfigData;
-
+// TODO REDO as Q_GADGET with named translate to KeyMap
 class OZWIDGETS_EXPORT ImageGalleryConfig
 {
 public: // our ctors

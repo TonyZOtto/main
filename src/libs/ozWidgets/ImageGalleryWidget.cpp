@@ -13,7 +13,7 @@ void ImageGalleryWidget::initialize()
 
 void ImageGalleryWidget::configure()
 {
-//    mConfig = cfg;
+
 }
 
 void ImageGalleryWidget::setup()

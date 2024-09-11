@@ -2,11 +2,11 @@
 
 #include <QScreen>
 
-#include <ApplicationHelper.h>
 #include <Settings.h>
 
 #include "WidgetApplication.h"
 
+#include <ApplicationHelper.h>
 Q_GLOBAL_STATIC(ApplicationHelper, APPH);
 
 BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
@@ -35,9 +35,17 @@ void BaseMainWindow::setup()
     // TODO Anything
 }
 
-QQSize BaseMainWindow::mainSize(const bool live)
+QQSize BaseMainWindow::centralSize() const
 {
-    qInfo() << Q_FUNC_INFO << live;
+    QQSize result;
+    QWidget * pCentral = centralWidget();
+    result = pCentral->size();
+    qInfo() << Q_FUNC_INFO << pCentral->objectName() << result;
+    return result;
+}
+
+QQSize BaseMainWindow::maximizedSize(const bool live)
+{
     if (live || mMainSize.isNull())
     {
         QScreen * pScreen = QGuiApplication::primaryScreen();
@@ -45,5 +53,6 @@ QQSize BaseMainWindow::mainSize(const bool live)
         tScreenSize -= mMainUnderSizeValue.toSize();
         mMainSize = tScreenSize - mMainUnderSizeValue.toSize();
     }
+    qInfo() << Q_FUNC_INFO << live << mMainSize;
     return mMainSize;
 }

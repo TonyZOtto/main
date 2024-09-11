@@ -8,7 +8,7 @@
 #include <ImageGalleryWidget.h>
 #include <Settings.h>
 
-//Q_GLOBAL_STATIC(ApplicationHelper, APPH)
+Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
 #include "EvalMainWindow.h"
 
@@ -35,6 +35,9 @@ void AcquirePage::initialize()
 void AcquirePage::configure()
 {
     qInfo() << Q_FUNC_INFO;
+    mConfiguration = APPH->settings()->map("Acquire");
+    const ImageGalleryConfig cConfig = mConfiguration.group("Gallery");
+    mpGalleryWidget->config(cConfig);
     mpDropWidget->configure();
     mpListWidget->configure();
     mpTreeWidget->configure();

@@ -22,6 +22,7 @@ SOURCES += \
     ImageFileListWidget.cpp \
     ImageFileTreeWidget.cpp \
     ImageGalleryConfig.cpp \
+    ImageGalleryData.cpp \
     ImageGalleryItem.cpp \
     ImageGalleryWidget.cpp \
     QQLabel.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     ImageFileListWidget.h \
     ImageFileTreeWidget.h \
     ImageGalleryConfig.h \
+    ImageGalleryData.h \
     ImageGalleryItem.h \
     ImageGalleryWidget.h \
     QQLabel.h \

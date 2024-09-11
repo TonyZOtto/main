@@ -27,9 +27,10 @@ signals:
     void startupError(const QString errorString);
 
 public: // const
+    QQSize centralSize() const;
 
 public: // non-const
-    QQSize mainSize(const bool live=false);
+    QQSize maximizedSize(const bool live=false);
 
 public: // pointers
     WidgetApplication * app() const;

@@ -32,20 +32,23 @@ EvalMainWindow::~EvalMainWindow() {;}
 void EvalMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    showMaximized();
-    updateGeometry();
+    APPH->set(this);
     emit initialized();
 }
 
 void EvalMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
+#if 0
     QScreen * pScreen = QGuiApplication::primaryScreen();
     QQSize tScreenSize = pScreen->size();
     Value tPageUnderSizeValue(APPH->settings()->
                               get("MainWindow/PageUnderSize", QSize(30, 100)));
     QQSize tPageUnderSize = tPageUnderSizeValue.size();
-    pageSize(tScreenSize - tPageUnderSize);
+    tScreenSize -= tPageUnderSize;
+    tScreenSize -= QQSize(30, 0) // take out page tabbar
+    pageSize(tScreenSize);
+#endif
     emit configured();
 }
 

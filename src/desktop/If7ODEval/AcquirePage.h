@@ -2,6 +2,8 @@
 
 #include <StackedMainPage.h>
 
+#include <KeyMap.h>
+
 class ImageFileDropWidget;
 class ImageFileListWidget;
 class ImageFileTreeWidget;
@@ -35,4 +37,5 @@ private:
     ImageFileListWidget * mpListWidget=nullptr;
     ImageFileTreeWidget * mpTreeWidget=nullptr;
     ImageGalleryWidget * mpGalleryWidget=nullptr;
+    KeyMap mConfiguration;
 };

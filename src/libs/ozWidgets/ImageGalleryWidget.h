@@ -37,6 +37,8 @@ signals:
     void configured();
     void setuped();
 
+public: // non-const
+    void config(const ImageGalleryConfig cfg);
 
 private: // pointers
     QGraphicsScene * scene();
@@ -55,3 +57,5 @@ private:
     QQPoint mAppendPoint;
 
 };
+
+inline void ImageGalleryWidget::config(const ImageGalleryConfig cfg) { mConfig = cfg; }
