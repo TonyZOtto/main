@@ -2,6 +2,8 @@
 
 #include <QGridLayout>
 
+#include <ApplicationHelper.h>
+
 #include "BaseTabBar.h"
 #include "StackedMainWindow.h"
 
@@ -35,5 +37,5 @@ void StackedMainPage::setup()
 
 QQSize StackedMainPage::pageSize() const
 {
-    return mainWindow()->size();
+    return APPH->mainWindow()->size();
 }

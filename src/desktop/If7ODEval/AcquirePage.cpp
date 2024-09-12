@@ -8,8 +8,6 @@
 #include <ImageGalleryWidget.h>
 #include <Settings.h>
 
-Q_GLOBAL_STATIC(ApplicationHelper, APPH)
-
 #include "EvalMainWindow.h"
 
 AcquirePage::AcquirePage(EvalMainWindow *parent)

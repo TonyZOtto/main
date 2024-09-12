@@ -31,15 +31,12 @@ public: // non-const
 public: //
 
 public: // pointers
-    StackedMainWindow * mainWindow() const;
     QGridLayout * pageGridLayout();
 
 private:
-    StackedMainWindow * mpMainWindow=nullptr;
     QGridLayout * mpPageGridLayout=nullptr;
     QString mTitle;
 };
 
 inline QString StackedMainPage::title() const { return mTitle; }
-inline StackedMainWindow *StackedMainPage::mainWindow() const { Q_ASSERT(mpMainWindow); return mpMainWindow; }
 inline QGridLayout *StackedMainPage::pageGridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }

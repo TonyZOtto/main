@@ -12,8 +12,6 @@
 #include "LogPage.h"
 #include "SplashPage.h"
 
-Q_GLOBAL_STATIC(ApplicationHelper, APPH)
-
 EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
     : StackedMainWindow(wapp)
     , mpSplashPage(new SplashPage(this))

@@ -15,6 +15,9 @@
 #include "TriggerManager.h"
 #include "WidgetApplication.h"
 
+ApplicationHelper * ApplicationHelper::smpInstance = nullptr;
+
+
 ApplicationHelper::ApplicationHelper()
     : QObject(qApp)
     , mpCommandLine(new CommandLine(this))
@@ -22,9 +25,9 @@ ApplicationHelper::ApplicationHelper()
     , mpTriggerManager(new TriggerManager(this))
     , mType($null)
 {
-    qInfo() << Q_FUNC_INFO;
-    setObjectName("ApplicationHelper:"
-                  + QCoreApplication::applicationName());
+    setObjectName("ApplicationHelper%" + QCoreApplication::organizationName()
+                  + ":" + QCoreApplication::applicationName());
+    qInfo() << Q_FUNC_INFO << this;
 }
 
 void ApplicationHelper::initialize()
@@ -70,6 +73,7 @@ void ApplicationHelper::set(ConsoleApplication *capp)
     qInfo() << Q_FUNC_INFO << capp->objectName();
     mpConsoleApplication = capp;
     mType = Console;
+    makeConnections();
 }
 
 void ApplicationHelper::set(GuiApplication *gapp)
@@ -78,6 +82,7 @@ void ApplicationHelper::set(GuiApplication *gapp)
     qInfo() << Q_FUNC_INFO << gapp->objectName();
     mpGuiApplication = gapp;
     mType = Gui;
+    makeConnections();
 }
 
 void ApplicationHelper::set(BaseMainWindow *mainw)
@@ -85,6 +90,7 @@ void ApplicationHelper::set(BaseMainWindow *mainw)
     Q_ASSERT(qobject_cast<BaseMainWindow *>(mainw));
     qInfo() << Q_FUNC_INFO << mainw->objectName();
     mpMainWindow = mainw;
+    mType = Widget;
     makeConnections();
 }
 
@@ -137,6 +143,14 @@ void ApplicationHelper::makeConnections()
 void ApplicationHelper::forkTroll(const QFileInfo &logFI)
 {
     Q_UNUSED(logFI); // MUSTDO
+}
+
+ApplicationHelper *ApplicationHelper::instance()
+{
+    ApplicationHelper * result = smpInstance;
+    if ( ! result)
+        result = smpInstance = new ApplicationHelper();
+    return result;
 }
 
 QCoreApplication *ApplicationHelper::core()
