@@ -39,7 +39,7 @@ signals:
     void setuped();
 
 public: // const
-    ImageGalleryConfig * config();
+//    ImageGalleryConfig * config();
 
 public: // non-const
 
@@ -54,7 +54,7 @@ private: // non-const
 private:
     QGraphicsScene * mpScene=nullptr;
     QGraphicsView * mpView=nullptr;
-    ImageGalleryConfig * mpConfig;
+//    ImageGalleryConfig * mpConfig;
     ImageGalleryData mData;
     QList<ImageGalleryItem> mItemList;
     MatrixT<ThumbImage> mThumbMatrix;
@@ -64,4 +64,4 @@ private:
 
 };
 
-inline ImageGalleryConfig * ImageGalleryWidget::config() { return mpConfig; }
+//inline ImageGalleryConfig * ImageGalleryWidget::config() { return mpConfig; }

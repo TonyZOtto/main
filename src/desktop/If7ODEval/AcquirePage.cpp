@@ -36,7 +36,7 @@ void AcquirePage::configure()
 {
     qInfo() << Q_FUNC_INFO;
     mConfiguration = APPH->settings()->map("Acquire");
-    ImageGalleryConfig tGalleryConfig;
+//    ImageGalleryConfig tGalleryConfig;
 //    tGalleryConfig.set("ThumbSize", QQSize(256));
   //  tGalleryConfig.set(mConfiguration.group("Gallery"));
     //mpGalleryWidget->config(tGalleryConfig);

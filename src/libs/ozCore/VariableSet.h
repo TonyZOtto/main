@@ -1,9 +1,10 @@
 #pragma once
+#include "ozCore.h"
 
 #include "Ident.h"
 #include "Variable.h"
 
-class VariableSet
+class OZCORE_EXPORT VariableSet
 {
 public: // ctors
     VariableSet(const Ident id=Ident());
@@ -20,14 +21,15 @@ public: // const
     bool isEmpty() const;
 
 public: // non-const
-    void set(const Variable &v);
+    void set(const Variable &var);
+    void set(const Key &k, const Value &val);
     void set(const Variable::List &vl);
 
 private:
-    Ident mIdent;
+    const Ident cmIdent;
     Variable::Hash mHash;
 };
 
 inline Variable VariableSet::get(const Key &k) const { return mHash.value(k); }
-inline Ident VariableSet::ident() const { return mIdent; }
+inline Ident VariableSet::ident() const { return cmIdent; }
 

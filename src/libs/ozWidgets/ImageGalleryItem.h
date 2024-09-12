@@ -1,4 +1,5 @@
 #pragma once
+#include "ozWidgets.h"
 
 #include <QSharedDataPointer>
 #include <QImage>
@@ -11,7 +12,7 @@
 
 class ImageGalleryConfig;
 
-class ImageGalleryItemData : public QSharedData
+class OZWIDGETS_EXPORT ImageGalleryItemData : public QSharedData
 {
 public:
     Seq             dSeq;

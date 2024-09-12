@@ -1,8 +1,8 @@
 #include "VariableSet.h"
 
-VariableSet::VariableSet(const Ident id) : mIdent(id) {;}
+VariableSet::VariableSet(const Ident id) : cmIdent(id) {;}
 VariableSet::VariableSet(const Variable::List &vl, const Ident id)
-    : mIdent(id) { set(vl); }
+    : cmIdent(id) { set(vl); }
 
 Value VariableSet::current(const Key &k) const
 {
@@ -29,9 +29,16 @@ bool VariableSet::isEmpty() const
     return mHash.isEmpty();
 }
 
-void VariableSet::set(const Variable &v)
+void VariableSet::set(const Variable &var)
 {
-    mHash.insert(v.key(), v);
+    mHash.insert(var.key(), var);
+}
+
+void VariableSet::set(const Key &k, const Value &val)
+{
+    Variable tVar(k);
+    tVar.current(val);
+    set(tVar);
 }
 
 void VariableSet::set(const Variable::List &vl)

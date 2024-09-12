@@ -54,6 +54,7 @@ HEADERS += \
     BaseErrorItem.h \
     Boolean.h \
     ByteHistogram.h \
+    DataProperty.h \
     DualMap.h \
     Ident.h \
     IdentMap.h \
@@ -86,6 +87,7 @@ HEADERS += \
     Url.h \
     Value.h \
     Variable.h \
+    VariableProperty.h \
     VariableSet.h \
     VersionInfo.h \
     ozCore.h        \

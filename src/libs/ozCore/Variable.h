@@ -1,4 +1,5 @@
 #pragma once
+#include "ozCore.h"
 
 #include <QList>
 #include <QHash>

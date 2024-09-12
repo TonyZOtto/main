@@ -2,7 +2,7 @@
 
 ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     : QWidget(parent)
-    , mpConfig(new ImageGalleryConfig(this))
+//    , mpConfig(new ImageGalleryConfig(this))
 {
     setObjectName("ImageGalleryWidget");
 }
@@ -63,7 +63,7 @@ void ImageGalleryWidget::calculate()
 
 void ImageGalleryWidget::calculateViewGeometry()
 {
-    if (config()->ViewPixelSize().isEmpty())
+    //if (config()->ViewPixelSize().isEmpty())
     {
 
     }

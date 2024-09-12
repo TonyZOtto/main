@@ -3,9 +3,13 @@
 #include <QByteArray>
 #include <QTextStream>
 
+#include <climits>
+
 Value::Value() {;}
 Value::Value(const QVariant other) : QVariant(other) {;}
 Value::Value(const QQSize sz) : QVariant(sz) {;}
+Value::Value(const int si) : QVariant(si) {;}
+Value::Value(const QColor c) : QVariant(c) {;}
 
 QQSize Value::size() const
 {
@@ -21,6 +25,22 @@ QQSize Value::size() const
         if ( ! tQTS.atEnd()) tQTS >> tHeight;
         result.set(tWidth, tHeight);
     }
+    return result;
+}
+
+int Value::signedint() const
+{
+    int result = INT_MIN;
+    if (canConvert<int>()) result = toInt();
+    else result = toString().toInt();
+    return result;
+}
+
+QColor Value::color() const
+{
+    QColor result;
+    if (canConvert<QColor>()) result = value<QColor>();
+    else result = QColor(toString());
     return result;
 }
 
