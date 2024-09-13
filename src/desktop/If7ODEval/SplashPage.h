@@ -9,7 +9,7 @@ class SplashPage : public StackedMainPage
 {
     Q_OBJECT
 public:
-    SplashPage(EvalMainWindow *parent);
+    SplashPage(StackedMainWindow *parent);
 
 public slots:
 

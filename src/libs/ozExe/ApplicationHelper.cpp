@@ -18,7 +18,6 @@
 ApplicationHelper::ApplicationHelper()
     : QObject(qApp)
     , mpCommandLine(new CommandLine(this))
-    , mpSettings(new Settings(SettingsName(true), this))
     , mpTriggerManager(new TriggerManager(this))
     , mType($null)
 {
@@ -31,7 +30,7 @@ void ApplicationHelper::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     commandLine()->process();
-    settings()->open(commandLine()->settingsName());
+    mpSettings = new Settings(commandLine()->settingsName(), this);
     emit initialized();
 }
 
@@ -85,7 +84,6 @@ void ApplicationHelper::set(BaseMainWindow *mainw)
     Q_ASSERT(qobject_cast<BaseMainWindow *>(mainw));
     qInfo() << Q_FUNC_INFO << mainw->objectName();
     mpMainWindow = mainw;
-    makeConnections();
 }
 
 void ApplicationHelper::set(const VersionInfo vi)
@@ -103,27 +101,25 @@ void ApplicationHelper::makeConnections()
     {
     case Widget:
         connect(widgetApp(), &WidgetApplication::initialized,
-                this, &ApplicationHelper::initialize);
-        connect(this, &ApplicationHelper::initialized,
                 mainWindow(), &BaseMainWindow::initialize);
         connect(mainWindow(), &BaseMainWindow::initialized,
                 widgetApp(), &WidgetApplication::configure);
         connect(widgetApp(), &WidgetApplication::configured,
                 mainWindow(), &BaseMainWindow::configure);
         connect(mainWindow(), &BaseMainWindow::configured,
-                this, &ApplicationHelper::configure);
-        connect(this, &ApplicationHelper::configured,
+                instance(), &ApplicationHelper::configure);
+        connect(instance(), &ApplicationHelper::configured,
                 widgetApp(), &WidgetApplication::setup);
         connect(widgetApp(), &WidgetApplication::setuped,
                 mainWindow(), &BaseMainWindow::setup);
         connect(mainWindow(), &BaseMainWindow::setuped,
-                this, &ApplicationHelper::setup);
+                instance(), &ApplicationHelper::setup);
         connect(widgetApp(), &WidgetApplication::startupError,
-                this, &ApplicationHelper::handleStartupError);
+                instance(), &ApplicationHelper::handleStartupError);
         connect(mainWindow(), &BaseMainWindow::startupError,
-                this, &ApplicationHelper::handleStartupError);
-        connect(this, &ApplicationHelper::startupError,
-                this, &ApplicationHelper::handleStartupError);
+                instance(), &ApplicationHelper::handleStartupError);
+        connect(instance(), &ApplicationHelper::startupError,
+                instance(), &ApplicationHelper::handleStartupError);
         break;
 
     // MUSTDO Handle other App type()s

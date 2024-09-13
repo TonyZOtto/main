@@ -13,29 +13,26 @@ EvalApplication::EvalApplication(int &argc, char **argv)
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("EvalApplication");
-    APPH->set(this);
 }
 
 void EvalApplication::initialize()
-{
+{   // called by main's SingleShot
     qInfo() << Q_FUNC_INFO;
-    VersionInfo vi(VER_MAJOR, VER_MINOR, VER_RELEASE,
-                   VER_BRANCH, VER_BUILD, VER_BRANCHNAME,
-                   VER_APPNAME, EIRVER_ORGNAME, VER_APPDESC);
-    vi.copyright(EIRVER_COPYRIGHT);
-    vi.product(EIRVER_PRODUCT);
-    APPH->set(vi);
+    WidgetApplication::initialize();
+    // TODO Anything else?
     emit initialized();
 }
 
 void EvalApplication::configure()
 {
     qInfo() << Q_FUNC_INFO;
+    WidgetApplication::configure();
     emit configured();
 }
 
 void EvalApplication::setup()
 {
     qInfo() << Q_FUNC_INFO;
+    WidgetApplication::setup();
     emit setuped();
 }

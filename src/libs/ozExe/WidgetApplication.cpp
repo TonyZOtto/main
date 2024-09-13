@@ -11,21 +11,20 @@ WidgetApplication::WidgetApplication(int &argc, char **argv)
 void WidgetApplication::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    // TODO Anything
-    emit initialized();
+    APPH->initialize();
+    APPH->makeConnections(MainWindowInstance);
+    // TODO Anything else?
 }
 
 void WidgetApplication::configure()
 {
     qInfo() << Q_FUNC_INFO;
     // TODO Anything
-    emit configured();
 }
 
 void WidgetApplication::setup()
 {
     qInfo() << Q_FUNC_INFO;
     // TODO Anything
-    emit setuped();
 }
 

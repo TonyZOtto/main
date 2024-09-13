@@ -16,7 +16,7 @@ class AcquirePage : public StackedMainPage
 {
     Q_OBJECT
 public: // ctors
-    AcquirePage(EvalMainWindow *parent);
+    AcquirePage(StackedMainWindow *parent);
 
 
 public slots:

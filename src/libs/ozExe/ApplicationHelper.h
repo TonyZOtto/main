@@ -21,7 +21,7 @@ class WidgetApplication;
  *      * In initialization function (maybe main.cpp):
  *          APPH->set(&applicationInstance);
  *          APPH->set(VersionInfoInstance);
- *          APPH->set(MainWindowInstance);
+ *          APPH->set(&mainWindowInstance);
  *          APPH->makeConnections(MainWindowInstance);
  */
 

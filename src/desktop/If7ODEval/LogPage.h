@@ -14,7 +14,7 @@ class LogPage : public StackedMainPage
 {
     Q_OBJECT
 public:
-    LogPage(EvalMainWindow *parent);
+    LogPage(StackedMainWindow *parent);
 
 public slots:
     void addLine(const QString &aString);

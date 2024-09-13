@@ -17,7 +17,8 @@ Settings::Settings(const SettingsName &sname, QObject *parent)
     : QObject{parent}
 {
     qInfo() << Q_FUNC_INFO << sname.toString();
-    open(sname);
+    if ( ! open(sname))
+        qCritical() << "Unable to open settings:" << sname.toString();
     setObjectName("Settings:" + SettingsName().toString());
 }
 

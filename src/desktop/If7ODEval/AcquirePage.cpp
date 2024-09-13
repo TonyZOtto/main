@@ -12,7 +12,7 @@ Q_GLOBAL_STATIC(ApplicationHelper, APPH)
 
 #include "EvalMainWindow.h"
 
-AcquirePage::AcquirePage(EvalMainWindow *parent)
+AcquirePage::AcquirePage(StackedMainWindow *parent)
     : StackedMainPage("Acquire", parent)
     , mpDropWidget(new ImageFileDropWidget(this))
     , mpListWidget(new ImageFileListWidget(this))

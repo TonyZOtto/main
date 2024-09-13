@@ -9,7 +9,7 @@ public:
     EvalApplication(int &argc, char **argv);
 
 public slots:
-    virtual void initialize();
+    virtual void initialize() override final;
     virtual void configure();
     virtual void setup();
 

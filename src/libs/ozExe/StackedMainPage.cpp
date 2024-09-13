@@ -7,6 +7,7 @@
 
 StackedMainPage::StackedMainPage(const QString &aTitle, StackedMainWindow *parent)
     : QWidget{parent}
+    , mpMainWindow(parent)
     , mpPageGridLayout(new QGridLayout())
     , mTitle(aTitle)
 {

@@ -5,7 +5,7 @@
 
 #include "EvalMainWindow.h"
 
-LogPage::LogPage(EvalMainWindow *parent)
+LogPage::LogPage(StackedMainWindow *parent)
     : StackedMainPage("Log", parent)
     , mpTextEdit(new QTextEdit(this))
     , mpTextDocument(new QTextDocument(this))

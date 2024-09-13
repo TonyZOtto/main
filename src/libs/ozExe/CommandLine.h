@@ -10,7 +10,6 @@
 #include <KeyMap.h>
 
 #include "SettingsName.h"
-class ApplicationHelper;
 
 class OZEXE_EXPORT CommandLine : public QObject
 {
@@ -18,11 +17,11 @@ class OZEXE_EXPORT CommandLine : public QObject
 public: // types
 
 public: // ctors
-    explicit CommandLine(ApplicationHelper * parent);
+    explicit CommandLine(QObject * parent);
     CommandLine(const QStringList aRawArgList,
-                         ApplicationHelper * parent);
+                         QObject * parent);
     CommandLine(int argc, char *argv[],
-                ApplicationHelper *parent);
+                QObject *parent);
 
 public slots:
     void process();
@@ -48,7 +47,6 @@ private: // static
     static QStringList parseRawArguments(int argc, char *argv[]);
 
 private:
-    ApplicationHelper * mpHelper=nullptr;
     const QStringList cmRawArgumentList;
     const QFileInfo cmExeFileInfo;
     QStringList mProcessingArguments;

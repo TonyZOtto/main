@@ -13,7 +13,8 @@ class OZEXE_EXPORT StackedMainPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit StackedMainPage(const QString &aTitle, StackedMainWindow *parent);
+    explicit StackedMainPage(const QString &aTitle,
+                             StackedMainWindow *parent);
 
 public slots:
 
@@ -41,5 +42,4 @@ private:
 };
 
 inline QString StackedMainPage::title() const { return mTitle; }
-inline StackedMainWindow *StackedMainPage::mainWindow() const { Q_ASSERT(mpMainWindow); return mpMainWindow; }
 inline QGridLayout *StackedMainPage::pageGridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }

@@ -7,7 +7,7 @@
 
 #include "EvalMainWindow.h"
 
-SplashPage::SplashPage(EvalMainWindow *parent)
+SplashPage::SplashPage(StackedMainWindow *parent)
     : StackedMainPage("Splash", parent)
 {
     qInfo() << Q_FUNC_INFO;

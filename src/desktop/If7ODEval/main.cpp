@@ -19,13 +19,13 @@ int main(int argc, char *argv[])
     qInfo() << Q_FUNC_INFO << *argv[0] << vi.toString();
     qDebug() << Q_FUNC_INFO << ">>>EvalApplication ctor";
     EvalApplication a(argc, argv);
-    a.setOrganizationName(vi.orgname());
-    a.setApplicationName(vi.appname());
-    a.setApplicationVersion(vi.toString());
     qDebug() << Q_FUNC_INFO << "<<<EvalApplication ctor";
     qDebug() << Q_FUNC_INFO << ">>>EvalMainWindow ctor";
     EvalMainWindow w(&a);
     qDebug() << Q_FUNC_INFO << "<<<EvalMainWindow ctor";
+    APPH->set(&a);
+    APPH->set(vi);
+    APPH->set(&w);
     w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot
                                  | VersionInfo::WithDotted));
     qDebug() << Q_FUNC_INFO << "-->EvalApplication::initialize()";

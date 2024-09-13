@@ -11,27 +11,24 @@
 #include "ApplicationHelper.h"
 #include "SettingsName.h"
 
-CommandLine::CommandLine(ApplicationHelper *parent)
+CommandLine::CommandLine(QObject *parent)
     : QObject(parent)
-    , mpHelper(parent)
     , cmRawArgumentList(QCoreApplication::arguments())
     , cmExeFileInfo(cmRawArgumentList.first())
 {
     setObjectName("CommandLine");
 }
 
-CommandLine::CommandLine(const QStringList aRawArgList, ApplicationHelper *parent)
+CommandLine::CommandLine(const QStringList aRawArgList, QObject *parent)
     : QObject(parent)
-    , mpHelper(parent)
     , cmRawArgumentList(aRawArgList)
     , cmExeFileInfo(cmRawArgumentList.first())
 {
     setObjectName("CommandLine");
 }
 
-CommandLine::CommandLine(int argc, char *argv[], ApplicationHelper * parent)
+CommandLine::CommandLine(int argc, char *argv[], QObject * parent)
     : QObject(parent)
-    , mpHelper(parent)
     , cmRawArgumentList(parseRawArguments(argc, argv))
     , cmExeFileInfo(cmRawArgumentList.first())
 {
