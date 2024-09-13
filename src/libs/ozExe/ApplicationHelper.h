@@ -21,9 +21,10 @@ class WidgetApplication;
  *      * In initialization function (maybe main.cpp):
  *          APPH->set(&applicationInstance);
  *          APPH->set(VersionInfoInstance);
- *          APPH->set(&mainWindowInstance);
- *          APPH->makeConnections(MainWindowInstance);
+ *          APPH->set(&MainWindowInstance);
  */
+
+#define APPH ApplicationHelper::instance()
 
 class OZEXE_EXPORT ApplicationHelper : public QObject
 {
@@ -64,6 +65,7 @@ public: // non-const
     void unforkTroll();
 
 public: // pointers
+    static ApplicationHelper * instance();
     QCoreApplication * core();
     ConsoleApplication * consoleApp();
     GuiApplication * guiApp();
@@ -83,6 +85,7 @@ private:
     TriggerManager * mpTriggerManager=nullptr;
     VersionInfo mVersionInfo;
     Type mType=$null;
+    static ApplicationHelper * smpInstance;
 };
 
 inline ApplicationHelper::Type ApplicationHelper::type() const { return mType; }

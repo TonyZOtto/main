@@ -5,6 +5,8 @@
 
 #include <QQLabel.h>
 
+#include <ApplicationHelper.h>
+
 #include "EvalMainWindow.h"
 
 SplashPage::SplashPage(StackedMainWindow *parent)

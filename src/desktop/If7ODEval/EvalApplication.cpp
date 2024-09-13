@@ -6,12 +6,10 @@
 #include "../../version.h"
 #include "version.h"
 
-Q_GLOBAL_STATIC(ApplicationHelper, APPH)
-
 EvalApplication::EvalApplication(int &argc, char **argv)
     : WidgetApplication(argc, argv)
 {
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
     setObjectName("EvalApplication");
 }
 

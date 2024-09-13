@@ -7,12 +7,13 @@
 #include "WidgetApplication.h"
 
 #include <ApplicationHelper.h>
-Q_GLOBAL_STATIC(ApplicationHelper, APPH);
 
 BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
     : QMainWindow{nullptr}
 {
+    qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
     setObjectName("BaseMainWindow:" + wapp->applicationName());
+    APPH->set(this);
 }
 
 void BaseMainWindow::initialize()

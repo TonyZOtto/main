@@ -15,15 +15,18 @@
 #include "TriggerManager.h"
 #include "WidgetApplication.h"
 
+ApplicationHelper * ApplicationHelper::smpInstance = nullptr;
+
+
 ApplicationHelper::ApplicationHelper()
     : QObject(qApp)
     , mpCommandLine(new CommandLine(this))
     , mpTriggerManager(new TriggerManager(this))
     , mType($null)
 {
-    qInfo() << Q_FUNC_INFO;
-    setObjectName("ApplicationHelper:"
-                  + QCoreApplication::applicationName());
+    setObjectName("ApplicationHelper%" + QCoreApplication::organizationName()
+                  + ":" + QCoreApplication::applicationName());
+    qInfo() << Q_FUNC_INFO << this;
 }
 
 void ApplicationHelper::initialize()
@@ -84,6 +87,8 @@ void ApplicationHelper::set(BaseMainWindow *mainw)
     Q_ASSERT(qobject_cast<BaseMainWindow *>(mainw));
     qInfo() << Q_FUNC_INFO << mainw->objectName();
     mpMainWindow = mainw;
+    mType = Widget;
+    makeConnections();
 }
 
 void ApplicationHelper::set(const VersionInfo vi)
@@ -133,6 +138,14 @@ void ApplicationHelper::makeConnections()
 void ApplicationHelper::forkTroll(const QFileInfo &logFI)
 {
     Q_UNUSED(logFI); // MUSTDO
+}
+
+ApplicationHelper *ApplicationHelper::instance()
+{
+    ApplicationHelper * result = smpInstance;
+    if ( ! result)
+        result = smpInstance = new ApplicationHelper();
+    return result;
 }
 
 QCoreApplication *ApplicationHelper::core()

@@ -32,11 +32,9 @@ public: // non-const
 public: //
 
 public: // pointers
-    StackedMainWindow * mainWindow() const;
     QGridLayout * pageGridLayout();
 
 private:
-    StackedMainWindow * mpMainWindow=nullptr;
     QGridLayout * mpPageGridLayout=nullptr;
     QString mTitle;
 };

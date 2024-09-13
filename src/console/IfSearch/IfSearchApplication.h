@@ -4,11 +4,6 @@
 #include <QObject>
 #include <BaseApplication>
 
-/*
-#include "IfSearchApplication.h"
-Q_GLOBAL_STATIC(IfSearchApplication, APP);
-*/
-
 class IfSearchInitializer;
 class IfSearchProperties;
 
