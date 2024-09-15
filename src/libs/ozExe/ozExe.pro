@@ -19,6 +19,7 @@ SOURCES += \
     GridMainWindow.cpp \
     GuiApplication.cpp \
     IconFactory.cpp \
+    MainWindowConfig.cpp \
     MdiMainWindow.cpp \
     Settings.cpp \
     StackedMainPage.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     GridMainWindow.h \
     GuiApplication.h \
     IconFactory.h \
+    MainWindowConfig.h \
     MdiMainWindow.h \
     Settings.h \
     StackedMainPage.h \

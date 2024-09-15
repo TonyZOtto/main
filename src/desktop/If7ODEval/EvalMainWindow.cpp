@@ -20,9 +20,6 @@ EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("MainWindow:" + wapp->applicationName());
-    APPH->set(wapp);
-    APPH->set(this);
-    APPH->makeConnections();
 }
 
 EvalMainWindow::~EvalMainWindow() {;}
@@ -30,7 +27,8 @@ EvalMainWindow::~EvalMainWindow() {;}
 void EvalMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    APPH->set(this);
+    StackedMainWindow::initialize();
+
     emit initialized();
 }
 
@@ -64,4 +62,9 @@ void EvalMainWindow::setup()
     setCurrent(0);
     update();
     emit setuped();
+}
+
+AcquirePage *EvalMainWindow::acquirePage()
+{
+    return (AcquirePage *)page("Acquire");
 }

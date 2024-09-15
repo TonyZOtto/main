@@ -3,10 +3,11 @@
 
 #include "BaseMainWindow.h"
 
+#include <QMap>
 #include <QStackedLayout>
+#include <QString>
 
-#include <Key.h>
-#include <KeyMap.h>
+#include <KeySeg.h>
 #include <QQSize.h>
 
 class BaseTabBar;
@@ -26,6 +27,7 @@ public slots:
 signals:
 
 public: // const
+    bool contains(const KeySeg &title) const;
     QQSize pageSize() const;
 
 public: // non-const
@@ -33,6 +35,7 @@ public: // non-const
     void addPage(StackedMainPage * pPage);
 
 public: // pointers
+    StackedMainPage * page(const KeySeg &title);
     QWidget * mainStackWidget();
     QStackedLayout * mainStackLayout();
     BaseTabBar * tabBar();
@@ -42,7 +45,7 @@ private:
     QStackedLayout * mpMainStackLayout=nullptr;
     BaseTabBar * mpTabBar=nullptr;
     QQSize mPageSize;
-
+    QMap<KeySeg, StackedMainPage *> mTitlePageMap;
 };
 
 inline QQSize StackedMainWindow::pageSize() const { return mPageSize; }

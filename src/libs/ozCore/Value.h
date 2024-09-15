@@ -15,14 +15,17 @@ public: // ctors
     Value(const QQSize sz);
     Value(const int si);
     Value(const QColor c);
+    Value(const Qt::Orientations qtos);
 
 public: // const
     QQSize size() const;
     int signedint() const;
     QColor color() const;
+    Qt::Orientations orientations() const;
     operator QQSize () const { return size(); }
     operator int () const { return signedint(); }
     operator QColor () const { return color(); }
+    operator Qt::Orientations () const { return orientations(); }
 
 
 public: // non-const

@@ -8,7 +8,7 @@
 #include "Key.h"
 #include "Value.h"
 
-class Variable
+class OZCORE_EXPORT Variable
 {
 public: // types
     typedef QHash<Key, Variable> Hash;

@@ -25,8 +25,8 @@ BYTE AnyColor::byte(const Color::Component cc) const
 
 QRgb AnyColor::qrgba32() const
 {
-    return qRgba(byte(Color::Red), byte(Color::Green),
-                 byte(Color::Blue), byte(Color::Opacity));
+    return qRgba(byte(Color::RedCC), byte(Color::GreenCC),
+                 byte(Color::BlueCC), byte(Color::OpacityCC));
 }
 
 void AnyColor::set(const QString &aString)
@@ -34,7 +34,7 @@ void AnyColor::set(const QString &aString)
     const QColor cNamedColor = QColor::fromString(aString);
     if (cNamedColor.isValid())
     {
-        set(Color::Opacity, cNamedColor.alphaF());
+        set(Color::OpacityCC, cNamedColor.alphaF());
     }
 
 }

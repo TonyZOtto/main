@@ -11,7 +11,7 @@ class EvalMainWindow : public StackedMainWindow
 {
     Q_OBJECT
 
-public:
+public: // ctors
     EvalMainWindow(WidgetApplication *wapp);
     ~EvalMainWindow();
 
@@ -22,8 +22,8 @@ public slots:
 
 signals:
 
+public: // pointers
+    AcquirePage * acquirePage();
+
 private:
-    SplashPage * mpSplashPage=nullptr;
-    LogPage * mpLogPage=nullptr;
-    AcquirePage * mpAcquirePage=nullptr;
 };

@@ -21,6 +21,7 @@ signals:
     void initialized();
     void configured();
     void setuped();
+    void startupComplete();
     void startupError(const QString errorString);
 
 public:

@@ -10,8 +10,8 @@ public:
 
 public slots:
     virtual void initialize() override final;
-    virtual void configure();
-    virtual void setup();
+    virtual void configure() override final;
+    virtual void setup() override final;
 
 signals:
 

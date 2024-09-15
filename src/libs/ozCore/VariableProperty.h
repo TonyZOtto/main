@@ -45,8 +45,8 @@ void LogItem::ctor(void)
     set( #KEY, TYPE(DFLT)); \
 
 #define DECLARE_CLASS_VARFUNCTIONS(TYPE, KEY, DFLT) \
-    TYPE KEY() const { return TYPE(get( #KEY ).current()); }   \
-    void KEY(const TYPE &val) { set( #KEY , Value(val)); }     \
+    TYPE KEY() const { return (TYPE)(get( #KEY ).current()); }   \
+    void KEY(const TYPE &val) { set( #KEY , Value( (TYPE)(val) )); }     \
     void KEY##Defalt(void) { KEY(TYPE(DFLT)); }   \
 
 #define DECLARE_DEFALT_VARPROPS(DEF) \

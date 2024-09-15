@@ -4,6 +4,7 @@
 #include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QStackedLayout>
+#include <QSizePolicy>
 
 #include <ApplicationHelper.h>
 #include <QQSize.h>
@@ -30,38 +31,40 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
 void StackedMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-
+    foreach (StackedMainPage * pPage, mTitlePageMap)
+        pPage->initialize();
 }
 
 void StackedMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
-
 }
 
-void StackedMainWindow::setup()
-
+void StackedMainWindow::setup()    
 {
     qInfo() << Q_FUNC_INFO;
     showMaximized();
-    update();
-    updateGeometry();
     QWidget * pMainWidget = new QWidget(this);
     setCentralWidget(pMainWidget);
     qDebug() << "StackedMainWindow" << size()
             << "CentralWidgetSize" << pMainWidget->size();
     QGridLayout * pGrid = new QGridLayout(pMainWidget);
 
-    tabBar()->setShape(QTabBar::RoundedEast);
+    tabBar()->setShape(QTabBar::RoundedWest);
     QQSize tTabBarSize = tabBar()->size();
     qDebug() << "tTabBarSize" << tTabBarSize;
     tabBar()->setMaximumWidth(tTabBarSize.width());
+//    tabBar()->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum,
+  //                          QSizePolicy::TabWidget);
     pGrid->addWidget(tabBar(), 0, 0, Qt::AlignRight | Qt::AlignTop);
     pGrid->addWidget(mainStackWidget(), 0, 1, Qt::AlignLeft | Qt::AlignTop);
     pMainWidget->setLayout(pGrid);
     mainStackWidget()->setLayout(mainStackLayout());
     connect(tabBar(), &QTabBar::currentChanged,
             this, &StackedMainWindow::setCurrent);
+
+    foreach (StackedMainPage * pPage, mTitlePageMap)
+        pPage->initialize();
 }
 
 void StackedMainWindow::setCurrent(const int ix)
@@ -71,12 +74,30 @@ void StackedMainWindow::setCurrent(const int ix)
     mainStackLayout()->setCurrentIndex(ix);
 }
 
+bool StackedMainWindow::contains(const KeySeg &title) const
+{
+    return mTitlePageMap.contains(title);
+}
+
 void StackedMainWindow::addPage(StackedMainPage *pPage)
 {
     Q_ASSERT(pPage);
-    qInfo() << Q_FUNC_INFO << pPage->objectName();
-    tabBar()->addTab(pPage->title());
+    const KeySeg cTitle = pPage->title();
+    if (mTitlePageMap.contains(cTitle))
+        qWarning() << "Duplicate Page Title: " << cTitle();
+    qInfo() << Q_FUNC_INFO << cTitle << pPage->objectName();
+    tabBar()->addTab(cTitle());
     mainStackLayout()->addWidget(pPage);
     mainStackLayout()->setCurrentWidget(pPage);
+    mTitlePageMap.insert(cTitle, pPage);
     update();
+}
+
+StackedMainPage *StackedMainWindow::page(const KeySeg &title)
+{
+    StackedMainPage * result;
+    Q_ASSERT(contains(title));
+    result = mTitlePageMap.value(title);
+    Q_ASSERT(qobject_cast<StackedMainPage *>(result));
+    return result;
 }

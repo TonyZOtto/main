@@ -54,8 +54,8 @@ void ApplicationHelper::setup()
 void ApplicationHelper::handleStartupError(const QString errorString)
 {
     const QString cFrom = sender() ? sender()->objectName() : "Unknown Sender";
-    qCritical() << "Initialization Error from"
-                << cFrom << ":" << errorString;
+    qFatal() << "Initialization Error from"
+             << cFrom << ":" << errorString;
 }
 
 void ApplicationHelper::set(WidgetApplication *wapp)
@@ -88,14 +88,12 @@ void ApplicationHelper::set(BaseMainWindow *mainw)
     qInfo() << Q_FUNC_INFO << mainw->objectName();
     mpMainWindow = mainw;
     mType = Widget;
-    makeConnections();
 }
 
 void ApplicationHelper::set(const VersionInfo vi)
 {
     qInfo() << Q_FUNC_INFO << vi.toString();
     mVersionInfo = vi;
-    vi.updateApp(core());
 }
 
 void ApplicationHelper::makeConnections()
@@ -112,13 +110,11 @@ void ApplicationHelper::makeConnections()
         connect(widgetApp(), &WidgetApplication::configured,
                 mainWindow(), &BaseMainWindow::configure);
         connect(mainWindow(), &BaseMainWindow::configured,
-                instance(), &ApplicationHelper::configure);
-        connect(instance(), &ApplicationHelper::configured,
                 widgetApp(), &WidgetApplication::setup);
         connect(widgetApp(), &WidgetApplication::setuped,
                 mainWindow(), &BaseMainWindow::setup);
         connect(mainWindow(), &BaseMainWindow::setuped,
-                instance(), &ApplicationHelper::setup);
+                widgetApp(), &WidgetApplication::startupComplete);
         connect(widgetApp(), &WidgetApplication::startupError,
                 instance(), &ApplicationHelper::handleStartupError);
         connect(mainWindow(), &BaseMainWindow::startupError,

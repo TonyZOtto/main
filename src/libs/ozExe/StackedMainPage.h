@@ -5,6 +5,7 @@
 
 class QGridLayout;
 
+#include <KeySeg.h>
 #include <QQSize.h>
 class BaseTabBar;
 class StackedMainWindow;
@@ -13,7 +14,7 @@ class OZEXE_EXPORT StackedMainPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit StackedMainPage(const QString &aTitle,
+    explicit StackedMainPage(const KeySeg &aTitle,
                              StackedMainWindow *parent);
 
 public slots:
@@ -22,7 +23,7 @@ signals:
 
 public: // const
     QQSize pageSize() const;
-    QString title() const;
+    KeySeg title() const;
 
 public: // non-const
     virtual void initialize();
@@ -36,8 +37,8 @@ public: // pointers
 
 private:
     QGridLayout * mpPageGridLayout=nullptr;
-    QString mTitle;
+    KeySeg mTitle;
 };
 
-inline QString StackedMainPage::title() const { return mTitle; }
+inline KeySeg StackedMainPage::title() const { return mTitle; }
 inline QGridLayout *StackedMainPage::pageGridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }

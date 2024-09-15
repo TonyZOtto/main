@@ -19,6 +19,7 @@ SOURCES += \
     BaseToolBar.cpp \
     BaseToolButton.cpp \
     DropWidgetView.cpp \
+    FillerWidget.cpp \
     GridStackPage.cpp \
     ImageFileDropWidget.cpp \
     ImageFileListWidget.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     BaseToolBar.h \
     BaseToolButton.h \
     DropWidgetView.h \
+    FillerWidget.h \
     GridStackPage.h \
     ImageFileDropWidget.h \
     ImageFileListWidget.h \

@@ -12,7 +12,7 @@ void WidgetApplication::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     APPH->initialize();
-    APPH->makeConnections(MainWindowInstance);
+    APPH->makeConnections();
     // TODO Anything else?
 }
 

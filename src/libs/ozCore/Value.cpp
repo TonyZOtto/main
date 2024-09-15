@@ -10,6 +10,7 @@ Value::Value(const QVariant other) : QVariant(other) {;}
 Value::Value(const QQSize sz) : QVariant(sz) {;}
 Value::Value(const int si) : QVariant(si) {;}
 Value::Value(const QColor c) : QVariant(c) {;}
+Value::Value(const Qt::Orientations qtos) : QVariant(qtos) {;}
 
 QQSize Value::size() const
 {
@@ -41,6 +42,22 @@ QColor Value::color() const
     QColor result;
     if (canConvert<QColor>()) result = value<QColor>();
     else result = QColor(toString());
+    return result;
+}
+
+Qt::Orientations Value::orientations() const
+{
+    Qt::Orientations result = Qt::Orientations(0);
+    if (canConvert<Qt::Orientations>())
+    {
+        result = value<Qt::Orientations>();
+    }
+    else
+    {
+        const QByteArray cBA = toByteArray();
+        if (cBA.contains("Horiz"))  result.setFlag(Qt::Horizontal);
+        if (cBA.contains("Vert"))   result.setFlag(Qt::Vertical);
+    }
     return result;
 }
 
