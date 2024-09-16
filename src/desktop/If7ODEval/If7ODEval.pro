@@ -15,16 +15,22 @@ include(../../useWidgets.pri)
 
 SOURCES += \
     AcquirePage.cpp \
+    AnalysisPage.cpp \
     EvalApplication.cpp \
     EvalMainWindow.cpp \
+    FacesPage.cpp \
+    FramesPage.cpp \
     LogPage.cpp \
     SplashPage.cpp \
     main.cpp
 
 HEADERS += \
     AcquirePage.h \
+    AnalysisPage.h \
     EvalApplication.h \
     EvalMainWindow.h \
+    FacesPage.h \
+    FramesPage.h \
     LogPage.h \
     SplashPage.h \
     version.h

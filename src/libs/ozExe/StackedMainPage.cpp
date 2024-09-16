@@ -37,5 +37,5 @@ void StackedMainPage::setup()
 
 QQSize StackedMainPage::pageSize() const
 {
-    return APPH->mainWindow()->size();
+    return APPH->baseMainWindow()->size();
 }

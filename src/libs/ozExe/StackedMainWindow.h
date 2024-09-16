@@ -15,6 +15,7 @@ class StackedMainPage;
 
 class OZEXE_EXPORT StackedMainWindow : public BaseMainWindow
 {
+    Q_OBJECT
 public:
     StackedMainWindow(WidgetApplication *wapp);
 

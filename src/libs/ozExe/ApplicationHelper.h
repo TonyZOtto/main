@@ -11,6 +11,7 @@ class CommandLine;
 class ConsoleApplication;
 class GuiApplication;
 class Settings;
+class StackedMainWindow;
 class TriggerManager;
 class WidgetApplication;
 
@@ -58,6 +59,7 @@ public: // non-const
     void set(ConsoleApplication *capp);
     void set(GuiApplication *gapp);
     void set(BaseMainWindow *mainw);
+    void set(StackedMainWindow *smainw);
     void set(const VersionInfo vi);
     void makeConnections();
     void forkTroll(const QFileInfo &logFI);
@@ -70,7 +72,8 @@ public: // pointers
     ConsoleApplication * consoleApp();
     GuiApplication * guiApp();
     WidgetApplication * widgetApp();
-    BaseMainWindow * mainWindow();
+    BaseMainWindow * baseMainWindow();
+    StackedMainWindow * stackedMainWindow();
     CommandLine * commandLine();
     Settings * settings();
     TriggerManager * triggerManager();
@@ -81,7 +84,8 @@ private:
     WidgetApplication * mpWidgetApplication=nullptr;
     CommandLine * mpCommandLine=nullptr;
     Settings * mpSettings=nullptr;
-    BaseMainWindow * mpMainWindow=nullptr;
+    BaseMainWindow * mpBaseMainWindow=nullptr;
+    StackedMainWindow * mpStackedMainWindow=nullptr;
     TriggerManager * mpTriggerManager=nullptr;
     VersionInfo mVersionInfo;
     Type mType=$null;
@@ -90,7 +94,7 @@ private:
 
 inline ApplicationHelper::Type ApplicationHelper::type() const { return mType; }
 inline VersionInfo ApplicationHelper::versionInfo() const { return mVersionInfo; }
-inline BaseMainWindow *ApplicationHelper::mainWindow() { Q_ASSERT(mpMainWindow);  return mpMainWindow; }
+inline BaseMainWindow *ApplicationHelper::baseMainWindow() { Q_ASSERT(mpBaseMainWindow);  return mpBaseMainWindow; }
 inline CommandLine *ApplicationHelper::commandLine() { Q_ASSERT(mpCommandLine);  return mpCommandLine; }
 inline Settings *ApplicationHelper::settings() { Q_ASSERT(mpSettings);  return mpSettings; }
 inline TriggerManager *ApplicationHelper::triggerManager() { Q_CHECK_PTR(mpTriggerManager);  return mpTriggerManager; }

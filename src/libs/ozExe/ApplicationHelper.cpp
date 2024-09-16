@@ -12,6 +12,7 @@
 #include "GuiApplication.h"
 #include "Settings.h"
 #include "SettingsName.h"
+#include "StackedMainWindow.h"
 #include "TriggerManager.h"
 #include "WidgetApplication.h"
 
@@ -86,8 +87,16 @@ void ApplicationHelper::set(BaseMainWindow *mainw)
 {
     Q_ASSERT(qobject_cast<BaseMainWindow *>(mainw));
     qInfo() << Q_FUNC_INFO << mainw->objectName();
-    mpMainWindow = mainw;
-    mType = Widget;
+    mpBaseMainWindow = mainw;
+}
+
+void ApplicationHelper::set(StackedMainWindow *smainw)
+{
+    Q_ASSERT(qobject_cast<StackedMainWindow *>(smainw));
+    Q_ASSERT(qobject_cast<BaseMainWindow *>(smainw));
+    qInfo() << Q_FUNC_INFO << smainw->objectName();
+    mpStackedMainWindow = smainw;
+    mpBaseMainWindow = smainw;
 }
 
 void ApplicationHelper::set(const VersionInfo vi)
@@ -104,20 +113,20 @@ void ApplicationHelper::makeConnections()
     {
     case Widget:
         connect(widgetApp(), &WidgetApplication::initialized,
-                mainWindow(), &BaseMainWindow::initialize);
-        connect(mainWindow(), &BaseMainWindow::initialized,
+                baseMainWindow(), &BaseMainWindow::initialize);
+        connect(baseMainWindow(), &BaseMainWindow::initialized,
                 widgetApp(), &WidgetApplication::configure);
         connect(widgetApp(), &WidgetApplication::configured,
-                mainWindow(), &BaseMainWindow::configure);
-        connect(mainWindow(), &BaseMainWindow::configured,
+                baseMainWindow(), &BaseMainWindow::configure);
+        connect(baseMainWindow(), &BaseMainWindow::configured,
                 widgetApp(), &WidgetApplication::setup);
         connect(widgetApp(), &WidgetApplication::setuped,
-                mainWindow(), &BaseMainWindow::setup);
-        connect(mainWindow(), &BaseMainWindow::setuped,
+                baseMainWindow(), &BaseMainWindow::setup);
+        connect(baseMainWindow(), &BaseMainWindow::setuped,
                 widgetApp(), &WidgetApplication::startupComplete);
         connect(widgetApp(), &WidgetApplication::startupError,
                 instance(), &ApplicationHelper::handleStartupError);
-        connect(mainWindow(), &BaseMainWindow::startupError,
+        connect(baseMainWindow(), &BaseMainWindow::startupError,
                 instance(), &ApplicationHelper::handleStartupError);
         connect(instance(), &ApplicationHelper::startupError,
                 instance(), &ApplicationHelper::handleStartupError);

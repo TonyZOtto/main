@@ -28,10 +28,6 @@ public: // non-const
     virtual void configure() override final;
     virtual void setup() override final;
 
-
-public: // pointers
-
-
 public: // pointers
     QTextEdit * textEdit();
     QTextDocument * textDocument();

@@ -6,20 +6,22 @@
 #include <QQSize.h>
 #include <Settings.h>
 #include <Value.h>
+#include <StackedMainPage.h>
 #include <WidgetApplication.h>
 
 #include "AcquirePage.h"
+#include "AnalysisPage.h"
+#include "FacesPage.h"
+#include "FramesPage.h"
 #include "LogPage.h"
 #include "SplashPage.h"
 
 EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
     : StackedMainWindow(wapp)
-    , mpSplashPage(new SplashPage(this))
-    , mpLogPage(new LogPage(this))
-    , mpAcquirePage(new AcquirePage(this))
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("MainWindow:" + wapp->applicationName());
+//    addPage(new SplashPage(APPH->baseMainWindow()));
 }
 
 EvalMainWindow::~EvalMainWindow() {;}
@@ -52,13 +54,7 @@ void EvalMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainWindow::setup();
-    mpSplashPage->setup();
-    mpLogPage->setup();
-    mpLogPage->addLine("Log Started");
-    mpAcquirePage->setup();
-    addPage(mpSplashPage);
-    addPage(mpLogPage);
-    addPage(mpAcquirePage);
+// TODO    mpLogPage->addLine("Log Started");
     setCurrent(0);
     update();
     emit setuped();
@@ -66,5 +62,5 @@ void EvalMainWindow::setup()
 
 AcquirePage *EvalMainWindow::acquirePage()
 {
-    return (AcquirePage *)page("Acquire");
+    return (AcquirePage *)(page("Acquire"));
 }

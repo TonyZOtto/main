@@ -1,13 +1,12 @@
 #pragma once
 
-#include <QQSize.h>
 #include <StackedMainPage.h>
 
-class SplashPage : public StackedMainPage
+class AnalysisPage : public StackedMainPage
 {
     Q_OBJECT
 public:
-    SplashPage(StackedMainWindow *parent);
+    AnalysisPage(StackedMainWindow *parent);
 
 public slots:
 
@@ -25,4 +24,3 @@ public: // pointers
 private:
 
 };
-

@@ -15,7 +15,7 @@
     TKD(QQSize, viewPixelSize, QQSize()) \
     TKD(QColor, backColor, QColor("steelblue")) \
     TKD(QColor, blankColor, QColor(Qt::darkGray)) \
-    TKD(Qt::Orientations, scrollOrientationValue, 0) \
+    TKD(Qt::Orientations, scrollOrientations, 0) \
 
 class OZWIDGETS_EXPORT ImageGalleryConfig : public VariableSet
 {

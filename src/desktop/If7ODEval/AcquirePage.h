@@ -26,9 +26,9 @@ signals:
 public: // const
 
 public: // non-const
-    virtual void initialize();
-    virtual void configure();
-    virtual void setup();
+    virtual void initialize() override final;
+    virtual void configure() override final;
+    virtual void setup() override final;
 
 public: // pointers
 
