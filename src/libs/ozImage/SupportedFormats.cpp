@@ -4,9 +4,9 @@
 #include <QImageWriter>
 
 SupportedFormats::SupportedFormats(const Class cls)
-    : cmClass(cls) { set(); }
+    : cmClass(cls), mpObjectHelper(new ObjectHelper(this)) { set(); }
 SupportedFormats::SupportedFormats(const Class cls, const QByteArrayList &bas)
-    : cmClass(cls) { set(bas); }
+    : cmClass(cls), mpObjectHelper(new ObjectHelper(this)) { set(bas); }
 
 bool SupportedFormats::isNull() const
 {
@@ -37,17 +37,30 @@ void SupportedFormats::update(const QByteArrayList &bas)
     Q_UNUSED(bas);
 }
 
-FormatFlags SupportedFormats::parseFlags(const QByteArrayList &bas)
-{
+// ---------------------- static ---------------------
 
+SupportedFormats::FormatFlags SupportedFormats::parseFlags(const QByteArrayList &bas)
+{
+    FormatFlags result;
+    foreach (const AText key, bas)
+        result |= formatFlag(key);
+    return result;
 }
 
-AText SupportedFormats::formatName(const FormatFlag ff)
+AText SupportedFormats::formatKey(const FormatFlag ff)
 {
-
+    return objectHelper()->enumKey("FormatSuffix", ff);
 }
 
-SupportedFormats::FormatFlag SupportedFormats::formatFlag(const AText &txt)
+SupportedFormats::FormatSuffix SupportedFormats::formatSuffix(const AText &key)
 {
+    return FormatSuffix(objectHelper()->enumValue("FormatSuffix", key));
+}
 
+SupportedFormats::FormatFlag SupportedFormats::formatFlag(const AText &key)
+{
+    FormatFlag result = $nullFlag;
+    const int cSuffix = formatSuffix(key);
+    if (cSuffix >= 0) result = FormatFlag(1 << cSuffix);
+    return result;
 }

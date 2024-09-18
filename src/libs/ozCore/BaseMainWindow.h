@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
+#include <KeyMap.h>
 #include <QQSize.h>
-#include <Value.h>
 
 
 class WidgetApplication;
@@ -20,9 +20,6 @@ public slots:
     virtual void configure();
     virtual void setup();
 
-protected slots:
-    virtual void doResize();
-
 signals:
     void initialized();
     void configured();
@@ -31,6 +28,7 @@ signals:
     void resized(const QQSize newSize);
 
 public: // const
+    KeyMap configMap() const;
     QQSize mainSize() const;
     QQSize screenSize() const;
 
@@ -40,15 +38,20 @@ public: // non-const
 public: // pointers
     WidgetApplication * app() const;
 
+protected slots:
+    virtual void doResize(const QQSize newSize);
+
 protected:
     virtual void resizeEvent(QResizeEvent * event) override;
 
 private:
     WidgetApplication * mpApp=nullptr;
+    KeyMap mConfigMap;
     QQSize mMainSize;
     static QQSize smScreenSize;
 };
 
+inline KeyMap BaseMainWindow::configMap() const { return mConfigMap; }
 inline QQSize BaseMainWindow::mainSize() const { return mMainSize; }
 inline WidgetApplication *BaseMainWindow::app() const { Q_ASSERT(mpApp); return mpApp; }
 

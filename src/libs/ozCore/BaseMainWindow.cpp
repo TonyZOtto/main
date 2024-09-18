@@ -29,19 +29,27 @@ void BaseMainWindow::initialize()
 void BaseMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
+    mConfigMap = APPH->settings()->map("MainWindow");
     // TODO Anything
 }
 
 void BaseMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
+    if (mConfigMap.value("Maximized", false).toBool())
+        showMaximized();
+    else if (mConfigMap.value("Minimized", false).toBool())
+        showMinimized();
+    else
+        showNormal();
+
     // TODO Anything
 }
 
-void BaseMainWindow::doResize()
+void BaseMainWindow::doResize(const QQSize newSize)
 {
-    qInfo() << Q_FUNC_INFO  << objectName() << mainSize();
-
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+    Q_ASSERT(mainSize() == newSize);
 }
 
 QQSize BaseMainWindow::screenSize() const

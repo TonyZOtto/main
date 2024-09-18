@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QFlags>
 
+#include <AText.h>
 #include <KeySegList.h>
+#include <ObjectHelper.h>
 
 class OZIMAGE_EXPORT SupportedFormats : public QObject
 {
@@ -65,7 +67,6 @@ public: // types
         FlagSVG         = 1 << FormatSVG,
     };
     Q_DECLARE_FLAGS(FormatFlags, FormatFlag)
-    Q_FLAG(FormatFlags)
 
 public: // ctors
     explicit SupportedFormats(const Class cls=$nullClass);
@@ -79,10 +80,23 @@ public: // non-const
     void set(const QByteArrayList &bas);
     void update(const QByteArrayList &bas);
 
+public: // non-const
+    ObjectHelper * objectHelper();
+
+private: // static
+    FormatFlags parseFlags(const QByteArrayList &bas);
+    AText formatKey(const FormatFlag ff);
+    FormatSuffix formatSuffix(const AText &key);
+    FormatFlag formatFlag(const AText &key);
+
 private:
     const Class cmClass;
     FormatFlags mFlags;
+    ObjectHelper * mpObjectHelper=nullptr;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SupportedFormats::FormatFlags)
+
+inline ObjectHelper *SupportedFormats::objectHelper() { Q_ASSERT(mpObjectHelper); return mpObjectHelper; }
+
 

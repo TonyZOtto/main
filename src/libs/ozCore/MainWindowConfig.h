@@ -12,6 +12,7 @@
 
 #define MAINWINCONFIG_VARPROPS(TKD) \
     TKD(bool, maximized, false) \
+    TKD(bool, minimized, false) \
 
 class OZCORE_EXPORT MainWindowConfig : public VariableSet
 {
