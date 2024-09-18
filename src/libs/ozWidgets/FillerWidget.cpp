@@ -2,6 +2,8 @@
 
 #include <QPainter>
 #include <QPen>
+#include <QPaintEvent>
+#include <QResizeEvent>
 
 #include <Color.h>
 
@@ -32,21 +34,22 @@ FillerWidget::FillerWidget(const QString text, const QColor back, QWidget *paren
 
 void FillerWidget::paintEvent(QPaintEvent *event)
 {
-    updatePixmap();
     QWidget::paintEvent(event);
 }
 
 void FillerWidget::resizeEvent(QResizeEvent *event)
 {
-    updatePixmap();
+    qInfo() << Q_FUNC_INFO << event->size() << event->oldSize();
     QWidget::resizeEvent(event);
 }
 
 void FillerWidget::updatePixmap(const QSize newSize)
 {
+    qInfo() << Q_FUNC_INFO << newSize << stack()->count();
+    if (mPixmap.size() == newSize)                  return; // /*===*/
     if (newSize.isValid())
         mPixmap = QPixmap(newSize);
-    stack()->removeWidget(this);
+//    stack()->removeWidget(this);
     QPen tPen(foreColor());
     QPainter tPainter(&mPixmap);
     tPainter.setPen(tPen);
@@ -56,7 +59,8 @@ void FillerWidget::updatePixmap(const QSize newSize)
                       text());
     tPainter.end();
     setPixmap(mPixmap);
-    stack()->addWidget(this);
+    stack()->insertWidget(0, this);
+    qInfo() << Q_FUNC_INFO << "exit" << mPixmap.size() << stack()->count();
 }
 
 void FillerWidget::ctor()
@@ -69,8 +73,6 @@ void FillerWidget::ctor()
     if ( ! foreColor().isValid())
         foreColor(Color::complement(backColor()));
     mPixmap = QPixmap(size());
-    mPixmap.fill(backColor());
-    setPixmap(mPixmap);
     setUpdatesEnabled(true);
     update();
 }

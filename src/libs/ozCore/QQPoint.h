@@ -22,6 +22,7 @@ public: // ctors
 public: // const
     int x() const { return QPoint::x(); } // TODO Why?
     int y() const { return QPoint::y(); }
+    bool isNull();
     QQPoint up() const;
 
 

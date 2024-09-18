@@ -11,7 +11,6 @@ include(../../useCore.pri)
 include(../../useWidgets.pri)
 
 SOURCES += \
-    ApplicationHelper.cpp \
     BaseMainWindow.cpp \
     CommandLine.cpp \
     ConsoleApplication.cpp \
@@ -28,7 +27,6 @@ SOURCES += \
     ozExe.cpp
 
 HEADERS += \
-    ApplicationHelper.h \
     BaseMainWindow.h \
     CommandLine.h \
     ConsoleApplication.h \

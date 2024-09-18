@@ -5,7 +5,10 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
-#include <QDropEvent>
+class QDropEvent;
+class QDragEnterEvent;
+
+class SupportedFormats;
 
 class OZWIDGETS_EXPORT ImageFileDropWidget : public QWidget
 {
@@ -23,6 +26,18 @@ signals:
     void configured();
     void setuped();
 
-private:
+    void dragEntered(QDragEnterEvent *e);
+    void dropStarted(QDropEvent *e);
+    void dropFile(const QFileInfo &fi);
 
+public: // pointers
+    SupportedFormats * readFormats();
+
+private:
+    virtual void dragEnterEvent(QDragEnterEvent *e) override final;
+    virtual void dropEvent(QDropEvent *e) override final;
+
+
+private:
+    SupportedFormats * mpReadFormats=nullptr;
 };

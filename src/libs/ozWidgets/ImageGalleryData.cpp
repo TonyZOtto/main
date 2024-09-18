@@ -9,9 +9,14 @@ public:
     QQSize              dViewPixelSize;
     SCRect              dOriginViewRect;
     SCRect              dCurrentViewRect;
-    QQSize              dViewCeLlSize;
+    QQSize              dViewCellSize;
 
 };
+
+void ImageGalleryData::viewPixelSize(const QQSize sz)
+{
+    data->dViewPixelSize = sz;
+}
 
 ImageGalleryData::ImageGalleryData()
     : data(new ImageGalleryDataData)

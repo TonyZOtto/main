@@ -27,6 +27,8 @@ public: // const
     int max() const;
     int min() const;
     bool notEmpty() const { return ! isEmpty(); }
+    QSize toQSize() const { return QSize(*this); }
+    QSize operator () () const { return toQSize(); }
     QQSize max(const QQSize other) const;
     QQSize min(const QQSize other) const;
     Rational aspect() const;

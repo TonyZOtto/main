@@ -20,12 +20,16 @@
 class OZWIDGETS_EXPORT ImageGalleryConfig : public VariableSet
 {
 public: // ctors
-    ImageGalleryConfig(const Key &setKey) : VariableSet(Ident(setKey)) { ctor(); }
+    ImageGalleryConfig(const Key &setKey=Key())
+        : VariableSet(Ident(setKey)) { ctor(); }
+    ImageGalleryConfig(const ImageGalleryConfig &other)
+        : VariableSet(other) { ctor(); }
     DEFINE_VARPROPS(GALLERYCONFIG_VARPROPS);
 
 public: // const
 
+
 private:
-    void ctor();
+    void ctor() { DECLARE_DEFALT_VARPROPS(GALLERYCONFIG_VARPROPS); }
 };
 

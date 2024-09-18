@@ -21,7 +21,12 @@ EvalMainWindow::EvalMainWindow(WidgetApplication *wapp)
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("MainWindow:" + wapp->applicationName());
-//    addPage(new SplashPage(APPH->baseMainWindow()));
+    addPage(new SplashPage(this));
+    addPage(new AcquirePage(this));
+    addPage(new FramesPage(this));
+    addPage(new FacesPage(this));
+    addPage(new AnalysisPage(this));
+    addPage(new LogPage(this));
 }
 
 EvalMainWindow::~EvalMainWindow() {;}

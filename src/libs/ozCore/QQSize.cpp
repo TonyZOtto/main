@@ -6,9 +6,9 @@ QQSize::QQSize(const QQSize aBaseSize, const QQSize aFitSize)
 {
     const QQSize cMinSize = aBaseSize.min(aFitSize);
     if (aFitSize.isWider())
-        set(cMinSize.width(), aFitSize.aspect());
-    else
         set(aFitSize.aspect(), cMinSize.height());
+    else
+        set(cMinSize.width(), aFitSize.aspect());
 }
 
 int QQSize::area() const

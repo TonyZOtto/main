@@ -32,6 +32,7 @@ public: // const
     Key prepended(const KeySeg &seg) const;
     QString toString() const;
     operator QString() const { return toString(); }
+    QString sortable() const;
     QString operator () () const { return toString(); }
     bool operator == (const Key &rhs) const;
     bool operator < (const Key &rhs) const;
@@ -42,6 +43,7 @@ public: // non-const
     void set(const QString &qs);
     void clear();
     Key append(const Key &aKey);
+    Key prepend(const Key &groupKey);
     Key removeTail(const Key &aKey);
 
 private: // static

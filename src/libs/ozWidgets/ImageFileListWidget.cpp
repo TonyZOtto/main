@@ -5,7 +5,6 @@
 ImageFileListWidget::ImageFileListWidget(QWidget *parent)
     : QWidget{parent}
 {
-    setLayout(FillerWidget("ImageFileListWidget", this).stack());
 }
 
 void ImageFileListWidget::initialize()

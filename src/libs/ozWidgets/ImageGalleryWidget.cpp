@@ -2,9 +2,16 @@
 
 ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     : QWidget(parent)
-//    , mpConfig(new ImageGalleryConfig(this))
 {
     setObjectName("ImageGalleryWidget");
+}
+
+ImageGalleryWidget::ImageGalleryWidget(QWidget *viewWidget,
+                                       QWidget *parent)
+    : QWidget(parent)
+    , mpViewWidget(viewWidget)
+{
+// TODO    refData().viewPixelSize(mpViewWidget->size());
 }
 
 void ImageGalleryWidget::initialize()
@@ -56,6 +63,13 @@ void ImageGalleryWidget::deselect(const QQPoint cellPoint)
 
 }
 
+void ImageGalleryWidget::config(const ImageGalleryConfig cfg)
+{
+    mConfig.clear();
+    foreach (const Variable var, cfg.list())
+        mConfig.set(var);
+}
+
 void ImageGalleryWidget::calculate()
 {
     calculateViewGeometry();
@@ -64,9 +78,6 @@ void ImageGalleryWidget::calculate()
 void ImageGalleryWidget::calculateViewGeometry()
 {
     //if (config()->ViewPixelSize().isEmpty())
-    {
-
-    }
 }
 
 

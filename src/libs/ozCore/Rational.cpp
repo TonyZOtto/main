@@ -45,14 +45,12 @@ Rational Rational::divided(const Term aDen) const
 
 Rational::Term Rational::toInt() const
 {
-    return isValid() ? qRound(qreal(n()) / qreal(d()))
-                     : smInvalidTerm;
+    return isValid() ? qRound(toReal()): smInvalidTerm;
 }
 
 qreal Rational::toReal() const
 {
-    if (notValid()) return qQNaN();
-    return qreal(n()) / qreal(d());
+    return isValid() ? (qreal(n()) / qreal(d())): qQNaN();
 }
 
 void Rational::set(const Term aNum, const Term aDen)

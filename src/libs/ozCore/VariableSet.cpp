@@ -1,6 +1,8 @@
 #include "VariableSet.h"
 
 VariableSet::VariableSet(const Ident id) : cmIdent(id) {;}
+VariableSet::VariableSet(const VariableSet &other)
+    : cmIdent(other.cmIdent), mHash(other.mHash) {;}
 VariableSet::VariableSet(const Variable::List &vl, const Ident id)
     : cmIdent(id) { set(vl); }
 
@@ -29,6 +31,16 @@ bool VariableSet::isEmpty() const
     return mHash.isEmpty();
 }
 
+Variable::List VariableSet::list() const
+{
+    return mHash.values();
+}
+
+void VariableSet::clear()
+{
+    mHash.clear();
+}
+
 void VariableSet::set(const Variable &var)
 {
     mHash.insert(var.key(), var);
@@ -45,5 +57,15 @@ void VariableSet::set(const Variable::List &vl)
 {
     foreach (const Variable &cVar, vl)
         set(cVar);
+}
+
+void VariableSet::set(const KeyMap &map, const Key &groupKey)
+{
+    foreach (const Key &cKey, map.keys())
+    {
+        const Variable cVar(cKey.prepended(groupKey),
+                            map.value(cKey));
+        set(cVar);
+    }
 }
 

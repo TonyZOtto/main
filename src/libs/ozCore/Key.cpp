@@ -58,6 +58,11 @@ QString Key::toString() const
     return joinString(mSegments);
 }
 
+QString Key::sortable() const
+{
+    return toString().toCaseFolded();
+}
+
 bool Key::operator ==(const Key &rhs) const
 {
     return mSegments == rhs.mSegments;
@@ -65,7 +70,7 @@ bool Key::operator ==(const Key &rhs) const
 
 bool Key::operator <(const Key &rhs) const
 {
-    return toString() < rhs.toString();
+    return sortable() < rhs.sortable();
 }
 
 KeySeg::List Key::split(const AText &atx, const QChar hinge)
@@ -103,6 +108,13 @@ Key Key::append(const Key &aKey)
     return *this;
 }
 
+Key Key::prepend(const Key &groupKey)
+{
+    foreach (const KeySeg &cSeg, groupKey.mSegments)
+        mSegments.prepend(cSeg);
+    return *this;
+}
+
 Key Key::removeTail(const Key &aKey)
 {
     const Count cSegCount = aKey.count();
@@ -115,8 +127,10 @@ Key Key::removeTail(const Key &aKey)
 // static
 QString Key::joinString(const KeySeg::List &aSegs, const QChar aHingeChar)
 {
+    QString result;
+    if (aSegs.isEmpty())                    return result; /*===*/
     KeySeg::List tSegs = aSegs;
-    QString result = tSegs.takeFirst();
+    result = tSegs.takeFirst();
     while ( ! tSegs.isEmpty())
     {
         result.append(aHingeChar);

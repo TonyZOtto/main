@@ -2,6 +2,8 @@
 
 #include <StackedMainPage.h>
 
+#include <FillerWidget.h>
+
 class AnalysisPage : public StackedMainPage
 {
     Q_OBJECT
@@ -22,5 +24,4 @@ public: // non-const
 public: // pointers
 
 private:
-
 };

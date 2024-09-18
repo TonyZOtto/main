@@ -1,4 +1,5 @@
 #pragma once
+#include "ozWidgets.h"
 
 #include <QLabel>
 
@@ -7,7 +8,7 @@
 #include <QStackedLayout>
 #include <QString>
 
-class FillerWidget : public QLabel
+class OZWIDGETS_EXPORT FillerWidget : public QLabel
 {
     Q_OBJECT
 public: // ctors

@@ -1,6 +1,7 @@
 #include "BaseMainWindow.h"
 
 #include <QScreen>
+#include <QResizeEvent>
 
 #include <Settings.h>
 
@@ -8,10 +9,14 @@
 
 #include <ApplicationHelper.h>
 
+QQSize BaseMainWindow::smScreenSize;
+
 BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
     : QMainWindow{nullptr}
 {
     qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
+    connect(this, &BaseMainWindow::resized,
+            this, &BaseMainWindow::doResize);
     setObjectName("BaseMainWindow:" + wapp->applicationName());
     APPH->set(this);
 }
@@ -19,14 +24,11 @@ BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
 void BaseMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    mMainUnderSizeValue = QQSize(30, 100);
-
 }
 
 void BaseMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
-    mMainUnderSizeValue = APPH->settings()->get("MainWindow/UnderSize");
     // TODO Anything
 }
 
@@ -36,24 +38,27 @@ void BaseMainWindow::setup()
     // TODO Anything
 }
 
-QQSize BaseMainWindow::centralSize() const
+void BaseMainWindow::doResize()
 {
-    QQSize result;
-    QWidget * pCentral = centralWidget();
-    result = pCentral->size();
-    qInfo() << Q_FUNC_INFO << pCentral->objectName() << result;
+    qInfo() << Q_FUNC_INFO  << objectName() << mainSize();
+
+}
+
+QQSize BaseMainWindow::screenSize() const
+{
+    QQSize result = smScreenSize;
+    if (result.isNull())
+    {
+        QScreen * pScreen = QGuiApplication::screens()[0];
+        result = pScreen->availableSize();
+    }
+    qDebug() << Q_FUNC_INFO << result;
     return result;
 }
 
-QQSize BaseMainWindow::maximizedSize(const bool live)
+void BaseMainWindow::resizeEvent(QResizeEvent *event)
 {
-    if (live || mMainSize.isNull())
-    {
-        QScreen * pScreen = QGuiApplication::primaryScreen();
-        QQSize tScreenSize = pScreen->size();
-        tScreenSize -= mMainUnderSizeValue.toSize();
-        mMainSize = tScreenSize - mMainUnderSizeValue.toSize();
-    }
-    qInfo() << Q_FUNC_INFO << live << mMainSize;
-    return mMainSize;
+    Q_ASSERT(event);
+    mMainSize = event->size();
+    emit resized(mMainSize);
 }

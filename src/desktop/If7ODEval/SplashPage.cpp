@@ -30,22 +30,22 @@ void SplashPage::configure()
 
 void SplashPage::setup()
 {
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << pageSize();
     StackedMainPage::setup();
 
-    QQSize tRightSize = pageSize() / QQSize(1, 2);
-    QQSize tLeftSize = tRightSize / QQSize(2, 1);
-    qDebug() << tRightSize << tLeftSize;
+    QQSize tRightSize = pageSize() / QQSize(2, 1);
+    QQSize tLeftSize = tRightSize / QQSize(1, 2);
+    qDebug() << tLeftSize << tRightSize;
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");
     QPixmap tINDIonlyPixmap(":/png/INDI200.png");
     QQSize tEclipseSize(tEclipsePixmap.size(), tLeftSize);
     QQSize tINDIonlySize(tINDIonlyPixmap.size(), tLeftSize);
     qDebug() << tEclipsePixmap.size() << tEclipseSize
              << tINDIonlyPixmap.size() << tINDIonlySize;
-//    QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
-    //  QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
-    QQLabel * pEclipseLabel = new QQLabel("EclipsePixmap");
-    QQLabel * pINDIonlyLabel = new QQLabel("INDIonlyPixmap");
+    QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
+    QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
+//    QQLabel * pEclipseLabel = new QQLabel("EclipsePixmap");
+  //  QQLabel * pINDIonlyLabel = new QQLabel("INDIonlyPixmap");
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
     pTextLabel->setFont(QFont("Helvetica", 48));
 

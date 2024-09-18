@@ -2,6 +2,11 @@
 
 KeySeg::KeySeg() {}
 
+QString KeySeg::sortable() const
+{
+    return toString().toCaseFolded();
+}
+
 void KeySeg::set(const AText &atx)
 {
     AText tInText = atx;
@@ -14,6 +19,16 @@ void KeySeg::set(const AText &atx)
 QString KeySeg::toString() const
 {
     return QString(QByteArray::constData());
+}
+
+bool KeySeg::operator == (const KeySeg &rhs)
+{
+    return sortable() == rhs.sortable();
+}
+
+bool KeySeg::operator < (const KeySeg &rhs)
+{
+    return sortable() < rhs.sortable();
 }
 
 void KeySeg::set(const char *pch)

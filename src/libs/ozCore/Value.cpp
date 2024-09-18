@@ -8,6 +8,7 @@
 Value::Value() {;}
 Value::Value(const QVariant other) : QVariant(other) {;}
 Value::Value(const QQSize sz) : QVariant(sz) {;}
+Value::Value(const SCRect scr) : QVariant(scr) {;}
 Value::Value(const int si) : QVariant(si) {;}
 Value::Value(const QColor c) : QVariant(c) {;}
 Value::Value(const Qt::Orientations qtos) : QVariant(qtos) {;}
@@ -42,6 +43,27 @@ QColor Value::color() const
     QColor result;
     if (canConvert<QColor>()) result = value<QColor>();
     else result = QColor(toString());
+    return result;
+}
+
+SCRect Value::screct() const
+{
+    SCRect result;
+    if (canConvert<SCRect>())   result = value<SCRect>();
+    if (canConvert<QRect>())    result = value<QRect>();
+    if (result.isNull())
+    {
+        const QByteArray cBA = toByteArray();
+        QTextStream tQTS(cBA);
+        int tWidth = -1, tHeight = -1;
+        int tCenterX = 0, tCenterY = 0;
+        if ( ! tQTS.atEnd()) tQTS >> tWidth;
+        if ( ! tQTS.atEnd()) tQTS >> tHeight;
+        if ( ! tQTS.atEnd()) tQTS >> tCenterX;
+        if ( ! tQTS.atEnd()) tQTS >> tCenterY;
+        result = SCRect(QSize(tWidth, tHeight),
+                        QPoint(tCenterX, tCenterY));
+    }
     return result;
 }
 

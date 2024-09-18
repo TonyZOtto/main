@@ -24,9 +24,12 @@ public: // ctors
 
 public: // const
     Id toId() const;
+    QString sortable() const;
     QString toString() const;
     operator QString () const { return toString(); }
-    QString operator() () const { return toString(); }
+    QString operator () () const { return toString(); }
+    bool operator == (const KeySeg &rhs);
+    bool operator <  (const KeySeg &rhs);
 
 public: // non-const
     void set(const char * pch);
