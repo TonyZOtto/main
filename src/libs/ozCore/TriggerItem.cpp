@@ -32,7 +32,7 @@ public: // data
     QAction * dpAction;
     QLabel * dpLabel;
     QPushButton * dpPushButton;
-    BaseToolButton * dpToolButton;
+    QToolButton * dpToolButton;
     QMenu * dpMenuContains;
     QKeySequence dshortcut;
     Qt::ToolButtonStyle dToolButtonStyle;

@@ -6,10 +6,8 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../desktop.pri)
 include(../../useCore.pri)
-include(../../useExe.pri)
 include(../../useColor.pri)
 include(../../useImage.pri)
-include(../../usePhoto.pri)
 include(../../useWidgets.pri)
 #include(../../useOCV4.pri)
 

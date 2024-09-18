@@ -3,6 +3,8 @@
 #include <QImageReader>
 #include <QImageWriter>
 
+#include "SupportedFormats.h"
+
 ozImage::ozImage() {;}
 
 SupportedFormats ozImage::readFormats()

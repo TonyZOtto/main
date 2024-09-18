@@ -1,3 +1,3 @@
-#include "ozExe.h"
+#include "ozCore.h"
 
-ozExe::ozExe() {}
+ozCore::ozCore() {}

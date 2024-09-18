@@ -14,8 +14,15 @@ SOURCES += \
     Angle.cpp \
     ApplicationHelper.cpp \
     BaseErrorItem.cpp \
+    BaseMainWindow.cpp \
     Boolean.cpp \
     ByteHistogram.cpp \
+    CommandLine.cpp \
+    ConsoleApplication.cpp \
+    ConsoleStdIO.cpp \
+    GridMainWindow.cpp \
+    GuiApplication.cpp \
+    IconFactory.cpp \
     Ident.cpp \
     IdentMap.cpp \
     Key.cpp \
@@ -23,6 +30,8 @@ SOURCES += \
     KeySeg.cpp \
     KeySegList.cpp \
     MachineHelper.cpp \
+    MainWindowConfig.cpp \
+    MdiMainWindow.cpp \
     MillisecondTime.cpp \
     ObjectHelper.cpp \
     QQBitArray.cpp \
@@ -35,10 +44,16 @@ SOURCES += \
     Rational.cpp \
     RationalList.cpp \
     SCRect.cpp \
+    Settings.cpp \
+    SettingsItem.cpp \
     SettingsName.cpp \
+    StackedMainPage.cpp \
+    StackedMainWindow.cpp \
     State.cpp \
     StateMachine.cpp \
     Success.cpp \
+    TriggerItem.cpp \
+    TriggerManager.cpp \
     Uid.cpp \
     Url.cpp \
     Value.cpp \
@@ -46,6 +61,7 @@ SOURCES += \
     VariableSet.cpp \
     VersionInfo.cpp \
 #    VersionInfoGadget.cpp \
+    WidgetApplication.cpp \
     ozCore.cpp \
 
 
@@ -54,10 +70,17 @@ HEADERS += \
     Angle.h \
     ApplicationHelper.h \
     BaseErrorItem.h \
+    BaseMainWindow.h \
     Boolean.h \
     ByteHistogram.h \
+    CommandLine.h \
+    ConsoleApplication.h \
+    ConsoleStdIO.h \
     DataProperty.h \
     DualMap.h \
+    GridMainWindow.h \
+    GuiApplication.h \
+    IconFactory.h \
     Ident.h \
     IdentMap.h \
     Key.h \
@@ -66,7 +89,9 @@ HEADERS += \
     KeySeg.h \
     KeySegList.h \
     MachineHelper.h \
+    MainWindowConfig.h \
     MatrixT.h \
+    MdiMainWindow.h \
     MetaType.h \
     MillisecondTime.h \
     ObjectHelper.h \
@@ -80,10 +105,16 @@ HEADERS += \
     Rational.h \
     RationalList.h \
     SCRect.h \
+    Settings.h \
+    SettingsItem.h \
     SettingsName.h \
+    StackedMainPage.h \
+    StackedMainWindow.h \
     State.h \
     StateMachine.h \
     Success.h \
+    TriggerItem.h \
+    TriggerManager.h \
     Types.h \
     Uid.h \
     Url.h \
@@ -92,6 +123,7 @@ HEADERS += \
     VariableProperty.h \
     VariableSet.h \
     VersionInfo.h \
+    WidgetApplication.h \
     ozCore.h        \
     ozCore_global.h \
 

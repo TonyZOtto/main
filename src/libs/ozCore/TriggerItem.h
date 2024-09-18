@@ -1,4 +1,5 @@
 #pragma once
+#include "ozCore.h"
 
 #include <QSharedDataPointer>
 
@@ -10,16 +11,15 @@
 #include <QMenu>
 #include <QPushButton>
 #include <QString>
+#include <QToolButton>
 #include <QToolTip>
 
 #include <Key.h>
 //#include <AnyColor.h>
 
-#include "BaseToolButton.h"
-
 class TriggerItemData;
 
-class TriggerItem
+class OZCORE_EXPORT TriggerItem
 {
 public: // our ctors
     TriggerItem(const Key &aKey, const QString &text=QString());

@@ -13,11 +13,7 @@ include(../../useColor.pri)
 include(../../useImage.pri)
 
 SOURCES += \
-    BaseGridLayout.cpp \
     BaseStackedLayout.cpp \
-    BaseTabBar.cpp \
-    BaseToolBar.cpp \
-    BaseToolButton.cpp \
     DropWidgetView.cpp \
     FillerWidget.cpp \
     GridStackPage.cpp \
@@ -29,16 +25,10 @@ SOURCES += \
     ImageGalleryItem.cpp \
     ImageGalleryWidget.cpp \
     QQLabel.cpp \
-    TriggerItem.cpp \
-    TriggerManager.cpp \
     ozWidgets.cpp\
 
 HEADERS += \
-    BaseGridLayout.h \
     BaseStackedLayout.h \
-    BaseTabBar.h \
-    BaseToolBar.h \
-    BaseToolButton.h \
     DropWidgetView.h \
     FillerWidget.h \
     GridStackPage.h \
@@ -50,8 +40,6 @@ HEADERS += \
     ImageGalleryItem.h \
     ImageGalleryWidget.h \
     QQLabel.h \
-    TriggerItem.h \
-    TriggerManager.h \
     ozWidgets.h \
     ozWidgets_global.h \
 

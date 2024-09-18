@@ -23,7 +23,7 @@ void ImageFileDropWidget::initialize()
 
 void ImageFileDropWidget::configure()
 {
-    const QString cReadFormats = APPH->
+    //const QString cReadFormats = APPH->
 }
 
 void ImageFileDropWidget::setup()
@@ -38,25 +38,24 @@ void ImageFileDropWidget::setup()
 SupportedFormats *ImageFileDropWidget::readFormats()
 {
     if ( ! mpReadFormats)
-    {
-        mpReadFormats = new SupportedFormats();
-    }
+        mpReadFormats = new SupportedFormats(SupportedFormats::Read);
+    return mpReadFormats;
 }
 
 void ImageFileDropWidget::dragEnterEvent(QDragEnterEvent *e)
 {
-    QMimeData * pMData = e->mimeData();
-    if (pMData->hasUrls())
+    const QMimeData * cpMData = e->mimeData();
+    if (cpMData->hasUrls())
         e->acceptProposedAction();
 }
 
 void ImageFileDropWidget::dropEvent(QDropEvent *e)
 {
-    QMimeData * pMData = e->mimeData();
-    QList<QUrl> mUrlList = pMData->urls();
-    foreach (const cUrl, mUrlList)
+    const QMimeData * cpMData = e->mimeData();
+    QList<QUrl> mUrlList = cpMData->urls();
+    foreach (const QUrl cUrl, mUrlList)
     {
-
+        ;
     }
 }
 #if 0

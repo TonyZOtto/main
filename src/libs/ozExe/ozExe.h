@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ozExe_global.h"
+#include "ozCore_global.h"
 
-class OZEXE_EXPORT ozExe
+class OZCORE_EXPORT ozCore
 {
 public:
-    ozExe();
+    ozCore();
 };

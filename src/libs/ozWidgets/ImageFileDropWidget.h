@@ -3,8 +3,7 @@
 
 #include <QWidget>
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
+#include <QFileInfo>
 class QDropEvent;
 class QDragEnterEvent;
 

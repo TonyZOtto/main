@@ -1,11 +1,12 @@
 #pragma once
+#include "ozImage.h"
 
 #include <QObject>
 #include <QFlags>
 
 #include <KeySegList.h>
 
-class SupportedFormats : public QObject
+class OZIMAGE_EXPORT SupportedFormats : public QObject
 {
     Q_GADGET
 public: // types

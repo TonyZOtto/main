@@ -1,5 +1,5 @@
 #pragma once
-#include "ozWidgets.h"
+#include "ozCore.h"
 
 #include <QObject>
 
@@ -7,7 +7,7 @@
 
 #include "TriggerItem.h"
 
-class OZWIDGETS_EXPORT TriggerManager : public QObject
+class OZCORE_EXPORT TriggerManager : public QObject
 {
     Q_OBJECT
 public: // ctors

@@ -1,5 +1,5 @@
 #pragma once
-#include "ozExe.h"
+#include "ozCore.h"
 
 #include <QObject>
 class QCoreApplication;
@@ -27,7 +27,7 @@ class WidgetApplication;
 
 #define APPH ApplicationHelper::instance()
 
-class OZEXE_EXPORT ApplicationHelper : public QObject
+class OZCORE_EXPORT ApplicationHelper : public QObject
 {
     Q_OBJECT
 public: // types

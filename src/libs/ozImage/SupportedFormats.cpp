@@ -36,3 +36,18 @@ void SupportedFormats::update(const QByteArrayList &bas)
     Q_ASSERT(!"MUSTDO"); // MUSTDO SupportedFormats::intersect()
     Q_UNUSED(bas);
 }
+
+FormatFlags SupportedFormats::parseFlags(const QByteArrayList &bas)
+{
+
+}
+
+AText SupportedFormats::formatName(const FormatFlag ff)
+{
+
+}
+
+SupportedFormats::FormatFlag SupportedFormats::formatFlag(const AText &txt)
+{
+
+}

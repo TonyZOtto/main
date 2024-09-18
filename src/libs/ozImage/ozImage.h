@@ -3,7 +3,7 @@
 
 #include "ozImage_global.h"
 
-#include "SupportedFormats.h"
+class SupportedFormats;
 
 class OZIMAGE_EXPORT ozImage
 {
