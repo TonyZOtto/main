@@ -27,23 +27,34 @@ void SupportedFormats::set()
 
 void SupportedFormats::set(const QByteArrayList &bas)
 {
-    Q_ASSERT(!"MUSTDO"); // MUSTDO SupportedFormats::set()
-    Q_UNUSED(bas);
+    const FormatFlags cFlags =  parseFlags($nullFlag, bas);
+    qInfo() << Q_FUNC_INFO << bas << Qt::hex << cFlags << "was" << mFlags;
+    mFlags = cFlags;
 }
 
 void SupportedFormats::update(const QByteArrayList &bas)
 {
-    Q_ASSERT(!"MUSTDO"); // MUSTDO SupportedFormats::intersect()
-    Q_UNUSED(bas);
+    const FormatFlags cFlags =  parseFlags(mFlags, bas);
+    qInfo() << Q_FUNC_INFO << bas << Qt::hex << cFlags << "was" << mFlags;
+    mFlags = cFlags;
 }
 
 // ---------------------- static ---------------------
 
-SupportedFormats::FormatFlags SupportedFormats::parseFlags(const QByteArrayList &bas)
+SupportedFormats::FormatFlags SupportedFormats::parseFlags(
+    const FormatFlags ffs, const QByteArrayList &bas)
 {
-    FormatFlags result;
-    foreach (const AText key, bas)
-        result |= formatFlag(key);
+    FormatFlags result = ffs;
+    foreach (AText key, bas)
+    {
+        bool tNeg = key.startsWith('-');
+        if (tNeg) key.removeFirst();
+        const FormatFlag cFlag = formatFlag(key);
+        if (tNeg)
+            result &= ~ cFlag;
+        else
+            result |= cFlag;
+    }
     return result;
 }
 

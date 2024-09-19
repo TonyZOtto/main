@@ -42,16 +42,7 @@ void EvalMainWindow::initialize()
 void EvalMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
-#if 0
-    QScreen * pScreen = QGuiApplication::primaryScreen();
-    QQSize tScreenSize = pScreen->size();
-    Value tPageUnderSizeValue(APPH->settings()->
-                              get("MainWindow/PageUnderSize", QSize(30, 100)));
-    QQSize tPageUnderSize = tPageUnderSizeValue.size();
-    tScreenSize -= tPageUnderSize;
-    tScreenSize -= QQSize(30, 0) // take out page tabbar
-    pageSize(tScreenSize);
-#endif
+    StackedMainWindow::configure();
     emit configured();
 }
 
@@ -59,7 +50,7 @@ void EvalMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainWindow::setup();
-// TODO    mpLogPage->addLine("Log Started");
+    //mpLogPage->addLine("Log Started");
     setCurrent(0);
     update();
     emit setuped();

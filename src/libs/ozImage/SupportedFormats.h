@@ -84,7 +84,7 @@ public: // non-const
     ObjectHelper * objectHelper();
 
 private: // static
-    FormatFlags parseFlags(const QByteArrayList &bas);
+    FormatFlags parseFlags(const FormatFlags ffs, const QByteArrayList &bas);
     AText formatKey(const FormatFlag ff);
     FormatSuffix formatSuffix(const AText &key);
     FormatFlag formatFlag(const AText &key);

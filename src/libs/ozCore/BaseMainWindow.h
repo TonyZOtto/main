@@ -5,6 +5,7 @@
 
 #include <KeyMap.h>
 #include <QQSize.h>
+#include <Types.h>
 
 
 class WidgetApplication;
@@ -30,10 +31,9 @@ signals:
 public: // const
     KeyMap configMap() const;
     QQSize mainSize() const;
-    QQSize screenSize() const;
+    QQSize screenSize(const Index kScreen=0) const;
 
 public: // non-const
-//    QQSize maximizedSize(const bool live=false);
 
 public: // pointers
     WidgetApplication * app() const;
@@ -48,7 +48,6 @@ private:
     WidgetApplication * mpApp=nullptr;
     KeyMap mConfigMap;
     QQSize mMainSize;
-    static QQSize smScreenSize;
 };
 
 inline KeyMap BaseMainWindow::configMap() const { return mConfigMap; }

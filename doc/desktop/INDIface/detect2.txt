@@ -1,0 +1,25 @@
+Detect/CharcolDir} = empty
+Detect/DetectorsXml
+Detect/Enable} = 1
+Detect/FaceDetector
+Detect/Factor} for 29d7158 = 0
+Detect/Flags} for 29d7158 = 1
+Detect/ForceFind} for 29d7158 = false
+Detect/GroupMethod} for 29d7158 = 3
+Detect/InputOverCrop} = 0
+Detect/MarkAll} for 29d7158 = false
+Detect/MarkColors} for 29d7158 = empty
+Detect/MarkExtraColor} for 29d7158 = empty
+Detect/MarkScaleColor} for 29d7158 = empty
+Detect/MaxAcross} for 29d7158 = 0
+Detect/MaxDensity} for 29d7158 = 0
+Detect/MaxDetectors} for 29d7158 = 0
+Detect/MaxDimension} for 29d7158 = 4096
+Detect/MaxPixels} for 29d7158 = 0
+Detect/MaxResults} for 29d7158 = 10
+Detect/MinAcross} for 29d7158 = 0
+Detect/MinPixels} for 29d7158 = 0
+Detect/MinQuality} for 29d7158 = 800
+Detect/OutputDir} = empty
+Detect/Scale} for 29d7158 = 0
+Detect/SkinDir} = empty

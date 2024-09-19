@@ -31,6 +31,7 @@ StackedMainWindow::StackedMainWindow(WidgetApplication *wapp)
 void StackedMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
+    BaseMainWindow::initialize();
     foreach (StackedMainPage * pPage, mTitlePageMap)
         pPage->initialize();
 }
@@ -38,13 +39,15 @@ void StackedMainWindow::initialize()
 void StackedMainWindow::configure()
 {
     qInfo() << Q_FUNC_INFO;
+    BaseMainWindow::configure();
     foreach (StackedMainPage * pPage, mTitlePageMap)
         pPage->configure();
 }
 
-void StackedMainWindow::setup()    
+void StackedMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
+    BaseMainWindow::setup();
     foreach (StackedMainPage * pPage, mTitlePageMap)
         pPage->setup();
 

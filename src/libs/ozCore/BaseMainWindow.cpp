@@ -9,8 +9,6 @@
 
 #include <ApplicationHelper.h>
 
-QQSize BaseMainWindow::smScreenSize;
-
 BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
     : QMainWindow{nullptr}
 {
@@ -28,22 +26,19 @@ void BaseMainWindow::initialize()
 
 void BaseMainWindow::configure()
 {
-    qInfo() << Q_FUNC_INFO;
     mConfigMap = APPH->settings()->map("MainWindow");
-    // TODO Anything
+    qInfo() << Q_FUNC_INFO << mConfigMap;
 }
 
 void BaseMainWindow::setup()
 {
-    qInfo() << Q_FUNC_INFO;
+    qInfo() << Q_FUNC_INFO << mConfigMap;
     if (mConfigMap.value("Maximized", false).toBool())
         showMaximized();
     else if (mConfigMap.value("Minimized", false).toBool())
         showMinimized();
     else
         showNormal();
-
-    // TODO Anything
 }
 
 void BaseMainWindow::doResize(const QQSize newSize)
@@ -52,15 +47,16 @@ void BaseMainWindow::doResize(const QQSize newSize)
     Q_ASSERT(mainSize() == newSize);
 }
 
-QQSize BaseMainWindow::screenSize() const
+QQSize BaseMainWindow::screenSize(const Index kScreen) const
 {
-    QQSize result = smScreenSize;
-    if (result.isNull())
+    QQSize result;
+    QList<QScreen *> tScreenList = QGuiApplication::screens();
+    if (kScreen >= 0 && kScreen < tScreenList.count())
     {
-        QScreen * pScreen = QGuiApplication::screens()[0];
+        QScreen * pScreen = tScreenList[kScreen];
         result = pScreen->availableSize();
     }
-    qDebug() << Q_FUNC_INFO << result;
+    qInfo() << Q_FUNC_INFO << kScreen << result << "of" << tScreenList.count();
     return result;
 }
 
