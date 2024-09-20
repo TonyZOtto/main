@@ -5,6 +5,7 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QGuiApplication>
+#include <QScreen>
 
 #include "BaseMainWindow.h"
 #include "CommandLine.h"
@@ -57,6 +58,19 @@ void ApplicationHelper::handleStartupError(const QString errorString)
     const QString cFrom = sender() ? sender()->objectName() : "Unknown Sender";
     qFatal() << "Initialization Error from"
              << cFrom << ":" << errorString;
+}
+
+QQSize ApplicationHelper::screenSize(const Index kScreen) const
+{
+    QQSize result;
+    QList<QScreen *> tScreenList = QGuiApplication::screens();
+    if (kScreen >= 0 && kScreen < tScreenList.count())
+    {
+        QScreen * pScreen = tScreenList[kScreen];
+        result = pScreen->availableSize();
+    }
+    qInfo() << Q_FUNC_INFO << kScreen << result << "of" << tScreenList.count();
+    return result;
 }
 
 void ApplicationHelper::set(WidgetApplication *wapp)

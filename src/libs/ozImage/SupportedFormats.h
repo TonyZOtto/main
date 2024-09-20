@@ -78,7 +78,8 @@ public: // const
 public: // non-const
     void set();
     void set(const QByteArrayList &bas);
-    void update(const QByteArrayList &bas);
+    void update(const QString &s);
+    void update(const QByteArrayList &bas, const bool clear=false);
 
 public: // non-const
     ObjectHelper * objectHelper();
@@ -88,6 +89,7 @@ private: // static
     AText formatKey(const FormatFlag ff);
     FormatSuffix formatSuffix(const AText &key);
     FormatFlag formatFlag(const AText &key);
+    QByteArrayList baList(const QString &s);
 
 private:
     const Class cmClass;

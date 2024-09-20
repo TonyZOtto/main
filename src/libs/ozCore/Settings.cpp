@@ -2,6 +2,7 @@
 
 #include <QTimer>
 
+#include <ApplicationHelper.h>
 #include <MillisecondTime.h>
 #include <Value.h>
 
@@ -36,7 +37,7 @@ void Settings::startWatch(const EpochMilliseconds ems)
 
 void Settings::watcher()
 {
-    // MUSTDO,m kkkkk
+    // MUSTDO
 }
 
 bool Settings::contains(const Key &key) const
@@ -118,6 +119,7 @@ bool Settings::open(const SettingsName &sname)
         emit opened(mSettingsName);
         qInfo() << "Settings::open(" << mSettingsName.toString() << ")";
         mpQSettings->setValue("Control/Opened", MillisecondTime::baseString());
+        mpQSettings->setValue("Control/ScreenSize", APPH->screenSize());
         foreach (const Key cKey, mCurrentWatches.keys())
             mCurrentWatches.replace(cKey, mpQSettings->value(cKey()));
     }

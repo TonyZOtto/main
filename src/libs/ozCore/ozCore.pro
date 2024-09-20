@@ -20,6 +20,7 @@ SOURCES += \
     CommandLine.cpp \
     ConsoleApplication.cpp \
     ConsoleStdIO.cpp \
+    Debug.cpp \
     GridMainWindow.cpp \
     GuiApplication.cpp \
     IconFactory.cpp \
@@ -77,6 +78,7 @@ HEADERS += \
     ConsoleApplication.h \
     ConsoleStdIO.h \
     DataProperty.h \
+    Debug.h \
     DualMap.h \
     GridMainWindow.h \
     GuiApplication.h \

@@ -5,6 +5,7 @@
 class QCoreApplication;
 class QFileInfo;
 
+#include <QQSize.h>
 #include <VersionInfo.h>
 class BaseMainWindow;
 class CommandLine;
@@ -53,6 +54,7 @@ signals:
 public: // const
     Type type() const;
     VersionInfo versionInfo() const;
+    QQSize screenSize(const Index kScreen=0) const;
 
 public: // non-const
     void set(WidgetApplication *wapp);
@@ -98,5 +100,6 @@ inline BaseMainWindow *ApplicationHelper::baseMainWindow() { Q_ASSERT(mpBaseMain
 inline CommandLine *ApplicationHelper::commandLine() { Q_ASSERT(mpCommandLine);  return mpCommandLine; }
 inline Settings *ApplicationHelper::settings() { Q_ASSERT(mpSettings);  return mpSettings; }
 inline TriggerManager *ApplicationHelper::triggerManager() { Q_CHECK_PTR(mpTriggerManager);  return mpTriggerManager; }
+
 
 

@@ -5,6 +5,7 @@
 
 #include <Settings.h>
 
+#include "Debug.h"
 #include "WidgetApplication.h"
 
 #include <ApplicationHelper.h>
@@ -14,7 +15,7 @@ BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
 {
     qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
     connect(this, &BaseMainWindow::resized,
-            this, &BaseMainWindow::doResize);
+            this, &BaseMainWindow::handleResize);
     setObjectName("BaseMainWindow:" + wapp->applicationName());
     APPH->set(this);
 }
@@ -41,23 +42,10 @@ void BaseMainWindow::setup()
         showNormal();
 }
 
-void BaseMainWindow::doResize(const QQSize newSize)
+void BaseMainWindow::handleResize(const QQSize newSize)
 {
-    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
-    Q_ASSERT(mainSize() == newSize);
-}
-
-QQSize BaseMainWindow::screenSize(const Index kScreen) const
-{
-    QQSize result;
-    QList<QScreen *> tScreenList = QGuiApplication::screens();
-    if (kScreen >= 0 && kScreen < tScreenList.count())
-    {
-        QScreen * pScreen = tScreenList[kScreen];
-        result = pScreen->availableSize();
-    }
-    qInfo() << Q_FUNC_INFO << kScreen << result << "of" << tScreenList.count();
-    return result;
+    qInfo() << Q_FUNC_INFO  << objectName() << mainSize() << newSize;
+    WEXPECT(mainSize() == newSize);
 }
 
 void BaseMainWindow::resizeEvent(QResizeEvent *event)

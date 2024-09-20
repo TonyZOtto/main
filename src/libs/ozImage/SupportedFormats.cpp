@@ -32,10 +32,20 @@ void SupportedFormats::set(const QByteArrayList &bas)
     mFlags = cFlags;
 }
 
-void SupportedFormats::update(const QByteArrayList &bas)
+void SupportedFormats::update(const QString &s)
 {
-    const FormatFlags cFlags =  parseFlags(mFlags, bas);
-    qInfo() << Q_FUNC_INFO << bas << Qt::hex << cFlags << "was" << mFlags;
+    QString tFormats = s;
+    const bool tClear = tFormats.startsWith('=');
+    if (tClear) tFormats.removeFirst();
+    QByteArrayList tFormatsBAs = SupportedFormats::baList(tFormats);
+    update(tFormatsBAs, tClear);
+}
+
+void SupportedFormats::update(const QByteArrayList &bas, const bool clear)
+{
+    const FormatFlags cFlags =  parseFlags(clear ? FormatFlags(0) : mFlags, bas);
+    qInfo() << Q_FUNC_INFO << bas << clear
+            << Qt::hex << cFlags << "was" << mFlags;
     mFlags = cFlags;
 }
 
@@ -73,5 +83,14 @@ SupportedFormats::FormatFlag SupportedFormats::formatFlag(const AText &key)
     FormatFlag result = $nullFlag;
     const int cSuffix = formatSuffix(key);
     if (cSuffix >= 0) result = FormatFlag(1 << cSuffix);
+    return result;
+}
+
+QByteArrayList SupportedFormats::baList(const QString &s)
+{
+    QByteArrayList result;
+    QStringList tStrings = s.simplified().split(' ');
+    while ( ! tStrings.isEmpty())
+        result.append(tStrings.takeFirst().toUtf8());
     return result;
 }

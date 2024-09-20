@@ -31,7 +31,6 @@ signals:
 public: // const
     KeyMap configMap() const;
     QQSize mainSize() const;
-    QQSize screenSize(const Index kScreen=0) const;
 
 public: // non-const
 
@@ -39,7 +38,7 @@ public: // pointers
     WidgetApplication * app() const;
 
 protected slots:
-    virtual void doResize(const QQSize newSize);
+    virtual void handleResize(const QQSize newSize);
 
 protected:
     virtual void resizeEvent(QResizeEvent * event) override;

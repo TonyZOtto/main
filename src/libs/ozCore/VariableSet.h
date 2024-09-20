@@ -30,6 +30,9 @@ public: // non-const
     void set(const Variable::List &vl);
     void set(const KeyMap &map, const Key &groupKey=Key());
 
+public: // debug
+    QStringList toDebugStrings() const;
+
 private:
     const Ident cmIdent;
     Variable::Hash mHash;

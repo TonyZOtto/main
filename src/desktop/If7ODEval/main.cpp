@@ -19,15 +19,14 @@ int main(int argc, char *argv[])
     qInfo() << Q_FUNC_INFO << *argv[0] << vi.toString();
     qDebug() << Q_FUNC_INFO << ">>>EvalApplication ctor";
     EvalApplication a(argc, argv);
-    APPH->set(vi);
     vi.updateApp(&a);
-    APPH->set(&a);
     qDebug() << Q_FUNC_INFO << "<<<EvalApplication ctor";
     qDebug() << Q_FUNC_INFO << ">>>EvalMainWindow ctor";
     EvalMainWindow w(&a);
+    APPH->set(vi);
+    APPH->set(&a);
     APPH->set(&w);
-    w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot
-                                 | VersionInfo::WithDotted));
+    w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot));
     qDebug() << Q_FUNC_INFO << "<<<EvalMainWindow ctor";
     qDebug() << Q_FUNC_INFO << "500ms-->EvalApplication::initialize()";
     QTimer::singleShot(500, &a, &EvalApplication::initialize);

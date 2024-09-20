@@ -16,6 +16,7 @@ AcquirePage::AcquirePage(StackedMainWindow *parent)
     , mpListWidget(new ImageFileListWidget(this))
     , mpTreeWidget(new ImageFileTreeWidget(this))
     , mpGalleryWidget(new ImageGalleryWidget(this))
+    , mFormats(SupportedFormats(SupportedFormats::Read))
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("AcquirePage");
@@ -34,6 +35,10 @@ void AcquirePage::configure()
 {
     qInfo() << Q_FUNC_INFO;
     mConfiguration = APPH->settings()->map("Acquire");
+
+    QString tFormats = mConfiguration.value("Formats").toString();
+    mFormats.update(tFormats);
+
     ImageGalleryConfig tGalleryConfig;
     tGalleryConfig.set(mConfiguration.group("Gallery"));
     mpGalleryWidget->config(tGalleryConfig);

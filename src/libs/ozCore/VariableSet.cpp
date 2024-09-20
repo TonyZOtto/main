@@ -1,5 +1,7 @@
 #include "VariableSet.h"
 
+#include "Debug.h"
+
 VariableSet::VariableSet(const Ident id) : cmIdent(id) {;}
 VariableSet::VariableSet(const VariableSet &other)
     : cmIdent(other.cmIdent), mHash(other.mHash) {;}
@@ -67,5 +69,18 @@ void VariableSet::set(const KeyMap &map, const Key &groupKey)
                             map.value(cKey));
         set(cVar);
     }
+}
+
+QStringList VariableSet::toDebugStrings() const
+{
+    QStringList result = cmIdent.toDebugStrings();
+    foreach (const Key cKey, mHash.keys())
+    {
+        const Variable cVar = mHash[cKey];
+        const Value cValue = cVar.value();
+        result << QString("%1: %2 [%3]").arg(cKey, -16)
+                      .arg(cValue.toString()).arg(cValue.typeName());
+    }
+    return result;
 }
 

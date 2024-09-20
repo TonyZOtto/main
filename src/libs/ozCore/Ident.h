@@ -19,6 +19,10 @@ public: // const
     bool isNull() const;
 
 
+public: // debug
+    QStringList toDebugStrings() const;
+
+
     // -------------------- Properties ---------------------
 private:
     Uid p_uid;

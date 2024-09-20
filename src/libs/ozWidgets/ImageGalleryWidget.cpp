@@ -68,6 +68,7 @@ void ImageGalleryWidget::config(const ImageGalleryConfig cfg)
     mConfig.clear();
     foreach (const Variable var, cfg.list())
         mConfig.set(var);
+    qInfo() << Q_FUNC_INFO << mConfig.toDebugStrings();
 }
 
 void ImageGalleryWidget::calculate()

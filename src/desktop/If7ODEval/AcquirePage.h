@@ -1,6 +1,7 @@
 #pragma once
 
 #include <StackedMainPage.h>
+#include <SupportedFormats.h>
 
 #include <KeyMap.h>
 
@@ -38,4 +39,5 @@ private:
     ImageFileTreeWidget * mpTreeWidget=nullptr;
     ImageGalleryWidget * mpGalleryWidget=nullptr;
     KeyMap mConfiguration;
+    SupportedFormats mFormats;
 };
