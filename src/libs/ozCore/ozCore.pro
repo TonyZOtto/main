@@ -53,6 +53,7 @@ SOURCES += \
     State.cpp \
     StateMachine.cpp \
     Success.cpp \
+    SupportedFormats.cpp \
     TriggerItem.cpp \
     TriggerManager.cpp \
     Uid.cpp \
@@ -115,6 +116,7 @@ HEADERS += \
     State.h \
     StateMachine.h \
     Success.h \
+    SupportedFormats.h \
     TriggerItem.h \
     TriggerManager.h \
     Types.h \

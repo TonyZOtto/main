@@ -136,7 +136,7 @@ QString VersionInfo::toString(const StringOptions opts) const
                      .arg(releaseString(opts));
         if (branch() && ! opts.testFlag(WithoutBranch))
         {
-            result += QString("+%1").arg(branch(), 4, QChar('0'));
+            result += QString("+%1").arg(branch(), 5, QChar('0'));
             if (opts.testFlag(WithBranchName))
                 result += "-" + branchname();
         }

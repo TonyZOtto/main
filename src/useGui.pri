@@ -3,7 +3,7 @@ include(LIBDIR.pri)
 include(DESTDIR.pri)
 
 INCLUDEPATH *= $$LIBDIR/ozGui ../../libs/ozGui ../ozGui
-windows:LIBS *= -lozGui6
+windows:LIBS *= -lozGui7
 linux:LIBS *= -lozGui
 LIBS *= -L$$DESTDIR
 #message(--------/src/useGui.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )

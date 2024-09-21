@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
     APPH->set(vi);
     APPH->set(&a);
     APPH->set(&w);
-    w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot));
+    //w.setWindowTitle(vi.toString(VersionInfo::WithLowerVDot));
+    w.setWindowTitle(vi.toString(VersionInfo::Dotted));
     qDebug() << Q_FUNC_INFO << "<<<EvalMainWindow ctor";
     qDebug() << Q_FUNC_INFO << "500ms-->EvalApplication::initialize()";
     QTimer::singleShot(500, &a, &EvalApplication::initialize);

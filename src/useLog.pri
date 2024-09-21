@@ -3,7 +3,7 @@ include(LIBDIR.pri)
 include(DESTDIR.pri)
 
 INCLUDEPATH *= $$LIBDIR/ozLog ../../libs/ozLog ../ozLog
-windows:LIBS *= -lozLog6
+windows:LIBS *= -lozLog7
 linux:LIBS *= -lozLog
 LIBS *= -L$$DESTDIR
 message(--------/src/useLog.pri LIBS=$$LIBS DESTDIR==$$DESTDIR LIBDIR==$$LIBDIR INCLUDEPATH==$$INCLUDEPATH )

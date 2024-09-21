@@ -5,6 +5,7 @@ CONFIG += c++17
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 include(../desktop.pri)
+include(../../version.pri)
 include(../../useCore.pri)
 include(../../useColor.pri)
 include(../../useImage.pri)
