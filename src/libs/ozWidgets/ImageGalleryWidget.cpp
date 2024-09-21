@@ -1,5 +1,8 @@
 #include "ImageGalleryWidget.h"
 
+#include <QGridLayout>
+#include <QLabel>
+
 ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -27,6 +30,11 @@ void ImageGalleryWidget::configure()
 void ImageGalleryWidget::setup()
 {
     calculate();
+    QLabel * pLabel = new QLabel("ImageGalleryWidget");
+    pLabel->setFrameShape(QFrame::Panel);
+    QGridLayout * pGridLayout = new QGridLayout();
+    pGridLayout->addWidget(pLabel, 0, 0, Qt::AlignCenter | Qt::AlignHCenter);
+    setLayout(pGridLayout);
 }
 
 void ImageGalleryWidget::add(const ImageGalleryItem &item)

@@ -3,6 +3,7 @@
 #include <QScreen>
 
 #include <ApplicationHelper.h>
+#include <Debug.h>
 #include <QQSize.h>
 #include <Settings.h>
 #include <Value.h>
@@ -35,7 +36,6 @@ void EvalMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainWindow::initialize();
-
     emit initialized();
 }
 
@@ -50,13 +50,15 @@ void EvalMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainWindow::setup();
+    resize(1600, 900);
     //mpLogPage->addLine("Log Started");
     setCurrent(0);
     update();
     emit setuped();
 }
 
-AcquirePage *EvalMainWindow::acquirePage()
+void EvalMainWindow::handleResize(const QQSize newSize)
 {
-    return (AcquirePage *)(page("Acquire"));
+    qInfo() << Q_FUNC_INFO  << objectName() << mainSize() << newSize;
+    WEXPECT(mainSize() == newSize);
 }

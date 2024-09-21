@@ -30,3 +30,9 @@ void FramesPage::setup()
 
     setLayout(pageGridLayout());
 }
+
+void FramesPage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+
+}

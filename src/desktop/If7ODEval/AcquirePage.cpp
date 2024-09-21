@@ -64,3 +64,8 @@ void AcquirePage::setup()
 
     StackedMainPage::setup();
 }
+
+void AcquirePage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+}

@@ -30,6 +30,7 @@ void ImageFileDropWidget::setup()
 {
     qInfo() << Q_FUNC_INFO;
     QLabel * pLabel = new QLabel("Drop Image Files Here");
+    pLabel->setFrameShape(QFrame::Panel);
     QGridLayout * pGridLayout = new QGridLayout();
     pGridLayout->addWidget(pLabel, 0, 0, Qt::AlignCenter | Qt::AlignHCenter);
     setLayout(pGridLayout);

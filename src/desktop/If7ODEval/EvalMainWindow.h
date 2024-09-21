@@ -16,14 +16,17 @@ public: // ctors
     ~EvalMainWindow();
 
 public slots:
-    virtual void initialize();
-    virtual void configure();
-    virtual void setup();
+    virtual void initialize() override final;
+    virtual void configure() override final;
+    virtual void setup() override final;
 
 signals:
 
 public: // pointers
-    AcquirePage * acquirePage();
+
+protected slots:
+    virtual void handleResize(const QQSize newSize) override final;
+
 
 private:
 };

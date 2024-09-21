@@ -29,3 +29,9 @@ void FacesPage::setup()
 
     setLayout(pageGridLayout());
 }
+
+void FacesPage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+
+}

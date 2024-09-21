@@ -33,6 +33,10 @@ public: // non-const
 
 public: // pointers
 
+protected slots:
+    virtual void handleResize(const QQSize newSize) override final;
+
+
 private:
     ImageFileDropWidget * mpDropWidget=nullptr;
     ImageFileListWidget * mpListWidget=nullptr;

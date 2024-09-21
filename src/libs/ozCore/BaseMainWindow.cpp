@@ -14,8 +14,6 @@ BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
     : QMainWindow{nullptr}
 {
     qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
-    connect(this, &BaseMainWindow::resized,
-            this, &BaseMainWindow::handleResize);
     setObjectName("BaseMainWindow:" + wapp->applicationName());
     APPH->set(this);
 }
@@ -23,6 +21,8 @@ BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
 void BaseMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
+    connect(this, &BaseMainWindow::resized,
+            this, &BaseMainWindow::handleResize);
 }
 
 void BaseMainWindow::configure()

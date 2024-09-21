@@ -33,6 +33,12 @@ void LogPage::setup()
     setLayout(pageGridLayout());
 }
 
+void LogPage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+
+}
+
 void LogPage::addLine(const QString &aString)
 {
     mDocumentStrings.append(aString + '\n');

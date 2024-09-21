@@ -32,6 +32,10 @@ public: // pointers
     QTextEdit * textEdit();
     QTextDocument * textDocument();
 
+protected slots:
+    virtual void handleResize(const QQSize newSize) override final;
+
+
 private:
     QTextEdit * mpTextEdit=nullptr;
     QTextDocument * mpTextDocument=nullptr;

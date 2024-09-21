@@ -44,8 +44,6 @@ void SplashPage::setup()
              << tINDIonlyPixmap.size() << tINDIonlySize;
     QQLabel * pEclipseLabel = new QQLabel(tEclipsePixmap.scaled(tEclipseSize));
     QQLabel * pINDIonlyLabel = new QQLabel(tINDIonlyPixmap.scaled(tINDIonlySize));
-//    QQLabel * pEclipseLabel = new QQLabel("EclipsePixmap");
-  //  QQLabel * pINDIonlyLabel = new QQLabel("INDIonlyPixmap");
     QQLabel * pTextLabel = new QQLabel("INDIface7\nObject\nDetect\nEvalTool");
     pTextLabel->setFont(QFont("Helvetica", 48));
 
@@ -56,4 +54,10 @@ void SplashPage::setup()
     pageGridLayout()->setAlignment(pINDIonlyLabel, Qt::AlignCenter | Qt::AlignHCenter);
     pageGridLayout()->setAlignment(pTextLabel,     Qt::AlignCenter | Qt::AlignHCenter);
     setLayout(pageGridLayout());
+}
+
+void SplashPage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+
 }

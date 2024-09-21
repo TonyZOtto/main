@@ -28,3 +28,9 @@ void AnalysisPage::setup()
 // TOOD anything?
     setLayout(pageGridLayout());
 }
+
+void AnalysisPage::handleResize(const QQSize newSize)
+{
+    qInfo() << Q_FUNC_INFO  << objectName() << newSize;
+
+}

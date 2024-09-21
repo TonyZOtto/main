@@ -33,12 +33,20 @@ public: // non-const
 public: //
 
 public: // pointers
+    StackedMainWindow * mainWindow();
     QGridLayout * pageGridLayout();
 
+protected slots:
+    virtual void handleResize(const QQSize newSize);
+
+
 private:
+    StackedMainWindow * mpMainWindow=nullptr;
     QGridLayout * mpPageGridLayout=nullptr;
     KeySeg mTitle;
 };
 
 inline KeySeg StackedMainPage::title() const { return mTitle; }
+
+inline StackedMainWindow *StackedMainPage::mainWindow() { Q_ASSERT(mpMainWindow); return mpMainWindow; }
 inline QGridLayout *StackedMainPage::pageGridLayout() { Q_ASSERT(mpPageGridLayout); return mpPageGridLayout; }

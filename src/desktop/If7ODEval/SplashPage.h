@@ -22,6 +22,10 @@ public: // non-const
 
 public: // pointers
 
+protected slots:
+    virtual void handleResize(const QQSize newSize) override final;
+
+
 private:
 
 };
