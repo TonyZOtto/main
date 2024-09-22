@@ -16,7 +16,7 @@ AcquirePage::AcquirePage(StackedMainWindow *parent)
     , mpListWidget(new ImageFileListWidget(this))
     , mpTreeWidget(new ImageFileTreeWidget(this))
     , mpGalleryWidget(new ImageGalleryWidget(this))
-    , mFormats(SupportedFormats(SupportedFormats::ImageRead))
+    , mFormats(SupportedFormats(SupportedFormats::Read))
 {
     qInfo() << Q_FUNC_INFO;
     setObjectName("AcquirePage");

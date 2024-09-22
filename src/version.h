@@ -4,10 +4,10 @@
 #define VER_MAJOR           7
 #define VER_MINOR           90
 #define VER_RELEASE         1
-#define VER_BRANCH          9901
-#define VER_STRING          "v7.90A+9901"
+#define VER_BRANCH          0
+#define VER_STRING          "v7.90A"
 #define VER_BUILD           1001
-#define VER_BRANCHNAME      "SupportedFormats"
+#define VER_BRANCHNAME      "develop"
 #define VER_ORGNAME         "ottoZcode"
 #ifdef QT_DEBUG
 #define EIRVER_ORGNAME      "EclipseRD"

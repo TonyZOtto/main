@@ -4,6 +4,7 @@
 #include <QMetaObject>
 
 #include "AText.h"
+#include "Debug.h"
 #include "Types.h"
 
 ObjectHelper::ObjectHelper(const QObject *obj) : cmpObject(obj) {;}
@@ -14,6 +15,7 @@ const QMetaObject * ObjectHelper::metaObject() const
     Q_CHECK_PTR(cmpObject);
     result = cmpObject->metaObject();
     Q_CHECK_PTR(result);
+    //INFO << cmpObject->objectName() << result->className();
     return result;
 }
 
@@ -24,6 +26,7 @@ const QMetaEnum ObjectHelper::metaEnum(const QString &enumName) const
     const int cEnumIndex = pMetaObject->indexOfEnumerator(AText(enumName));
     if (cEnumIndex >= 0)
         result = pMetaObject->enumerator(cEnumIndex);
+    //INFO << cmpObject->objectName() << cEnumIndex << result.enumName();
     return result;
 }
 
@@ -68,6 +71,7 @@ QString ObjectHelper::enumKey(const QString &enumName, const int value) const
     const QMetaEnum cMetaEnum = metaEnum(enumName);
     if (cMetaEnum.isValid())
         result = cMetaEnum.valueToKey(value);
+    //INFO << enumName << value << result;
     return result;
 }
 
@@ -77,6 +81,7 @@ int ObjectHelper::enumValue(const QString &enumName, const QString &key) const
     const QMetaEnum cMetaEnum = metaEnum(enumName);
     if (cMetaEnum.isValid())
         result = cMetaEnum.keyToValue(AText(key));
+    //INFO << enumName << key << result;
     return result;
 }
 

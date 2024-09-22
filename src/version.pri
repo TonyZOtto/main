@@ -4,8 +4,8 @@
 OZVER_MAJOR        = 7
 OZVER_MINOR        = 90
 OZVER_RELEASE      = 1
-OZVER_BRANCH       = 9901
-OZVER_STRING       = "v7.90A+9901"
+OZVER_BRANCH       = 0
+OZVER_STRING       = "v7.90A"
 OZVER_COMPANY      = "ottoZcode"
 OZVER_ORGNAME      = "ottoZcode"
 EIRVER_APPNAME     = "EIRC INDIface7"

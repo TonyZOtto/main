@@ -2,6 +2,7 @@
 #include "ozImage.h"
 
 #include <QObject>
+
 #include <QFlags>
 
 #include <AText.h>
@@ -10,7 +11,7 @@
 
 class OZIMAGE_EXPORT SupportedFormats : public QObject
 {
-    Q_GADGET
+    Q_OBJECT
 public: // types
     enum Class
     {
@@ -39,16 +40,16 @@ public: // types
     enum FormatSuffix
     {
         $nullSuffix = 0,
-        BMP,
-        GIF,
-        JPG,
-        PNG,
-        PBM,
-        PGM,
-        PPM,
-        XBM,
-        XPM,
-        SVG,
+        bmp,
+        gif,
+        jpg,
+        png,
+        pbm,
+        pgm,
+        ppm,
+        xbm,
+        xpm,
+        svg,
         $maxSuffix
     };
     Q_ENUM(FormatSuffix)
@@ -85,11 +86,11 @@ public: // non-const
     ObjectHelper * objectHelper();
 
 private: // static
-    FormatFlags parseFlags(const FormatFlags ffs, const QByteArrayList &bas);
+    FormatFlags parseFlags(const FormatFlags initialFlags, const QByteArrayList &bas);
     AText formatKey(const FormatFlag ff);
     FormatSuffix formatSuffix(const AText &key);
     FormatFlag formatFlag(const AText &key);
-    QByteArrayList baList(const QString &s);
+    QByteArrayList baList(const QString &string);
 
 private:
     const Class cmClass;

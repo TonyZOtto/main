@@ -3,10 +3,14 @@
 #include <QImageReader>
 #include <QImageWriter>
 
+#include <Debug.h>
+
 SupportedFormats::SupportedFormats(const Class cls)
-    : cmClass(cls), mpObjectHelper(new ObjectHelper(this)) { set(); }
+    : cmClass(cls), mpObjectHelper(new ObjectHelper(this))
+    { setObjectName("SupportedFormats"); set(); }
 SupportedFormats::SupportedFormats(const Class cls, const QByteArrayList &bas)
-    : cmClass(cls), mpObjectHelper(new ObjectHelper(this)) { set(bas); }
+    : cmClass(cls), mpObjectHelper(new ObjectHelper(this))
+    { setObjectName("SupportedFormats"); set(bas); }
 
 bool SupportedFormats::isNull() const
 {
@@ -52,9 +56,9 @@ void SupportedFormats::update(const QByteArrayList &bas, const bool clear)
 // ---------------------- static ---------------------
 
 SupportedFormats::FormatFlags SupportedFormats::parseFlags(
-    const FormatFlags ffs, const QByteArrayList &bas)
+    const FormatFlags initialFlags, const QByteArrayList &bas)
 {
-    FormatFlags result = ffs;
+    FormatFlags result = initialFlags;
     foreach (AText key, bas)
     {
         bool tNeg = key.startsWith('-');
@@ -65,6 +69,7 @@ SupportedFormats::FormatFlags SupportedFormats::parseFlags(
         else
             result |= cFlag;
     }
+    //INFO << initialFlags << bas << result;
     return result;
 }
 
@@ -83,14 +88,16 @@ SupportedFormats::FormatFlag SupportedFormats::formatFlag(const AText &key)
     FormatFlag result = $nullFlag;
     const int cSuffix = formatSuffix(key);
     if (cSuffix >= 0) result = FormatFlag(1 << cSuffix);
+    //qInfo() << Q_FUNC_INFO << key << result << cSuffix;
     return result;
 }
 
-QByteArrayList SupportedFormats::baList(const QString &s)
+QByteArrayList SupportedFormats::baList(const QString &string)
 {
     QByteArrayList result;
-    QStringList tStrings = s.simplified().split(' ');
+    QStringList tStrings = string.simplified().split(' ');
     while ( ! tStrings.isEmpty())
         result.append(tStrings.takeFirst().toUtf8());
+    //qInfo() << Q_FUNC_INFO << string << result;
     return result;
 }

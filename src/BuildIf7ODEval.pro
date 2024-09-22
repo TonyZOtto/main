@@ -20,6 +20,6 @@ ozColor.depends         =   ozCore
 ozImage.depends         =   ozCore          ozColor
 ozGui.depends           =   ozCore
 ozWidgets.depends       =   ozCore          ozColor ozImage
-If7ODEval.depends       =   ozCore    ozGui ozColor ozImage
+If7ODEval.depends       =   ozCore    ozGui ozColor ozImage ozWidgets
 
 

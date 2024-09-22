@@ -39,6 +39,7 @@ public: // ctors
 
 public: // const
     BYTE major() const;
+    WORD majmin() const;       // 0..31 0..999
     WORD minor() const;        // 0..999
     BYTE release() const;      // _A..Z,AA..WW,X0..9A..X,0xA?,0xB?,0xC?,0xF?
     WORD branch() const;       // 0001..4999 Issue, 5001..5999 Customer

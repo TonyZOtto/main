@@ -18,7 +18,7 @@ ImageFileDropWidget::ImageFileDropWidget(QWidget *parent)
 
 void ImageFileDropWidget::initialize()
 {
-    mpReadFormats = new SupportedFormats(SupportedFormats::ImageRead);
+    mpReadFormats = new SupportedFormats(SupportedFormats::Read);
 }
 
 void ImageFileDropWidget::configure()
@@ -39,7 +39,7 @@ void ImageFileDropWidget::setup()
 SupportedFormats *ImageFileDropWidget::readFormats()
 {
     if ( ! mpReadFormats)
-        mpReadFormats = new SupportedFormats(SupportedFormats::ImageRead);
+        mpReadFormats = new SupportedFormats(SupportedFormats::Read);
     return mpReadFormats;
 }
 

@@ -38,6 +38,11 @@ BYTE VersionInfo::major() const
     return data->d_major;
 }
 
+WORD VersionInfo::majmin() const
+{
+    return major() * 1000U + minor();
+}
+
 WORD VersionInfo::minor() const
 {
     return data->d_minor;
@@ -260,9 +265,10 @@ QString VersionInfo::dottedString() const
 QString VersionInfo::releaseString(const StringOptions opts) const
 {
     QString result= QString(".%1").arg(release(), 3, 10, QChar('0'));
+    static QString sReleaseChar("@ABCDEFGHJKLMNPRSTUVWXYZ$");
     const unsigned cRelease = release();
     if (0 == cRelease || (cRelease >= 0xF0 && opts.testFlag(WithoutFinal)))  result.clear();
-    else if (cRelease > 1 && cRelease <=26) result = QChar(BYTE(cRelease + 0x40));
+    else if (cRelease >= 1 && cRelease < sReleaseChar.length()) result = sReleaseChar[cRelease];
     else if (cRelease >= 0xA0 && cRelease <= 0xAF) result = namedRelease("Alpha", opts);
     else if (cRelease >= 0xB0 && cRelease <= 0xBF) result = namedRelease("Beta", opts);
     else if (cRelease >= 0xC0 && cRelease <= 0xCF) result = namedRelease("RC", opts);
