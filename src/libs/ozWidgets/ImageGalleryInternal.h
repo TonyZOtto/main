@@ -18,7 +18,7 @@
 class OZWIDGETS_EXPORT ImageGalleryInternal : public VariableSet
 {
 public: // ctors
-    ImageGalleryInternal(const Key &setKey) : VariableSet(Ident(setKey)) { ctor(); }
+    ImageGalleryInternal(const Key &setKey=Key()) : VariableSet(Ident(setKey)) { ctor(); }
     DEFINE_VARPROPS(GALLERYINTERNAL_VARPROPS);
 
 public: // const

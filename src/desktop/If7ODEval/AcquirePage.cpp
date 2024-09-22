@@ -40,6 +40,9 @@ void AcquirePage::configure()
     mFormats.update(tFormats);
 
     ImageGalleryConfig tGalleryConfig;
+    // overide default for frame gallery
+    tGalleryConfig.set("Gallery/ThumbPixelSize", QQSize(256));
+    tGalleryConfig.set("Gallery/ViewPixelSize", QQSize(800));
     tGalleryConfig.set(mConfiguration.group("Gallery"));
     mpGalleryWidget->config(tGalleryConfig);
     mpDropWidget->configure();

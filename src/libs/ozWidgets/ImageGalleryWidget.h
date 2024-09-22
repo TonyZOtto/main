@@ -7,10 +7,12 @@
 
 #include <MatrixT.h>
 #include <QQPoint.h>
+#include <QQRect.h>
 #include <QQSize.h>
 #include <ThumbImage.h>
 
 #include "ImageGalleryConfig.h"
+#include "ImageGalleryInternal.h"
 #include "ImageGalleryItem.h"
 
 class OZWIDGETS_EXPORT ImageGalleryWidget : public QWidget
@@ -18,8 +20,6 @@ class OZWIDGETS_EXPORT ImageGalleryWidget : public QWidget
     Q_OBJECT
 public:
     explicit ImageGalleryWidget(QWidget *parent=nullptr);
-    explicit ImageGalleryWidget(QWidget * viewWidget,
-                                QWidget *parent);
 
 public slots:
     void initialize();
@@ -46,16 +46,18 @@ public: // non-const
 private: // pointers
     QGraphicsScene * scene();
     QGraphicsView * view();
+    ImageGalleryInternal & internal();
 
 private: // non-const
     void calculate();
     void calculateViewGeometry();
 
 private:
-    QWidget * mpViewWidget=nullptr;
     QGraphicsScene * mpScene=nullptr;
+    QQRect mSceneRect;
     QGraphicsView * mpView=nullptr;
     ImageGalleryConfig mConfig;
+    ImageGalleryInternal mInternal;
     QList<ImageGalleryItem> mItemList;
     MatrixT<ThumbImage> mThumbMatrix;
     QQPoint mSelectPoint;
@@ -64,4 +66,5 @@ private:
 };
 
 inline ImageGalleryConfig ImageGalleryWidget::config() { return mConfig; }
+inline ImageGalleryInternal &ImageGalleryWidget::internal() { return mInternal; }
 

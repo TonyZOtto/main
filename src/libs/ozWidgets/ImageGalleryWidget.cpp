@@ -3,18 +3,13 @@
 #include <QGridLayout>
 #include <QLabel>
 
+
+#include "GraphicsFillItem.h"
+
 ImageGalleryWidget::ImageGalleryWidget(QWidget *parent)
     : QWidget(parent)
 {
     setObjectName("ImageGalleryWidget");
-}
-
-ImageGalleryWidget::ImageGalleryWidget(QWidget *viewWidget,
-                                       QWidget *parent)
-    : QWidget(parent)
-    , mpViewWidget(viewWidget)
-{
-// TODO    refData().viewPixelSize(mpViewWidget->size());
 }
 
 void ImageGalleryWidget::initialize()
@@ -24,16 +19,19 @@ void ImageGalleryWidget::initialize()
 
 void ImageGalleryWidget::configure()
 {
+    calculate();
 
 }
 
 void ImageGalleryWidget::setup()
 {
-    calculate();
-    QLabel * pLabel = new QLabel("ImageGalleryWidget");
-    pLabel->setFrameShape(QFrame::Panel);
     QGridLayout * pGridLayout = new QGridLayout();
-    pGridLayout->addWidget(pLabel, 0, 0, Qt::AlignCenter | Qt::AlignHCenter);
+    mpScene = new QGraphicsScene(internal().sceneRect().toQRectF(), this);
+    mpView = new QGraphicsView(mpScene, this);
+    GraphicsFillItem * pGFI = new GraphicsFillItem(internal().viewPixelSize(),
+                                                  config().backColor());
+    mpScene->addItem(pGFI);
+    pGridLayout->addWidget(mpView, 0, 0, 1, 1);
     setLayout(pGridLayout);
 }
 
@@ -86,7 +84,12 @@ void ImageGalleryWidget::calculate()
 
 void ImageGalleryWidget::calculateViewGeometry()
 {
-    //if (config()->ViewPixelSize().isEmpty())
+//    const QQSize cThumbPixelSize = mConfig.get("thumbPixelSize");
+    const int cGapWidth = int(mConfig.get("GapWidth").value());
+    const QQSize cViewPixelSize = QQSize(mConfig.get("viewPixelSize").value());
+    mSceneRect.set(QQPoint( - cGapWidth / 2,  - cGapWidth / 2), cViewPixelSize);
+    internal().sceneRect(mSceneRect);
+    internal().viewPixelSize(cViewPixelSize);
 }
 
 

@@ -16,6 +16,7 @@ SOURCES += \
     BaseStackedLayout.cpp \
     DropWidgetView.cpp \
     FillerWidget.cpp \
+    GraphicsFillItem.cpp \
     GridStackPage.cpp \
     ImageFileDropWidget.cpp \
     ImageFileListWidget.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     BaseStackedLayout.h \
     DropWidgetView.h \
     FillerWidget.h \
+    GraphicsFillItem.h \
     GridStackPage.h \
     ImageFileDropWidget.h \
     ImageFileListWidget.h \

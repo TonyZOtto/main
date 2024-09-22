@@ -30,6 +30,7 @@ public: // const
     QVariant toQVariant() const;
     operator QVariant () const { return toQVariant(); }
     QRect toQRect(const Anchor aAnchor=TopLeft) const;
+    QRectF toQRectF(const Anchor aAnchor=TopLeft) const;
 
 private:
     QQSize mSize;

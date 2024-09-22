@@ -37,4 +37,17 @@ QRect SCRect::toQRect(const Anchor aAnchor) const
     return result;
 }
 
+QRectF SCRect::toQRectF(const Anchor aAnchor) const
+{
+    QPointF tTopLeft;
+    switch (aAnchor)
+    {
+    case TopLeft:   tTopLeft = QPointF(0, 0);                   break;
+    case Center:    tTopLeft = QPointF(qreal(width()) / 2.0,
+                                       qreal(height()) / 2.0);  break;
+    }
+    QRectF result(tTopLeft, size().toSizeF());
+    return result;
+}
+
 
