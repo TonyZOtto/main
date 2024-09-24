@@ -1,14 +1,17 @@
 #include "QQSize.h"
 
+#include "Debug.h"
 #include "Rational.h"
 
 QQSize::QQSize(const QQSize aBaseSize, const QQSize aFitSize)
 {
     const QQSize cMinSize = aBaseSize.min(aFitSize);
+    const Rational cAspect = aBaseSize.aspect();
     if (aFitSize.isWider())
-        set(aFitSize.aspect(), cMinSize.height());
+        set(aFitSize.width(), cAspect.scaled(aBaseSize.height()));
     else
-        set(cMinSize.width(), aFitSize.aspect());
+        set(aBaseSize.width() * cAspect, aFitSize.height());
+    TRACE << *this << aBaseSize << aFitSize << cMinSize << cAspect;
 }
 
 int QQSize::area() const
@@ -88,8 +91,8 @@ bool QQSize::equals(const QQSize rhs) const
 
 QQSize QQSize::divided(const QQSize dividend) const
 {
-    return QQSize(height() / dividend.height(),
-                  width()  / dividend.width());
+    return QQSize(width()  / dividend.width(),
+                  height() / dividend.height());
 }
 
 signed int QQSize::factor(const QQSize rhs) const

@@ -30,12 +30,13 @@ void SplashPage::configure()
 
 void SplashPage::setup()
 {
-    qInfo() << Q_FUNC_INFO << pageSize();
+    qInfo() << Q_FUNC_INFO;
     StackedMainPage::setup();
 
-    QQSize tRightSize = pageSize() / QQSize(2, 1);
+    QQSize tPageSize = mainWindow()->mainStackLayout()->minimumSize();
+    QQSize tRightSize = tPageSize / QQSize(2, 1);
     QQSize tLeftSize = tRightSize / QQSize(1, 2);
-    qDebug() << tLeftSize << tRightSize;
+    qDebug() << tPageSize << tLeftSize << tRightSize;
     QPixmap tEclipsePixmap(":/png/EclipseIRLogo200.png");
     QPixmap tINDIonlyPixmap(":/png/INDI200.png");
     QQSize tEclipseSize(tEclipsePixmap.size(), tLeftSize);

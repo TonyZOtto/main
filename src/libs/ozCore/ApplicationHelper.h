@@ -54,7 +54,7 @@ signals:
 public: // const
     Type type() const;
     VersionInfo versionInfo() const;
-    QQSize screenSize(const Index kScreen=0) const;
+    QQSize screenSize() const;
 
 public: // non-const
     void set(WidgetApplication *wapp);

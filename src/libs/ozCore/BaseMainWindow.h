@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <QWidget>
+
 #include <KeyMap.h>
 #include <QQSize.h>
 #include <Types.h>
@@ -26,31 +28,28 @@ signals:
     void configured();
     void setuped();
     void startupError(const QString errorString);
-    void resized(const QQSize newSize);
 
 public: // const
     KeyMap configMap() const;
-    QQSize mainSize() const;
 
 public: // non-const
 
 public: // pointers
     WidgetApplication * app() const;
+    QWidget * centralWidget() const;
 
 protected slots:
-    virtual void handleResize(const QQSize newSize);
 
 protected:
-    virtual void resizeEvent(QResizeEvent * event) override;
 
 private:
     WidgetApplication * mpApp=nullptr;
+    QWidget * mpCentralWidget=nullptr;
     KeyMap mConfigMap;
-    QQSize mMainSize;
 };
 
 inline KeyMap BaseMainWindow::configMap() const { return mConfigMap; }
-inline QQSize BaseMainWindow::mainSize() const { return mMainSize; }
 inline WidgetApplication *BaseMainWindow::app() const { Q_ASSERT(mpApp); return mpApp; }
+inline QWidget *BaseMainWindow::centralWidget() const { Q_ASSERT(mpCentralWidget); return mpCentralWidget; }
 
 

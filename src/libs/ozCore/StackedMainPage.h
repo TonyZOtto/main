@@ -44,6 +44,7 @@ private:
     StackedMainWindow * mpMainWindow=nullptr;
     QGridLayout * mpPageGridLayout=nullptr;
     KeySeg mTitle;
+    bool mSizeDirty=true;
 };
 
 inline KeySeg StackedMainPage::title() const { return mTitle; }

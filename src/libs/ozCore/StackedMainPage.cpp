@@ -9,6 +9,7 @@
 
 StackedMainPage::StackedMainPage(const KeySeg &aTitle, StackedMainWindow *parent)
     : QWidget{parent}
+    , mpMainWindow(parent)
     , mpPageGridLayout(new QGridLayout())
     , mTitle(aTitle)
 {
@@ -20,8 +21,6 @@ StackedMainPage::StackedMainPage(const KeySeg &aTitle, StackedMainWindow *parent
 void StackedMainPage::initialize()
 {
     qInfo() << Q_FUNC_INFO << title();
-    connect(mainWindow(), &StackedMainWindow::resized,
-            this, &StackedMainPage::handleResize);
 }
 
 void StackedMainPage::configure()
@@ -39,12 +38,5 @@ void StackedMainPage::setup()
 void StackedMainPage::handleResize(const QQSize newSize)
 {
     qInfo() << Q_FUNC_INFO  << objectName() << newSize;
-}
-
-QQSize StackedMainPage::pageSize() const
-{
-    QQSize result;
-    result = APPH->baseMainWindow()->size();
-    qInfo() << Q_FUNC_INFO << title() << result;
-    return result;
+    mSizeDirty = true;
 }

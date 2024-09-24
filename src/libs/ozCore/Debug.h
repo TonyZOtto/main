@@ -7,7 +7,10 @@
 #define EXPECT(bexp)    { if ( ! (bexp)) qCritical() << Q_FUNC_INFO  << #bexp << "failed"; }
 #define FEXPECT(bexp)   { if ( ! (bexp)) qFatal()    << Q_FUNC_INFO  << #bexp << "failed"; }
 
-#define INFO qInfo() << Q_FUNC_INFO << __LINE__
+#define INFO    qInfo()     << Q_FUNC_INFO << __LINE__
+#define TRACE   qDebug()    << Q_FUNC_INFO << __LINE__
+#define WARNING qWarning()  << Q_FUNC_INFO << __LINE__
+#define ERROR   qCritical() << Q_FUNC_INFO << __LINE__
 
 class Debug
 {

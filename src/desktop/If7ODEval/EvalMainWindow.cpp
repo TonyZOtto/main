@@ -50,15 +50,8 @@ void EvalMainWindow::setup()
 {
     qInfo() << Q_FUNC_INFO;
     StackedMainWindow::setup();
-    resize(1600, 900);
-    //mpLogPage->addLine("Log Started");
     setCurrent(0);
     update();
     emit setuped();
 }
 
-void EvalMainWindow::handleResize(const QQSize newSize)
-{
-    qInfo() << Q_FUNC_INFO  << objectName() << mainSize() << newSize;
-    WEXPECT(mainSize() == newSize);
-}

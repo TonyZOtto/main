@@ -60,16 +60,13 @@ void ApplicationHelper::handleStartupError(const QString errorString)
              << cFrom << ":" << errorString;
 }
 
-QQSize ApplicationHelper::screenSize(const Index kScreen) const
+QQSize ApplicationHelper::screenSize() const
 {
     QQSize result;
-    QList<QScreen *> tScreenList = QGuiApplication::screens();
-    if (kScreen >= 0 && kScreen < tScreenList.count())
-    {
-        QScreen * pScreen = tScreenList[kScreen];
-        result = pScreen->availableSize();
-    }
-    qInfo() << Q_FUNC_INFO << kScreen << result << "of" << tScreenList.count();
+    QScreen * pScreen = QGuiApplication::primaryScreen();
+    Q_ASSERT(pScreen);
+    result = pScreen->availableSize();
+    qInfo() << Q_FUNC_INFO << result;
     return result;
 }
 

@@ -6,23 +6,25 @@
 #include <Settings.h>
 
 #include "Debug.h"
+#include "QQPoint.h"
 #include "WidgetApplication.h"
 
 #include <ApplicationHelper.h>
 
 BaseMainWindow::BaseMainWindow(WidgetApplication *wapp)
     : QMainWindow{nullptr}
+    , mpCentralWidget(new QWidget(this))
 {
+    Q_ASSERT(mpCentralWidget);
     qInfo() << Q_FUNC_INFO << Qt::hex << APPH;
     setObjectName("BaseMainWindow:" + wapp->applicationName());
     APPH->set(this);
+    mpCentralWidget->setObjectName("CentralWidget");
 }
 
 void BaseMainWindow::initialize()
 {
     qInfo() << Q_FUNC_INFO;
-    connect(this, &BaseMainWindow::resized,
-            this, &BaseMainWindow::handleResize);
 }
 
 void BaseMainWindow::configure()
@@ -33,24 +35,16 @@ void BaseMainWindow::configure()
 
 void BaseMainWindow::setup()
 {
-    qInfo() << Q_FUNC_INFO << mConfigMap;
+    QQSize tBaseSize = mConfigMap.value("BaseSize").toSize();
+    qInfo() << Q_FUNC_INFO << mConfigMap << size() << tBaseSize;
+    if (tBaseSize.isValid())
+        resize(tBaseSize);
     if (mConfigMap.value("Maximized", false).toBool())
         showMaximized();
     else if (mConfigMap.value("Minimized", false).toBool())
         showMinimized();
     else
         showNormal();
+    setCentralWidget(mpCentralWidget);
 }
 
-void BaseMainWindow::handleResize(const QQSize newSize)
-{
-    qInfo() << Q_FUNC_INFO  << objectName() << mainSize() << newSize;
-    WEXPECT(mainSize() == newSize);
-}
-
-void BaseMainWindow::resizeEvent(QResizeEvent *event)
-{
-    Q_ASSERT(event);
-    mMainSize = event->size();
-    emit resized(mMainSize);
-}

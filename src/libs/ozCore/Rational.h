@@ -20,6 +20,7 @@ public: // const
     signed ratio() const;
     Rational flipped() const;
     Rational multiplied(const Term aNum) const;
+    Term scaled(const Term aNum) const;
     Rational divided(const Term aDen) const;
     Term toInt() const;
     qreal toReal() const;
@@ -36,6 +37,7 @@ public: // non-const
     void operator + (const Rational aRat) { add(aRat); }
 
 public: // static
+    static bool isValid(const Term aTerm);
     static Term invalidTerm();
 
 private:

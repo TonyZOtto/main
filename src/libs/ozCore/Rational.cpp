@@ -1,5 +1,7 @@
 #include "Rational.h"
 
+#include "Debug.h"
+
 Rational::Term Rational::smInvalidTerm = INT_MIN;
 
 Rational::Rational() : mNumerator(0), mDenominator(0) {;}
@@ -33,6 +35,18 @@ Rational Rational::multiplied(const Term aNum) const
 {
     Rational result(*this);
     result.n(n() * aNum);
+    return result;
+}
+
+Rational::Term Rational::scaled(const Term aNum) const
+{
+    Term result = invalidTerm();
+    if (isValid(aNum) && isValid())
+    {
+        Rational tRat =  multiplied(aNum);
+        result = tRat.toInt();
+        TRACE << result << *this << aNum << tRat;
+    }
     return result;
 }
 
@@ -90,4 +104,9 @@ void Rational::add(const Rational aRat)
         signed tNum = d() * aRat.n() + n() * aRat.d();
         set(tNum, tDen);
     }
+}
+
+bool Rational::isValid(const Term aTerm)
+{
+    return aTerm != smInvalidTerm;
 }

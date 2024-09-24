@@ -25,7 +25,6 @@ signals:
 public: // pointers
 
 protected slots:
-    virtual void handleResize(const QQSize newSize) override final;
 
 
 private:
