@@ -9,9 +9,6 @@ BaseImage::BaseImage(const Image::Type aType, const QImage &aQImage)
 BaseImage::BaseImage(const Image::Type aType, const QPixmap &aPixmap)
     : mType(aType)
     , mBaseImage(aPixmap.toImage().convertedTo(Image::qformat(type()))) {;}
-BaseImage::BaseImage(const BaseImage &other)
-    : mType(other.type())
-    , mBaseImage(other.baseImage().convertedTo(Image::qformat(type()))) {;}
 
 QQPoint BaseImage::center() const
 {

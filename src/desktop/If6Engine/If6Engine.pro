@@ -49,6 +49,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     ../../../doc/desktop/INDIface/Settings2.txt \
+    ../../../doc/desktop/INDIface/detect2.txt \
     ../../version.pri \
     INDIonly64.ico
 

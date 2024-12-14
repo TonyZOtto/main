@@ -15,7 +15,6 @@ public: // ctors
     BaseImage();
     BaseImage(const Image::Type aType, const QImage &aQImage);
     BaseImage(const Image::Type aType, const QPixmap &aPixmap);
-    BaseImage(const BaseImage &other);
 
 public: // const
     QImage baseImage() const;

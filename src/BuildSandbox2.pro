@@ -2,11 +2,11 @@
 	desktop/ozSandbox	\
 	libs/ozCore \
 	libs/ozGui \
-	libs/ozWidegets \
+	libs/ozWidgets \
 	libs/ozExe \
 	
-ozSandbox.depends 	ozCore	ozGui	ozWidegets	ozExe
+ozSandbox.depends 	ozCore	ozGui	ozWidgets	ozExe
 ozGui.depends		ozCore
 ozWidegets.depends	ozCore
-ozExe.depends		ozCore			ozWidegets
+ozExe.depends		ozCore			ozWidgets
 	

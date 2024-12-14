@@ -7,6 +7,7 @@ class OZIMAGE_EXPORT ColorImage : public BaseImage
 {
 public: // ctors
     ColorImage();
+    virtual ~ColorImage() {;}
     ColorImage(const BaseImage &other);
 
 public: // virtual const

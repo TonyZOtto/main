@@ -6,11 +6,10 @@ SUBDIRS += \
     QtCV \
     ozColor \
     ozCore \
-    ozExe \
     ozGui \
+    ozImage \
     ozLog \
     ozMovie \
-    ozPhoto \
     ozQtCV \
     ozWidgets   \
 
